@@ -15,7 +15,7 @@ export default function KnowUs() {
                     alt="review"
                     width={450}
                     height={450}
-                    priority
+                    loading="lazy"
                 />
             </div>
 

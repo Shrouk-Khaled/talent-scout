@@ -13,32 +13,32 @@ export default function Packages() {
       <div className={styles.packages}>
         <div className={`${styles.package} ${styles.normal}`}>
             <h1>الباقة المميزة</h1>
-            <h3><span>مجانية</span> لمدة سنة</h3>
+            <h3><span>0.00</span> ريال/السنة</h3>
 
-            <Button outline>إبدأ الان مجانا</Button>
+            <Button outline>إشترك الأن</Button>
 
             <h4>تحتوى علي:</h4>
 
             <div className={styles.list}>
-                 <p><FaCheck />ظهور محلي + إقليمي + دولي</p> 
-                 <p><FaCheck />إبراز الملف في البحث</p> 
-                 <p><FaCheck />تواصل غير محدود مع الباحثين</p> 
+                 <p><FaCheck />ظهور محلي فقط</p> 
+                 <p><FaCheck />بدون مميزات إضافية</p> 
+                 <p><FaCheck />مناسبة للمستخدمين الجدد </p> 
             </div>
             
         </div>
 
         <div className={`${styles.package} ${styles.normal}`}>
-            <h1>الباقة المميزة</h1>
-            <h3><span>مجانية</span> لمدة سنة</h3>
+            <h1>الباقة المتقدمة</h1>
+            <h3><span>400</span> ريال/السنة</h3>
 
-            <Button outline>إبدأ الان مجانا</Button>
+            <Button outline>إشترك الأن</Button>
 
             <h4>تحتوى علي:</h4>
 
             <div className={styles.list}>
-                 <p><FaCheck />ظهور محلي + إقليمي + دولي</p> 
-                 <p><FaCheck />إبراز الملف في البحث</p> 
-                 <p><FaCheck />تواصل غير محدود مع الباحثين</p> 
+                 <p><FaCheck />ظهور محلي + إقليمي</p> 
+                 <p><FaCheck />إمكانية رفع مستندات وصور</p> 
+                 <p><FaCheck />دعم تواصل محدود مع الباحثين</p> 
             </div>
             
         </div>

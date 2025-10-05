@@ -42,7 +42,7 @@ export default function Language() {
             <span className={styles.menuFlag}>{FLAG.ar}</span>
           </div>
         ),
-        onClick: () => switchLanguage('ar'),
+        // onClick: () => switchLanguage('ar'),
       },
       {
         key: 'en',
@@ -52,7 +52,7 @@ export default function Language() {
             <span className={styles.menuFlag}>{FLAG.en}</span>
           </div>
         ),
-        onClick: () => switchLanguage('en'),
+        // onClick: () => switchLanguage('en'),
       },
     ],
     [pathname, locale]

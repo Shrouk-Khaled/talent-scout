@@ -15,7 +15,7 @@ export default function HowToStart({ isResearcher }) {
           alt="how to start"
           width={500}
           height={600}
-          priority
+          loading="lazy"
         />
       </div>
       {isResearcher ? (

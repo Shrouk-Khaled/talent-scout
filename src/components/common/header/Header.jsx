@@ -76,7 +76,7 @@ export default function Header() {
           })}
         </div>
         {
-          isHomePage ? 
+          pathname === `/${locale}` ? 
           <div className={styles.actions}>
             <Language />
             <Button>{t("login")}</Button>

@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import DownloadAppBox from "./DownloadApp";
 import styles from "./Footer.module.scss";
@@ -11,8 +12,19 @@ import { IoIosStar } from "react-icons/io";
 import { LuMail } from "react-icons/lu";
 import { LuPhone } from "react-icons/lu";
 import { HiOutlineLocationMarker } from "react-icons/hi";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname() || "";
+
+  // handles localized paths like /en/feed or /ar/feed and also /feed
+  const parts = pathname.split("/").filter(Boolean); // ["en","feed"] or ["feed"]
+  const isFeed =
+    parts[0] === "feed" ||               // /feed
+    (parts.length > 1 && parts[1] === "feed"); // /en/feed, /ar/feed, etc.
+
+  if (isFeed) return null;
+
   return (
     <div className={styles.footer}>
       <div className={`${styles.main} app-container`}>

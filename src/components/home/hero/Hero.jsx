@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 
 const Hero = () => {
     const t = useTranslations('Home');
-    const navigator = typeof window !== "undefined" ? window.navigator : null;
 
     const [show, setShow] = useState(false);
 
@@ -32,7 +31,7 @@ const Hero = () => {
               width={40}
               height={50}
               className={styles.ideaIcon}
-              priority
+              loading="lazy"
             />
           </h1>
           <p>{t("heroText2")}</p>
