@@ -1,0 +1,104 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/breakpoints" as bp;
+
+.section {
+    padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+        color: $color-primary;
+        font-size: 18px;
+    }
+    .desc {
+        text-align: center;
+        margin-top: 0.5rem;
+        margin-bottom: 3rem;
+        width: 35%;
+        font-size: 40px;
+        span {
+            color: $color-primary;
+        }
+    }
+
+    .packages {
+        width: 100%;
+        display: flex;
+        gap: 22px;
+
+        .package {
+            width: 30%;
+            background: linear-gradient(360deg, rgba(222, 245, 228, 0.5) 0%, rgba(210, 230, 245, 0.5) 100%);
+            padding: 40px 34px;
+            border-radius: 30px;
+
+            &.normal {
+                border: 1px solid $color-light-blue2;
+                background: white;
+
+                .list {
+                    svg {
+                        color: $color-primary;
+                    }
+                }
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            h3 {
+                color: $color-primary;
+                font-size: 24px;
+                font-weight: normal;
+                margin-top: 8px;
+                span {
+                    font-size: 26px;
+                    font-weight: bold;
+                }
+            }
+
+            button {
+                width: 100%;
+                margin: 35px 0;
+            }
+
+            .list {
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                svg {
+                    color: $color-pink;
+                    font-size: 14px;
+                }
+                p {
+                    color: $color-grey;
+                    display: flex;
+                    gap: 8px;
+                    align-items: center;
+                }
+            }
+        }
+    }
+
+    @include bp.respond-to(md) {
+        margin-top: 3rem;
+        .desc {
+            font-size: 26px;
+            width: 80%;
+        }
+
+        .packages {
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+
+            .package {
+                width: 80%;
+            }
+        }
+    }
+}

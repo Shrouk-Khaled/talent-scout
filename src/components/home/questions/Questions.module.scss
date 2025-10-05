@@ -1,0 +1,49 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/breakpoints" as bp;
+
+.section {
+    width: 100%;
+    display: flex;
+    margin-bottom: 4rem;
+    margin-top: 3rem;
+
+    .info {
+        width: 50%;
+
+       p {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: $color-dark-grey;
+        font-size: 16px;
+       }
+
+       h1 {
+        width: 60%;
+        margin-top: 10px;
+        span {
+            color: $color-primary;
+        }
+       }
+    }
+
+    .questions {
+        width: 50%;
+    }
+
+    @include bp.respond-to(md) {
+        flex-direction: column;
+        gap: 20px;
+
+        .info, .questions {
+            width: 100%;
+        }
+
+        .info {
+            h1 {
+                width: 100%;
+                font-size: 25px;
+            }
+        }
+    }
+}

@@ -1,0 +1,233 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.mobileHeader {
+  @include flex-center;
+  box-sizing: border-box;
+  position: fixed;
+  inset: 0 auto auto 0;
+  width: 100%;
+  left: 0;
+  top: 0;
+  right: 0;
+
+  padding-block: 0;
+  padding-inline: 16px;
+  padding-inline-start: 16px;
+  padding-inline-end: 16px;
+  height: 60px;
+
+  justify-content: space-between;
+  align-items: center;
+
+  z-index: 1000;
+  /* raise above overlay */
+  transition: background-color 0.2s ease, backdrop-filter 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &.scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: blur(6px);
+    /* iOS/Safari */
+    backdrop-filter: blur(6px);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+    isolation: isolate;
+    /* helps with backdrop-filter in complex stacks */
+  }
+
+  &.notHome {
+    img {
+      height: 35px;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .icon {
+        font-size: 20px;
+      }
+    }
+  }
+
+  img {
+    object-fit: contain;
+  }
+
+  svg {
+    font-size: 26px;
+    color: $color-primary;
+  }
+}
+
+/* ------- Drawer + Overlay ------- */
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
+
+/* Drawer wrappers */
+.drawerRoot :global(.ant-drawer-mask) {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.drawer :global(.ant-drawer-body) {
+  padding: 0;
+  /* we handle layout ourselves */
+}
+
+/* Panel content */
+.panel {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  /* topbar, search, nav, cta */
+  gap: 16px;
+  padding: 16px;
+  background: #fff;
+  // min-height: 100%;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+/* Top row */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.closeBtn {
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+  color: #111827;
+  cursor: pointer;
+  line-height: 0;
+}
+
+/* Nav */
+.nav {
+  padding-inline: 4px;
+
+  button {
+    margin-top: 45px;
+    padding: 12px 0;
+    width: 80%;
+  }
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+  font-family: "MadaniArabic", sans-serif;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #6b7280;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.link:hover {
+  color: #111827;
+}
+
+.active {
+  color: #0b5ed7;
+  /* primary (blue) like screenshot */
+  font-weight: 700;
+}
+
+/* Group (المواهب) */
+.group {
+  display: grid;
+  gap: 8px;
+}
+
+.groupBtn {
+  width: 100%;
+  justify-content: space-between;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.chev {
+  font-size: 18px;
+  transition: transform 0.15s ease;
+}
+
+.chevOpen {
+  transform: rotate(180deg);
+}
+
+.subList {
+  list-style: none;
+  margin: 0;
+  padding: 6px 10px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.subLink {
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.subLink:hover {
+  color: #111827;
+}
+
+/* CTA button */
+.ctaWrap {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 12px;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  height: 44px;
+  background: #0b5ed7;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+  transition: transform 0.05s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.ctaBtn:hover {
+  background: #0a53be;
+}
+
+.ctaBtn:active {
+  transform: translateY(1px);
+}
+
+/* Optional: tweak Input inner parts via module scoping */
+.searchIcon {
+  font-size: 18px;
+}

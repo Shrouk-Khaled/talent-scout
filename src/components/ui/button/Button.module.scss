@@ -1,0 +1,45 @@
+@import "../../../styles/variables";
+
+.btn {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: $color-primary;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    font-family: 'MadaniArabic', sans-serif;
+
+    .icon{
+        margin: 0 8px;
+        vertical-align: middle;
+        font-size: 18px;
+        display: inline-block;
+     
+        img {
+            object-fit: contain;
+        }
+    }
+    
+    &:hover {
+        background-color: darken($color-primary, 10%);
+    }
+    
+    &:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+    }
+
+    &.outline {
+        background-color: #E5EDF7;
+        border: 1px solid $color-primary;
+        color: $color-primary;
+
+        &:hover {
+            // background-color: $color-primary;
+            // color: white;
+            color: darken($color-primary, 20%);
+        }
+    }
+}

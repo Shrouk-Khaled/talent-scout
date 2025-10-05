@@ -1,0 +1,63 @@
+{
+    "Home": {
+      "heroText": "Together we inspire the world and build a future of creativity and innovation.",
+      "description": "Where talented minds and researchers come together to create an inspiring future",
+      "heroText2": "An integrated web and mobile platform that brings together young talents with their ideas, skills, and innovations, with researchers and investors to create a promising future.",
+      "shareYourTalent": "Share Your Talent",
+      "discoverTalents": "Discover Talents",
+      "knowUs": "Get to know us",
+      "KnowUsDesc": "Because your comfort is our priority, we offer solutions that meet all",
+      "needs": "your needs.",
+      "knowUsDesc2": "We are a global platform based in Saudi Arabia, our goal is to showcase talents and creativity and connect them",
+      "forTalents": "For Talents",
+      "forTalentsDesc": "Showcase your talent, share your creativity, and reach the opportunities you deserve.",
+      "forResearchers": "For Researchers",
+      "forResearchersDesc": "Discover talents, invest in ideas, and be part of a bright future.",
+      "getStarted": "Get Started",
+  
+      "steps": [
+        {
+          "number": "01",
+          "title": "Secure Communication",
+          "desc": "Direct chat is restricted to protect personal data (without sharing phone numbers or addresses)."
+        },
+        {
+          "number": "02",
+          "title": "Contracts with Administrative Review",
+          "desc": "Every contract request is reviewed through the admin portal before reaching the parties, ensuring transparency and reliability."
+        },
+        {
+          "number": "03",
+          "title": "Contracts with Administrative Review",
+          "desc": "The platform grants these talents priority and higher ranking in search engines."
+        },
+        {
+          "number": "04",
+          "title": "Profile Badges",
+          "desc": "Users earn badges based on their previous work and the events they participated in."
+        },
+        {
+          "number": "05",
+          "title": "AI Supervision",
+          "desc": "All uploaded content is reviewed to ensure quality, and submissions are only accepted after admin approval."
+        },
+        {
+          "number": "06",
+          "title": "Profile Badges",
+          "desc": "Your messages, files, and personal information are protected with the highest global encryption technologies."
+        }
+      ]
+    },
+    "About": {
+      "title": "About Us"
+    },
+    "Header": {
+      "home": "Home",
+      "about": "About",
+      "events": "Events",
+      "articles": "Articles",
+      "talents": "Talents",
+      "login": "Login"
+    }
+  }
+  

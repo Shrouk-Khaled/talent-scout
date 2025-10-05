@@ -1,0 +1,91 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/breakpoints" as bp;
+
+.features {
+    padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+        color: $color-primary;
+        font-size: 18px;
+    }
+    .desc {
+        text-align: center;
+        margin-top: 0.5rem;
+        margin-bottom: 3rem;
+        width: 40%;
+        font-size: 40px;
+        span {
+            color: $color-primary;
+        }
+    }
+
+    .steps {
+        width: 100%;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        .step {
+            width: 29%;
+            padding: 20px;
+            border: 1px solid $color-light-blue2;
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            h2 {
+                display: flex;
+                gap: 8px;
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+                span {
+                    color: $color-pink;
+                    font-size: 24px;
+                }
+            }
+            p {
+                font-weight: normal;
+                color: $color-dark-grey;
+            }
+        }
+    }
+
+    button {
+        margin-top: 45px;
+        width: 25%;
+    }
+
+    @include bp.respond-to(md) {
+        .title {
+            font-size: 15px;
+        }
+        .desc {
+            font-size: 26px;
+            width: 80%;
+            margin-bottom: 2rem;
+        }
+
+        .steps {
+            justify-content: center;
+            .step {
+                width: 100%;
+                padding: 14px;
+                gap: 6px;
+                h2 {
+                    font-size: 16px;
+                    span {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+
+        button {
+            width: 70%;
+        }
+    }
+}

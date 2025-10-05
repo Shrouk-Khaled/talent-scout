@@ -1,0 +1,37 @@
+// 🎨 Colors
+$color-primary: #004AAD;
+$color-secondary: #ff6f61;
+$color-pink: #EE1D70;
+$color-success: #28a745;
+$color-danger: #dc3545;
+$color-light: #f8f9fa;
+$color-dark: #212529;
+$color-dark-grey: #00000066;
+$color-grey: #727272;
+$color-light-blue: #E9F7FF;
+$color-light-blue2: #80A4D6;
+
+
+// 🌍 Language direction (useful for RTL/LTR if needed)
+$dir-ltr: left;
+$dir-rtl: right;
+
+// 🔠 Fonts
+$font-family-base: 'Roboto', sans-serif;
+$font-family-arabic: 'MadaniArabic-Regular', sans-serif;
+
+// 📏 Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// 🕶️ Shadows
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+// 📐 Container
+$container-max-width: 1300px;
+$container-padding: 16px;

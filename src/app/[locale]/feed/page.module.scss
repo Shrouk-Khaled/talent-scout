@@ -1,0 +1,82 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+@use "../../../styles/breakpoints" as bp;
+
+.container {
+    @include padding-page;
+
+    display: flex;
+    gap: 12px;
+
+    .search {
+        display: none;
+    }
+    
+    .info {
+        flex: 1;
+    }
+    .mid {
+        flex: 2;
+
+        .createPost {
+            background-color: white;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 12px;
+
+            .post {
+                display: flex;
+                justify-content: space-between;
+
+                textarea {
+                    width: 85%;
+                    border: 1px solid #0000001F;
+                    resize: none;
+                    font-size: 16px;
+                    line-height: 1.2;
+                    color: $color-grey;
+                    border-radius: 8px;
+                    height: 60px;
+                    font-family: 'MadaniArabic', sans-serif;
+                    padding: 12px;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+
+            .uploads {
+                display: flex;
+                justify-content: center;
+                margin-top: 18px;
+                align-items: center;
+                gap: 60px;
+
+                div {
+                    display: flex;
+                    gap: 8px;
+                    align-items: center;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .filter {
+        flex: 1;
+    }
+
+    @include bp.respond-to(md) {
+        flex-direction: column;
+        .search {
+            display: block;
+            margin-bottom: 12px;
+        }
+        .info{
+            display: none;
+        }
+        .filter {
+            display: none;
+        }
+    }
+}

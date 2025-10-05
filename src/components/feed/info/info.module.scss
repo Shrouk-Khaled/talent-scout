@@ -1,0 +1,115 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+
+  img {
+    object-fit: contain;
+  }
+
+  .user {
+    @include flex-center;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 14px;
+    background-color: white;
+    padding: 40px;
+
+    .nameBox {
+      display: flex;
+      @include flex-center;
+      gap: 6px;
+      color: #999999;
+
+      p {
+        font-weight: normal;
+      }
+    }
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: 14px;
+    background-color: white;
+
+    h6 {
+      font-size: 16px;
+    }
+    a {
+      text-decoration: none;
+      color: $color-primary;
+      font-weight: bold;
+    }
+  }
+
+  .suggetions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 0;
+
+    .suggetion {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+
+      .talent {
+        @include flex-center;
+        gap: 8px;
+        img {
+          object-fit: contain;
+        }
+        .info {
+          p {
+            color: #8f8f8f;
+          }
+        }
+      }
+      button {
+        margin-right: auto;
+        padding: 8px 26px;
+        background-color: #e9f7ff;
+        border: 1px solid $color-light-blue2;
+        color: $color-primary;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .events {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 20px 0;
+
+    .event {
+        .eventImage {
+            object-fit: cover;
+            width: 100%;
+            border-radius: 14px;
+        }
+
+        .location {
+            color: #8F8F8F;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .date {
+            color: #8F8F8F;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            justify-content: flex-end;
+        }
+    }
+  }
+}

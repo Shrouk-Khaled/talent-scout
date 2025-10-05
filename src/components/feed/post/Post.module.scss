@@ -1,0 +1,106 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.post {
+    background-color: white;
+    padding: 24px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+
+    .talentData {
+        @include flex-center;
+        justify-content: space-between;
+        .info {
+            @include flex-center;
+            gap: 12px;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                h6 {
+                    font-weight: 600;
+                    font-size: 16px;
+                }
+
+                p {
+                    font-size: 14px;
+                    color: #999999;
+                }
+            }
+        }
+
+        .personalTalent {
+            background: #004AAD1A;
+            color: $color-primary;
+            padding: 6px 24px;
+            border-radius: 100px;
+        }
+    }
+
+    .content {
+        margin-bottom: 16px;
+        margin-top: 12px;
+        font-size: 14px;
+        line-height: 24px;
+
+        h5 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        p {
+            margin: 8px 0;
+            color: $color-grey;
+            font-weight: 100;
+
+            span {
+                color: $color-primary;
+                font-weight: 600;
+                cursor: pointer;
+            }
+        }
+
+        .postImage {
+            width: 100%;
+            border-radius: 14px;
+            margin-top: 12px;
+            object-fit: cover;
+        }
+        
+    }
+
+    .postFooter {
+        @include flex-center;
+        justify-content: space-between;
+
+        .reactions {
+            @include flex-center;
+            gap: 14px;
+
+            .reaction {
+                @include flex-center;
+                gap: 8px;
+                color: $color-grey;
+                font-size: 14px;
+                cursor: pointer;
+                border-radius: 100px;
+                background-color: #F5F5F5;
+                padding: 12px;
+
+                .icon {
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .sendContract {
+            width: 40%;
+           button {
+            width: 100%;
+            padding: 9px;
+           }
+        }
+    }
+}

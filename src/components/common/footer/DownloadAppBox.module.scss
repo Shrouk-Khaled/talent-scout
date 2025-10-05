@@ -1,0 +1,103 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/breakpoints" as bp;
+
+.wrapper {
+  background-image: url("/images/home/bg-footer.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  display: flex;
+  position: relative;
+  height: 430px;
+  padding: 0 40px;
+  padding-top: 30px;
+
+  .info {
+    width: 50%;
+    padding-top: 20px;
+
+    h1 {
+      color: white;
+      margin-bottom: 30px;
+      // width: 90%;
+      font-size: 44px;
+    }
+
+    p {
+      color: white;
+      font-size: 16px;
+    }
+
+    .stores {
+      display: flex;
+      gap: 15px;
+      margin-top: 80px;
+      p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        background-color: white;
+        color: $color-primary;
+        font-weight: bold;
+        padding: 12px 55px;
+        border-radius: 8px;
+      }
+    }
+  }
+
+  .imageBox {
+    width: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;  
+    justify-content: flex-end;
+    img {
+      object-fit: cover;
+      border-bottom-left-radius: 12px;
+    }
+  }
+
+  @include bp.respond-to(md) {
+    flex-direction: column;
+    height: fit-content;
+    padding: 30px 20px 0px 00px;
+
+    .info {
+      width: 100%;
+
+      h1 {
+        font-size: 32px;
+        width: 100%;
+      }
+
+      .stores {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 80%;
+        margin-top: 40px;
+        p {
+          padding: 12px 0;
+        }
+      }
+    }
+
+    .imageBox {
+      position: relative;
+      width: 100%;
+      bottom: auto;
+      left: auto;
+      margin-top: 20px;
+
+      img {
+        width: 100%;
+        height: auto;
+        border-bottom-left-radius: 0;
+        border-radius: 12px;
+      }
+    }
+  }
+}

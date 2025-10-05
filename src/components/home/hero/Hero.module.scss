@@ -1,0 +1,181 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/variables" as *;
+@use "../../../styles/breakpoints" as bp;
+
+.hero {
+    width: 100%;
+    height: 520px;
+    background-image: url("/images/bg-hero.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-top: 160px;
+
+    h1,
+    h4,
+    p,
+    .img,
+    .btns {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    &.show h1,
+    &.show h4,
+    &.show p,
+    &.show .img,
+    &.show .btns {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    h4 {
+        transition-delay: 0.2s;
+    }
+
+    h1 {
+        transition-delay: 0.4s;
+    }
+
+    p {
+        transition-delay: 0.6s;
+    }
+
+    .img {
+        transition-delay: 0.6s;
+      }
+
+    .btns {
+        transition-delay: 0.8s; // buttons appear last
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-top: 30px;
+
+        button {
+            width: 40%;
+            padding: 10px 0;
+        }
+    }
+
+    .main {
+        display: flex;
+        height: 100%;
+        width: 100%;
+
+        .right {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+
+            h4 {
+                @include flex-center;
+                justify-content: flex-start;
+                gap: 10px;
+                font-weight: normal;
+
+                svg {
+                    color: $color-pink;
+                    font-size: 20px;
+                }
+
+                color: $color-grey;
+            }
+
+            h1 {
+                font-size: 44px;
+                font-weight: 700;
+                line-height: 1.6;
+                color: $color-dark;
+                display: flex;
+                align-items: flex-end;
+                margin-top: 10px;
+
+                .ideaIcon {
+                    margin-left: 10px;
+                    object-fit: contain;
+                    animation: floatUpDown 3s ease-in-out infinite;
+                }
+            }
+
+            p {
+                color: $color-grey;
+                line-height: 1.6rem;
+                width: 90%;
+                margin: 20px 0;
+            }
+        }
+
+        .left {
+            width: 60%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+
+            img {
+                object-fit: contain;
+            }
+        }
+    }
+
+    @include bp.respond-to(md) {
+        background-image: url("/images/bg-hero-mobile.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: fit-content;
+        padding-top: 100px;
+
+        .main {
+            flex-direction: column;
+
+            .right {
+                width: 100%;
+
+                h1 {
+                    font-size: 26px;
+                    width: 80%;
+                }
+
+                .ideaIcon {
+                    display: none;
+                }
+
+                .btns {
+                    flex-direction: column;
+                    width: 70%;
+                    margin: 0 auto;
+
+                    button {
+                        width: 100%;
+                    }
+                }
+            }
+            .left {
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                margin-top: 60px;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@keyframes floatUpDown {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }

@@ -1,0 +1,30 @@
+// Reusable flexbox
+@use "../styles/breakpoints" as bp;
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @mixin padding-page {
+    padding-top: 105px;
+
+    @include bp.respond-to(md) {
+      padding-top: 70px;
+    }
+  }
+
+  // Truncate text with ellipsis
+  @mixin text-truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  // Apply direction aware padding (RTL/LTR)
+  @mixin padding-dir($left, $right) {
+    padding-#{$dir-ltr}: $left;
+    padding-#{$dir-rtl}: $right;
+  }
+  

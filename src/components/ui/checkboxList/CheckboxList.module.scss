@@ -1,0 +1,84 @@
+@use "../../../styles/variables" as *;
+
+.wrapper {
+    display: grid;
+    gap: 10px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.list {
+    display: grid;
+    gap: 14px;
+    margin-top: 7px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+
+    :global(.ant-checkbox) {
+        transform: scale(1.25);
+        //   margin-inline-start: 8px;
+    }
+
+    :global(.ant-checkbox .ant-checkbox-inner) {
+        width: 20px;
+        height: 20px;
+        //   border-radius: 8px;
+    }
+
+    /* checked state color */
+    :global(.ant-checkbox-checked .ant-checkbox-inner) {
+        background-color: $color-primary;
+        /* fill */
+        border-color: $color-primary;
+        /* border */
+    }
+
+    :global(.ant-checkbox-checked .ant-checkbox-inner) {
+        background-color: $color-primary;
+        /* fill */
+        border-color: $color-primary;
+        /* border */
+    }
+
+    /* hover border color when not checked (optional) */
+    :global(.ant-checkbox:hover .ant-checkbox-inner) {
+        border-color: $color-primary;
+    }
+
+}
+
+.text {
+    font-size: 16px;
+    line-height: 1.1;
+    color: #000000B2;
+    white-space: nowrap;
+}
+
+.moreBtn {
+    background: none;
+    border: none;
+    padding: 4px 0 0;
+    color: $color-primary;         /* antd primary */
+    font-size: 14px;
+    cursor: pointer;
+    align-self: start;
+    text-align: right;
+    font-weight: bold;
+    font-family: 'MadaniArabic', sans-serif;
+
+    &:hover { opacity: 0.85; }
+    &:focus-visible {
+      outline: 2px solid rgba(22, 119, 255, 0.4);
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+}

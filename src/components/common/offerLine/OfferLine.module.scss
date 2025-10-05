@@ -1,0 +1,15 @@
+.offer {
+    background: linear-gradient(90deg, #004AAD 0%, #001E47 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: white;
+
+    img {
+        object-fit: contain;
+    }
+}

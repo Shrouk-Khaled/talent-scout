@@ -1,0 +1,45 @@
+@use './breakpoints' as bp;
+@use './variables' as *;
+@use './mixins' as *;
+@use './typography' as *;
+
+body {
+  margin: 0;
+  padding: 0;
+  color: $color-dark;
+
+  h1, h2, h3, h4, h5, h6, p, span {
+    margin: 0;
+  }
+
+  .app-container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+
+    @include bp.respond-to(md) {
+      box-sizing: border-box;
+      padding-inline: 16px !important; 
+    }
+  }
+
+  .webHeader {
+    display: block;
+  
+    // hide web header on small screens (<= 768px)
+    @include bp.respond-to(md) {
+      display: none;
+    }
+  }
+  
+  .mobileHeader {
+    display: none;
+  
+    // show mobile header on small screens (<= 768px)
+    @include bp.respond-to(md) {
+      display: flex;
+    }
+  }
+
+
+
+}

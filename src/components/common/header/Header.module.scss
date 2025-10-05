@@ -1,0 +1,86 @@
+@use "../../../styles/variables" as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  flex-shrink: 0;
+  z-index: 1000;
+
+  &.scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(6px);
+  }
+
+  &.notHome {
+    background-color: white;
+    box-shadow: 0px 0px 24px 0px #0000001A;
+
+    .links {
+      justify-content: flex-start;
+      width: 65%;
+    }
+  }
+
+  .mainInfo {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // padding: 0 20px;
+  }
+
+  .logoBox {
+    .logo {
+      object-fit: contain;
+    }
+  }
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    // padding: 10px 25px;
+    width: 35%;
+    justify-content: flex-end;
+
+    a {
+      text-decoration: none;
+      color: $color-grey;
+      margin: 0;
+      &:hover {
+        color: $color-primary;
+      }
+
+      &.active {
+        color: $color-primary;
+        border: 2px solid $color-light-blue2;
+        border-radius: 8px;
+        font-weight: bold;
+        padding: 10px 25px;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 25%;
+    justify-content: flex-end;
+
+    button {
+      width: 65%;
+      padding: 12px 0;
+    }
+
+    .icon {
+      font-size: 30px;
+      color: $color-primary;
+      cursor: pointer;
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+}

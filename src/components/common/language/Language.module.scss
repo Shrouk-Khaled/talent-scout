@@ -1,0 +1,55 @@
+@use "../../../styles/variables" as *;
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #fff;
+  border: 2px solid $color-light-blue2;  
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+  transition: border-color .15s ease, box-shadow .15s ease;
+  background-color: $color-light-blue;
+  font-family: 'MadaniArabic', sans-serif;
+  
+  &:hover {
+    border-color: #6ea8fe;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.chev {
+  font-size: 22px;
+}
+
+
+.rtl {
+  flex-direction: row-reverse;
+
+  .chev { order: -1; }
+}
+
+/* Dropdown menu items */
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 120px; /* comfortable width */
+}
+
+.menuLabel {
+  font-size: 16px;
+}
+
+.menuFlag {
+  font-size: 18px;
+}
