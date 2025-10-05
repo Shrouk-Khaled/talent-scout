@@ -68,7 +68,7 @@ export default function MobileHeader() {
 
   return (
     <>
-      {isHomePage ? (
+      {pathname === `/${locale}` ? (
         <div
           className={`${styles.mobileHeader} ${
             scrolling ? styles.scrolled : ""
@@ -79,7 +79,7 @@ export default function MobileHeader() {
             className={styles.iconBtn}
             onClick={() => setOpen(true)}
           >
-            <CgMenu />
+            <CgMenu size={30}/>
           </button>
           <div className={styles.logo}>
             <Image src="/images/logo.png" alt="logo" width={55} height={40} />
