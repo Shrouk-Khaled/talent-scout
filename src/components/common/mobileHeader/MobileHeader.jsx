@@ -13,8 +13,6 @@ import { LuX } from "react-icons/lu";
 import { FiSearch } from "react-icons/fi";
 import { usePathname } from "next/navigation";
 import { IoMail, IoNotificationsSharp } from "react-icons/io5";
-import { FaFilter } from "react-icons/fa6";
-import Filter from "@/components/feed/filter/Filter";
 
 
 export default function MobileHeader() {
@@ -25,7 +23,6 @@ export default function MobileHeader() {
   const [scrolling, setScrolling] = useState(false);
   const [open, setOpen] = useState(false);
   const [isHomePage, setIsHomePage] = useState(false);
-  const [openFilter, setOpenFilter] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolling(window.scrollY > 50);
@@ -79,7 +76,7 @@ export default function MobileHeader() {
             className={styles.iconBtn}
             onClick={() => setOpen(true)}
           >
-            <CgMenu size={30}/>
+            <CgMenu size={30} className={styles.menuIcon}/>
           </button>
           <div className={styles.logo}>
             <Image src="/images/logo.png" alt="logo" width={55} height={40} />
@@ -91,13 +88,13 @@ export default function MobileHeader() {
             scrolling ? styles.scrolled : ""
           }  ${styles.notHome}`}
         >
-          <div>
+          <div className={styles.logoBox}>
             <button
               aria-label="Open menu"
               className={styles.iconBtn}
               onClick={() => setOpen(true)}
             >
-              <CgMenu />
+              <CgMenu size={30}/>
             </button>
             <div className={styles.logo}>
               <Image src="/images/logo.png" alt="logo" width={55} height={40} />
@@ -105,7 +102,6 @@ export default function MobileHeader() {
           </div>
 
           <div>
-            <FaFilter className={styles.icon} onClick={() => setOpenFilter(true)}/>
             <IoMail className={styles.icon} />
             <IoNotificationsSharp className={styles.icon} />
           </div>
@@ -177,22 +173,6 @@ export default function MobileHeader() {
         </div>
       </Drawer>
 
-      {/* Filter Drawer */}
-      <Drawer
-        placement={isRTL ? "right" : "left"}
-        open={openFilter}
-        onClose={() => setOpenFilter(false)}
-        closable={false}
-        width={340} // <— tweak to your design
-        styles={{
-          header: { display: 'none' },               
-          body:   { padding: 0, fontFamily: 'MadaniArabic' },
-        }}
-        className={styles.drawer} // panel
-        rootClassName={styles.drawerRoot} // wrapper
-      >
-        <Filter/>
-        </Drawer>
     </>
   );
 }

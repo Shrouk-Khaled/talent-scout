@@ -72,6 +72,19 @@
         .search {
             display: block;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            .filterIcon {
+                color: $color-primary;
+                background-color: #E0F2FE;
+                border-radius: 8px;
+                width: 47px;
+                height: 47px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
         }
         .info{
             display: none;

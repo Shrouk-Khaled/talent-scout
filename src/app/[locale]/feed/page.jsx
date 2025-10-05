@@ -1,3 +1,4 @@
+"use client"
 import Info from "@/components/feed/info/Info";
 import styles from "./page.module.scss";
 import Post from "@/components/feed/post/Post";
@@ -5,9 +6,16 @@ import Filter from "@/components/feed/filter/Filter";
 import Input from "@/components/ui/input/Input";
 import { FiSearch } from "react-icons/fi";
 import Image from "next/image";
+import { FaFilter } from "react-icons/fa";
+import { useState } from "react";
+import { Drawer } from "antd";
+import { useLocale } from "next-intl";
 
 export default function Feed() {
     const isTalent = true;
+    const locale = useLocale();
+    const isRTL = locale == "ar";
+    const [openFilter, setOpenFilter] = useState(false);
     
     return <div className={`${styles.container} app-container`}>
         <div className={styles.search}>
@@ -16,6 +24,7 @@ export default function Feed() {
                 className={styles.input}
                 suffix={<FiSearch />}
             />
+            <span className={styles.filterIcon} onClick={() => setOpenFilter(true)}><FaFilter className={styles.icon}/></span>
         </div>
         <div className={styles.info}>
             <Info/>
@@ -53,5 +62,21 @@ export default function Feed() {
         <div className={styles.filter}>
             <Filter/>
         </div>
+
+        <Drawer
+        placement={isRTL ? "right" : "left"}
+        open={openFilter}
+        onClose={() => setOpenFilter(false)}
+        closable={false}
+        width={340} // <— tweak to your design
+        styles={{
+          header: { display: 'none' },               
+          body:   { padding: 0, fontFamily: 'MadaniArabic' },
+        }}
+        className={styles.drawer} // panel
+        rootClassName={styles.drawerRoot} // wrapper
+      >
+        <Filter/>
+        </Drawer>
     </div>
 }

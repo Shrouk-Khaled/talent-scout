@@ -39,6 +39,9 @@
     img {
       height: 35px;
     }
+    .logoBox {
+      gap: 0px;
+    }
     div {
       display: flex;
       align-items: center;
@@ -48,7 +51,9 @@
         font-size: 20px;
       }
     }
+    
   }
+
 
   img {
     object-fit: contain;
