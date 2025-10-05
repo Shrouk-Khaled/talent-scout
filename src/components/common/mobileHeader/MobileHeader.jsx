@@ -56,9 +56,9 @@ export default function MobileHeader() {
   const menu = useMemo(
     () => [
       { href: "", subHref: "/feed", label: "الرئيسية" },
-      { label: "المناسبات", href: `/${locale}/events` },
-      { label: "المقالات", href: `/${locale}/articles` },
-      { label: "المواهب", href: `/${locale}/about` },
+      { label: "المناسبات", href: `` },
+      { label: "المقالات", href: `` },
+      { label: "المواهب", href: `` },
     ],
     [locale]
   );

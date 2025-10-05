@@ -21,9 +21,9 @@ export default function Header() {
 
   const links = [
     { href: "", subHref: "/feed", label: t("home") },
-    { href: "/about", label: t("talents") },
-    { href: "/articles", label: t("articles") },
-    { href: "/events", label: t("events") },
+    { href: "/", label: t("talents") },
+    { href: "/", label: t("articles") },
+    { href: "/", label: t("events") },
   ];
 
   // Detect scroll to change background color of the header
