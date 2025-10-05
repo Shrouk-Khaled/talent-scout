@@ -8,7 +8,7 @@ import Footer from "@/components/common/footer/Footer";
 import MobileHeader from "@/components/common/mobileHeader/MobileHeader";
 
 export const metadata = {
-  metadataBase: new URL("https://talent-scout-xi.vercel.app"), // important for absolute OG URLs
+  metadataBase: new URL("https://talent-scout-mu.vercel.app"), // important for absolute OG URLs
   title: {
     default: "Talent Scout",
     template: "%s | Talent Scout",
