@@ -1,4 +1,5 @@
 @use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
 
 .wrapper {
     display: grid;
@@ -73,7 +74,7 @@
     align-self: start;
     text-align: right;
     font-weight: bold;
-    font-family: 'MadaniArabic', sans-serif;
+    font-family: $AlexandriaSemiBold;
 
     &:hover { opacity: 0.85; }
     &:focus-visible {

@@ -1,4 +1,5 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
 
 .btn {
     padding: 15px 40px;
@@ -7,9 +8,15 @@
     background-color: $color-primary;
     color: white;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 13px;
     transition: background-color 0.3s ease;
-    font-family: 'MadaniArabic', sans-serif;
+    font-family: $AlexandriaSemiBold;
+
+    .loader {
+        .loading {
+            color: white;
+        }
+    }
 
     .icon{
         margin: 0 8px;
@@ -27,8 +34,9 @@
     }
     
     &:disabled {
-        background-color: #cccccc;
+        background-color: #D0D0D0;
         cursor: not-allowed;
+        color: #727272;
     }
 
     &.outline {
@@ -41,5 +49,9 @@
             // color: white;
             color: darken($color-primary, 20%);
         }
+    }
+
+    &.loadingBtn {
+        padding: 10px 40px;
     }
 }

@@ -1,14 +1,33 @@
-.textArea {
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+.textBox {
+  .textArea {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    resize: vertical;
-    
+    border: 1px solid $color-grey2;
+    resize: none;
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 8px;
+    font-family: $AlexandriaRegular;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
     &:focus {
-        border-color: #007bff;
-        outline: none;
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      outline: none;
+      border-color: $color-primary;
+      // box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
     }
+  }
+
+  .textLength {
+    font-size: 12px;
+    margin-top: 4px;
+    text-align: right;
+    font-family: $AlexandriaRegular;
+    color: $color-grey2;
+
+    span {
+        color: black;
+    }
+  }
 }

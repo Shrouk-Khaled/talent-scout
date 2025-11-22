@@ -1,0 +1,22 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+
+.select {
+   .customSelect {
+    border-radius: 8px;
+    padding: 20px;
+    font-family: $AlexandriaRegular !important;
+    font-size: 14px;
+    width: 200px;
+    height: 43px !important;
+
+    &:hover {
+      border-color: $color-grey !important;
+      cursor: pointer;
+    }
+    &.active {
+      border-color: $color-primary;
+      background-color: $color-light-blue;
+    }
+   }
+}

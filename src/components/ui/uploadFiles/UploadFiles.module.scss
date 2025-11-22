@@ -1,0 +1,126 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/breakpoints" as bp;
+
+.wrapper {
+  width: 100%;
+}
+
+.dropzone {
+  width: 100%;
+  min-height: 140px;
+  background: #fff;
+  border: 2px dashed $color-primary; /* blue dashed */
+  border-radius: 12px;
+  padding: 22px 20px;
+  display: block;
+  cursor: pointer;
+  transition: box-shadow 120ms ease, background 120ms ease,
+    border-color 120ms ease;
+  text-align: center;
+
+  &:focus-visible {
+    outline: 3px solid #2e6ebd;
+    outline-offset: 2px;
+  }
+}
+
+.fileDetails {
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid $color-grey4;
+  margin-top: 20px;
+  font-family: $AlexandriaRegular;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .nameSize {
+        text-align: left;
+
+        h3 {
+            font-family: $AlexandriaSemiBold;
+        }
+
+        p {
+            color: $color-grey;
+            font-family: $AlexandriaRegular;
+        }
+    }
+  }
+
+  .cancelUpload {
+   svg {
+    font-size: 18px;
+    cursor: pointer;
+   }
+
+   p {
+    color: $color-grey;
+    font-family: $AlexandriaRegular;
+   }
+  }
+
+  .progress {
+    direction: ltr;
+  }
+}
+
+.dragging {
+  background: #f7fbff;
+  box-shadow: 0 0 0 4px rgba(46, 110, 189, 0.12) inset;
+  border-color: #1f5aa0;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.inner {
+  max-width: 560px;
+  margin-inline: auto;
+  display: grid;
+  gap: 10px;
+  place-items: center;
+}
+
+.icon {
+  color: #2e6ebd;
+  line-height: 0;
+}
+
+.title {
+  margin: 0;
+  color: #8c8c8c; /* grey like the screenshot */
+  font-size: 16px;
+  font-weight: 500;
+  width: 50%;
+
+  @include bp.respond-to(md) {
+    width: 90%;
+  }
+}
+
+.cta {
+  color: $color-primary;
+  font-family: $AlexandriaSemiBold;
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none; /* visually hidden but accessible via button click */
+}
+
+.error {
+  margin-top: 8px;
+  color: #c62828;
+  font-size: 14px;
+}

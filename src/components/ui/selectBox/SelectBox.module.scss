@@ -1,0 +1,29 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+
+.types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    width: 100%;
+
+    span {
+      padding: 10px;
+      border: 1px solid #d0d0d0;
+      border-radius: 8px;
+      width: 100%;
+      font-family: $AlexandriaRegular;
+      text-align: center;
+      width: 31.5%;
+
+      &:hover {
+        border-color: $color-primary;
+        cursor: pointer;
+      }
+
+      &.active {
+        border-color: $color-primary;
+        background-color: $color-light-blue;
+      }
+    }
+  }

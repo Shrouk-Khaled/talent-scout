@@ -1,62 +1,41 @@
 'use client';
 
 import {useMemo, useState, useCallback, forwardRef} from 'react';
-import PropTypes from 'prop-types';
 import {useLocale} from 'next-intl';
-import {FiX} from 'react-icons/fi';
 import styles from './Input.module.scss';
 
-const Input = forwardRef(function Input(
-  {
-    id,
-    name,
-    type = 'text',
-    value,
+const Input = forwardRef(function Input(props, ref) {
+  const {
+    id, name, type = 'text',
+    value,          // لو متحكم فيه من برّا
     defaultValue = '',
-    placeholder,
-    label,
-    hint,
-    error,
-    disabled = false,
-    readOnly = false,
-    required = false,
-    autoFocus = false,
-    size = 'md',        // 'sm' | 'md' | 'lg'
-    fullWidth = true,
-    clearable = false,
-    prefix,
-    suffix,
-    onChange,
-    onFocus,
-    onBlur,
-    onEnter,
-    className = '',
-    inputClassName = '',
-    dir,                // force 'rtl' | 'ltr' (optional)
-    ...rest
-  },
-  ref
-) {
+    placeholder, label, hint, error,
+    disabled = false, readOnly = false, required = false, autoFocus = false,
+    size = 'md', fullWidth = true, clearable = false, prefix, suffix,
+    onChange, onFocus, onBlur, onEnter,
+    className = '', inputClassName = '',
+    dir, ...rest
+  } = props;
+
   const locale = useLocale();
   const isRTL = (dir ?? (locale === 'ar' ? 'rtl' : 'ltr')) === 'rtl';
 
+  // controlled لو فيه value، غير كده uncontrolled
   const controlled = value !== undefined;
   const [inner, setInner] = useState(defaultValue);
-  const current = useMemo(() => (controlled ? value : inner), [controlled, value, inner]);
 
-  const setVal = useCallback(
-    (v) => {
-      if (!controlled) setInner(v);
-      onChange?.(v);
-    },
-    [controlled, onChange]
-  );
+  // القيمة الفعلية دايمًا string ('' بدل undefined)
+  const current = useMemo(() => (controlled ? value : inner) ?? '', [controlled, value, inner]);
+
+  const handleChange = useCallback((e) => {
+    const v = e?.target?.value ?? '';
+    if (!controlled) setInner(v);   // خزّن داخليًا لو مش controlled
+    onChange?.(e);                  // مهم: رجّع الحدث لـ AntD
+  }, [controlled, onChange]);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') onEnter?.(current);
   };
-
-  const clear = () => setVal('');
 
   return (
     <div className={`${styles.wrapper} ${styles[size]} ${fullWidth ? styles.full : ''} ${className}`}>
@@ -66,14 +45,12 @@ const Input = forwardRef(function Input(
         </label>
       )}
 
-      <div
-        className={[
-          styles.control,
-          isRTL ? styles.rtl : '',
-          error ? styles.hasError : '',
-          disabled ? styles.isDisabled : '',
-        ].join(' ')}
-      >
+      <div className={[
+        styles.control,
+        isRTL ? styles.rtl : '',
+        error ? styles.hasError : '',
+        disabled ? styles.isDisabled : '',
+      ].join(' ')}>
         {prefix ? <div className={styles.prefix}>{prefix}</div> : null}
 
         <input
@@ -83,8 +60,8 @@ const Input = forwardRef(function Input(
           className={`${styles.input} ${inputClassName}`}
           type={type}
           dir={isRTL ? 'rtl' : 'ltr'}
-          value={current}
-          onChange={(e) => setVal(e.target.value)}
+          value={current}             
+          onChange={handleChange}      
           onFocus={onFocus}
           onBlur={onBlur}
           onKeyDown={handleKeyDown}
@@ -96,17 +73,6 @@ const Input = forwardRef(function Input(
           {...rest}
         />
 
-        {/* {clearable && !!current && !readOnly && !disabled ? (
-          <button
-            type="button"
-            className={styles.clearBtn}
-            onClick={clear}
-            aria-label={isRTL ? 'مسح' : 'Clear'}
-          >
-            <FiX />
-          </button>
-        ) : null} */}
-
         {suffix ? <div className={styles.suffix}>{suffix}</div> : null}
       </div>
 
@@ -115,33 +81,4 @@ const Input = forwardRef(function Input(
     </div>
   );
 });
-
-Input.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  value: PropTypes.string,
-  defaultValue: PropTypes.string,
-  placeholder: PropTypes.string,
-  label: PropTypes.node,
-  hint: PropTypes.node,
-  error: PropTypes.node,
-  disabled: PropTypes.bool,
-  readOnly: PropTypes.bool,
-  required: PropTypes.bool,
-  autoFocus: PropTypes.bool,
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  fullWidth: PropTypes.bool,
-  clearable: PropTypes.bool,
-  prefix: PropTypes.node,
-  suffix: PropTypes.node,
-  onChange: PropTypes.func,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
-  onEnter: PropTypes.func,
-  className: PropTypes.string,
-  inputClassName: PropTypes.string,
-  dir: PropTypes.oneOf(['rtl', 'ltr']),
-};
-
 export default Input;

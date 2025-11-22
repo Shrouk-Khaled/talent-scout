@@ -1,5 +1,6 @@
 @use "../../../styles/variables" as *;
 @use "../../../styles/breakpoints" as bp;
+@use "../../../styles/typography" as *;
 
 // @keyframes slideInLeft {
 //   from {
@@ -52,12 +53,15 @@
 
     p {
       color: $color-primary;
-      font-weight: bold;
+      font-family: $AlexandriaRegular;
     }
 
     h1 {
-      font-size: 38px;
-      width: 80%;
+      font-size: 34px;
+      width: 90%;
+      font-family: $AlexandriaSemiBold;
+      margin: 10px 0;
+      line-height: 1.6;
 
       span {
         color: $color-primary;

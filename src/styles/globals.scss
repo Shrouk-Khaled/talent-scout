@@ -3,10 +3,12 @@
 @use './mixins' as *;
 @use './typography' as *;
 
+
 body {
   margin: 0;
   padding: 0;
   color: $color-dark;
+  font-family: 'Alexandria-Regular', sans-serif;
 
   h1, h2, h3, h4, h5, h6, p, span {
     margin: 0;
@@ -19,6 +21,14 @@ body {
     @include bp.respond-to(md) {
       box-sizing: border-box;
       padding-inline: 16px !important; 
+    }
+  }
+
+  .marginTop{
+    margin-top: 120px;
+
+    @include bp.respond-to(md) {
+      margin-top: 80px;
     }
   }
 
@@ -40,6 +50,32 @@ body {
     }
   }
 
+}
 
+:where(.css-dev-only-do-not-override-1odpy5d).ant-input-lg {
+  padding: 15px 11px !important;
+  font-family: $AlexandriaRegular !important;
+}
 
+:where(.css-dev-only-do-not-override-1odpy5d).ant-input-outlined:focus, :where(.css-dev-only-do-not-override-1odpy5d).ant-input-outlined:focus-within{
+  border-color: $color-primary !important;
+  box-shadow: unset !important;
+}
+
+:where(.css-dev-only-do-not-override-1odpy5d).ant-input {
+  width: 115% !important;
+}
+
+.Input_label__7m2Q1{
+  margin-bottom: 0 !important;
+  font-family: $AlexandriaRegular !important;
+}
+
+.SelectInput_select__YBrRH .SelectInput_customSelect__RV5ip{
+  height: 42px !important;
+  padding: 0 !important;
+}
+
+.css-dev-only-do-not-override-1odpy5d.ant-form-item .ant-form-item-explain-error {
+  font-family: $AlexandriaRegular !important;
 }

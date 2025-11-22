@@ -1,0 +1,31 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/typography" as *;
+@use "../../../../styles/breakpoints" as bp;
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 44px;
+    svg {
+        color: $color-pink;
+    }
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: $AlexandriaSemiBold;
+    }
+    p {
+        font-size: 14px;
+        line-height: 30px;
+        font-family: $AlexandriaRegular;
+    }
+
+    @include bp.respond-to(md) {
+        margin-bottom: 24px;
+        .title {
+            font-size: 15px;
+        }
+    }
+}

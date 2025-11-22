@@ -1,6 +1,6 @@
-@use "../../../styles/variables" as *;
-@use "../../../styles/mixins" as *;
-@use "../../../styles/breakpoints" as bp;
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/breakpoints" as bp;
 
 .container {
     @include padding-page;
@@ -38,7 +38,7 @@
                     color: $color-grey;
                     border-radius: 8px;
                     height: 60px;
-                    font-family: 'MadaniArabic', sans-serif;
+                    font-family: 'Alexandria-Regular', sans-serif;
                     padding: 12px;
 
                     &:focus {

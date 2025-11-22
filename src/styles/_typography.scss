@@ -1,12 +1,54 @@
+// @font-face {
+//     font-family: 'MadaniArabic';
+//     src: url('/fonts/MadaniArabic-Regular.ttf') format('truetype');
+//     font-weight: normal;
+//     font-style: normal;
+//     font-display: swap;
+//   }
+
 @font-face {
-    font-family: 'MadaniArabic';
-    src: url('/fonts/MadaniArabic-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  body {
-    font-family: 'MadaniArabic', sans-serif;
-  }
-  
+  font-family: 'Alexandria-Regular';
+  src: url('/fonts/Alexandria-Regular.ttf');
+}
+@font-face {
+    font-family: 'Alexandria-Medium';
+    src: url('/fonts/Alexandria-Medium.ttf');
+}
+@font-face {
+    font-family: 'Alexandria-SemiBold';
+    src: url('/fonts/Alexandria-SemiBold.ttf');
+}
+@font-face {
+    font-family: 'Alexandria-Bold';
+    src: url('/fonts/Alexandria-Bold.ttf');
+}
+@font-face {
+  font-family: 'Alexandria-ExtraBold';
+  src: url('/fonts/Alexandria-ExtraBold.ttf');
+}
+@font-face {
+  font-family: 'Alexandria-Light';
+  src: url('/fonts/Alexandria-Light.ttf');
+}
+@font-face {
+  font-family: 'Alexandria-ExtraLight';
+  src: url('/fonts/Alexandria-ExtraLight.ttf');
+}
+@font-face {
+  font-family: 'Alexandria-Thin';
+  src: url('/fonts/Alexandria-Thin.ttf');
+}
+@font-face {
+  font-family: 'Alexandria-Black';
+  src: url('/fonts/Alexandria-Black.ttf');
+}
+
+$AlexandriaThin:        'Alexandria-Thin';
+$AlexandriaExtraLight:  'Alexandria-ExtraLight';
+$AlexandriaLight:       'Alexandria-Light';
+$AlexandriaRegular:     'Alexandria-Regular';
+$AlexandriaMedium:      'Alexandria-Medium';
+$AlexandriaSemiBold:    'Alexandria-SemiBold';
+$AlexandriaBold:        'Alexandria-Bold';
+$AlexandriaExtraBold:   'Alexandria-ExtraBold';
+$AlexandriaBlack:       'Alexandria-Black';

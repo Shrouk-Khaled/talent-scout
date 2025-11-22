@@ -1,5 +1,6 @@
 @use "../../../styles/variables" as *;
 @use "../../../styles/mixins" as *;
+@use "../../../styles/typography" as *;
 
 .mobileHeader {
   @include flex-center;
@@ -132,7 +133,7 @@
   padding: 0;
   display: grid;
   gap: 20px;
-  font-family: "MadaniArabic", sans-serif;
+  font-family: $AlexandriaRegular;
 }
 
 .link {

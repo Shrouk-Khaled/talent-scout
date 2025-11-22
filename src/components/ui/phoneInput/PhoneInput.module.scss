@@ -1,0 +1,196 @@
+@use "../../../styles/variables" as *;
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.hasError .container {
+  border-color: $color-danger !important;
+}
+
+.container {
+  display: flex !important;
+  align-items: center !important;
+  padding: 4px 6px !important;
+  padding-right: 0 !important;
+  border: 1.5px solid #dcdcdc !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  width: auto;
+  margin-top: 10px;
+  // transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  // min-height: 40px !important;
+  // display: flex !important;
+  // align-items: center !important;
+}
+
+.container:focus-within {
+  border-color: #8aa9ff !important;
+  box-shadow: 0 0 0 3px rgba(138, 169, 255, 0.15) !important;
+}
+
+.button {
+  background: #f5f6f7 !important;
+  // border-radius: 8px !important;
+  // padding: 6px !important;
+  // display: inline-flex !important;
+  // align-items: center !important;
+  // gap: 10px !important;
+  // border: none !important;
+  height: 30px !important;
+
+}
+
+.input {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  font-size: 18px !important;
+  height: 40px !important;
+  // padding-inline: 60px !important;
+  color: #111 !important;
+}
+
+// .input::placeholder {
+//   color: #9aa0a6 !important;
+// }
+
+.dropdown {
+  direction: ltr !important;
+  max-height: 320px !important;
+  border-radius: 12px !important;
+  overflow: auto !important;
+  z-index: 50 !important;
+}
+
+.error {
+  position: absolute;
+  inset-inline-start: 8px;
+  inset-block-end: -22px;
+  font-size: 12px;
+  color: $color-danger;
+}
+
+.wrapper :global(.react-tel-input) {
+  direction: ltr;
+}
+
+.wrapper :global(.react-tel-input .selected-flag .flag) {
+  // border-radius: 6px;
+  box-shadow: none;
+}
+
+.wrapper :global(.react-tel-input .selected-flag .dial-code) {
+  font-weight: 700;
+  color: #111;
+  margin-inline: 8px;
+}
+
+.wrapper :global(.react-tel-input .search-box) {
+  padding: 8px;
+}
+
+.wrapper :global(.react-tel-input .search) {
+  border: 1px solid #e6e6e6 !important;
+  border-radius: 10px !important;
+  padding: 8px 10px !important;
+  font-size: 14px !important;
+  outline: none !important;
+}
+
+.wrapper :global(.react-tel-input .country-list) {
+  padding: 4px 6px;
+}
+
+.wrapper :global(.react-tel-input .country-list .country) {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background: #f7f7f8;
+  }
+}
+
+.wrapper :global(.react-tel-input .country-name) {
+  color: #222;
+}
+
+.wrapper :global(.react-tel-input .dial-code) {
+  color: #555;
+  font-weight: 600;
+}
+
+.wrapper :global(.react-tel-input .selected-flag) {
+  padding: 0 8px !important;
+}
+.wrapper :global(.react-tel-input .selected-flag:hover) {
+  background-color: #f0f0f0;
+}
+
+.wrapper :global(.react-tel-input .flag-dropdown) {
+  top: unset;
+  bottom: unset;
+  border-radius: 3px;
+  border: unset;
+}
+
+.wrapper :global(.PhoneInput_container__6ztxE:focus-within) {
+  border: 1.5px solid $color-primary !important;
+  box-shadow: unset !important;
+}
+
+.hasError :global(.PhoneInput_container__6ztxE:focus-within) {
+  border-color: $color-danger !important;
+  box-shadow: unset !important;
+}
+
+.label {
+  position: absolute;
+  pointer-events: none;
+  background: #fff;
+  padding: 0 6px;
+
+  left: calc(90px + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: $color-grey; 
+  transition: all 0.18s ease;
+  z-index: 1;
+
+  // &.floated {
+  //   top: -5px;
+  //   left: 6rem;
+  //   font-size: 12px;
+  //   color: $color-primary;
+  // }
+}
+
+.hasError .label {
+  color: $color-danger;
+}
+
+/* ====== Responsiveness ====== */
+@media (max-width: 480px) {
+  .container {
+    padding: 6px 10px !important;
+    border-radius: 14px !important;
+  }
+  .button {
+    padding: 6px 10px !important;
+    height: 36px !important;
+  }
+  .input {
+    font-size: 16px !important;
+    height: 40px !important;
+  }
+}

@@ -22,8 +22,8 @@ export default function Accordion({ items = [], defaultOpen = 0 }) {
       if (!el) return;
       if (i === openIndex) {
         // set to scrollHeight to allow transition
-        el.style.maxHeight = el.scrollHeight + "px";
-        el.style.paddingTop = isMobile ? '0px' : '16px';
+        el.style.maxHeight = el.scrollHeight + 20 + "px";
+        // el.style.paddingTop = isMobile ? '0px' : '16px';
         el.style.paddingBottom = "16px";
       } else {
         el.style.maxHeight = "0px";

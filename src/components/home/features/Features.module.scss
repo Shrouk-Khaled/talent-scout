@@ -1,5 +1,6 @@
 @use "../../../styles/variables" as *;
 @use "../../../styles/breakpoints" as bp;
+@use "../../../styles/typography" as *;
 
 .features {
     padding-bottom: 4rem;
@@ -29,7 +30,7 @@
         gap: 20px;
         flex-wrap: wrap;
         .step {
-            width: 29%;
+            width: 32.3%;
             padding: 20px;
             border: 1px solid $color-light-blue2;
             border-radius: 14px;
@@ -42,6 +43,7 @@
                 font-size: 18px;
                 display: flex;
                 align-items: center;
+                font-family: $AlexandriaSemiBold;
                 span {
                     color: $color-pink;
                     font-size: 24px;
@@ -50,6 +52,7 @@
             p {
                 font-weight: normal;
                 color: $color-dark-grey;
+                line-height: 1.4;
             }
         }
     }

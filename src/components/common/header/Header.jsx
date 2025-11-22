@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import Language from "../language/Language";
 import Button from "@/components/ui/button/Button";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Input from "@/components/ui/input/Input";
 import { FiSearch } from "react-icons/fi";
@@ -15,7 +15,9 @@ import { IoNotificationsSharp } from "react-icons/io5";
 export default function Header() {
   const locale = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
   const t = useTranslations("Header");
+  //states
   const [scrolling, setScrolling] = useState(false);
   const [isHomePage, setIsHomePage] = useState(false);
 
@@ -47,8 +49,9 @@ export default function Header() {
     setIsHomePage(pathname === homePath);
   }, [pathname, locale]);
 
+
   return (
-    <header className={`${styles.header} ${scrolling ? styles.scrolled : ""}  ${pathname !== `/${locale}` && styles.notHome}`}>
+    <header className={`${styles.header} ${scrolling ? styles.scrolled : ""}  ${(pathname !== `/${locale}` && pathname !== `/${locale}/terms`) && styles.notHome}`}>
       <div className={`${styles.mainInfo} app-container`}>
         <div className={styles.logoBox}>
           <Image
@@ -58,15 +61,16 @@ export default function Header() {
             height={60}
             className={styles.logo}
             priority
+            onClick={() => router.push(`/${locale}`)}
           />
         </div>
         <div className={styles.links}>
-          {links.map((link) => {
+          {links.map((link, i) => {
             const fullPath = `/${locale}${link.href}`;
             const isActive = (pathname === fullPath) || (pathname === `/${locale}${link.subHref}`);
             return (
               <Link
-                key={link.href}
+                key={i}
                 href={fullPath}
                 className={`${styles.link} ${isActive ? styles.active : ""}`}
               >
@@ -76,10 +80,12 @@ export default function Header() {
           })}
         </div>
         {
-          pathname === `/${locale}` ? 
+          (pathname === `/${locale}` || pathname === `/${locale}/terms`) ? 
           <div className={styles.actions}>
             <Language />
-            <Button>{t("login")}</Button>
+            <Button onClick={() => {
+                router.push('/auth/login');
+            }}>{t("login")}</Button>
           </div>
           :
           <div className={styles.actions}>

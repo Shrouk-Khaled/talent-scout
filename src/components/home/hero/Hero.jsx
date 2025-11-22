@@ -25,14 +25,14 @@ const Hero = () => {
           </h4>
           <h1>
             {t("description")}
-            <Image
+            {/* <Image
               src={"/images/icons/idea.png"}
               alt={"idea"}
               width={40}
               height={50}
               className={styles.ideaIcon}
               loading="lazy"
-            />
+            /> */}
           </h1>
           <p>{t("heroText2")}</p>
           <div className={styles.btns}>

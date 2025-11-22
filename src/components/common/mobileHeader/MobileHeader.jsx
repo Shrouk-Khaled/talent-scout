@@ -11,11 +11,12 @@ import Language from "../language/Language";
 import Input from "@/components/ui/input/Input";
 import { LuX } from "react-icons/lu";
 import { FiSearch } from "react-icons/fi";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { IoMail, IoNotificationsSharp } from "react-icons/io5";
 
 
 export default function MobileHeader() {
+  const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
   const isRTL = locale == "ar";
@@ -79,7 +80,7 @@ export default function MobileHeader() {
             <CgMenu size={30} className={styles.menuIcon}/>
           </button>
           <div className={styles.logo}>
-            <Image src="/images/logo.png" alt="logo" width={55} height={40} />
+            <Image src="/images/logo.png" alt="logo" width={55} height={40} onClick={() => router.push(`/${locale}`)}/>
           </div>
         </div>
       ) : (
@@ -97,7 +98,7 @@ export default function MobileHeader() {
               <CgMenu size={30}/>
             </button>
             <div className={styles.logo}>
-              <Image src="/images/logo.png" alt="logo" width={55} height={40} />
+              <Image src="/images/logo.png" alt="logo" width={55} height={40} onClick={() => router.push(`/${locale}`)}/>
             </div>
           </div>
 
@@ -116,7 +117,7 @@ export default function MobileHeader() {
         width={340} // <— tweak to your design
         styles={{
           header: { display: 'none' },               
-          body:   { padding: 0, fontFamily: 'MadaniArabic' },
+          body:   { padding: 0, fontFamily: 'Alexandria-Regular' },
         }}
         className={styles.drawer} // panel
         rootClassName={styles.drawerRoot} // wrapper
