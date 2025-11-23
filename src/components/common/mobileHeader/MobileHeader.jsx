@@ -147,13 +147,13 @@ export default function MobileHeader() {
           {/* Menu */}
           <nav className={styles.nav} aria-label={"menu"}>
             <ul className={styles.list}>
-              {menu.map((item) => {
+              {menu.map((item, i) => {
                 const fullPath = `/${locale}${item.href}`;
                 const isActive =
                   pathname === fullPath ||
                   pathname === `/${locale}${item.subHref}`;
                 return (
-                  <li key={item.href}>
+                  <li key={i}>
                     <Link
                       href={item.href}
                       className={`${styles.link} ${
@@ -168,7 +168,9 @@ export default function MobileHeader() {
             </ul>
               {
                 pathname === `/${locale}` &&
-                  <Button>تسجيل الحساب</Button>
+                  <Button onClick={() => {
+                    router.push('/auth/login');
+                }}>تسجيل الحساب</Button>
               }
           </nav>
         </div>
