@@ -161,7 +161,7 @@ export default function StepFour() {
             trigger="onFiles"
           >
             <UploadFiles
-              accept="image/*,video"
+              accept="image/*,video/*"
               // multiple
               maxSize={80 * 1024 * 1024} // 80 MB soft limit (optional)
               dir="rtl"
