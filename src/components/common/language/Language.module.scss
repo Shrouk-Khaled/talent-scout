@@ -1,5 +1,7 @@
 @use "../../../styles/variables" as *;
 @use "../../../styles/typography" as *;
+@use "../../../styles/breakpoints" as bp;
+
 
 .trigger {
   display: inline-flex;
@@ -54,4 +56,21 @@
 
 .menuFlag {
   font-size: 18px;
+}
+
+
+
+@include bp.respond-to(md) {
+  .trigger {
+    padding: 8px 7px;
+    gap: 8px;
+    
+    .label {
+      font-size: 12px;
+    }
+    
+    .chev {
+      font-size: 18px;
+    }
+  }
 }

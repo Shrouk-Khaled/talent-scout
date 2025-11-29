@@ -39,8 +39,19 @@ export default function StepThree() {
       setFilteredCategories(
         res?.filter((obj) => obj?.participationTypeId == 1) || []
       );
+      setSubCategories(
+        (res?.find((cat) => cat?.id === signupData?.categoryId)
+          ?.subCategories) || []
+      );
     });
   }, []);
+
+  useEffect(() => {
+    if(!signupData) return;
+    form.setFieldsValue({
+     ...signupData,
+    })
+  },[signupData])
 
   const handleNextStep = async () => {
     try {
@@ -109,8 +120,8 @@ export default function StepThree() {
   return (
     <section className={styles.main}>
       <Headlines
-        line1={"03 عرّفنا على موهبتك أكثر"}
-        line2={"شارك لمحة بسيطة عنك وعن شغفك."}
+        line1={user_role == 1 ?  "03 عرّفنا على موهبتك أكثر" : user_type == 1 ? "03 مجالات بحثك واهتمامك" : "03 مجالات اهتمام مؤسستك"}
+        line2={user_role == 1 ? "شارك لمحة بسيطة عنك وعن شغفك." : "ما المجالات التي تهتم باكتشافها؟"}
       />
 
       <div className={styles.form}>

@@ -43,12 +43,53 @@
   src: url('/fonts/Alexandria-Black.ttf');
 }
 
+
+
+//new font 
+@font-face {
+  font-family: 'Tajawal-Regular';
+  src: url('/fonts/Tajawal/Tajawal-Regular.ttf');
+}
+@font-face {
+    font-family: 'Tajawal-Medium';
+    src: url('/fonts/Tajawal/Tajawal-Medium.ttf');
+}
+@font-face {
+    font-family: 'Tajawal-SemiBold';
+    src: url('/fonts/Tajawal/Tajawal-Bold.ttf');
+}
+@font-face {
+    font-family: 'Tajawal-Bold';
+    src: url('/fonts/Tajawal/Tajawal-Bold.ttf');
+}
+@font-face {
+  font-family: 'Tajawal-ExtraBold';
+  src: url('/fonts/Tajawal/Tajawal-ExtraBold.ttf');
+}
+@font-face {
+  font-family: 'Tajawal-Light';
+  src: url('/fonts/Tajawal/Tajawal-Light.ttf');
+}
+@font-face {
+  font-family: 'Tajawal-ExtraLight';
+  src: url('/fonts/Tajawal/Tajawal-ExtraLight.ttf');
+}
+@font-face {
+  font-family: 'Alexandria-Thin';
+  src: url('/fonts/Alexandria-Thin.ttf');
+}
+@font-face {
+  font-family: 'Alexandria-Black';
+  src: url('/fonts/Alexandria-Black.ttf');
+}
+
+
 $AlexandriaThin:        'Alexandria-Thin';
-$AlexandriaExtraLight:  'Alexandria-ExtraLight';
-$AlexandriaLight:       'Alexandria-Light';
-$AlexandriaRegular:     'Alexandria-Regular';
-$AlexandriaMedium:      'Alexandria-Medium';
-$AlexandriaSemiBold:    'Alexandria-SemiBold';
-$AlexandriaBold:        'Alexandria-Bold';
-$AlexandriaExtraBold:   'Alexandria-ExtraBold';
+$AlexandriaExtraLight:  'Tajawal-ExtraLight';
+$AlexandriaLight:       'Tajawal-Light';
+$AlexandriaRegular:     'Tajawal-Regular';
+$AlexandriaMedium:      'Tajawal-Medium';
+$AlexandriaSemiBold:    'Tajawal-SemiBold';
+$AlexandriaBold:        'Tajawal-Bold';
+$AlexandriaExtraBold:   'Tajawal-ExtraBold';
 $AlexandriaBlack:       'Alexandria-Black';

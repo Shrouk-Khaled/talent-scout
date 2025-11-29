@@ -1,5 +1,6 @@
 @use "../../../../styles/variables" as *;
 @use "../../../../styles/breakpoints" as bp;
+@use "../../../../styles/typography" as *;
 
 .mainPage {
   width: 100%;
@@ -32,11 +33,15 @@
 
   @include bp.respond-to(md) {
     header {
-        padding: 8px; 
+        padding: 3px 12px; 
     }
 
-    img {
-        width: 60px;
+    h4 {
+      font-family: $AlexandriaSemiBold;
+    }
+
+    .logo {
+        width: 50px;
     }
   }
 }

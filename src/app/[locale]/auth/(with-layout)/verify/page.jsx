@@ -102,7 +102,9 @@ export default function VerifyPage() {
         <div className={styles.phone}>
           <OtpInput length={6} onChange={(val) => {setOtpNumber(val); handleVerify(val)}} clearOtp={!otpNumber.length}/>
           <div className={styles.timerBox}>
-            <p onClick={handleResend}>لم يصلك رمز التحقق؟</p>
+            <button onClick={handleResend} 
+              disabled={secondsLeft > 0}
+            >لم يصلك رمز التحقق؟</button>
             <div className={styles.timer}>{formatMMSS(secondsLeft)}</div>
           </div>
         </div>

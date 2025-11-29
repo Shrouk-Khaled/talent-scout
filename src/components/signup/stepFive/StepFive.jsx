@@ -166,6 +166,7 @@ export default function StepFive() {
                   title="ارفع PDF لإثبات حالتك."
                   accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf,.doc,.docx"
                   dir="rtl"
+                  maxSize={20 * 1024 * 1024} // 20 MB soft limit (optional)
                 />
               </Form.Item>
             )}

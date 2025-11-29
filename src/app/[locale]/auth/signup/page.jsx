@@ -53,7 +53,7 @@ export default function SignupPage() {
             <header>
                 <Image src="/images/logo.png" alt="Logo" width={200} height={60} onClick={() => {
                     router.push("/")
-                }}/>
+                }} className={styles.logo}/>
                 <h4>
                     الخطوة {currentStep} {currentStep > 1 && "/"} {currentStep > 1 ? (user_role === "2" ? 3 : 5) : ''}
                 </h4>

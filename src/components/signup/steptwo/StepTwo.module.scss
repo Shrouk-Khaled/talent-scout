@@ -16,14 +16,23 @@
 
     @include bp.respond-to(md) {
       width: 100%;
-      height: 90%;
+      // height: 90%;
       padding-inline: 16px;
       margin: 50px 0;
+      // margin-bottom: 20%;
     }
     .row {
       display: flex;
       gap: 10px;
       width: 100%;
+
+      @include bp.respond-to(md) { 
+        :global(.Input_md__sY18_ .Input_control__Gu_Vw) {
+          padding: 10px 0px;
+          padding-right: 4px;
+          font-size: 14px;
+        }
+      }
 
       .field {
         width: 100%;

@@ -82,6 +82,10 @@ body {
   color: #333;
 }
 
+.global-loader__animation {
+  width: 150px;
+  height: 150px;
+}
 
 :where(.css-dev-only-do-not-override-1odpy5d).ant-input-lg {
   padding: 15px 11px !important;

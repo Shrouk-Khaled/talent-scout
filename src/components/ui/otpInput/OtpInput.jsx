@@ -43,9 +43,10 @@ export default function OtpInput({ length = 6, onChange, disabled = false, clear
         size="large"
         inputMode="numeric"
         disabled={disabled}
-        style={{ gap: 30 }}
+        style={{ gap: 30, width: "100%", textAlign: "center", display: "flex", justifyContent: "center" }}
         className={styles.bigOtp}
         aria-label="OTP code"
+        
       />
     </div>
   );

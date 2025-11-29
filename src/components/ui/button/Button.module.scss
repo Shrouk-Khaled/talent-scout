@@ -1,5 +1,6 @@
 @use "../../../styles/variables" as *;
 @use "../../../styles/typography" as *;
+@use "sass:color";
 
 .btn {
     padding: 15px 40px;
@@ -11,12 +12,13 @@
     font-size: 13px;
     transition: background-color 0.3s ease;
     font-family: $AlexandriaSemiBold;
+    // >div{
+    //     justify-content: flex-end !important;
+    // }
 
-    .loader {
         .loading {
             color: white;
         }
-    }
 
     .icon{
         margin: 0 8px;
@@ -30,7 +32,7 @@
     }
     
     &:hover {
-        background-color: darken($color-primary, 10%);
+        background-color: color.scale($color-primary, $lightness: -10%);
     }
     
     &:disabled {
@@ -46,8 +48,8 @@
 
         &:hover {
             // background-color: $color-primary;
-            // color: white;
-            color: darken($color-primary, 20%);
+            color: white;
+            background-color: color.scale($color-primary, $lightness: -20%);
         }
     }
 

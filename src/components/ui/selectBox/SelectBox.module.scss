@@ -1,11 +1,17 @@
 @use "../../../styles/variables" as *;
 @use "../../../styles/typography" as *;
+@use "../../../styles/breakpoints" as bp;
 
 .types {
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
     width: 100%;
+
+    @include bp.respond-to(md) {
+      flex-wrap: nowrap;
+    }
+
 
     span {
       padding: 10px;
@@ -15,6 +21,11 @@
       font-family: $AlexandriaRegular;
       text-align: center;
       width: 31.5%;
+
+      @include bp.respond-to(md) {
+        font-size: 12px;
+        padding: 10px 8px;
+      }
 
       &:hover {
         border-color: $color-primary;

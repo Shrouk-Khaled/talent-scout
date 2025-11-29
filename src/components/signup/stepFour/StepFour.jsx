@@ -163,7 +163,7 @@ export default function StepFour() {
             <UploadFiles
               accept="image/*,video"
               // multiple
-              maxSize={25 * 1024 * 1024} // 25 MB soft limit (optional)
+              maxSize={80 * 1024 * 1024} // 80 MB soft limit (optional)
               dir="rtl"
             />
           </Form.Item>

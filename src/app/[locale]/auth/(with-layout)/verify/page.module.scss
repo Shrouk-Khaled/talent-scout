@@ -61,9 +61,15 @@
   align-items: center;
   margin-top: 26px;
 
-  p {
+  button {
+    all: unset;
     cursor: pointer;
     font-size: 12px;
+
+    &:disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
   }
 
   .timer {
@@ -97,5 +103,9 @@
 @include bp.respond-to(md) {
   .formContainer {
     height: 70dvh;
+  }
+
+  .phone {
+    width: 100%;
   }
 }

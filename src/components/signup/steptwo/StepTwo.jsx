@@ -124,7 +124,9 @@ export default function StepTwo() {
             trigger="onSelectType"
           >
             <SelectBox
-              boxStyle={{ width: "48%" }}
+              boxStyle={{ 
+                width: '48%',  
+              }}
               types={[
                 { id: 1, label: "ذكر" },
                 { id: 2, label: "أنثى" },

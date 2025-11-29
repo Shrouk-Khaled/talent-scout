@@ -229,6 +229,7 @@ export default function StepTwoResearcher() {
               }}
               accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf,.doc,.docx"
               title="ارفع مستند PDF"
+              maxSize={20 * 1024 * 1024} // 20 MB soft limit (optional)
               dir="rtl"
             />
           </Form.Item>

@@ -21,16 +21,22 @@ const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled || loading}
-      className={`${styles.btn} ${outline && styles.outline} ${loading && styles.loadingBtn}`}
+      className={`${styles.btn} ${outline && styles.outline} ${
+        loading && styles.loadingBtn
+      }`}
       style={style}
     >
       {loading ? (
-        <span className={styles.loader}>
-          <Spin
-            indicator={<LoadingOutlined style={{ fontSize: 26 }} spin className={styles.loading} />}
-            size="large"
-          />
-        </span>
+        <Spin
+          indicator={
+            <LoadingOutlined
+              style={{ fontSize: 26 }}
+              spin
+              className={styles.loading}
+            />
+          }
+          size="large"
+        />
       ) : (
         <>
           {children}

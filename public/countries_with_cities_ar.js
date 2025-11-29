@@ -13,22 +13,22 @@ export const countries = [
       {
         "city_code": "dubai",
         "city_en": "Dubai",
-        "city_ar": "Dubai"
+        "city_ar": "دبي"
       },
       {
         "city_code": "sharjah",
         "city_en": "Sharjah",
-        "city_ar": "Sharjah"
+        "city_ar": "الشارقة"
       },
       {
         "city_code": "al_ain_city",
         "city_en": "Al Ain City",
-        "city_ar": "Al Ain City"
+        "city_ar": "العين"
       },
       {
         "city_code": "abu_dhabi",
         "city_en": "Abu Dhabi",
-        "city_ar": "Abu Dhabi"
+        "city_ar": "أبو ظبي"
       }
     ]
   },
@@ -40,35 +40,35 @@ export const countries = [
       {
         "city_code": "mazār-e_sharīf",
         "city_en": "Mazār-e Sharīf",
-        "city_ar": "Mazār-e Sharīf"
+        "city_ar": "مزار شريف"
       },
       {
         "city_code": "kandahār",
         "city_en": "Kandahār",
-        "city_ar": "Kandahār"
+        "city_ar": "قندهار"
       },
       {
         "city_code": "kabul",
         "city_en": "Kabul",
-        "city_ar": "Kabul"
+        "city_ar": "كابل"
       },
       {
         "city_code": "herāt",
         "city_en": "Herāt",
-        "city_ar": "Herāt"
+        "city_ar": "هرات"
       }
     ]
   },
   {
     "country_code": "ag",
     "country_en": "Antigua and Barbuda",
-    "country_ar": "Antigua and Barbuda",
+    "country_ar": "أنتيغوا وبربودا",
     "cities": []
   },
   {
     "country_code": "ai",
     "country_en": "Anguilla",
-    "country_ar": "Anguilla",
+    "country_ar": "أنغويلا",
     "cities": []
   },
   {
@@ -85,7 +85,7 @@ export const countries = [
       {
         "city_code": "yerevan",
         "city_en": "Yerevan",
-        "city_ar": "Yerevan"
+        "city_ar": "يريفان"
       }
     ]
   },
@@ -97,27 +97,27 @@ export const countries = [
       {
         "city_code": "luanda",
         "city_en": "Luanda",
-        "city_ar": "Luanda"
+        "city_ar": "لواندا"
       },
       {
         "city_code": "cabinda",
         "city_en": "Cabinda",
-        "city_ar": "Cabinda"
+        "city_ar": "كابيندا"
       },
       {
         "city_code": "lubango",
         "city_en": "Lubango",
-        "city_ar": "Lubango"
+        "city_ar": "لوبانغو"
       },
       {
         "city_code": "huambo",
         "city_en": "Huambo",
-        "city_ar": "Huambo"
+        "city_ar": "هوامبو"
       },
       {
         "city_code": "benguela",
         "city_en": "Benguela",
-        "city_ar": "Benguela"
+        "city_ar": "بنغيلا"
       }
     ]
   },
@@ -135,39 +135,39 @@ export const countries = [
       {
         "city_code": "mar_del_plata",
         "city_en": "Mar del Plata",
-        "city_ar": "Mar del Plata"
+        "city_ar": "مار ديل بلاتا"
       },
       {
         "city_code": "buenos_aires",
         "city_en": "Buenos Aires",
-        "city_ar": "Buenos Aires"
+        "city_ar": "بوينس آيرس"
       },
       {
         "city_code": "san_miguel_de_tucumán",
         "city_en": "San Miguel de Tucumán",
-        "city_ar": "San Miguel de Tucumán"
+        "city_ar": "سان ميغيل دي توكومان"
       },
       {
         "city_code": "salta",
         "city_en": "Salta",
-        "city_ar": "Salta"
+        "city_ar": "سالطا"
       },
       {
         "city_code": "rosario",
         "city_en": "Rosario",
-        "city_ar": "Rosario"
+        "city_ar": "روساريو"
       },
       {
         "city_code": "córdoba",
         "city_en": "Córdoba",
-        "city_ar": "Córdoba"
+        "city_ar": "قرطبة"
       }
     ]
-  },
+  },  
   {
     "country_code": "as",
     "country_en": "American Samoa",
-    "country_ar": "American Samoa",
+    "country_ar": "ساموا الأمريكية",
     "cities": []
   },
   {
@@ -178,7 +178,7 @@ export const countries = [
       {
         "city_code": "vienna",
         "city_en": "Vienna",
-        "city_ar": "Vienna"
+        "city_ar": "فيينا"
       }
     ]
   },
@@ -190,52 +190,40 @@ export const countries = [
       {
         "city_code": "perth",
         "city_en": "Perth",
-        "city_ar": "Perth"
+        "city_ar": "بيرث"
       },
       {
         "city_code": "adelaide",
         "city_en": "Adelaide",
-        "city_ar": "Adelaide"
+        "city_ar": "أديلايد"
       },
       {
         "city_code": "sydney",
         "city_en": "Sydney",
-        "city_ar": "Sydney"
+        "city_ar": "سيدني"
       },
       {
         "city_code": "newcastle",
         "city_en": "Newcastle",
-        "city_ar": "Newcastle"
+        "city_ar": "نيوكاسل"
       },
       {
         "city_code": "melbourne",
         "city_en": "Melbourne",
-        "city_ar": "Melbourne"
+        "city_ar": "ملبورن"
       },
       {
         "city_code": "gold_coast",
         "city_en": "Gold Coast",
-        "city_ar": "Gold Coast"
+        "city_ar": "غولد كوست"
       },
       {
         "city_code": "brisbane",
         "city_en": "Brisbane",
-        "city_ar": "Brisbane"
+        "city_ar": "بريسبان"
       }
     ]
-  },
-  {
-    "country_code": "aw",
-    "country_en": "Aruba",
-    "country_ar": "Aruba",
-    "cities": []
-  },
-  {
-    "country_code": "ax",
-    "country_en": "Aland Islands",
-    "country_ar": "Aland Islands",
-    "cities": []
-  },
+  },  
   {
     "country_code": "az",
     "country_en": "Azerbaijan",
@@ -244,7 +232,7 @@ export const countries = [
       {
         "city_code": "baku",
         "city_en": "Baku",
-        "city_ar": "Baku"
+        "city_ar": "باكو"
       }
     ]
   },
@@ -256,7 +244,7 @@ export const countries = [
       {
         "city_code": "sarajevo",
         "city_en": "Sarajevo",
-        "city_ar": "Sarajevo"
+        "city_ar": "سراييفو"
       }
     ]
   },
@@ -274,55 +262,55 @@ export const countries = [
       {
         "city_code": "rajshahi",
         "city_en": "Rajshahi",
-        "city_ar": "Rajshahi"
+        "city_ar": "راجشاهي"
       },
       {
         "city_code": "comilla",
         "city_en": "Comilla",
-        "city_ar": "Comilla"
+        "city_ar": "كوميلا"
       },
       {
         "city_code": "rangpur",
         "city_en": "Rangpur",
-        "city_ar": "Rangpur"
+        "city_ar": "رانغبور"
       },
       {
         "city_code": "dhaka",
         "city_en": "Dhaka",
-        "city_ar": "Dhaka"
+        "city_ar": "دكا"
       },
       {
         "city_code": "mohāmmadpur",
         "city_en": "Mohāmmadpur",
-        "city_ar": "Mohāmmadpur"
+        "city_ar": "محمدبور"
       },
       {
         "city_code": "gazipur",
         "city_en": "Gazipur",
-        "city_ar": "Gazipur"
+        "city_ar": "غازيبور"
       },
       {
         "city_code": "chattogram",
         "city_en": "Chattogram",
-        "city_ar": "Chattogram"
+        "city_ar": "تشاتوغرام"
       },
       {
         "city_code": "khulna",
         "city_en": "Khulna",
-        "city_ar": "Khulna"
+        "city_ar": "خولنا"
       },
       {
         "city_code": "pallabi",
         "city_en": "Pallabi",
-        "city_ar": "Pallabi"
+        "city_ar": "بالابي"
       },
       {
         "city_code": "mirpur_model_thana",
         "city_en": "Mirpur Model Thana",
-        "city_ar": "Mirpur Model Thana"
+        "city_ar": "ميربور موديل ثانا"
       }
     ]
-  },
+  },  
   {
     "country_code": "be",
     "country_en": "Belgium",
@@ -331,12 +319,12 @@ export const countries = [
       {
         "city_code": "brussels",
         "city_en": "Brussels",
-        "city_ar": "Brussels"
+        "city_ar": "بروكسل"
       },
       {
         "city_code": "antwerpen",
         "city_en": "Antwerpen",
-        "city_ar": "Antwerpen"
+        "city_ar": "أنتويرب"
       }
     ]
   },
@@ -348,12 +336,12 @@ export const countries = [
       {
         "city_code": "ouagadougou",
         "city_en": "Ouagadougou",
-        "city_ar": "Ouagadougou"
+        "city_ar": "واغادوغو"
       },
       {
         "city_code": "bobo-dioulasso",
         "city_en": "Bobo-Dioulasso",
-        "city_ar": "Bobo-Dioulasso"
+        "city_ar": "بوبو ديولاسو"
       }
     ]
   },
@@ -365,7 +353,7 @@ export const countries = [
       {
         "city_code": "sofia",
         "city_en": "Sofia",
-        "city_ar": "Sofia"
+        "city_ar": "صوفيا"
       }
     ]
   },
@@ -383,7 +371,7 @@ export const countries = [
       {
         "city_code": "bujumbura",
         "city_en": "Bujumbura",
-        "city_ar": "Bujumbura"
+        "city_ar": "بوجومبورا"
       }
     ]
   },
@@ -395,20 +383,20 @@ export const countries = [
       {
         "city_code": "cotonou",
         "city_en": "Cotonou",
-        "city_ar": "Cotonou"
+        "city_ar": "كوتونو"
       }
     ]
   },
   {
     "country_code": "bl",
     "country_en": "Saint Barthelemy",
-    "country_ar": "Saint Barthelemy",
+    "country_ar": "سان بارتيليمي",
     "cities": []
-  },
+  },  
   {
     "country_code": "bm",
     "country_en": "Bermuda",
-    "country_ar": "Bermuda",
+    "country_ar": "برمودا",
     "cities": []
   },
   {
@@ -425,24 +413,24 @@ export const countries = [
       {
         "city_code": "santa_cruz_de_la_sierra",
         "city_en": "Santa Cruz de la Sierra",
-        "city_ar": "Santa Cruz de la Sierra"
+        "city_ar": "سانتا كروز دي لا سييرا"
       },
       {
         "city_code": "la_paz",
         "city_en": "La Paz",
-        "city_ar": "La Paz"
+        "city_ar": "لا باز"
       },
       {
         "city_code": "cochabamba",
         "city_en": "Cochabamba",
-        "city_ar": "Cochabamba"
+        "city_ar": "كوتشابامبا"
       }
     ]
   },
   {
     "country_code": "bq",
     "country_en": "Bonaire, Saint Eustatius and Saba ",
-    "country_ar": "Bonaire, Saint Eustatius and Saba ",
+    "country_ar": "بونير، سانت أوستاتيوس وسابا",
     "cities": []
   },
   {
@@ -453,220 +441,220 @@ export const countries = [
       {
         "city_code": "teresina",
         "city_en": "Teresina",
-        "city_ar": "Teresina"
+        "city_ar": "تيريسينا"
       },
       {
         "city_code": "são_luís",
         "city_en": "São Luís",
-        "city_ar": "São Luís"
+        "city_ar": "ساو لويس"
       },
       {
         "city_code": "recife",
         "city_en": "Recife",
-        "city_ar": "Recife"
+        "city_ar": "ريسيفي"
       },
       {
         "city_code": "natal",
         "city_en": "Natal",
-        "city_ar": "Natal"
+        "city_ar": "ناتال"
       },
       {
         "city_code": "maceió",
         "city_en": "Maceió",
-        "city_ar": "Maceió"
+        "city_ar": "ماسيو"
       },
       {
         "city_code": "macapá",
         "city_en": "Macapá",
-        "city_ar": "Macapá"
+        "city_ar": "ماكابا"
       },
       {
         "city_code": "joão_pessoa",
         "city_en": "João Pessoa",
-        "city_ar": "João Pessoa"
+        "city_ar": "جواو بيسوا"
       },
       {
         "city_code": "jaboatão",
         "city_en": "Jaboatão",
-        "city_ar": "Jaboatão"
+        "city_ar": "جابواتاو"
       },
       {
         "city_code": "fortaleza",
         "city_en": "Fortaleza",
-        "city_ar": "Fortaleza"
+        "city_ar": "فورتاليزا"
       },
       {
         "city_code": "belém",
         "city_en": "Belém",
-        "city_ar": "Belém"
+        "city_ar": "بيليم"
       },
       {
         "city_code": "uberlândia",
         "city_en": "Uberlândia",
-        "city_ar": "Uberlândia"
+        "city_ar": "أوبرلانديا"
       },
       {
         "city_code": "sorocaba",
         "city_en": "Sorocaba",
-        "city_ar": "Sorocaba"
+        "city_ar": "سوروكابا"
       },
       {
         "city_code": "serra",
         "city_en": "Serra",
-        "city_ar": "Serra"
+        "city_ar": "سيرا"
       },
       {
         "city_code": "são_paulo",
         "city_en": "São Paulo",
-        "city_ar": "São Paulo"
+        "city_ar": "ساو باولو"
       },
       {
         "city_code": "são_josé_dos_campos",
         "city_en": "São José dos Campos",
-        "city_ar": "São José dos Campos"
+        "city_ar": "ساو جوزيه دوس كامبوس"
       },
       {
         "city_code": "são_bernardo_do_campo",
         "city_en": "São Bernardo do Campo",
-        "city_ar": "São Bernardo do Campo"
+        "city_ar": "ساو برناردو دو كامبو"
       },
       {
         "city_code": "santo_andré",
         "city_en": "Santo André",
-        "city_ar": "Santo André"
+        "city_ar": "سانتو أندري"
       },
       {
         "city_code": "salvador",
         "city_en": "Salvador",
-        "city_ar": "Salvador"
+        "city_ar": "سالفادور"
       },
       {
         "city_code": "rio_de_janeiro",
         "city_en": "Rio de Janeiro",
-        "city_ar": "Rio de Janeiro"
+        "city_ar": "ريو دي جانيرو"
       },
       {
         "city_code": "ribeirão_preto",
         "city_en": "Ribeirão Preto",
-        "city_ar": "Ribeirão Preto"
+        "city_ar": "ريبيراو بريتو"
       },
       {
         "city_code": "porto_alegre",
         "city_en": "Porto Alegre",
-        "city_ar": "Porto Alegre"
+        "city_ar": "بورتو أليغري"
       },
       {
         "city_code": "osasco",
         "city_en": "Osasco",
-        "city_ar": "Osasco"
+        "city_ar": "أوزاسكو"
       },
       {
         "city_code": "nova_iguaçu",
         "city_en": "Nova Iguaçu",
-        "city_ar": "Nova Iguaçu"
+        "city_ar": "نوفا إيغواسو"
       },
       {
         "city_code": "londrina",
         "city_en": "Londrina",
-        "city_ar": "Londrina"
+        "city_ar": "لوندرينا"
       },
       {
         "city_code": "juiz_de_fora",
         "city_en": "Juiz de Fora",
-        "city_ar": "Juiz de Fora"
+        "city_ar": "جويز دي فورا"
       },
       {
         "city_code": "guarulhos",
         "city_en": "Guarulhos",
-        "city_ar": "Guarulhos"
+        "city_ar": "غواروليوس"
       },
       {
         "city_code": "goiânia",
         "city_en": "Goiânia",
-        "city_ar": "Goiânia"
+        "city_ar": "غويانيا"
       },
       {
         "city_code": "florianópolis",
         "city_en": "Florianópolis",
-        "city_ar": "Florianópolis"
+        "city_ar": "فلوريانوبوليس"
       },
       {
         "city_code": "feira_de_santana",
         "city_en": "Feira de Santana",
-        "city_ar": "Feira de Santana"
+        "city_ar": "فييرا دي سانتانا"
       },
       {
         "city_code": "duque_de_caxias",
         "city_en": "Duque de Caxias",
-        "city_ar": "Duque de Caxias"
+        "city_ar": "دوكي دي كاشياس"
       },
       {
         "city_code": "curitiba",
         "city_en": "Curitiba",
-        "city_ar": "Curitiba"
+        "city_ar": "كوريتيبا"
       },
       {
         "city_code": "cuiabá",
         "city_en": "Cuiabá",
-        "city_ar": "Cuiabá"
+        "city_ar": "كويابا"
       },
       {
         "city_code": "contagem",
         "city_en": "Contagem",
-        "city_ar": "Contagem"
+        "city_ar": "كونتاجيم"
       },
       {
         "city_code": "campos_dos_goytacazes",
         "city_en": "Campos dos Goytacazes",
-        "city_ar": "Campos dos Goytacazes"
+        "city_ar": "كامبوس دوس غويتاكازيس"
       },
       {
         "city_code": "campo_grande",
         "city_en": "Campo Grande",
-        "city_ar": "Campo Grande"
+        "city_ar": "كامبو غراندي"
       },
       {
         "city_code": "campinas",
         "city_en": "Campinas",
-        "city_ar": "Campinas"
+        "city_ar": "كامبيناس"
       },
       {
         "city_code": "brasília",
         "city_en": "Brasília",
-        "city_ar": "Brasília"
+        "city_ar": "برازيليا"
       },
       {
         "city_code": "belo_horizonte",
         "city_en": "Belo Horizonte",
-        "city_ar": "Belo Horizonte"
+        "city_ar": "بيلو هوريزونتي"
       },
       {
         "city_code": "aracaju",
         "city_en": "Aracaju",
-        "city_ar": "Aracaju"
+        "city_ar": "أراكاجو"
       },
       {
         "city_code": "porto_velho",
         "city_en": "Porto Velho",
-        "city_ar": "Porto Velho"
+        "city_ar": "بورتو فيليو"
       },
       {
         "city_code": "manaus",
         "city_en": "Manaus",
-        "city_ar": "Manaus"
+        "city_ar": "ماناوس"
       },
       {
         "city_code": "aparecida_de_goiânia",
         "city_en": "Aparecida de Goiânia",
-        "city_ar": "Aparecida de Goiânia"
+        "city_ar": "أباريسيدا دي غويانيا"
       },
       {
         "city_code": "jaboatão_dos_guararapes",
         "city_en": "Jaboatão dos Guararapes",
-        "city_ar": "Jaboatão dos Guararapes"
+        "city_ar": "جابواتاو دوس غوارارابيس"
       }
     ]
-  },
+  },  
   {
     "country_code": "bs",
     "country_en": "Bahamas",
@@ -784,13 +772,13 @@ export const countries = [
   {
     "country_code": "cc",
     "country_en": "Cocos Islands",
-    "country_ar": "Cocos Islands",
+    "country_ar": "كوكوس",
     "cities": []
   },
   {
     "country_code": "cd",
     "country_en": "Democratic Republic of the Congo",
-    "country_ar": "Democratic Republic of the Congo",
+    "country_ar": "جمهورية الكونغو الديمقراطية",
     "cities": [
       {
         "city_code": "tshikapa",
@@ -859,7 +847,7 @@ export const countries = [
   {
     "country_code": "cg",
     "country_en": "Republic of the Congo",
-    "country_ar": "Republic of the Congo",
+    "country_ar": "جمهورية الكونغو",
     "cities": [
       {
         "city_code": "pointe-noire",
@@ -882,7 +870,7 @@ export const countries = [
   {
     "country_code": "ci",
     "country_en": "Ivory Coast",
-    "country_ar": "Ivory Coast",
+    "country_ar": "ساحل العاج",
     "cities": [
       {
         "city_code": "bouaké",
@@ -904,7 +892,7 @@ export const countries = [
   {
     "country_code": "ck",
     "country_en": "Cook Islands",
-    "country_ar": "Cook Islands",
+    "country_ar": "جزر كوك",
     "cities": []
   },
   {
@@ -2396,19 +2384,19 @@ export const countries = [
   {
     "country_code": "cv",
     "country_en": "Cabo Verde",
-    "country_ar": "Cabo Verde",
+    "country_ar": "كابو فيردي",
     "cities": []
   },
   {
     "country_code": "cw",
     "country_en": "Curacao",
-    "country_ar": "Curacao",
+    "country_ar": "كوراساو",
     "cities": []
   },
   {
     "country_code": "cx",
     "country_en": "Christmas Island",
-    "country_ar": "Christmas Island",
+    "country_ar": "جزيرة الكريسماس",
     "cities": []
   },
   {
@@ -2621,69 +2609,69 @@ export const countries = [
       {
         "city_code": "tanta",
         "city_en": "Tanta",
-        "city_ar": "Tanta"
+        "city_ar": "طنطا"
       },
       {
         "city_code": "shubrā_al_khaymah",
         "city_en": "Shubrā al Khaymah",
-        "city_ar": "Shubrā al Khaymah"
+        "city_ar": "شبرا الخيمة"
       },
       {
         "city_code": "madīnat_an_naşr",
         "city_en": "Madīnat an Naşr",
-        "city_ar": "Madīnat an Naşr"
+        "city_ar": "مدينة نصر"
       },
       {
         "city_code": "port_said",
         "city_en": "Port Said",
-        "city_ar": "Port Said"
+        "city_ar": "بورسعيد"
       },
       {
         "city_code": "assiut",
         "city_en": "Assiut",
-        "city_ar": "Assiut"
+        "city_ar": "أسيوط"
       },
       {
         "city_code": "suez",
         "city_en": "Suez",
-        "city_ar": "Suez"
+        "city_ar": "السويس"
       },
       {
         "city_code": "cairo",
         "city_en": "Cairo",
-        "city_ar": "Cairo"
+        "city_ar": "القاهرة"
       },
       {
         "city_code": "al_mansurah",
         "city_en": "Al Mansurah",
-        "city_ar": "Al Mansurah"
+        "city_ar": "المنصورة"
       },
       {
         "city_code": "al_maḩallah_al_kubrá",
         "city_en": "Al Maḩallah al Kubrá",
-        "city_ar": "Al Maḩallah al Kubrá"
+        "city_ar": "المحلة الكبرى"
       },
       {
         "city_code": "giza",
         "city_en": "Giza",
-        "city_ar": "Giza"
+        "city_ar": "الجيزة"
       },
       {
         "city_code": "alexandria",
         "city_en": "Alexandria",
-        "city_ar": "Alexandria"
+        "city_ar": "الإسكندرية"
       },
       {
         "city_code": "al_fayyum",
         "city_en": "Al Fayyum",
-        "city_ar": "Al Fayyum"
+        "city_ar": "الفيوم"
       }
     ]
-  },
+  },  
   {
     "country_code": "eh",
     "country_en": "Western Sahara",
-    "country_ar": "Western Sahara",
+    "country_ar": "الصحراء الغربية",
     "cities": []
   },
   {
@@ -2768,7 +2756,7 @@ export const countries = [
   {
     "country_code": "fk",
     "country_en": "Falkland Islands",
-    "country_ar": "Falkland Islands",
+    "country_ar": "جزر فوكلاند",
     "cities": []
   },
   {
@@ -2780,7 +2768,7 @@ export const countries = [
   {
     "country_code": "fo",
     "country_en": "Faroe Islands",
-    "country_ar": "Faroe Islands",
+    "country_ar": "جزر فارو",
     "cities": []
   },
   {
@@ -2880,13 +2868,13 @@ export const countries = [
   {
     "country_code": "gf",
     "country_en": "French Guiana",
-    "country_ar": "French Guiana",
+    "country_ar": "غيانا الفرنسية",
     "cities": []
   },
   {
     "country_code": "gg",
     "country_en": "Guernsey",
-    "country_ar": "Guernsey",
+    "country_ar": "غيرنزي",
     "cities": []
   },
   {
@@ -2909,7 +2897,7 @@ export const countries = [
   {
     "country_code": "gi",
     "country_en": "Gibraltar",
-    "country_ar": "Gibraltar",
+    "country_ar": "جبل طارق",
     "cities": []
   },
   {
@@ -2944,7 +2932,7 @@ export const countries = [
   {
     "country_code": "gp",
     "country_en": "Guadeloupe",
-    "country_ar": "Guadeloupe",
+    "country_ar": "جوادلوب",
     "cities": []
   },
   {
@@ -2968,7 +2956,7 @@ export const countries = [
   {
     "country_code": "gs",
     "country_en": "South Georgia and the South Sandwich Islands",
-    "country_ar": "South Georgia and the South Sandwich Islands",
+    "country_ar": "جورجيا الجنوبية وجزر ساندويتش الجنوبية",
     "cities": []
   },
   {
@@ -2991,7 +2979,7 @@ export const countries = [
   {
     "country_code": "gu",
     "country_en": "Guam",
-    "country_ar": "Guam",
+    "country_ar": "غوام",
     "cities": []
   },
   {
@@ -3009,7 +2997,7 @@ export const countries = [
   {
     "country_code": "hk",
     "country_en": "Hong Kong",
-    "country_ar": "Hong Kong",
+    "country_ar": "هونغ كونغ",
     "cities": [
       {
         "city_code": "tuen_mun",
@@ -3046,7 +3034,7 @@ export const countries = [
   {
     "country_code": "hm",
     "country_en": "Heard Island and McDonald Islands",
-    "country_ar": "Heard Island and McDonald Islands",
+    "country_ar": "جزيرة هيرد وجزر ماكدونالد",
     "cities": []
   },
   {
@@ -3267,21 +3255,9 @@ export const countries = [
     ]
   },
   {
-    "country_code": "il",
-    "country_en": "Israel",
-    "country_ar": "إسرائيل",
-    "cities": [
-      {
-        "city_code": "jerusalem",
-        "city_en": "Jerusalem",
-        "city_ar": "Jerusalem"
-      }
-    ]
-  },
-  {
     "country_code": "im",
     "country_en": "Isle of Man",
-    "country_ar": "Isle of Man",
+    "country_ar": "جزيرة مان",
     "cities": []
   },
   {
@@ -3834,7 +3810,7 @@ export const countries = [
   {
     "country_code": "io",
     "country_en": "British Indian Ocean Territory",
-    "country_ar": "British Indian Ocean Territory",
+    "country_ar": "إقليم المحيط الهندي البريطاني",
     "cities": []
   },
   {
@@ -4037,7 +4013,7 @@ export const countries = [
   {
     "country_code": "je",
     "country_en": "Jersey",
-    "country_ar": "Jersey",
+    "country_ar": "جيرسي",
     "cities": []
   },
   {
@@ -4462,7 +4438,7 @@ export const countries = [
   {
     "country_code": "xk",
     "country_en": "Kosovo",
-    "country_ar": "Kosovo",
+    "country_ar": "كوسوفو",
     "cities": [
       {
         "city_code": "pristina",
@@ -4486,7 +4462,7 @@ export const countries = [
   {
     "country_code": "ky",
     "country_en": "Cayman Islands",
-    "country_ar": "Cayman Islands",
+    "country_ar": "جزر كايمان",
     "cities": []
   },
   {
@@ -4702,7 +4678,7 @@ export const countries = [
   {
     "country_code": "mf",
     "country_en": "Saint Martin",
-    "country_ar": "Saint Martin",
+    "country_ar": "سانت مارتن",
     "cities": []
   },
   {
@@ -4778,7 +4754,7 @@ export const countries = [
   {
     "country_code": "mo",
     "country_en": "Macao",
-    "country_ar": "Macao",
+    "country_ar": "ماكاو",
     "cities": [
       {
         "city_code": "macau",
@@ -4790,13 +4766,13 @@ export const countries = [
   {
     "country_code": "mp",
     "country_en": "Northern Mariana Islands",
-    "country_ar": "Northern Mariana Islands",
+    "country_ar": "جزر ماريانا الشمالية",
     "cities": []
   },
   {
     "country_code": "mq",
     "country_en": "Martinique",
-    "country_ar": "Martinique",
+    "country_ar": "مارتينيك",
     "cities": []
   },
   {
@@ -4814,7 +4790,7 @@ export const countries = [
   {
     "country_code": "ms",
     "country_en": "Montserrat",
-    "country_ar": "Montserrat",
+    "country_ar": "مونتسرات",
     "cities": []
   },
   {
@@ -5197,7 +5173,7 @@ export const countries = [
   {
     "country_code": "nc",
     "country_en": "New Caledonia",
-    "country_ar": "New Caledonia",
+    "country_ar": "كاليدونيا الجديدة",
     "cities": []
   },
   {
@@ -5215,7 +5191,7 @@ export const countries = [
   {
     "country_code": "nf",
     "country_en": "Norfolk Island",
-    "country_ar": "Norfolk Island",
+    "country_ar": "جزيرة نورفولك",
     "cities": []
   },
   {
@@ -5380,7 +5356,7 @@ export const countries = [
   {
     "country_code": "nl",
     "country_en": "The Netherlands",
-    "country_ar": "The Netherlands",
+    "country_ar": "هولندا",
     "cities": [
       {
         "city_code": "rotterdam",
@@ -5432,7 +5408,7 @@ export const countries = [
   {
     "country_code": "nu",
     "country_en": "Niue",
-    "country_ar": "Niue",
+    "country_ar": "نيوي",
     "cities": []
   },
   {
@@ -5500,7 +5476,7 @@ export const countries = [
   {
     "country_code": "pf",
     "country_en": "French Polynesia",
-    "country_ar": "French Polynesia",
+    "country_ar": "بولينيزيا الفرنسية",
     "cities": []
   },
   {
@@ -5768,25 +5744,25 @@ export const countries = [
   {
     "country_code": "pm",
     "country_en": "Saint Pierre and Miquelon",
-    "country_ar": "Saint Pierre and Miquelon",
+    "country_ar": "سانت بيير وميكلون",
     "cities": []
   },
   {
     "country_code": "pn",
     "country_en": "Pitcairn",
-    "country_ar": "Pitcairn",
+    "country_ar": "بيتكيرن",
     "cities": []
   },
   {
     "country_code": "pr",
     "country_en": "Puerto Rico",
-    "country_ar": "Puerto Rico",
+    "country_ar": "بورتو ريكو",
     "cities": []
   },
   {
     "country_code": "ps",
     "country_en": "Palestinian Territory",
-    "country_ar": "Palestinian Territory",
+    "country_ar": "الأراضي الفلسطينية",
     "cities": []
   },
   {
@@ -5828,7 +5804,7 @@ export const countries = [
   {
     "country_code": "re",
     "country_en": "Reunion",
-    "country_ar": "Reunion",
+    "country_ar": "ريونيون",
     "cities": []
   },
   {
@@ -6077,60 +6053,60 @@ export const countries = [
       {
         "city_code": "tabuk",
         "city_en": "Tabuk",
-        "city_ar": "Tabuk"
+        "city_ar": "تبوك"
       },
       {
         "city_code": "sulţānah",
         "city_en": "Sulţānah",
-        "city_ar": "Sulţānah"
+        "city_ar": "السلطانة"
       },
       {
         "city_code": "najrān",
         "city_en": "Najrān",
-        "city_ar": "Najrān"
+        "city_ar": "نجران"
       },
       {
         "city_code": "makkah",
         "city_en": "Makkah",
-        "city_ar": "Makkah"
+        "city_ar": "مكة المكرمة"
       },
       {
         "city_code": "jeddah",
         "city_en": "Jeddah",
-        "city_ar": "Jeddah"
+        "city_ar": "جدة"
       },
       {
         "city_code": "ha'il",
         "city_en": "Ha'il",
-        "city_ar": "Ha'il"
+        "city_ar": "حائل"
       },
       {
         "city_code": "buraydah",
         "city_en": "Buraydah",
-        "city_ar": "Buraydah"
+        "city_ar": "بريدة"
       },
       {
         "city_code": "ta’if",
         "city_en": "Ta’if",
-        "city_ar": "Ta’if"
+        "city_ar": "الطائف"
       },
       {
         "city_code": "riyadh",
         "city_en": "Riyadh",
-        "city_ar": "Riyadh"
+        "city_ar": "الرياض"
       },
       {
         "city_code": "madinah",
         "city_en": "Madinah",
-        "city_ar": "Madinah"
+        "city_ar": "المدينة المنورة"
       },
       {
         "city_code": "dammam",
         "city_en": "Dammam",
-        "city_ar": "Dammam"
+        "city_ar": "الدمام"
       }
     ]
-  },
+  },  
   {
     "country_code": "sb",
     "country_en": "Solomon Islands",
@@ -6208,7 +6184,7 @@ export const countries = [
   {
     "country_code": "sh",
     "country_en": "Saint Helena",
-    "country_ar": "Saint Helena",
+    "country_ar": "سانت هيلينا",
     "cities": []
   },
   {
@@ -6220,7 +6196,7 @@ export const countries = [
   {
     "country_code": "sj",
     "country_en": "Svalbard and Jan Mayen",
-    "country_ar": "Svalbard and Jan Mayen",
+    "country_ar": "سفالبارد ويان ماين",
     "cities": []
   },
   {
@@ -6313,7 +6289,7 @@ export const countries = [
   {
     "country_code": "sx",
     "country_en": "Sint Maarten",
-    "country_ar": "Sint Maarten",
+    "country_ar": "سينت مارتن",
     "cities": []
   },
   {
@@ -6357,7 +6333,7 @@ export const countries = [
   {
     "country_code": "tc",
     "country_en": "Turks and Caicos Islands",
-    "country_ar": "Turks and Caicos Islands",
+    "country_ar": "جزر تركس وكايكوس",
     "cities": []
   },
   {
@@ -6375,7 +6351,7 @@ export const countries = [
   {
     "country_code": "tf",
     "country_en": "French Southern Territories",
-    "country_ar": "French Southern Territories",
+    "country_ar": "المقاطعات الجنوبية الفرنسية",
     "cities": []
   },
   {
@@ -6417,13 +6393,7 @@ export const countries = [
   {
     "country_code": "tk",
     "country_en": "Tokelau",
-    "country_ar": "Tokelau",
-    "cities": []
-  },
-  {
-    "country_code": "tl",
-    "country_en": "Timor Leste",
-    "country_ar": "Timor Leste",
+    "country_ar": "توكيلاو",
     "cities": []
   },
   {
@@ -6726,7 +6696,7 @@ export const countries = [
   {
     "country_code": "um",
     "country_en": "United States Minor Outlying Islands",
-    "country_ar": "United States Minor Outlying Islands",
+    "country_ar": "جزر الولايات المتحدة الصغيرة النائية",
     "cities": []
   },
   {
@@ -6988,7 +6958,7 @@ export const countries = [
   {
     "country_code": "va",
     "country_en": "Vatican",
-    "country_ar": "Vatican",
+    "country_ar": "الفاتيكان",
     "cities": []
   },
   {
@@ -7042,13 +7012,13 @@ export const countries = [
   {
     "country_code": "vg",
     "country_en": "British Virgin Islands",
-    "country_ar": "British Virgin Islands",
+    "country_ar": "جزر العذراء البريطانية",
     "cities": []
   },
   {
     "country_code": "vi",
     "country_en": "U.S. Virgin Islands",
-    "country_ar": "U.S. Virgin Islands",
+    "country_ar": "جزر العذراء الأمريكية",
     "cities": []
   },
   {
@@ -7142,7 +7112,7 @@ export const countries = [
   {
     "country_code": "wf",
     "country_en": "Wallis and Futuna",
-    "country_ar": "Wallis and Futuna",
+    "country_ar": "واليس وفوتونا",
     "cities": []
   },
   {
@@ -7191,7 +7161,7 @@ export const countries = [
   {
     "country_code": "yt",
     "country_en": "Mayotte",
-    "country_ar": "Mayotte",
+    "country_ar": "مايوت",
     "cities": []
   },
   {
@@ -7303,13 +7273,13 @@ export const countries = [
   {
     "country_code": "cs",
     "country_en": "Serbia and Montenegro",
-    "country_ar": "Serbia and Montenegro",
+    "country_ar": "صربيا والجبل الأسود",
     "cities": []
   },
   {
     "country_code": "an",
     "country_en": "Netherlands Antilles",
-    "country_ar": "Netherlands Antilles",
+    "country_ar": "جزر الأنتيل الهولندية",
     "cities": []
   }
 ]

@@ -78,6 +78,13 @@
       text-decoration: underline;
     }
   }
+
+  @include bp.respond-to(md) {
+    width: 100%;
+    a {
+      font-size: 11px;
+    }
+  }
 }
 
 .submitBtn {
