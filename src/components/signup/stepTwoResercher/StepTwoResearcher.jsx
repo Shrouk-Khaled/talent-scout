@@ -18,6 +18,8 @@ export default function StepTwoResearcher() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const email = searchParams.get("email") || "";
+  //form
   const [form] = Form.useForm();
   //message
   const [messageApi, contextHolder] = message.useMessage();
@@ -28,7 +30,7 @@ export default function StepTwoResearcher() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    form.setFieldsValue(signupData);
+    form.setFieldsValue({...signupData, email: email});
   }, [signupData]);
 
 
@@ -91,7 +93,7 @@ export default function StepTwoResearcher() {
       />
 
       <div className={styles.form}>
-        <Form layout="vertical" form={form}>
+        <Form layout="vertical" form={form} initialValues={{email: email}}>
           <Form.Item
             name="organization_name"
             rules={[{ required: true, message: "الرجاء إدخال إسم المنشأه" }]}
@@ -134,7 +136,7 @@ export default function StepTwoResearcher() {
             ]}
             label="البريد الالكتروني"
           >
-            <Input type="text" placeholder="ادخل الايميل" />
+            <Input type="text" placeholder="ادخل الايميل" disabled/>
           </Form.Item>
 
           <Form.Item
