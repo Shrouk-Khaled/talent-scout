@@ -30,9 +30,13 @@ export default function StepTwoResearcher() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    form.setFieldsValue({...signupData, email: email});
+    form.setFieldsValue({
+      ...signupData,
+      email: email,
+      country: signupData?.country || undefined,
+      city: signupData?.city || undefined,
+    });
   }, [signupData]);
-
 
   // url helpers
   const makeUrl = (params) => {
@@ -46,30 +50,31 @@ export default function StepTwoResearcher() {
       const values = form.getFieldsValue();
       checkPhoneExists({
         phone: `${values?.phone?.countryCode}${values?.phone?.localNumber}`,
-      }).then((res) => {
-        if (res?.isExist) {
+      })
+        .then((res) => {
+          if (res?.isExist) {
+            messageApi.open({
+              type: "error",
+              content: "رقم الجوال مستخدم بالفعل. الرجاء استخدام رقم آخر.",
+            });
+            return;
+          } else {
+            messageApi.open({
+              type: "success",
+              content: res?.otpState?.message,
+            });
+          }
+          updateSignupData(values);
+          const params = new URLSearchParams(searchParams.toString());
+          params.set("step", "3");
+          router.push(makeUrl(params), { scroll: false }); // keep history
+        })
+        .catch((err) => {
           messageApi.open({
             type: "error",
-            content: "رقم الجوال مستخدم بالفعل. الرجاء استخدام رقم آخر.",
+            content: "الرجاء تصحيح الأخطاء في النموذج قبل المتابعة.",
           });
-          return;
-        } else {
-          messageApi.open({
-            type: "success",
-            content: res?.otpState?.message
-          });
-        }
-        updateSignupData(values);
-        const params = new URLSearchParams(searchParams.toString());
-        params.set("step", "3");
-        router.push(makeUrl(params), { scroll: false }); // keep history
-      }).catch((err) => {
-        messageApi.open({
-          type: "error",
-          content: "الرجاء تصحيح الأخطاء في النموذج قبل المتابعة.",
         });
-      })
-   
     } catch {
       // antd will show validation messages automatically
       // Delete
@@ -93,9 +98,9 @@ export default function StepTwoResearcher() {
       />
 
       <div className={styles.form}>
-        <Form layout="vertical" form={form} initialValues={{email: email}}>
+        <Form layout="vertical" form={form} initialValues={{ email: email }}>
           <Form.Item
-            name="organization_name"
+            name="companyName"
             rules={[{ required: true, message: "الرجاء إدخال إسم المنشأه" }]}
             className={styles.field}
             label="إسم المنشأه"
@@ -104,7 +109,7 @@ export default function StepTwoResearcher() {
           </Form.Item>
 
           <Form.Item
-            name="commercial_registration_number"
+            name="commercialRegNo"
             rules={[
               { required: true, message: "الرجاء إدخال رقم السجل التجاري" },
             ]}
@@ -115,7 +120,7 @@ export default function StepTwoResearcher() {
           </Form.Item>
 
           <Form.Item
-            name="representative_name"
+            name="contactPerson"
             rules={[
               {
                 required: true,
@@ -136,7 +141,7 @@ export default function StepTwoResearcher() {
             ]}
             label="البريد الالكتروني"
           >
-            <Input type="text" placeholder="ادخل الايميل" disabled/>
+            <Input type="text" placeholder="ادخل الايميل" disabled />
           </Form.Item>
 
           <Form.Item
@@ -147,13 +152,15 @@ export default function StepTwoResearcher() {
             valuePropName="phone"
             trigger="onChange"
           >
-            <PhoneInput value={`${signupData?.phone?.countryCode}${signupData?.phone?.localNumber}`}/>
+            <PhoneInput
+              value={`${signupData?.phone?.countryCode}${signupData?.phone?.localNumber}`}
+            />
           </Form.Item>
 
           <div className={styles.row}>
             <Form.Item
               name="country"
-              rules={[{ required: true, message: "الرجاء ادخال البلد"}]}
+              rules={[{ required: true, message: "الرجاء ادخال البلد" }]}
               className={styles.field}
               label="البلد"
             >
@@ -172,48 +179,51 @@ export default function StepTwoResearcher() {
                 options={countries.map((country) => ({
                   value: country.country_code,
                   label: country.country_ar,
-                }))
-                }
+                }))}
               />
             </Form.Item>
 
             <Form.Item
-            shouldUpdate={(prev, cur) => prev.country !== cur.country}
-            noStyle
-          >
-            {({ getFieldValue }) => (
-            <Form.Item
-              name="city"
-              rules={[{ required: true, message: "الرجاء ادخال المدينة"}]}
-              className={styles.field}
-              label="المدينة"
+              shouldUpdate={(prev, cur) => prev.country !== cur.country}
+              noStyle
             >
-              <SelectInput
-                placeholder={"اختر مدينة"}
-                // options={[
-                //   {
-                //     value: "Cairo",
-                //     label: "القاهرة",
-                //   },
-                //   {
-                //     value: "Riyadh",
-                //     label: "الرياض",
-                //   },
-                // ]}
-                options={
-                  countries.find(c => c.country_code === getFieldValue('country'))?.cities.map((city) => ({
-                    value: city.city_code,
-                    label: city.city_ar,
-                  })) || []
-                }
-              />
-            </Form.Item>
-            )}
+              {({ getFieldValue }) => (
+                <Form.Item
+                  name="city"
+                  rules={[{ required: true, message: "الرجاء ادخال المدينة" }]}
+                  className={styles.field}
+                  label="المدينة"
+                >
+                  <SelectInput
+                    placeholder={"اختر مدينة"}
+                    // options={[
+                    //   {
+                    //     value: "Cairo",
+                    //     label: "القاهرة",
+                    //   },
+                    //   {
+                    //     value: "Riyadh",
+                    //     label: "الرياض",
+                    //   },
+                    // ]}
+                    options={
+                      countries
+                        .find(
+                          (c) => c.country_code === getFieldValue("country")
+                        )
+                        ?.cities.map((city) => ({
+                          value: city.city_code,
+                          label: city.city_ar,
+                        })) || []
+                    }
+                  />
+                </Form.Item>
+              )}
             </Form.Item>
           </div>
 
           <Form.Item
-            name="commercial_registration_file"
+            name="file"
             className={styles.field}
             rules={[
               {
@@ -240,7 +250,11 @@ export default function StepTwoResearcher() {
 
       <div className={styles.btns}>
         <div>
-          <Button className={styles.nextBtn} onClick={handleNextStep} loading={loading}>
+          <Button
+            className={styles.nextBtn}
+            onClick={handleNextStep}
+            loading={loading}
+          >
             التالي
           </Button>
           <Button className={styles.backBtn} onClick={handlePrevStep} outline>
