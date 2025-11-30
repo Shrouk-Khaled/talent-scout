@@ -26,6 +26,7 @@ export default function StepThree() {
   const updateSignupData = useSignupStore((state) => state.updateSignupData);
   const saveUserData = useUserStore((state) => state.setUserData);
   const signupData = useSignupStore((state) => state.signupData);
+  const clearSignupData = useSignupStore((state) => state.resetSignup);
   //states
   const [categories, setCategories] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState([]);
@@ -78,12 +79,17 @@ export default function StepThree() {
       categoryId: values?.categoryId,
       subCategoryId: values?.subCategoryId,
       participationTypeId: values?.participationTypeId,
-    }).then(() => {
+    }, (p) => {console.log(p)}).then(() => {
       if(user_type == 2){
         handleConfirmSignup();
       } else {
         setLoading(false);
-        saveUserData(res?.saveUserData);
+        saveUserData({
+          ...res?.saveUserData,
+          firstName: signupData?.firstName,
+          lastName: signupData?.lastName,
+        });
+        clearSignupData();
         router.push("/feed");
       }
     }).catch((err) => {
@@ -97,7 +103,12 @@ export default function StepThree() {
     })
       .then((res) => {
         setLoading(false);
-        saveUserData(res?.saveUserData);
+        saveUserData({
+          ...res?.saveUserData,
+          firstName: signupData?.firstName,
+          lastName: signupData?.lastName,
+      });
+        clearSignupData();
         router.push("/feed");
       })
       .catch((err) => {

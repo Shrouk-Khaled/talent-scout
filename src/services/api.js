@@ -33,7 +33,31 @@ export const getSubCatFormFields = async (subCategoryId) => {
   return response;
 }
 
-export const draftSignupData = async (payload) => {
+// export const draftSignupData = async (payload) => {
+//   const formData = new FormData();
+
+//   Object.entries(payload || {}).forEach(([key, value]) => {
+//     if (value === undefined || value === null) return;
+
+//     if (Array.isArray(value)) {
+//       value.forEach((item) => formData.append(key, item));
+//     } else if (value instanceof File || value instanceof Blob) {
+//       formData.append(key, value);
+//     } else {
+//       formData.append(key, value);
+//     }
+//   });
+
+//   const response = await http.post(
+//     "/api/v1/auth/register/draft",
+//     formData,
+//     {}
+//   );
+
+//   return response;
+// };
+
+export const draftSignupData = async (payload, onProgress = null) => {
   const formData = new FormData();
 
   Object.entries(payload || {}).forEach(([key, value]) => {
@@ -51,7 +75,20 @@ export const draftSignupData = async (payload) => {
   const response = await http.post(
     "/api/v1/auth/register/draft",
     formData,
-    {}
+    {
+      timeout: 300000, // 5 دقائق
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      onUploadProgress: (progressEvent) => {
+        if (onProgress && progressEvent.total) {
+          const percentCompleted = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+          onProgress(percentCompleted);
+        }
+      },
+    }
   );
 
   return response;

@@ -29,6 +29,7 @@ export default function StepFive() {
   //store
   const saveUserData = useUserStore((state) => state.setUserData);
   const signupData = useSignupStore((state) => state.signupData);
+  const clearSignupData = useSignupStore((state) => state.resetSignup);
   //states
   const [loading, setLoading] = useState(false);
 
@@ -42,7 +43,7 @@ export default function StepFive() {
       await form.validateFields();
       const values = form.getFieldsValue();
       setLoading(true);
-      const res = draftSignupData({
+      const payload = {
         ...signupData,
         talentCategoryForm: `${JSON.stringify(signupData?.talentCategoryForm)}`,
         shortBio: signupData?.shortBio,
@@ -52,7 +53,8 @@ export default function StepFive() {
         phone: signupData?.phone?.localNumber,
         prefixCode: signupData?.phone?.countryCode,
         email: signupData?.email,
-      }).then(() => {
+      }
+      const res = draftSignupData(payload, (progress) => {console.log(progress)}).then(() => {
           if (values?.shortBrief) {
             signupSpecialCases({
               shortBrief: form.getFieldValue("shortBrief"),
@@ -84,7 +86,12 @@ export default function StepFive() {
     })
       .then((res) => {
         setLoading(false);
-        saveUserData(res?.tokenResponse);
+        saveUserData({
+          ...res?.tokenResponse,
+          firstName: signupData?.firstName,
+          lastName: signupData?.lastName,
+        });
+        clearSignupData();
         router.push("/feed");
       })
       .catch((err) => {
