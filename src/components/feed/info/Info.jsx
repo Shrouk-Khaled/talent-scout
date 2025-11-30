@@ -3,10 +3,10 @@ import styles from "./info.module.scss";
 import Button from "@/components/ui/button/Button";
 import Link from "next/link";
 import { HiOutlineLocationMarker } from "react-icons/hi";
-import { useSignupStore } from "@/store/useSignupStore";
+import { useUserStore } from "@/store/useUserStore";
 
 export default function Info() {
-  const signupData = useSignupStore((state) => state.signupData);
+  const loggedData = useUserStore((state) => state.userData);
 
   return (  
     <div className={styles.details}>
@@ -18,7 +18,7 @@ export default function Info() {
           height={90}
           className={styles.avatar}
         />
-        <h4>{signupData?.firstName} {signupData?.lastName}</h4>
+        <h4>{loggedData?.firstName} {loggedData?.lastName}</h4>
         <div className={styles.nameBox}>
           <Image
             src="/images/icons/diamond.svg"

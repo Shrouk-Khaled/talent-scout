@@ -85,7 +85,7 @@ export default function StepThree() {
       } else {
         setLoading(false);
         saveUserData({
-          ...res?.saveUserData,
+          ...res?.tokenResponse,
           firstName: signupData?.firstName,
           lastName: signupData?.lastName,
         });
@@ -104,7 +104,7 @@ export default function StepThree() {
       .then((res) => {
         setLoading(false);
         saveUserData({
-          ...res?.saveUserData,
+          ...res?.tokenResponse,
           firstName: signupData?.firstName,
           lastName: signupData?.lastName,
       });
