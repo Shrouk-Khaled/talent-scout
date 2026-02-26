@@ -1,0 +1,135 @@
+@use "../../../../../styles/variables" as *;
+@use "../../../../../styles/mixins" as *;
+@use "../../../../../styles/breakpoints" as bp;
+@use "../../../../../styles/typography" as *;
+
+.container {
+  @include padding-page;
+  font-family: $AlexandriaRegular;
+
+  .main {
+    .actions {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+      gap: 20px;
+      img {
+        cursor: pointer;
+      }
+    }
+    .eventImage {
+      width: 100%;
+      position: relative;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-top: 34px;
+      margin-bottom: 25px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 24px;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.6) 100%
+        );
+      }
+    }
+    .cat {
+      background-color: $color-success-bg;
+      color: $color-success2;
+      padding: 8px 24px;
+      width: fit-content;
+      border-radius: 100px;
+      font-family: $AlexandriaSemiBold;
+      margin-bottom: 10px;
+    }
+
+    .content {
+      width: 100%;
+      display: flex;
+      .right {
+        width: 75%;
+        h1 {
+          font-family: $AlexandriaSemiBold;
+          font-size: 34px;
+          margin-bottom: 54px;
+        }
+        h3 {
+          font-family: $AlexandriaSemiBold;
+          font-size: 16px;
+          margin-bottom: 10px;
+        }
+        p {
+          font-family: $AlexandriaRegular;
+          font-size: 16px;
+          line-height: 150%;
+          color: $color-grey;
+          width: 65%;
+        }
+      }
+      .left {
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .detailsBox {
+          border: 1px solid $color-grey4;
+          border-radius: 8px;
+          padding: 16px;
+          .boxHeader {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 24px;
+            h3 {
+              font-family: $AlexandriaSemiBold;
+              font-size: 14px;
+            }
+          }
+          .date {
+            display: flex;
+            gap: 10px;
+            div {
+              width: 50%;
+            }
+            p {
+              font-family: $AlexandriaSemiBold;
+              color: $color-grey;
+              font-size: 12px;
+              margin-bottom: 5px;
+            }
+            h3 {
+              font-family: $AlexandriaSemiBold;
+              color: black;
+              font-size: 14px;
+              margin-bottom: 5px;
+            }
+            .start {
+              border-left: 3px solid $color-grey4;
+            }
+          }
+
+          .locationData {
+            p {
+                color: $color-grey;
+                font-family: $AlexandriaRegular;
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+          }
+        }
+      }
+    }
+
+    .relatedEvents {
+        margin: 60px 0;
+    }
+  }
+}

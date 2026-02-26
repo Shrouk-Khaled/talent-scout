@@ -24,7 +24,7 @@ export default function DownloadAppBox() {
           </div>
         </div>
         <div className={styles.imageBox}>
-          <Image src="/images/home/download.png" alt="App Screenshot" width={350} height={370} priority />
+          <Image src="/images/home/download-app.png" alt="App Screenshot" width={350} height={370} priority />
         </div>
     </aside>
   );

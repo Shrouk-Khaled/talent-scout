@@ -1,0 +1,135 @@
+// Article.module.scss
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+
+.article {
+    position: relative;
+    width: 48%;
+    min-width: 280px; // منع الـ card من الصغر أكتر من كده
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 16 / 9; // الحفاظ على نسبة العرض للارتفاع
+    overflow: hidden; // منع خروج المحتوى
+    cursor: pointer;
+    
+    .eventImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // الصورة تملي المساحة بدون تشويه
+      border-radius: 14px;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    .save {
+      position: absolute;
+      top: 5%;
+      left: 2%;
+      z-index: 10;
+      cursor: pointer;
+      
+      img {
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); // ظل للأيقونة
+      }
+    }
+
+    .info {
+      position: absolute;
+      bottom: 8%;
+      color: white;
+      z-index: 10;
+      width: 90%;
+      padding: 0 5%;
+
+      div {
+          width: 100%;
+          
+          h1 {
+              font-size: 14px;
+              font-family: $AlexandriaSemiBold;
+              color: white;
+              margin-bottom: 8px;
+              line-height: 1.4;
+              display: -webkit-box;
+              -webkit-line-clamp: 2; // حد أقصى سطرين
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+          }
+
+          .date {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 8px;
+
+              p {
+                font-size: 12px;
+                margin: 0;
+              }
+
+              .sport {
+                  background-color: #E5F8E7;
+                  color: green;
+                  padding: 4px 12px;
+                  border-radius: 14px;
+                  font-size: 11px;
+                  white-space: nowrap;
+              }
+          }
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+      z-index: 1;
+    }
+
+    // Responsive
+    @media (max-width: 1200px) {
+      width: 48%;
+      
+      .info div h1 {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      
+      .info {
+        bottom: 5%;
+        
+        div h1 {
+          font-size: 12px;
+        }
+        
+        div .date {
+          p {
+            font-size: 11px;
+          }
+          
+          .sport {
+            font-size: 10px;
+            padding: 3px 10px;
+          }
+        }
+      }
+    }
+}

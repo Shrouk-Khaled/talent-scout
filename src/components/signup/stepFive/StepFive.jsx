@@ -15,6 +15,7 @@ import {
 import { useEffect, useState } from "react";
 import { useUserStore } from "@/store/useUserStore";
 import { useSignupStore } from "@/store/useSignupStore";
+import { getFcmToken } from "@/lib/fcm";
 
 export default function StepFive() {
   const router = useRouter();
@@ -42,6 +43,8 @@ export default function StepFive() {
     try {
       await form.validateFields();
       const values = form.getFieldsValue();
+      const fcmToken = await getFcmToken().catch(() => null);
+
       setLoading(true);
       const payload = {
         ...signupData,
@@ -53,6 +56,8 @@ export default function StepFive() {
         phone: signupData?.phone?.localNumber,
         prefixCode: signupData?.phone?.countryCode,
         email: signupData?.email,
+        fcmToken, 
+        deviceType: "WEB"
       }
       const res = draftSignupData(payload, (progress) => {console.log(progress)}).then(() => {
           if (values?.shortBrief) {
@@ -87,10 +92,11 @@ export default function StepFive() {
       .then((res) => {
         setLoading(false);
         saveUserData({
-          ...res?.tokenResponse,
+          ...res?.token_response,
           firstName: signupData?.firstName,
           lastName: signupData?.lastName,
-        });
+          token: res?.token_response?.access_token
+      });
         clearSignupData();
         router.push("/feed");
       })
@@ -109,7 +115,7 @@ export default function StepFive() {
     <section className={styles.main}>
       {contextHolder}
       <Headlines
-        line1={"05 الفئات المدعومة مجانًا"}
+        line1={"5 الفئات المدعومة مجانًا"}
         line2={" اختيارك يساعدنا في منحك دعم مجاني وباقة مميزة."}
       />
 
@@ -124,7 +130,7 @@ export default function StepFive() {
                 name="shortBrief"
                 rules={[
                   {
-                    required: getFieldValue("file") ? true : false,
+                    required: getFieldValue("file")?.length > 0 ? true : false,
                     message: "يرجى اختيار فئتك.",
                   },
                 ]}

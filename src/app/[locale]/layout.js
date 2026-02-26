@@ -6,6 +6,10 @@ import { routing } from "@/i18n/routes";
 import "react-phone-input-2/lib/style.css";
 import "antd/dist/reset.css";
 import AntdRegistry from "./AntdRegistry";
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export const metadata = {
   metadataBase: new URL("https://talent-scout-mu.vercel.app"), // important for absolute OG URLs

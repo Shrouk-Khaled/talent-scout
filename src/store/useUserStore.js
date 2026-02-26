@@ -7,10 +7,18 @@ export const useUserStore = create(
   persist(
     (set, get) => ({
       userData: null,
+      token: null,
+      info: null,
 
       setUserData: (data) =>
         set({
           userData: data,
+          token: data?.access_token
+        }),
+
+      setUserInfo: (data) =>
+        set({
+          info: data,
         }),
 
       clearUserData: () =>
@@ -20,7 +28,7 @@ export const useUserStore = create(
     }),
     {
       name: "user-data",
-      storage: createJSONStorage(() => sessionStorage),
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

@@ -1,3 +1,5 @@
+@use "../../../styles/typography" as *;
+
 .wrapper { display: grid; gap: 6px; }
 .full { width: 100%; }
 
@@ -28,7 +30,7 @@
   color: #111827;
   font-size: 12px;
   min-width: 0;
-  font-family: 'Alexandria-Regular', sans-serif;
+  font-family: $AlexandriaSemiBold;
 
   &::placeholder { color: #9ca3af; }
 

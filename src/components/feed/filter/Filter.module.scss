@@ -5,6 +5,10 @@
     background-color: white;
     padding: 20px;
     border-radius: 14px;
+    border: 1px solid $color-grey4;
+    border-radius: 14px;
+    position: sticky;
+    top: 15%;
 
     .header {
         @include flex-center;

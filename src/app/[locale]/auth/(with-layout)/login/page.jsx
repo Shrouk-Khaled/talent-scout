@@ -9,6 +9,7 @@ import { Checkbox, Form, message } from "antd";
 import { login } from "@/services/api";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { API_BASE_URL } from "@/services/config";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -18,9 +19,20 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [termsConfirmed, setTermsConfirmed] = useState(false);
 
+  const handleGoogleLogin = () => {
+    window.location.href = `${API_BASE_URL}/oauth2/authorization/google`;
+  };
+
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
+      if(!termsConfirmed) {
+        messageApi.open({
+          type: "error",
+          content: "يرجى الموافقة على الشروط والأحكام للمتابعة"
+        });
+        return;
+      }
       setLoading(true);                    
 
       const res = await login(values);
@@ -95,7 +107,7 @@ export default function LoginPage() {
             <span>ابل</span>
             <FaApple />
           </button>
-          <button type="button" className={styles.socialBtn}>
+          <button type="button" onClick={()=> handleGoogleLogin()} className={styles.socialBtn}>
             <span>جوجل</span>
             <FcGoogle />
           </button>

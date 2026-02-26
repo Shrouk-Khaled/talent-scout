@@ -1,5 +1,6 @@
 @use "../../../styles/variables" as *;
 @use "../../../styles/breakpoints" as bp;
+@use "../../../styles/typography" as *;
 
 .wrapper {
   background-image: url("/images/home/bg-footer.png");
@@ -14,25 +15,30 @@
   padding-top: 30px;
 
   .info {
-    width: 50%;
+    width: 60%;
     padding-top: 20px;
 
     h1 {
       color: white;
       margin-bottom: 30px;
-      // width: 90%;
-      font-size: 44px;
+      width: 90%;
+      font-size: 40px;
+      font-family: $AlexandriaSemiBold;
+      line-height: 50px;
     }
 
     p {
       color: white;
       font-size: 16px;
+      line-height: 150%;
+      font-family: $AlexandriaRegular;
     }
 
     .stores {
       display: flex;
       gap: 15px;
       margin-top: 80px;
+      font-family: $AlexandriaRegular;
       p {
         display: flex;
         justify-content: center;
@@ -55,7 +61,7 @@
     display: flex;  
     justify-content: flex-end;
     img {
-      object-fit: cover;
+      object-fit: fill;
       border-bottom-left-radius: 12px;
     }
   }

@@ -1,0 +1,91 @@
+@use "../../../../../styles/variables" as *;
+@use "../../../../../styles/mixins" as *;
+@use "../../../../../styles/breakpoints" as bp;
+@use "../../../../../styles/typography" as *;
+
+.container {
+  @include padding-page;
+  font-family: $AlexandriaRegular;
+
+  .main {
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .titles {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 22px;
+
+        h1 {
+          font-family: $AlexandriaSemiBold;
+          font-size: 34px;
+        }
+
+        p {
+          font-family: $AlexandriaRegular;
+          color: $color-grey;
+          font-size: 16px;
+        }
+
+        div {
+            background-color: $color-success-bg;
+            color: $color-success2;
+            padding: 8px 25px;
+            border-radius: 14px;
+            width: 95px;
+            p {
+              color: $color-success2;
+            }
+        }
+      }
+
+      .actions {
+        display: flex;
+        gap: 14px;
+        img {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 60px;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+      }
+
+     .section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      h1 {
+        font-family: $AlexandriaSemiBold;
+        font-size: 22px;
+      }
+      p {
+        font-family: $AlexandriaRegular;
+        font-size: 16px;
+        line-height: 20px;
+      }
+      img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+      }
+     }
+    }
+  }
+
+}

@@ -18,6 +18,7 @@
     "antd": "^5.27.4",
     "axios": "^1.13.2",
     "dayjs": "^1.11.18",
+    "firebase": "^12.9.0",
     "lottie-react": "^2.4.1",
     "next": "15.5.4",
     "next-intl": "^4.3.9",
@@ -27,6 +28,7 @@
     "react-international-phone": "^4.6.0",
     "react-phone-input-2": "^2.15.1",
     "sass": "^1.93.2",
+    "swiper": "^12.1.0",
     "zustand": "^5.0.8"
   },
   "devDependencies": {

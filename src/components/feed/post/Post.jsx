@@ -1,75 +1,198 @@
+// import Image from "next/image";
+// import styles from "./Post.module.scss";
+// import Button from "@/components/ui/button/Button";
+
+// export default function Post({ isTalent }) {
+//   return (
+//     <div className={styles.post}>
+//       <div className={styles.talentData}>
+//         <div className={styles.info}>
+//           <Image
+//             src="/images/avatar.png"
+//             alt="User Avatar"
+//             width={50}
+//             height={50}
+//             className={styles.avatar}
+//           />
+//           <div>
+//             <h6>مجهول 212</h6>
+//             <p>منذ 3 ساعات</p>
+//           </div>
+//         </div>
+//         {/* <div className={styles.personalTalent}>
+//           <p>موهبة شخصية</p>
+//         </div> */}
+//       </div>
+
+//       <div className={styles.content}>
+//         {/*<h5>لاعب كره قدم</h5>*/}
+//         <div>
+//           <p>
+//             أهم جزء من يومي مو بس التمرين… الأكل اللي يساعدني أكمّل مشواري كلاعب
+//             كرة قدم. 💪🔥 أركز دايمًا على البروتين، الخضار، وشرب الموية، لأن
+// اللاعب اللي يهتم بصحته…
+//             <span>قراءة المزيد</span>
+//           </p>
+//         </div>
+//         <Image
+//           src="/images/home/event.png"
+//           alt="Post Image"
+//           width={600}
+//           height={280}
+//           className={styles.postImage}
+//         />
+//       </div>
+//       {/*
+//       <div className={styles.postFooter}>
+//             <div className={styles.reactions}>
+//                 <div className={styles.reaction}>
+//                     <Image
+//                         src="/images/icons/fav.svg"
+//                         alt="Like Icon"
+//                         width={20}
+//                         height={20}
+//                         className={styles.icon}
+//                     />
+//                     <span>24</span>
+//                 </div>
+//                 <div className={styles.reaction}>
+//                     <Image
+//                         src="/images/icons/save.svg"
+//                         alt="Like Icon"
+//                         width={20}
+//                         height={20}
+//                         className={styles.icon}
+//                     />
+//                 </div>
+//             </div>
+//             <div className={styles.sendContract}>
+//               {
+//                 !isTalent &&
+//                   <Button>أرسل عقد</Button>
+//               }
+//             </div>
+//       </div> */}
+//     </div>
+//   );
+// }
+
 import Image from "next/image";
 import styles from "./Post.module.scss";
-import Button from "@/components/ui/button/Button";
+import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
 
-export default function Post({isTalent}) {
+export default function Post({ isTalent, data, imageH, showFooter }) {
+  const ownerName = data?.owner
+    ? `${data.owner.first_name} ${data.owner.last_name}`
+    : "مجهول 212";
+  const ownerImage = data?.owner?.image_url || "/images/avatar.png";
+  const caption =
+    data?.caption ||
+    "أهم جزء من يومي مو بس التمرين… الأكل اللي يساعدني أكمّل مشواري كلاعب كرة قدم. 💪🔥 أركز دايمًا على البروتين، الخضار، وشرب الموية، لأن اللاعب اللي يهتم بصحته…";
+  const title = data?.title;
+  const mediaUrl = data?.image_url || data?.media_url || "/images/home/event.png";
+  const date = data?.date
+    ? (() => {
+        const postDate = new Date(data.date);
+        const now = new Date();
+        const diffInHours = Math.floor((now - postDate) / (1000 * 60 * 60));
+        if (diffInHours < 1) return "منذ دقائق";
+        if (diffInHours < 24) return `منذ ${diffInHours} ساعات`;
+        const diffInDays = Math.floor(diffInHours / 24);
+        return `منذ ${diffInDays} يوم`;
+      })()
+    : "منذ 3 ساعات";
+  const category = data?.category?.name;
+
+  const isVideo = mediaUrl?.match(/\.(mp4|webm|ogg|mov)$/i);
+  const isPdf = mediaUrl?.match(/\.pdf$/i);
+  const isImage = mediaUrl?.match(/\.(jpg|jpeg|png|gif|webp)$/i);
+
   return (
     <div className={styles.post}>
       <div className={styles.talentData}>
         <div className={styles.info}>
           <Image
-            src="/images/avatar.png"
+            src={ownerImage}
             alt="User Avatar"
             width={50}
             height={50}
             className={styles.avatar}
           />
           <div>
-            <h6>مجهول 212</h6>
-            <p>منذ 3 ساعات</p>
+            <h6>{ownerName}</h6>
+            <p>{date}</p>
           </div>
         </div>
-        <div className={styles.personalTalent}>
+        {/* <div className={styles.personalTalent}>
           <p>موهبة شخصية</p>
-        </div>
+        </div> */}
       </div>
 
       <div className={styles.content}>
-        <h5>لاعب كره قدم</h5>
+        {/* {title && <h5>{title}</h5>} */}
         <div>
-            <p>
-            من وأنا صغير وكُرة القدم جزء من حياتي، لعبت في أكتر من نادي في منطقتي وعمري ما فقدت الشغف للملاعب بحلم إن حد يكتشف موهبتي وأوصل لليوم اللي أحقق فيه حلمي. 
-            <span>قراءة المزيد</span>
-            </p>
+          <p>
+            {caption}
+            {/* <span>قراءة المزيد</span> */}
+          </p>
         </div>
-        <Image
-            src="/images/home/event.png"
-            alt="Post Image"
-            width={600}
-            height={280}
+        {isVideo ? (
+          <video
+            src={mediaUrl}
+            controls
             className={styles.postImage}
-        />
+            style={{ width: "100%", objectFit: "cover", height: imageH }}
+          >
+            المتصفح لا يدعم عرض الفيديو
+          </video>
+        ) : (
+          <Image
+            src={mediaUrl}
+            alt={title || "Post Image"}
+            width={600}
+            height={imageH || 280}
+            style={{ height: imageH }}
+            className={styles.postImage}
+          />
+        )}
       </div>
 
-      <div className={styles.postFooter}>
-            <div className={styles.reactions}>
-                <div className={styles.reaction}>
-                    <Image
-                        src="/images/icons/fav.svg"
-                        alt="Like Icon"
-                        width={20}
-                        height={20}
-                        className={styles.icon}
-                    />
-                    <span>24</span>
-                </div>
-                <div className={styles.reaction}>
-                    <Image
-                        src="/images/icons/save.svg"
-                        alt="Like Icon"
-                        width={20}
-                        height={20}
-                        className={styles.icon}
-                    />
-                </div>
+      {showFooter && (
+        <div className={styles.postFooter}>
+          <div className={styles.reactions}>
+            <div className={styles.reaction}>
+              <Image
+                src="/images/icons/outline-heart.svg"
+                alt="Like Icon"
+                width={20}
+                height={20}
+                className={styles.icon}
+              />
+              <span>{data?.likes_count}</span>
             </div>
-            <div className={styles.sendContract}>
-              {
-                !isTalent && 
-                  <Button>أرسل عقد</Button>
-              }
-            </div>
-      </div>
+            {/* <div className={styles.reaction}> */}
+              {/* <Image
+                src={
+                  data?.is_saved
+                    ? "/images/icons/saved.svg"
+                    : "/images/icons/outline-save.svg"
+                }
+                alt="Like Icon"
+                width={20}
+                height={20}
+                className={styles.icon}
+              /> */}
+              <SavedIcon isSaved={data?.is_saved} itemId={data?.id} itemType={1} bgColor={"#EEF8F6"} saveIcon="/images/icons/outline-save-2.svg"/>
+            {/* </div> */}
+          </div>
+          {/* <div className={styles.sendContract}>
+          {
+            !isTalent && 
+              <Button>أرسل عقد</Button>
+          }
+        </div> */}
+        </div>
+      )}
     </div>
   );
 }

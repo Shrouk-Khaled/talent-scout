@@ -40,7 +40,7 @@ export default function StepOne() {
   return (
     <section className={styles.main}>
       <Headlines
-        line1={"01 مرحبا فى تالنت سكاوت"}
+        line1={"1 مرحبا فى تالنت سكوت"}
         line2={"هل أنت موهوب أم باحث عن المواهب؟"}
       />
 

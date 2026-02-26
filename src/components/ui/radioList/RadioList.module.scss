@@ -1,0 +1,50 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    
+    &:hover {
+      .text {
+        color: #1890ff;
+      }
+    }
+  }
+  
+  .text {
+    font-size: 14px;
+    color: #666;
+    transition: color 0.2s;
+  }
+  
+  .moreBtn {
+    background: none;
+    border: none;
+    color: #1890ff;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 0;
+    text-align: right;
+    
+    &:hover {
+      color: #40a9ff;
+    }
+  }

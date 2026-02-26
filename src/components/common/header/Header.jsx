@@ -11,6 +11,7 @@ import Input from "@/components/ui/input/Input";
 import { FiSearch } from "react-icons/fi";
 import { IoMail } from "react-icons/io5";
 import { IoNotificationsSharp } from "react-icons/io5";
+import MainHeader from "../mainHeader/MainHeader";
 
 export default function Header() {
   const locale = useLocale();
@@ -48,6 +49,8 @@ export default function Header() {
     const homePath = `/${locale}`;
     setIsHomePage(pathname === homePath);
   }, [pathname, locale]);
+
+  if(pathname != `/${locale}`) return <MainHeader/>
 
 
   return (

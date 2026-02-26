@@ -1,0 +1,19 @@
+@use "../../../styles/typography" as *;
+@use "../../../styles/variables" as *;
+.noData {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      font-family: $AlexandriaSemiBold;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-family: $AlexandriaRegular;
+      font-size: 14px;
+      color: $color-grey;
+    }
+  }

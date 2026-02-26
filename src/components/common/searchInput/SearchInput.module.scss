@@ -1,0 +1,59 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+
+.searchBox {
+    width: 100%;
+
+    .options {
+        box-shadow: 0px 0px 4px 0px #0000000F;
+        border: 1px solid $color-grey4;
+        border-radius: 8px;
+        padding: 16px;
+        position: absolute;
+        z-index: 99999;
+        background-color: white;
+        width: 28%;
+        margin-top: 10px;
+        height: 198px;
+        overflow: auto;
+
+        .results {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .result {
+                display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            }
+        }
+
+        .lastResults {
+            h1 {
+                font-size: 14px;
+                font-family: $AlexandriaSemiBold;
+                margin-bottom: 10px;
+            }
+
+            .news {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+
+                div {
+                    display: flex;
+                    align-items: center;
+                    padding: 10px 16px;
+                    gap: 8px;
+                    border: 1px solid #0000001A;
+                    font-family: $AlexandriaRegular;
+                    cursor: pointer;
+                    border-radius: 100px;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

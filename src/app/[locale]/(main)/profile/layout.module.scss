@@ -1,0 +1,26 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/breakpoints" as bp;
+@use "../../../../styles/typography" as *;
+
+.container {
+    @include padding-page;
+    font-family: $AlexandriaRegular;
+    margin-bottom: 60px;
+
+    .main {
+        display: flex;
+        margin-top: 42px;
+        margin-bottom: 42px;
+        gap: 42px;
+        
+        .sideBar {
+            width: 30%;
+        }
+
+        .content {
+            width: 70%;
+        }
+
+    }
+}  
