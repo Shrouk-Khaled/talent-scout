@@ -14,6 +14,7 @@ const Input = forwardRef(function Input(props, ref) {
     size = 'md', fullWidth = true, clearable = false, prefix, suffix,
     onChange, onFocus, onBlur, onEnter,
     className = '', inputClassName = '',
+    BoxStyle,
     dir, ...rest
   } = props;
 
@@ -50,7 +51,7 @@ const Input = forwardRef(function Input(props, ref) {
         isRTL ? styles.rtl : '',
         error ? styles.hasError : '',
         disabled ? styles.isDisabled : '',
-      ].join(' ')}>
+      ].join(' ')} style={BoxStyle}>
         {prefix ? <div className={styles.prefix}>{prefix}</div> : null}
 
         <input

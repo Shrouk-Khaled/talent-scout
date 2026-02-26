@@ -1,96 +1,254 @@
 @use "../../../../styles/variables" as *;
 @use "../../../../styles/mixins" as *;
 @use "../../../../styles/breakpoints" as bp;
+@use "../../../../styles/typography" as *;
 
 .container {
-    @include padding-page;
+  @include padding-page;
+  font-family: $AlexandriaRegular;
 
-    display: flex;
-    gap: 12px;
+  .search {
+    display: none;
+  }
 
-    .search {
-        display: none;
+  .talentsBox {
+    width: 100%;
+    margin: 120px 0;
+  }
+
+  .postsBox {
+    margin: 120px 0;
+  }
+
+  .eventsBox {
+    padding-bottom: 120px;
+  }
+
+  .articlesBox {
+    padding-bottom: 120px;
+
+    .articlesHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      a {
+        text-decoration: none;
+        color: $color-primary;
+      }
     }
-    
-    .info {
-        flex: 1;
+    h1 {
+      font-family: $AlexandriaSemiBold;
+      margin-bottom: 24px;
+      font-size: 20px;
     }
-    .mid {
-        flex: 2;
+    .articles {
+      display: flex;
+      gap: 10px;
+      width: 100%;
 
-        .createPost {
-            background-color: white;
+        .article {
+          position: relative;
+          width: 48%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .eventImage {
+            width: 100%;
+            height: 100%;
             border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 12px;
+          }
 
-            .post {
-                display: flex;
-                justify-content: space-between;
-                gap: 12px;
+          .save {
+            position: absolute;
+            top: 5%;
+            left: 2%;
+          }
 
-                textarea {
-                    width: 85%;
-                    border: 1px solid #0000001F;
-                    resize: none;
-                    font-size: 16px;
-                    line-height: 1.2;
-                    color: $color-grey;
-                    border-radius: 8px;
-                    height: 60px;
-                    font-family: 'Alexandria-Regular', sans-serif;
-                    padding: 12px;
+          .info {
+            position: absolute;
+            bottom: 8%;
+            color: white;
+            z-index: 9999;
+            width: 90%;
 
-                    &:focus {
-                        outline: none;
+            div {
+                width: 100%;
+                h1 {
+                    font-size: 14px;
+                    font-family: $AlexandriaSemiBold;
+                    color: white;
+                    margin-bottom: 0;
+                }
+
+                .date {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .sport {
+                        background-color: #E5F8E7;
+                        color: green;
+                        padding: 5px 15px;
+                        border-radius: 14px;
                     }
                 }
             }
 
-            .uploads {
-                display: flex;
-                justify-content: center;
-                margin-top: 18px;
-                align-items: center;
-                gap: 60px;
 
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 14px;
+            // background: linear-gradient(
+            //   180deg,
+            //   rgba(0, 0, 0, 0) 0%,
+            //   rgba(0, 0, 0, 0.6) 100%
+            // );
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+
+          }
+        }
+      .right {
+        width: 50%;
+        .article {
+            position: relative;
+            width: 100%;
+          cursor: pointer;
+            
+            .eventImage {
+              width: 100%;
+              height: 362px;
+              // height: 100%;
+              object-fit: cover;
+              border-radius: 14px;
+            }
+
+            .info {
                 div {
-                    display: flex;
-                    gap: 8px;
-                    align-items: center;
-                    cursor: pointer;
+                    width: 100%;
+                    h1 {
+                        font-size: 20px;
+                        font-family: $AlexandriaSemiBold;
+                        color: white;
+                        margin-bottom: 0;
+                    }
+
+                    p {
+                        font-size: 14px;
+                    }
+                }
+
+                .date {
+                    .sport {
+                        background-color: #E5F8E7;
+                        color: green;
+                        padding: 5px 25px;
+                        border-radius: 14px;
+                    }
                 }
             }
+          }
+      }
+
+      .left {
+        width: 50%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+
+      
+      }
+    }
+  }
+
+  .info {
+    flex: 1;
+  }
+  .mid {
+    flex: 2;
+
+    .createPost {
+      background-color: white;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 12px;
+
+      .post {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+
+        textarea {
+          width: 85%;
+          border: 1px solid #0000001f;
+          resize: none;
+          font-size: 16px;
+          line-height: 1.2;
+          color: $color-grey;
+          border-radius: 8px;
+          height: 60px;
+          font-family: "Alexandria-Regular", sans-serif;
+          padding: 12px;
+
+          &:focus {
+            outline: none;
+          }
         }
+      }
+
+      .uploads {
+        display: flex;
+        justify-content: center;
+        margin-top: 18px;
+        align-items: center;
+        gap: 60px;
+
+        div {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .filter {
+    flex: 1;
+  }
+
+  @include bp.respond-to(md) {
+    flex-direction: column;
+    .search {
+      display: block;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .filterIcon {
+        color: $color-primary;
+        background-color: #e0f2fe;
+        border-radius: 8px;
+        width: 47px;
+        height: 47px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .info {
+      display: none;
     }
     .filter {
-        flex: 1;
+      display: none;
     }
-
-    @include bp.respond-to(md) {
-        flex-direction: column;
-        .search {
-            display: block;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            .filterIcon {
-                color: $color-primary;
-                background-color: #E0F2FE;
-                border-radius: 8px;
-                width: 47px;
-                height: 47px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        }
-        .info{
-            display: none;
-        }
-        .filter {
-            display: none;
-        }
-    }
+  }
 }

@@ -8,6 +8,7 @@ import { message } from "antd";
 import { useRouter, useSearchParams } from "next/navigation";
 import { resendOtp, verifyOtp } from "@/services/api";
 import { useUserStore } from "@/store/useUserStore";
+import { getFcmToken } from "@/lib/fcm";
 
 const MIN = 600; // seconds
 
@@ -38,9 +39,11 @@ export default function VerifyPage() {
     return () => clearInterval(id);
   }, [secondsLeft]);
 
+
   const handleVerify = async (otp) => {
     setLoading(true);
-    const res = await verifyOtp({ userId, otpCode: otp })
+    const fcmToken = await getFcmToken().catch(() => null);
+    const res = await verifyOtp({ userId, otpCode: otp, fcmToken, deviceType: "WEB" })
     .catch((err) => {
       messageApi.open({
         type: "error",
@@ -53,8 +56,8 @@ export default function VerifyPage() {
         type: "success",
         content: "تم التحقق بنجاح"
       });
-      if(res?.tokenResponse?.accessToken) {
-        saveUserData(res?.tokenResponse);
+      if(res?.token_response?.access_token) {
+        saveUserData(res?.token_response);
         router.push("/feed")
       } else {
         router.push(`/auth/signup?userId=${encodeURIComponent(res?.userId)}&email=${encodeURIComponent(email)}`);
@@ -87,6 +90,7 @@ export default function VerifyPage() {
         return;
       }
   };
+
 
 
   return (

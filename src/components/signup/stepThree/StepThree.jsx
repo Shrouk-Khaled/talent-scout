@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { confirmSignup, draftSignupData, getAllCategories } from "@/services/api";
 import { useSignupStore } from "@/store/useSignupStore";
 import { useUserStore } from "@/store/useUserStore";
+import { getFcmToken } from "@/lib/fcm";
 
 export default function StepThree() {
   // router and params
@@ -36,7 +37,7 @@ export default function StepThree() {
 
   useEffect(() => {
     getAllCategories().then((res) => {
-      setCategories(res?.filter((obj) => obj?.participationTypeId == 1) || []);
+      setCategories(res);
       setFilteredCategories(
         res?.filter((obj) => obj?.participationTypeId == 1) || []
       );
@@ -65,36 +66,42 @@ export default function StepThree() {
     } catch {}
   };
 
-  const handleSignup = () => {
-    const values = form.getFieldsValue();
-    setLoading(true);
-    const res = draftSignupData({
-      ...signupData,
-      shortBio: values?.bioDescription,
-      roleId: user_role,
-      userTypeId: user_type,
-      phone: signupData?.phone?.localNumber,
-      prefixCode: signupData?.phone?.countryCode,
-      email: signupData?.email,
-      categoryId: values?.categoryId,
-      subCategoryId: values?.subCategoryId,
-      participationTypeId: values?.participationTypeId,
-    }, (p) => {console.log(p)}).then(() => {
-      if(user_type == 2){
-        handleConfirmSignup();
-      } else {
+  const handleSignup = async () => {
+    try {
+      await form.validateFields();
+      const values = form.getFieldsValue();
+      setLoading(true);
+      const fcmToken = await getFcmToken().catch(() => null);
+      const res = draftSignupData({
+        ...signupData,
+        shortBio: values?.bioDescription,
+        roleId: user_role,
+        userTypeId: user_type,
+        phone: signupData?.phone?.localNumber,
+        prefixCode: signupData?.phone?.countryCode,
+        email: signupData?.email,
+        categoryId: values?.categoryId,
+        subCategoryId: values?.subCategoryId,
+        participationTypeId: values?.participationTypeId,
+        fcmToken, 
+        deviceType: "WEB"
+      }, (p) => {console.log(p)}).then(() => {
+        if(user_type == 2){
+          handleConfirmSignup();
+        } else {
+          setLoading(false);
+          saveUserData({
+            ...res?.token_response,
+            firstName: signupData?.firstName,
+            lastName: signupData?.lastName,
+          });
+          clearSignupData();
+          router.push("/feed");
+        }
+      }).catch((err) => {
         setLoading(false);
-        saveUserData({
-          ...res?.tokenResponse,
-          firstName: signupData?.firstName,
-          lastName: signupData?.lastName,
-        });
-        clearSignupData();
-        router.push("/feed");
-      }
-    }).catch((err) => {
-      setLoading(false);
-    });
+      });
+    }catch {}
   }
 
   const handleConfirmSignup = () => {
@@ -104,9 +111,10 @@ export default function StepThree() {
       .then((res) => {
         setLoading(false);
         saveUserData({
-          ...res?.tokenResponse,
+          ...res?.token_response,
           firstName: signupData?.firstName,
           lastName: signupData?.lastName,
+          token: res?.token_response?.access_token
       });
         clearSignupData();
         router.push("/feed");
@@ -131,7 +139,7 @@ export default function StepThree() {
   return (
     <section className={styles.main}>
       <Headlines
-        line1={user_role == 1 ?  "03 عرّفنا على موهبتك أكثر" : user_type == 1 ? "03 مجالات بحثك واهتمامك" : "03 مجالات اهتمام مؤسستك"}
+        line1={user_role == 1 ?  "3 عرّفنا على موهبتك أكثر" : user_type == 1 ? "3 مجالات بحثك واهتمامك" : "3 مجالات اهتمام مؤسستك"}
         line2={user_role == 1 ? "شارك لمحة بسيطة عنك وعن شغفك." : "ما المجالات التي تهتم باكتشافها؟"}
       />
 
@@ -148,9 +156,11 @@ export default function StepThree() {
           >
             <SelectBox
               onSelectType={(v) =>
-                setFilteredCategories(
+                {
+                  setFilteredCategories(
                   categories.filter((cat) => cat?.participationTypeId == v)
                 )
+                form.setFieldsValue({ categoryId: null, subCategoryId: null })}
               }
               types={[
                 { id: 1, label: "فكرة مشروع" },
@@ -174,7 +184,7 @@ export default function StepThree() {
             }}
               placeholder={"اختر الفئة"}
               options={filteredCategories?.map((cat) => ({
-                label: cat?.nameAr,
+                label: cat?.name,
                 value: cat?.id,
               }))}
             />
@@ -192,7 +202,7 @@ export default function StepThree() {
                 types={
                   subCategories?.map((subCat) => ({
                     id: subCat?.id,
-                    label: subCat?.nameAr,
+                    label: subCat?.name,
                   })) || []
                 }
                 boxStyle={{ width: "auto" }}

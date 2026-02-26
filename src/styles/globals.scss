@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   color: $color-dark;
-  font-family: 'Alexandria-Regular', sans-serif;
+  font-family: $AlexandriaRegular;
 
   h1, h2, h3, h4, h5, h6, p, span {
     margin: 0;
@@ -113,4 +113,9 @@ body {
 
 .css-dev-only-do-not-override-1odpy5d.ant-form-item .ant-form-item-explain-error {
   font-family: $AlexandriaRegular !important;
+}
+
+.css-dev-only-do-not-override-1odpy5d.ant-breadcrumb {
+  font-family: $AlexandriaRegular !important;
+  margin: 33px 0 !important;
 }

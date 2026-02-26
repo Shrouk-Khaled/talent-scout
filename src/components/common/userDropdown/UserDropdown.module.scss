@@ -1,0 +1,84 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+
+.userBox {
+    position: relative;
+    font-family: $AlexandriaRegular;
+    .userDropdown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid $color-grey4;
+        border-radius: 100px;
+        padding: 6px 10px;
+        cursor: pointer;
+        
+        svg {
+            font-size: 20px;
+            color: #949494;
+        }
+    }
+
+    .content {
+        position: absolute;
+        // background-color: red;
+        width: 260px;
+        z-index: 999;
+        left: 0;
+        border: 1px solid $color-grey4;
+        border-radius: 8px;
+        box-shadow: 0px 0px 4px 0px #0000001A;
+        background-color: white;
+        margin-top: 6px;
+
+        .info {
+            display: flex;
+            gap: 8px;
+            background: linear-gradient(360deg, rgba(222, 245, 228, 0.5) 0%, rgba(210, 230, 245, 0.5) 100%);
+            padding: 14px 16px;
+            border-radius: 8px;
+
+            h3 {
+                font-family: $AlexandriaSemiBold;
+                font-size: 14px;
+            }
+
+            p {
+                color: $color-grey;
+                font-weight: 500;
+                font-size: 12px;
+                margin-top: 5px;
+            }
+        }
+
+        .pages {
+            display: flex;
+            flex-direction: column;
+            padding: 14px 0;
+            border-bottom: 2px solid $color-grey4;
+
+            .pageLink {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 8px 16px;
+                cursor: pointer;
+                text-decoration: none;
+                color: black;
+                font-weight: 700;
+
+                &:hover {
+                    background-color: #ecf7f4;
+                }
+            }
+        }
+
+        .logout {
+            padding: 16px;
+            cursor: pointer;
+            color: black;
+            font-weight: 700;
+        }
+    }
+}

@@ -1,7 +1,10 @@
 "use client";
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
 import CheckboxList from "@/components/ui/checkboxList/CheckboxList";
 import styles from "./Filter.module.scss";
+import { useHomeStore } from "@/store/useHome";
+import RadioList from "@/components/ui/radioList/RadioList";
+import { useSearchParams } from "next/navigation";
 
 /** Keep option values unique per group (codes), labels can repeat */
 const OPTIONS = {
@@ -39,16 +42,18 @@ const OPTIONS = {
 };
 
 const EMPTY_FILTERS = {
-  category: [],
+  sortby: [],
   subcategory: [],
-  gender: [],
-  age: [],
-  country: [],
-  skill: [],
 };
 
-export default function Filter() {
+export default function Filter({ onFilter }) {
+  //params
+  const type = useSearchParams().get("type");
+
+  //catefories
+  const subCats = useHomeStore((state) => state.categories);
   const [filters, setFilters] = useState(EMPTY_FILTERS);
+  const [subCatsData, setSubCatsData] = useState([]);
 
   // Factory: returns onChange handler for a specific key
   const onChangeFor = useCallback(
@@ -61,66 +66,76 @@ export default function Filter() {
   // Optional: a memoized payload for API/query params
   const payload = useMemo(() => {
     return {
-      categories: filters.category,
       subcategories: filters.subcategory,
-      gender: filters.gender,
-      ages: filters.age,
-      countries: filters.country,
-      skills: filters.skill,
+      sortby: filters.sortby,
     };
   }, [filters]);
+
+  useEffect(() => {
+    setSubCatsData(subCats?.find((obj) => obj?.id == 1)?.subCategories);
+  }, [subCats]);
+
+  useEffect(() => {
+    onFilter(payload);
+  }, [payload]);
 
   return (
     <div className={styles.filterSide}>
       <div className={styles.header}>
         <h6>الفلاتر</h6>
-        <p className={styles.clear} onClick={clearAll} role="button" tabIndex={0}>
+        <p
+          className={styles.clear}
+          onClick={clearAll}
+          role="button"
+          tabIndex={0}
+        >
           إعاده تعيين
         </p>
       </div>
 
       <div className={styles.filterTypes}>
-        <CheckboxList
-          title="الفئة"
-          options={OPTIONS.category}
-          value={filters.category}
-          onChange={onChangeFor("category")}
+        {type != "talents" && (
+          <RadioList
+            title="الترتيب حسب"
+            options={[
+              { label: "الاجدد", value: "date_desc" },
+              { label: "الاقدم", value: "date_asc" },
+            ]}
+            defaultValue="option1"
+            onChange={onChangeFor("sortby")}
+            maxVisible={2}
+          />
+        )}
+
+        <RadioList
+          title="تحت أي موهبة"
+          options={
+            (subCatsData?.length > 0 &&
+              subCatsData?.map((subCat) => ({
+                label: subCat?.name,
+                value: subCat?.id,
+              }))) ||
+            []
+          }
+          value={filters.subcategory}
+          defaultValue="option1"
+          onChange={onChangeFor("subcategory")}
+          maxVisible={2}
         />
 
-        <CheckboxList
-          title="التصنيف الفرعي"
-          options={OPTIONS.subcategory}
+        {/* <CheckboxList
+          title="تحت أي موهبة"
+          options={
+            (subCatsData?.length > 0 &&
+              subCatsData?.map((subCat) => ({
+                label: subCat?.name,
+                value: subCat?.id,
+              }))) ||
+            []
+          }
           value={filters.subcategory}
           onChange={onChangeFor("subcategory")}
-        />
-
-        <CheckboxList
-          title="نوع الموهوب"
-          options={OPTIONS.gender}
-          value={filters.gender}
-          onChange={onChangeFor("gender")}
-        />
-
-        <CheckboxList
-          title="سن الموهوب"
-          options={OPTIONS.age}
-          value={filters.age}
-          onChange={onChangeFor("age")}
-        />
-
-        <CheckboxList
-          title="الدولة"
-          options={OPTIONS.country}
-          value={filters.country}
-          onChange={onChangeFor("country")}
-        />
-
-        <CheckboxList
-          title="مستوى المهارة"
-          options={OPTIONS.skill}
-          value={filters.skill}
-          onChange={onChangeFor("skill")}
-        />
+        /> */}
       </div>
 
       {/* Debug view (remove in prod)

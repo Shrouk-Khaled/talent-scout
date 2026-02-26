@@ -1,10 +1,12 @@
 @use "../../../styles/variables" as *;
 @use "../../../styles/breakpoints" as bp;
+@use "../../../styles/typography" as *;
 
 .footer {
     // margin-top: 4rem;
     background: linear-gradient(360deg, rgba(222, 245, 228, 0.5) 0%, rgba(210, 230, 245, 0.5) 100%);
     padding: 40px 0;
+    font-family: $AlexandriaRegular;
 
     .main {
         width: 100%;
@@ -117,6 +119,7 @@
                         font-weight: 400;
                         margin-bottom: 4px;
                         color: $color-primary;
+                        font-family: $AlexandriaSemiBold;
                     }
 
                     .contact {

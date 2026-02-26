@@ -74,7 +74,7 @@ export default function StepFour() {
   return (
     <section className={styles.main}>
       <Headlines
-        line1={"04 نبذة عنك وعن موهبتك"}
+        line1={"4 نبذة عنك وعن موهبتك"}
         line2={"نبذة قصيرة عنك واهتماماتك."}
       />
 
@@ -161,7 +161,8 @@ export default function StepFour() {
             trigger="onFiles"
           >
             <UploadFiles
-              accept="image/*,video/*"
+            title="ارفع او اسحب فيديو (حتى دقيقتين) أو صورة او ملف لعرض أعمالك"
+              accept="image/*,video/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf,.doc,.docx"
               // multiple
               maxSize={80 * 1024 * 1024} // 80 MB soft limit (optional)
               dir="rtl"

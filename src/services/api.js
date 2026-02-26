@@ -116,3 +116,67 @@ export const confirmSignup = async (payload) => {
   const response = await http.post("/api/v1/auth/register/confirm", payload);
   return response;
 }
+
+
+// Home page
+export const homePageSections = async (payload) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/home/sections?per_section_items_count=5&search=${payload?.search || ''}&section_type=${payload?.section_type >= 0 ? payload?.section_type : ''}`);
+  return response;
+}
+
+export const getArticles = async (payload) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/articles?page=${payload?.page || 1}&per_page=6&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}`);
+  return response;
+}
+
+export const getEvents = async (payload) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/events?page=${payload?.page || 1}&per_page=6&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}`);
+  return response;
+}
+
+export const getPosts = async (payload) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/posts?page=${payload?.page || 1}&per_page=5&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}`);
+  return response;
+}
+
+export const getTalents = async (payload) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/talents?page=${payload?.page || 1}&per_page=5&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}`);
+  return response;
+}
+
+export const getArticleById = async (id) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/articles/${id}`);
+  return response;
+}
+
+export const getEventById = async (id) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/events/${id}`);
+  return response;
+}
+
+//profile apis
+export const getUserInfo = async () => {
+  const response = await http.get(`/api/v1/mawhebty-platform/profile/user`);
+  return response;
+}
+
+export const getMyPosts = async () => {
+  const response = await http.get(`/api/v1/mawhebty-platform/profile/user/posts`);
+  return response;
+}
+
+export const getMySaved = async (payload) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/profile/user/saved-items?item_type=${payload?.itemType}&page=${payload?.page || 1}&per_page=5`);
+  return response;
+}
+
+//saved
+export const saveItem = async (payload) => {
+  const response = await http.post(`/api/v1/mawhebty-platform/profile/user/save-item`, payload);
+  return response;
+}
+
+export const unSavedItem = async (payload) => {
+  const response = await http.post(`/api/v1/mawhebty-platform/profile/user/unsave-item`, payload);
+  return response;
+}

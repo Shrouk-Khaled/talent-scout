@@ -23,14 +23,15 @@ export default function Footer() {
     parts[0] === "feed" ||               // /feed
     (parts.length > 1 && parts[1] === "feed"); // /en/feed, /ar/feed, etc.
 
-  if (isFeed) return null;
 
   return (
     <div className={styles.footer}>
       <div className={`${styles.main} app-container`}>
-        <DownloadAppBox />
+        {
+          isFeed ? <></> : <DownloadAppBox />
+        }
 
-        <div className={styles.info}>
+        <div className={styles.info} style={{paddingTop: isFeed ? "1rem" : "4rem"}}>
           <div className={styles.right}>
             <Image
               src={"/images/logo2.png"}

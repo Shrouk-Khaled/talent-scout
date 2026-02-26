@@ -86,7 +86,7 @@ export default function StepTwo() {
     <section className={styles.main}>
       {contextHolder}
       <Headlines
-        line1={"02 خلّنا نتعرف عليك أكثر "}
+        line1={"2 خلّنا نتعرف عليك أكثر "}
         line2={"عبّ البيانات الأساسية لملفك الشخصي."}
       />
 
@@ -161,8 +161,8 @@ export default function StepTwo() {
             rules={[
               { required: true, message: "الرجاء إدخال العمر" },
               {
-                pattern: /^(1[0-1][0-9]|[1-9]?[0-9]|120)$/,
-                message: "أدخل رقمًا صحيحًا (1–120)",
+                pattern: /^(1[3-9]|[2-9]\d)$/,
+                message: "العمر لازم يكون بين 13 و 99",
               },
             ]}
           >

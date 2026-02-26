@@ -1,0 +1,10 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/breakpoints" as bp;
+@use "../../../../styles/typography" as *;
+
+.container {
+  @include padding-page;
+  font-family: $AlexandriaRegular;
+
+}
