@@ -1,8 +1,10 @@
 import Button from "@/components/ui/button/Button";
 import styles from "./Features.module.scss";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 export default function Features() {
+  const router = useRouter();
   const t = useTranslations("Home");
   const steps = t.raw("steps");
 
@@ -24,7 +26,9 @@ export default function Features() {
         ))}
       </div>
 
-      <Button isArrow>
+      <Button isArrow onClick={() => {
+                router.push('/auth/login');
+            }}>
         انضم الي المنصة
       </Button>
     </div>

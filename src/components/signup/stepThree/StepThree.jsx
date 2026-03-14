@@ -4,7 +4,7 @@ import styles from "./StepThree.module.scss";
 import Button from "@/components/ui/button/Button";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Headlines from "../headlines/Headlines";
-import { Form } from "antd";
+import { Form, message } from "antd";
 import SelectBox from "@/components/ui/selectBox/SelectBox";
 import SelectInput from "@/components/ui/selectInput/SelectInput";
 import TextArea from "@/components/ui/textArea/TextArea";
@@ -21,6 +21,8 @@ export default function StepThree() {
   const searchParams = useSearchParams();
   const user_role = searchParams.get("user_role");
   const user_type = searchParams.get("user_type");
+  //message
+  const [messageApi, contextHolder] = message.useMessage();
   //form
   const [form] = Form.useForm();
   //store
@@ -59,6 +61,13 @@ export default function StepThree() {
     try {
       await form.validateFields();
       const values = form.getFieldsValue();
+      if(!values?.subCategoryId) {
+        messageApi.open({
+          type: "error",
+          content: "يرجى اختيار الفئة الفرعية"
+        });
+        return;
+      }
       updateSignupData(values);
       const params = new URLSearchParams(searchParams.toString());
       params.set("step", "4");
@@ -138,6 +147,7 @@ export default function StepThree() {
 
   return (
     <section className={styles.main}>
+      {contextHolder}
       <Headlines
         line1={user_role == 1 ?  "3 عرّفنا على موهبتك أكثر" : user_type == 1 ? "3 مجالات بحثك واهتمامك" : "3 مجالات اهتمام مؤسستك"}
         line2={user_role == 1 ? "شارك لمحة بسيطة عنك وعن شغفك." : "ما المجالات التي تهتم باكتشافها؟"}
@@ -160,7 +170,8 @@ export default function StepThree() {
                   setFilteredCategories(
                   categories.filter((cat) => cat?.participationTypeId == v)
                 )
-                form.setFieldsValue({ categoryId: null, subCategoryId: null })}
+                form.setFieldsValue({ categoryId: null, subCategoryId: null })
+                setSubCategories([])}
               }
               types={[
                 { id: 1, label: "فكرة مشروع" },

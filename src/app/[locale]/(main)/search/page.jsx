@@ -44,8 +44,8 @@ export default function SearchPage() {
   });
 
   useEffect(() => {
-    const subcategories = searchParams.get("subcategories");
-    const searchValue = searchParams.get("q");
+    const subcategories = searchParams.get("subcategories") || "";
+    const searchValue = searchParams.get("q") || "";
     if (sectionType == "posts") {
       setLoading(true);
       getPosts({

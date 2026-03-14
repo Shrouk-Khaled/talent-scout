@@ -6,9 +6,11 @@ import Button from "@/components/ui/button/Button";
 import { IoIosStar } from "react-icons/io";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Hero = () => {
     const t = useTranslations('Home');
+    const router = useRouter();
 
     const [show, setShow] = useState(false);
 
@@ -36,8 +38,12 @@ const Hero = () => {
           </h1>
           <p>{t("heroText2")}</p>
           <div className={styles.btns}>
-            <Button icon={<Image src={"/images/icons/idea2.png"} width={20} height={20} alt="idea"/>}>{t("shareYourTalent")}</Button>
-            <Button outline isArrow>{t("discoverTalents")}</Button>
+            <Button icon={<Image src={"/images/icons/idea2.png"} width={20} height={20} alt="idea"/>} onClick={() => {
+                router.push('/auth/login');
+            }}>{t("shareYourTalent")}</Button>
+            <Button outline isArrow onClick={() => {
+                router.push('/auth/login');
+            }}>{t("discoverTalents")}</Button>
           </div>
         </div>
         <div className={styles.left}>

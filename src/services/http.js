@@ -33,18 +33,18 @@ http.interceptors.response.use(
       message.error('Unauthorized. Please log in again.');
       localStorage.clear();
       //redirect to login page
-      window.location.href = '/auth/login';
+      window.location.href = '/';
       // Optionally, you can trigger a logout or redirect to login page here
     } else
     if (error.response) {
       console.log('Response Error:', error.response.data);
-      message.error(error?.response?.data?.message || 'An error occurred');
+      // message.error(error?.response?.data?.message || 'An error occurred');
     } else if (error.request) {
       console.log('Request Error:', error.request);
       message.error('No response from server. Please check your network connection.');
     } else {
       console.log('Error:', error.message);
-      message.error(error.message || 'An error occurred');
+      // message.error(error.message || 'An error occurred');
     }
     return Promise.reject(error);
   }

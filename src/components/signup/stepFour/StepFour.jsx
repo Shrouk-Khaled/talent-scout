@@ -161,8 +161,8 @@ export default function StepFour() {
             trigger="onFiles"
           >
             <UploadFiles
-            title="ارفع او اسحب فيديو (حتى دقيقتين) أو صورة او ملف لعرض أعمالك"
-              accept="image/*,video/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf,.doc,.docx"
+            title="ارفع او اسحب فيديو (حتى دقيقتين) أو صورة لعرض أعمالك"
+              accept="image/*,video/*"
               // multiple
               maxSize={80 * 1024 * 1024} // 80 MB soft limit (optional)
               dir="rtl"

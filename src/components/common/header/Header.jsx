@@ -50,11 +50,11 @@ export default function Header() {
     setIsHomePage(pathname === homePath);
   }, [pathname, locale]);
 
-  if(pathname != `/${locale}`) return <MainHeader/>
+  if(pathname != `/${locale}` && pathname != `/${locale}/terms` && pathname != `/${locale}/polices`) return <MainHeader/>
 
 
   return (
-    <header className={`${styles.header} ${scrolling ? styles.scrolled : ""}  ${(pathname !== `/${locale}` && pathname !== `/${locale}/terms`) && styles.notHome}`}>
+    <header className={`${styles.header} ${scrolling ? styles.scrolled : ""}`}>
       <div className={`${styles.mainInfo} app-container`}>
         <div className={styles.logoBox}>
           <Image
@@ -82,29 +82,13 @@ export default function Header() {
             );
           })}
         </div>
-        {
-          (pathname === `/${locale}` || pathname === `/${locale}/terms`) ? 
+ 
           <div className={styles.actions}>
             <Language />
             <Button onClick={() => {
                 router.push('/auth/login');
             }}>{t("login")}</Button>
           </div>
-          :
-          <div className={styles.actions}>
-            <Input
-            type="search"
-            placeholder="ابحث هنا"
-            clearable
-            size="lg"
-            suffix={<FiSearch />}
-            // onEnter={goSearch}
-          />
-            <IoMail className={styles.icon} />
-            <IoNotificationsSharp className={styles.icon} />
-          </div>
-        }
- 
       </div>
     </header>
   );

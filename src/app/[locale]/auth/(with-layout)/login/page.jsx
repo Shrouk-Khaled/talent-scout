@@ -93,7 +93,7 @@ export default function LoginPage() {
         <p className={styles.terms}>
           <Checkbox required onChange={(e) => setTermsConfirmed(e.target.checked)}/>
           اوافق على <a href="/terms" target="_blank">الشروط و الأحكام</a> و{" "} 
-          <a href="/terms" target="_blank">سياسة الخصوصية</a> 
+          <a href="/polices" target="_blank">سياسة الخصوصية</a> 
         </p>
 
         <Button onClick={handleSubmit} loading={loading} disabled={!termsConfirmed}>التالي</Button>

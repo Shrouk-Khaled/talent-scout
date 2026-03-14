@@ -1,8 +1,11 @@
 import Image from "next/image";
 import styles from "./HowToStart.module.scss";
 import Button from "@/components/ui/button/Button";
+import { useRouter } from "next/navigation";
 
 export default function HowToStart({ isResearcher }) {
+  const router = useRouter();
+  
   return (
     <div className={`${isResearcher && styles.reverse} ${styles.section}`}>
       <div className={styles.image}>
@@ -66,7 +69,9 @@ export default function HowToStart({ isResearcher }) {
             </div>
           </div>
 
-          <Button isArrow>سجل كباحث الان</Button>
+          <Button isArrow onClick={() => {
+                router.push('/auth/login');
+            }}>سجل كباحث الان</Button>
         </div>
       ) : (
         <div className={styles.info}>
@@ -116,7 +121,9 @@ export default function HowToStart({ isResearcher }) {
             </div>
           </div>
 
-          <Button isArrow>سجل كموهوب الان</Button>
+          <Button isArrow onClick={() => {
+                router.push('/auth/login');
+            }}>سجل كموهوب الان</Button>
         </div>
       )}
     </div>

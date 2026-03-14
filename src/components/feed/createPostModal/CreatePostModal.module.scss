@@ -1,0 +1,162 @@
+@use "../../../styles/typography" as *;
+
+.container {
+  background: #fff;
+  border-radius: 18px;
+  min-height: 370px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  // justify-content: space-between;
+}
+
+/* Close icon top-left */
+.closeBtn {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  :global(.anticon) {
+    font-size: 20px;
+  }
+}
+
+/* Top right header */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 28px 28px 10px 28px;
+}
+
+.userBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.userName {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Big textarea */
+.body {
+  padding: 0 28px;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 330px;
+  resize: none;
+  padding: 10px 0 !important;
+  font-size: 22px;
+  line-height: 1.8;
+
+  &::placeholder {
+    color: #9aa0a6;
+    font-weight: 500;
+  }
+}
+
+/* Footer bottom */
+.footer {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 28px;
+  gap: 16px;
+}
+
+.attachBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #111;
+  font-size: 18px;
+  font-family: $AlexandriaRegular;
+
+  :global(.anticon) {
+    font-size: 22px;
+  }
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+.previews {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.publishBtn {
+  width: 40%;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.previewMedia {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.previewItem {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f6f7f8;
+  border: 1px solid #eee;
+}
+
+.removeBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px; /* RTL بس close/hide زي ما تحب */
+  z-index: 2;
+
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid white;
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  :global(.anticon) {
+    font-size: 16px;
+  }
+}

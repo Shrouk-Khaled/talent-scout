@@ -5,6 +5,7 @@ import styles from "./Filter.module.scss";
 import { useHomeStore } from "@/store/useHome";
 import RadioList from "@/components/ui/radioList/RadioList";
 import { useSearchParams } from "next/navigation";
+import { useUserStore } from "@/store/useUserStore";
 
 /** Keep option values unique per group (codes), labels can repeat */
 const OPTIONS = {
@@ -50,8 +51,11 @@ export default function Filter({ onFilter }) {
   //params
   const type = useSearchParams().get("type");
 
-  //catefories
+  //store
   const subCats = useHomeStore((state) => state.categories);
+  const user = useUserStore((state) => state.info);
+
+  //states
   const [filters, setFilters] = useState(EMPTY_FILTERS);
   const [subCatsData, setSubCatsData] = useState([]);
 
@@ -72,8 +76,8 @@ export default function Filter({ onFilter }) {
   }, [filters]);
 
   useEffect(() => {
-    setSubCatsData(subCats?.find((obj) => obj?.id == 1)?.subCategories);
-  }, [subCats]);
+    setSubCatsData(subCats?.find((obj) => obj?.id == user?.category?.id)?.subCategories);
+  }, [subCats, user]);
 
   useEffect(() => {
     onFilter(payload);

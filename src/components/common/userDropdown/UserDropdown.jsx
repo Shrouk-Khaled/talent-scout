@@ -46,7 +46,9 @@ export default function UserDropdown() {
 
   const handleLogout = () => {
     saveUserInfo(null);
-    window.location.href = "/auth/login"; // Adjust the path as needed
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href = "/"; // Adjust the path as needed
   }
 
   return (

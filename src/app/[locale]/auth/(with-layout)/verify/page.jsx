@@ -10,7 +10,7 @@ import { resendOtp, verifyOtp } from "@/services/api";
 import { useUserStore } from "@/store/useUserStore";
 import { getFcmToken } from "@/lib/fcm";
 
-const MIN = 600; // seconds
+const MIN = 60; // seconds
 
 const formatMMSS = (s) => {
   const m = String(Math.floor(s / 60)).padStart(2, "0");
@@ -60,7 +60,7 @@ export default function VerifyPage() {
         saveUserData(res?.token_response);
         router.push("/feed")
       } else {
-        router.push(`/auth/signup?userId=${encodeURIComponent(res?.userId)}&email=${encodeURIComponent(email)}`);
+        router.push(`/auth/signup?userId=${encodeURIComponent(res?.user?.id)}&email=${encodeURIComponent(email)}`);
       }
     } else if(res?.success == false) {
       messageApi.open({
