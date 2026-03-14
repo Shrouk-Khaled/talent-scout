@@ -26,18 +26,6 @@ const Button = ({
       }`}
       style={style}
     >
-      {loading ? (
-        <Spin
-          indicator={
-            <LoadingOutlined
-              style={{ fontSize: 26 }}
-              spin
-              className={styles.loading}
-            />
-          }
-          size="large"
-        />
-      ) : (
         <>
           {children}
           {icon && <span className={styles.icon}>{icon}</span>}
@@ -46,8 +34,20 @@ const Button = ({
               {locale == "ar" ? <BsArrowLeft /> : <BsArrowRight />}
             </span>
           )}
+          {
+            loading && 
+            <Spin
+            indicator={
+              <LoadingOutlined
+                // style={{ fontSize: 16 }}
+                spin
+                className={styles.loading}
+              />
+            }
+            size="small"
+          />
+          }
         </>
-      )}
     </button>
   );
 };

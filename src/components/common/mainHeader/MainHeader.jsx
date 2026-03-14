@@ -13,6 +13,7 @@ import { useUserStore } from "@/store/useUserStore";
 import { Divider, message } from "antd";
 import CreatePostModal from "@/components/feed/createPostModal/CreatePostModal";
 import { createPost } from "@/services/api";
+import { Notifications } from "../notifications/Notifications";
 
 export default function MainHeader() {
   const locale = useLocale();
@@ -50,19 +51,19 @@ export default function MainHeader() {
       caption: body,
       media: attachment?.[0]?.file,
       visibility_id: 1,
-      title: ""
+      title: "",
     })
       .then((res) => {
         console.log("Post created:", res);
         setOpenCreatePost(false);
         setSubmitLoading(false);
-        messageApi.success("تم إنشاء المنشور بنجاح!"); 
+        messageApi.success("تم إنشاء المنشور بنجاح!");
       })
       .catch((err) => {
         console.error("Error creating post:", err);
         setSubmitLoading(false);
       });
-  }
+  };
 
   return (
     <header
@@ -99,10 +100,15 @@ export default function MainHeader() {
 
         <div
           className={styles.actions}
-          style={{ width: (userInfo?.user?.user_role != 1 || userAccess != "FULL_ACCESS") ? "25%" : "40%" }}
+          style={{
+            width:
+              userInfo?.user?.user_role != 1 || userAccess != "FULL_ACCESS"
+                ? "25%"
+                : "40%",
+          }}
         >
           <Language />
-          {(userInfo?.user?.user_role == 1 && userAccess == "FULL_ACCESS") ? (
+          {userInfo?.user?.user_role == 1 && userAccess == "FULL_ACCESS" ? (
             <Button
               onClick={() => {
                 setOpenCreatePost(true);
@@ -112,7 +118,7 @@ export default function MainHeader() {
               اضافة منشور
             </Button>
           ) : null}
-          {(userInfo?.user?.user_role == 1 && userAccess == "FULL_ACCESS") && (
+          {userInfo?.user?.user_role == 1 && userAccess == "FULL_ACCESS" && (
             <Divider type="vertical" style={{ height: 28, margin: "0 8px" }} />
           )}
           <Image
@@ -121,12 +127,7 @@ export default function MainHeader() {
             height={24}
             alt="sms icon"
           />
-          <Image
-            src={"/images/icons/notification.svg"}
-            width={24}
-            height={24}
-            alt="notification icon"
-          />
+          <Notifications />
 
           {/* <TbMail  className={styles.icon}/> */}
           {/* <RiNotification3Line  className={styles.icon}/> */}

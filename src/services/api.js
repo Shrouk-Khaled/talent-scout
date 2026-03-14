@@ -217,3 +217,13 @@ export const createPost = async (payload, onProgress = null) => {
 
   return response;
 }
+
+export const getAllNotifications = async (payload) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/notifications?page=${payload?.page || 1}&per_page=4`);
+  return response;
+}
+
+export const getUnreadNotificationsCount = async () => {
+  const response = await http.get(`/api/v1/mawhebty-platform/notifications/unread-count`);
+  return response;
+}

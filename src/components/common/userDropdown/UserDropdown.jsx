@@ -48,7 +48,7 @@ export default function UserDropdown() {
     saveUserInfo(null);
     localStorage.clear();
     sessionStorage.clear();
-    window.location.href = "/"; // Adjust the path as needed
+    window.location.href = "/";
   }
 
   return (
