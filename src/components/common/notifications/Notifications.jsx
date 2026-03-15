@@ -147,22 +147,24 @@ export const Notifications = () => {
                   </div>
                 );
               })}
+              {notifications?.length > 0 &&
+                pagination.page < pagination.total && (
+                  <div className={styles.loadMore}>
+                    <Button
+                      onClick={loadMore}
+                      loading={loadMoreLoading}
+                      style={{ width: "100%" }}
+                    >
+                      عرض المزيد
+                    </Button>
+                  </div>
+                )}
             </div>
           )}
 
-          {
-            firstLoad && (
-              <div className={styles.loading}>
-                <Loader/>
-              </div>
-            )
-          }
-
-          {notifications?.length > 0 && pagination.page < pagination.total && (
-            <div className={styles.loadMore}>
-              <Button onClick={loadMore} loading={loadMoreLoading} style={{width: "100%"}}>
-                عرض المزيد
-              </Button>
+          {firstLoad && (
+            <div className={styles.loading}>
+              <Loader />
             </div>
           )}
 

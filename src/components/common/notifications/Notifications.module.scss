@@ -9,7 +9,6 @@
         position: absolute;
         width: 377px;
         height: 340px;
-        overflow: auto;
         z-index: 999;
         left: -6rem;
         border: 1px solid $color-grey4;
@@ -33,16 +32,19 @@
         .data {
             display: flex;
             flex-direction: column;
+            height: calc(100% - 60px);
+            overflow: auto;
             // padding: 14px 0;
-            border-bottom: 2px solid $color-grey4;
+            // border-bottom: 2px solid $color-grey4;
 
             .notification {
              display: flex;
              gap: 16px;
                 padding: 16px 20px;
              width: 100%;
+            border-bottom: 2px solid $color-grey4;
 
-             &.unread {
+            &.unread {
                 background-color: #F6FCFF;
              }
             }
