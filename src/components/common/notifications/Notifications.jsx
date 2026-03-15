@@ -119,7 +119,7 @@ export const Notifications = () => {
                   >
                     <div className={styles.notificationImage}>
                       <Image
-                        src={"/images/icons/info.svg"}
+                        src={"/images/icons/user-notification.svg"}
                         width={48}
                         height={48}
                         alt="icon"

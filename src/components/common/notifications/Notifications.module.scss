@@ -2,111 +2,111 @@
 @use "../../../styles/typography" as *;
 
 .container {
-    position: relative;
-    cursor: pointer;
+  position: relative;
+  cursor: pointer;
 
-    .content {
-        position: absolute;
-        width: 377px;
-        height: 340px;
-        z-index: 999;
-        left: -6rem;
-        border: 1px solid $color-grey4;
-        border-radius: 8px;
-        box-shadow: 0px 0px 4px 0px #0000001A;
-        background-color: white;
-        margin-top: 18px;
+  .content {
+    position: absolute;
+    width: 377px;
+    height: 340px;
+    z-index: 999;
+    left: -6rem;
+    border: 1px solid $color-grey4;
+    border-radius: 8px;
+    box-shadow: 0px 0px 4px 0px #0000001a;
+    background-color: white;
+    margin-top: 18px;
 
-        .loadMore {
-            width: 100%;
-            margin: 6px 0;
-        }
-
-        .title{
-            padding: 16px;
-            font-family: $AlexandriaSemiBold;
-            font-size: 16px;
-            border: 1px solid $color-grey4;
-        }
-
-        .data {
-            display: flex;
-            flex-direction: column;
-            height: calc(100% - 60px);
-            overflow: auto;
-            // padding: 14px 0;
-            // border-bottom: 2px solid $color-grey4;
-
-            .notification {
-             display: flex;
-             gap: 16px;
-                padding: 16px 20px;
-             width: 100%;
-            border-bottom: 2px solid $color-grey4;
-
-            &.unread {
-                background-color: #F6FCFF;
-             }
-            }
-
-            .info {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                width: 100%;
-
-                .details {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    div {
-                        display: flex;
-                        gap: 8px;
-                        align-items: center;
-                        p {
-                            color: $color-grey;
-                            font-weight: 500;
-                            font-size: 12px;
-                        }
-                    }
-                    h3 {
-                        font-family: $AlexandriaSemiBold;
-                        font-size: 14px;
-                    }
-                }
-
-                .body {
-                    p {
-                        color: $color-grey;
-                        font-weight: 500;
-                        font-size: 12px;
-                    }
-                }
-            
-            }
-        }
-
-        .noNotifications {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            padding: 20px 0;
-
-            h3 {
-                font-family: $AlexandriaSemiBold;
-                font-size: 18px;
-            }
-
-            p {
-                color: $color-grey;
-                font-weight: 500;
-                font-size: 14px;
-                font-family: $AlexandriaRegular;
-                width: 60%;
-                text-align: center;
-            }
-        }
+    .loadMore {
+      width: 100%;
+      margin: 6px 0;
     }
+
+    .title {
+      padding: 16px;
+      font-family: $AlexandriaSemiBold;
+      font-size: 16px;
+      border: 1px solid $color-grey4;
+    }
+
+    .data {
+      display: flex;
+      flex-direction: column;
+      height: calc(100% - 60px);
+      overflow: auto;
+      // padding: 14px 0;
+      // border-bottom: 2px solid $color-grey4;
+
+      .notification {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 20px;
+        width: 100%;
+        border-bottom: 2px solid $color-grey4;
+
+        &.unread {
+          background-color: #f6fcff;
+        }
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+
+        .details {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          div {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            p {
+              color: $color-grey;
+              font-weight: 500;
+              font-size: 12px;
+            }
+          }
+          h3 {
+            font-family: $AlexandriaSemiBold;
+            font-size: 14px;
+          }
+        }
+
+        .body {
+          p {
+            color: $color-grey;
+            font-weight: 500;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .noNotifications {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 20px 0;
+
+      h3 {
+        font-family: $AlexandriaSemiBold;
+        font-size: 18px;
+      }
+
+      p {
+        color: $color-grey;
+        font-weight: 500;
+        font-size: 14px;
+        font-family: $AlexandriaRegular;
+        width: 60%;
+        text-align: center;
+      }
+    }
+  }
 }
