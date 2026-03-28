@@ -12,3 +12,41 @@ firebase.initializeApp({
 });
 
 firebase.messaging();
+
+// Optional: Handle background messages if needed
+const messaging = firebase.messaging();
+
+messaging.onBackgroundMessage((payload) => {
+  console.log("[firebase-messaging-sw.js] Background message:", payload);
+
+  const notificationTitle =
+    payload?.notification?.title || "New Notification";
+
+  const notificationOptions = {
+    body: payload?.notification?.body || "You have a new message",
+    icon: "/icon.png",
+    data: payload?.data || {},
+  };
+
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});
+
+self.addEventListener("notificationclick", function (event) {
+  event.notification.close();
+
+  const urlToOpen = "/";
+
+  event.waitUntil(
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then((clientList) => {
+      for (const client of clientList) {
+        if (client.url === urlToOpen && "focus" in client) {
+          return client.focus();
+        }
+      }
+
+      if (clients.openWindow) {
+        return clients.openWindow(urlToOpen);
+      }
+    })
+  );
+});

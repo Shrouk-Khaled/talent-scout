@@ -218,6 +218,7 @@ export const createPost = async (payload, onProgress = null) => {
   return response;
 }
 
+//notifications
 export const getAllNotifications = async (payload) => {
   const response = await http.get(`/api/v1/mawhebty-platform/notifications?page=${payload?.page || 1}&per_page=4`);
   return response;
@@ -225,5 +226,17 @@ export const getAllNotifications = async (payload) => {
 
 export const getUnreadNotificationsCount = async () => {
   const response = await http.get(`/api/v1/mawhebty-platform/notifications/unread-count`);
+  return response;
+}
+
+//reels
+export const getReels = async (payload) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/posts/reels?page=${payload?.page || 1}&per_page=3`);
+  return response;
+}
+
+//firebase token
+export const saveFCMToken = async (payload) => {
+  const response = await http.post(`/api/v1/mawhebty-platform/firebase/fcm-token`, payload);
   return response;
 }

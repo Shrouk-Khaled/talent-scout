@@ -7,6 +7,7 @@ import {
 import Image from "next/image";
 import Button from "@/components/ui/button/Button";
 import { Loader } from "../loader/Loader";
+import { listenForForegroundMessages } from "@/lib/firebase-messaging-listener";
 
 export const Notifications = () => {
   //refs
@@ -23,12 +24,36 @@ export const Notifications = () => {
   const [loadMoreLoading, setLoadMoreLoading] = useState(false);
   const [firstLoad, setFirstLoad] = useState(true);
 
+  //notification listener
   useEffect(() => {
-    getUnreadNotificationsCount().then((res) => {
-      if (res?.unread_count > 0) {
-        setHaveUnreadNotifications(true);
+    let unsubscribe;
+
+    async function init() {
+      try {
+        unsubscribe = await listenForForegroundMessages((payload) => {
+          // alert(payload?.notification?.title || "New message received");
+          console.log("Foreground message received in component:", payload);
+          handleUnreadNotifications();
+        });
+      } catch (error) {
+        console.error("FCM init error:", error);
       }
-    });
+    }
+
+    init();
+
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    // getUnreadNotificationsCount().then((res) => {
+    //   if (res?.unread_count > 0) {
+    //     setHaveUnreadNotifications(true);
+    //   }
+    // });
+    handleUnreadNotifications();
   }, []);
 
   useEffect(() => {
@@ -48,6 +73,14 @@ export const Notifications = () => {
       document.removeEventListener("touchstart", handleClickOutside);
     };
   }, []);
+
+  const handleUnreadNotifications = () => {
+    getUnreadNotificationsCount().then((res) => {
+      if (res?.unread_count > 0) {
+        setHaveUnreadNotifications(true);
+      }
+    });
+  }
 
   //functions
   const fetchNotifications = () => {

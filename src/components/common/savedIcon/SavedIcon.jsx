@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import styles from "./SavedIcon.module.scss";
 
-export const SavedIcon = ({ isSaved, itemType, itemId, bgColor,saveIcon }) => {
+export const SavedIcon = ({ isSaved, itemType, itemId, bgColor,saveIcon, withoutBox }) => {
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(isSaved);
 
@@ -30,7 +30,7 @@ export const SavedIcon = ({ isSaved, itemType, itemId, bgColor,saveIcon }) => {
     }
   };
   return (
-    <div className={styles.container} style={{backgroundColor: bgColor}}>
+    <div className={`${withoutBox ? "" : styles.container}`} style={{backgroundColor: bgColor}}>
       <Image
         src={saved ? "/images/icons/saved.svg" : saveIcon ? saveIcon : "/images/icons/outline-save.svg"}
         style={{

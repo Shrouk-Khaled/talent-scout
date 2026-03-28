@@ -12,8 +12,9 @@ import { SearchInput } from "../searchInput/SearchInput";
 import { useUserStore } from "@/store/useUserStore";
 import { Divider, message } from "antd";
 import CreatePostModal from "@/components/feed/createPostModal/CreatePostModal";
-import { createPost } from "@/services/api";
+import { createPost, saveFCMToken } from "@/services/api";
 import { Notifications } from "../notifications/Notifications";
+import { getFcmToken } from "@/lib/fcm";
 
 export default function MainHeader() {
   const locale = useLocale();
@@ -28,6 +29,12 @@ export default function MainHeader() {
   const [scrolling, setScrolling] = useState(false);
   const [openCreatePost, setOpenCreatePost] = useState(false);
   const [sumbitLoading, setSubmitLoading] = useState(false);
+
+  useEffect(async() => {
+    const fcmToken = await getFcmToken();
+    console.log("FCM Token:", fcmToken);
+    saveFCMToken({ fcm_token: fcmToken, device_type: "WEB" })
+  },[])
 
   // Detect scroll to change background color of the header
   useEffect(() => {
@@ -65,6 +72,10 @@ export default function MainHeader() {
       });
   };
 
+  const handleOpenReelsPage = () => {
+    router.push(`/${locale}/reels`);
+  }
+
   return (
     <header
       className={`${styles.header} ${scrolling ? styles.scrolled : ""}  ${
@@ -101,10 +112,7 @@ export default function MainHeader() {
         <div
           className={styles.actions}
           style={{
-            width:
-              userInfo?.user?.user_role != 1 || userAccess != "FULL_ACCESS"
-                ? "25%"
-                : "40%",
+            width: "50%",
           }}
         >
           <Language />
@@ -121,12 +129,15 @@ export default function MainHeader() {
           {userInfo?.user?.user_role == 1 && userAccess == "FULL_ACCESS" && (
             <Divider type="vertical" style={{ height: 28, margin: "0 8px" }} />
           )}
-          <Image
-            src={"/images/icons/sms.svg"}
-            width={24}
-            height={24}
-            alt="sms icon"
-          />
+          <div className={styles.reels} onClick={handleOpenReelsPage}>
+            <span>الفيديوهات</span>
+            <Image
+              src={"/images/icons/videos.svg"}
+              width={24}
+              height={24}
+              alt="sms icon"
+            />
+          </div>
           <Notifications />
 
           {/* <TbMail  className={styles.icon}/> */}
