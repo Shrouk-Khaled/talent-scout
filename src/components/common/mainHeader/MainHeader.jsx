@@ -30,11 +30,25 @@ export default function MainHeader() {
   const [openCreatePost, setOpenCreatePost] = useState(false);
   const [sumbitLoading, setSubmitLoading] = useState(false);
 
-  useEffect(async() => {
-    const fcmToken = await getFcmToken();
-    console.log("FCM Token:", fcmToken);
-    saveFCMToken({ fcm_token: fcmToken, device_type: "WEB" })
-  },[])
+  useEffect(() => {
+    const initFcm = async () => {
+      try {
+        const fcmToken = await getFcmToken();
+        console.log("FCM Token:", fcmToken);
+  
+        if (!fcmToken) return;
+  
+        await saveFCMToken({
+          fcm_token: fcmToken,
+          device_type: "WEB",
+        });
+      } catch (error) {
+        console.error("Error getting/saving FCM token:", error);
+      }
+    };
+  
+    initFcm();
+  }, []);
 
   // Detect scroll to change background color of the header
   useEffect(() => {
