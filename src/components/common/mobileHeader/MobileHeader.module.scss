@@ -2,21 +2,39 @@
 @use "../../../styles/mixins" as *;
 @use "../../../styles/typography" as *;
 
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.searchBox {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.home {
+  flex-direction: row;
+}
 .mobileHeader {
   @include flex-center;
   box-sizing: border-box;
   position: fixed;
+  flex-direction: column;
   inset: 0 auto auto 0;
   width: 100%;
   left: 0;
   top: 0;
   right: 0;
+  box-shadow: 0px 0px 10px 0px #0000001A;
 
   padding-block: 0;
   padding-inline: 16px;
   padding-inline-start: 16px;
   padding-inline-end: 16px;
-  height: 60px;
+  height: 120px;
 
   justify-content: space-between;
   align-items: center;
@@ -40,9 +58,11 @@
     img {
       height: 35px;
     }
+
     .logoBox {
       gap: 0px;
     }
+
     div {
       display: flex;
       align-items: center;
@@ -52,9 +72,12 @@
         font-size: 20px;
       }
     }
-    
   }
 
+  &.home {
+    flex-direction: row;
+    height: 80px;
+  }
 
   img {
     object-fit: contain;
@@ -84,6 +107,7 @@
   padding: 0;
   /* we handle layout ourselves */
 }
+
 
 /* Panel content */
 .panel {
@@ -141,10 +165,55 @@
   align-items: center;
   gap: 8px;
   font-size: 16px;
-  color: #6b7280;
+  color: black;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.15s ease;
+}
+
+.userBox {
+  display: flex;
+  gap: 8px;
+  background: linear-gradient(
+    360deg,
+    rgba(222, 245, 228, 0.5) 0%,
+    rgba(210, 230, 245, 0.5) 100%
+  );
+  padding: 14px 16px;
+  border-radius: 8px;
+
+  h3 {
+    font-family: $AlexandriaSemiBold;
+    font-size: 14px;
+  }
+
+  p {
+    color: $color-grey;
+    font-weight: 500;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+}
+
+
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  a {
+    font-family: $AlexandriaRegular;
+    font-size: 14px;
+    color: black !important;
+  }
+
+  p {
+    cursor: pointer;
+    font-family: $AlexandriaRegular;
+    font-size: 14px;
+    color: #d50000;
+  }
 }
 
 .link:hover {

@@ -93,6 +93,7 @@ export default function StepThree() {
         subCategoryId: values?.subCategoryId,
         participationTypeId: values?.participationTypeId,
         fcmToken, 
+        typeId: 3,
         deviceType: "WEB"
       }, (p) => {console.log(p)}).then(() => {
         if(user_type == 2){
@@ -174,9 +175,9 @@ export default function StepThree() {
                 setSubCategories([])}
               }
               types={[
-                { id: 1, label: "فكرة مشروع" },
+                { id: 1, label: "براءة اختراع" },
                 { id: 2, label: "موهبة شخصية" },
-                { id: 3, label: "براءة اختراع" },
+                { id: 3, label: "فكرة مشروع" },
               ]}
             />
           </Form.Item>

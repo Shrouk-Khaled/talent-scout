@@ -240,3 +240,14 @@ export const saveFCMToken = async (payload) => {
   const response = await http.post(`/api/v1/mawhebty-platform/firebase/fcm-token`, payload);
   return response;
 }
+
+//contracts
+export const getContracts = async (payload) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/contracts?page=${payload?.page || 1}&per_page=5`);
+  return response;
+}
+
+export const getContractById = async (id) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/contracts/${id}`);
+  return response;
+}

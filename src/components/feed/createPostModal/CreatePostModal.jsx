@@ -68,7 +68,14 @@ export default function CreatePostModal({
       open={open}
       footer={null}
       closable={false}
-      onCancel={onClose}
+      onCancel={() => {
+        setBody("");
+        setAttachments((prev) => {
+          prev.forEach((a) => a.url && URL.revokeObjectURL(a.url));
+          return [];
+        });
+        onClose();
+      }}
       centered
       width={700}
       destroyOnHidden
@@ -81,7 +88,14 @@ export default function CreatePostModal({
         {/* Close button (top-left like screenshot) */}
         <button
           className={styles.closeBtn}
-          onClick={onClose}
+          onClick={() => {
+            setBody("");
+            setAttachments((prev) => {
+              prev.forEach((a) => a.url && URL.revokeObjectURL(a.url));
+              return [];
+            });
+            onClose();
+          }}
           aria-label="إغلاق"
         >
           <CloseOutlined />

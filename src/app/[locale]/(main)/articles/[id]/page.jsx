@@ -41,7 +41,9 @@ export default function page() {
   return (
     <div className={styles.container}>
             {contextHolder}
-      <TalentsLine />
+            <div className={styles.categories}>
+        <TalentsLine />
+      </div>
 
       {loading ? (
         <Loading />

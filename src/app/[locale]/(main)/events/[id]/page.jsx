@@ -13,6 +13,7 @@ import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
 
 export default function Page() {
   const { id } = useParams();
+  const isMobile = (typeof window !== undefined) && window.innerWidth < 768;
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   //message
@@ -37,8 +38,9 @@ export default function Page() {
   return (
     <div className={styles.container}>
       {contextHolder}
-
-      <TalentsLine />
+      <div className={styles.categories}>
+        <TalentsLine />
+      </div>
       {loading ? (
         <Loading />
       ) : (
@@ -143,7 +145,7 @@ export default function Page() {
                   rtl={true}
                   gap={5}
                   autoplay
-                  slidesPerView={3.5}
+                  slidesPerView={isMobile ? 1.2 : 3.5}
                 // onViewAllClick={() => router.push("/search?type=events")}
                 >
                   {data?.related_events?.map((event, index) => (

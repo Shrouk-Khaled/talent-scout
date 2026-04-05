@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { useUserStore } from "@/store/useUserStore";
 import { useSignupStore } from "@/store/useSignupStore";
 import { getFcmToken } from "@/lib/fcm";
+import SelectInput from "@/components/ui/selectInput/SelectInput";
 
 export default function StepFive() {
   const router = useRouter();
@@ -57,6 +58,7 @@ export default function StepFive() {
         prefixCode: signupData?.phone?.countryCode,
         email: signupData?.email,
         fcmToken, 
+        typeId: signupData?.file?.[0]?.type?.includes("image") ? 1 : 2,
         deviceType: "WEB"
       }
       const res = draftSignupData(payload, (progress) => {console.log(progress)}).then(() => {
@@ -137,16 +139,18 @@ export default function StepFive() {
                 className={styles.field}
                 label="اذكر فئتك إن وجدت (اختياري)"
               >
-                {/* <SelectInput
+                <SelectInput
               placeholder={"اختر من هنا "}
               options={[
-                { label: "ذوي الاحتياجات الخاصة", value: "disabled" },
-                { label: "الأيتام", value: "orphan" },
-                { label: "المطلقات", value: "divorced" },
-                { label: "الأسر ذات الدخل المحدود", value: "low_income" },
+                { label: "كفيف", value: "كفيف" },
+                { label: "اعاقه", value: "اعاقه" },
+                { label: "سمعية", value: "سمعية" },
+                { label: "اصم", value: "اصم" },
+                { label: "اعاقه حركيه", value: "اعاقه حركيه" },
+                { label: "اخري", value: "اخري" },
               ]}
-            /> */}
-                <Input type="text" placeholder="اذكر فئتك إن وجدت" />
+            />
+                {/* <Input type="text" placeholder="اذكر فئتك إن وجدت" /> */}
               </Form.Item>
             )}
           </Form.Item>
@@ -188,7 +192,7 @@ export default function StepFive() {
       </div>
 
       <div className={styles.btns}>
-        <div>
+        <div className={styles.info}>
           <Button
             className={styles.nextBtn}
             onClick={handleNextStep}

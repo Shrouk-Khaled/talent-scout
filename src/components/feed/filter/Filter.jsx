@@ -47,7 +47,7 @@ const EMPTY_FILTERS = {
   subcategory: [],
 };
 
-export default function Filter({ onFilter }) {
+export default function Filter({ onFilter, isDrawer , clearFilters}) {
   //params
   const type = useSearchParams().get("type");
 
@@ -83,8 +83,13 @@ export default function Filter({ onFilter }) {
     onFilter(payload);
   }, [payload]);
 
+  useEffect(() => {
+    if(clearFilters) clearAll();
+  },[clearFilters])
+
+
   return (
-    <div className={styles.filterSide}>
+    <div className={`${styles.filterSide} ${isDrawer && styles.drawerFilter}`}>
       <div className={styles.header}>
         <h6>الفلاتر</h6>
         <p

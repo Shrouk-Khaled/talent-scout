@@ -122,3 +122,35 @@
     }
   }
 }
+
+@include bp.respond-to(md) {
+  .container {
+    border: 0;
+    .pages {
+      display: flex;
+      flex-direction: row;
+      border-bottom: 1px solid $color-grey4;
+
+      .pageDetails {
+        width: fit-content;
+
+        p {
+          white-space: nowrap;
+        }
+
+        &.active {
+          background-color: transparent;
+          color: $color-primary;
+          font-family: $AlexandriaSemiBold;
+        }
+
+        svg {
+          display: none;
+        }
+        .iconBox {
+          display: none;
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,5 @@
+@use "../../../styles/breakpoints" as bp;
+
 .overlay {
     position: fixed;
     top: 0;
@@ -199,7 +201,38 @@
     font-size: 13px;
   }
 
+  @include bp.respond-to(md) {
+    .video {
+      max-width: 100%;
+      border-radius: 0;
+    }
+    .rightActions {
+      position: absolute;
+      // right: 16px;
+      left: 10px;
+      bottom: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      pointer-events: auto;
+    }
 
+    .actionButton {
+      font-size: 18px;
+    }
+
+    .reelItem {
+      padding: 0;
+    }
+    
+    .arrowsActions {
+      display: none;
+    }
+
+    .closeButton {
+      top: 20px;
+    }
+  }
 // .overlay {
 //     position: fixed;
 //     inset: 0;

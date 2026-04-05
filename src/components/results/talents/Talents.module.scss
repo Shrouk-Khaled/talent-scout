@@ -1,6 +1,7 @@
 @use "../../../styles/variables" as *;
 @use "../../../styles/mixins" as *;
 @use "../../../styles/typography" as *;
+@use "../../../styles/breakpoints" as bp;
 
 .section {
     display: flex;
@@ -52,5 +53,22 @@
 
     .filter {
         width: 30%;
+    }
+}
+
+@include bp.respond-to(md) {
+    .section {
+        flex-direction: column;
+
+        .main {
+            .talentBox {
+                width: 48%;
+            }
+
+            button {
+                padding: 15px !important;
+                width: 100% !important;
+            }
+        }
     }
 }

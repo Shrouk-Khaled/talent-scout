@@ -7,6 +7,10 @@
   @include padding-page;
   font-family: $AlexandriaRegular;
 
+  .main {
+    margin-top: 80px;
+  }
+
   .search {
     display: none;
   }
@@ -23,6 +27,14 @@
   .eventsBox {
     padding-bottom: 120px;
   }
+
+  .desctopView {
+    display: block;
+  }
+
+  .mobileView {
+    display: none;
+  } 
 
   .articlesBox {
     padding-bottom: 120px;
@@ -227,12 +239,28 @@
 
   @include bp.respond-to(md) {
     flex-direction: column;
+
+    .desctopView {
+      display: none;
+    }
+  
+    .mobileView {
+      display: block;
+    } 
+
+    .main {
+      margin-top: 60px;
+    }
+
+    .categories {
+      display: none;
+    }
     .search {
       display: block;
-      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 8px;
+      margin: 0 16px;
       .filterIcon {
         color: $color-primary;
         background-color: #e0f2fe;

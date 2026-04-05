@@ -7,6 +7,10 @@
   @include padding-page;
   font-family: $AlexandriaRegular;
   margin-bottom: 60px;
+
+  .categories {
+    display: block;
+  }
  
 
   .breadcrumb {
@@ -59,9 +63,22 @@
 
   .tabs {
     display: flex;
+    align-items: center;
     gap: 10px;
-    margin-top: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    // margin-top: 30px;
+    // margin-bottom: 40px;
+
+    .allTabs {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      padding-bottom: 10px;
+    }
+
+    .filterIcon {
+      display: none;
+    }
 
     .tab {
         padding: 10px 17px;
@@ -117,5 +134,58 @@
     gap: 10px;
     width: 100%;
     margin: 60px 0;
+  }
+}
+
+@include bp.respond-to(md) {
+  .container {
+    .categories {
+      display: none;
+    }
+
+    .breadcrumb { 
+      margin-top: 60px !important;
+    }
+
+    .tabs {
+      position: relative;
+
+   
+
+      .filterIcon {
+        display: block;
+        position: absolute;
+        right: 0;
+        background-color: white;
+        margin-top: 20px;
+        // padding-bottom: 10px;
+      }
+
+      .allTabs {
+        margin-right: 40px;
+        border-right: 1px solid $color-grey2;
+        padding-right: 10px;
+        overflow: auto;
+      }
+
+      &.isAll {
+        .allTabs {
+          border-right: none;
+          padding-right: 0;
+          margin-right: 0;
+        }
+      }
+    }
+
+    .filter {
+      display: none;
+    }
+
+    .mainContent {
+      .main {
+        width: 100%;
+      }
+    }
+
   }
 }

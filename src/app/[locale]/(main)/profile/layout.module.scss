@@ -24,3 +24,21 @@
 
     }
 }  
+
+@include bp.respond-to(md) {
+    .container {
+        margin-top: 30px;
+        .main {
+            flex-direction: column;
+            gap: 24px;
+
+            .sideBar, .content {
+                width: 100%;
+            }
+        }
+
+        .categories {
+            display: none;
+        }
+    }
+}

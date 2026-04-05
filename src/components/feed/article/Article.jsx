@@ -3,7 +3,7 @@ import styles from "./Article.module.scss"
 import { useRouter } from "next/navigation";
 import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
 
-export const Article = ({ data }) => {
+export const Article = ({ data, articleSlide }) => {
   const router = useRouter()
     const title = data?.title || "كيف تلاقي الرياضة اللي شبهك؟";
     const imageUrl = data?.image_url || "/images/home/event.png";
@@ -13,7 +13,10 @@ export const Article = ({ data }) => {
     const isVideo = imageUrl?.match(/\.(mp4|webm|ogg|mov)$/i);
 
     return (
-        <div className={styles.article} onClick={() => router.push(`/articles/${data?.id}`)}>
+        <div className={styles.article} style={{
+          width: articleSlide && "auto",
+          minWidth: articleSlide && "auto",
+        }} onClick={() => router.push(`/articles/${data?.id}`)}>
         {isVideo ? (
           <video
             src={imageUrl}

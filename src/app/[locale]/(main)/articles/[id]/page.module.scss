@@ -89,3 +89,22 @@
   }
 
 }
+
+@include bp.respond-to(md) {
+  .container {
+    margin-top: 40px;
+    .main {
+      .header {
+        flex-direction: column;
+        gap: 20px;
+        .actions {
+          order: -1;
+        }
+      }
+    }
+
+    .categories {
+      display: none;
+    }
+  }
+}

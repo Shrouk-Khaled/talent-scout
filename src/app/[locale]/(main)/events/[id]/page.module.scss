@@ -133,3 +133,31 @@
     }
   }
 }
+
+
+@include bp.respond-to(md) {
+  .container {
+    margin-top: 40px;
+    .main {
+      .content {
+        flex-direction: column;
+        .right, .left {
+          width: 100%;
+        }
+        .right {
+          h1 {
+            font-size: 28px;
+            margin-bottom: 34px;
+          }
+          p {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .categories {
+      display: none;
+    }
+  }
+}

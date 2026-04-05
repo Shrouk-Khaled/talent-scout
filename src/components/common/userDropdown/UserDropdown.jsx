@@ -82,16 +82,23 @@ export default function UserDropdown() {
             </div>
           </div>
 
-          <div className={styles.pages}>
+          <div className={styles.pages} onClick={() => {
+            setOpenOptions(false);
+          }}>
             <Link href={userInfo?.user?.user_role == 1 ? "/profile/posts" : "/profile/saved?type=posts"} className={styles.pageLink}>
               حسابي
             </Link>
             <Link href="#" className={styles.pageLink}>
               إدارة الباقات
             </Link>
-            <Link href="#" className={styles.pageLink}>
-              الإعدادات
-            </Link>
+            {
+              userInfo?.user?.user_role != 1 && (
+                <Link href="/profile/contracts" className={styles.pageLink}>
+                الطلبات
+              </Link>
+              )
+            }
+           
           </div>
 
           <div className={styles.logout} onClick={handleLogout}>

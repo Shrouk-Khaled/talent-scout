@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export const SearchInput = () => {
+export const SearchInput = ({w}) => {
     const router = useRouter()
   const [openResults, setOpenResults] = useState(false);
   const [search, setSearch] = useState("")
@@ -29,6 +29,7 @@ export const SearchInput = () => {
         BoxStyle={{
           backgroundColor: "#F3F3F3",
           border: "1px solid var(--border-color)",
+          width: w,
         }}
         onEnter={handleGoIntoResultsPage}
         onChange={(e) => setSearch(e.target.value)}

@@ -65,6 +65,7 @@
     all: unset;
     cursor: pointer;
     font-size: 12px;
+    color: $color-primary;
 
     &:disabled {
       color: #ccc;

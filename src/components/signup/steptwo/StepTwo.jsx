@@ -99,7 +99,12 @@ export default function StepTwo() {
           <div className={styles.row}>
             <Form.Item
               name="firstName"
-              rules={[{ required: true, message: "الرجاء إدخال الاسم الأول" }]}
+              rules={[{ required: true, message: "الرجاء إدخال الاسم الأول" },
+                {
+                  pattern: /^[A-Za-z\u0600-\u06FF\s]+$/,
+                  message: "الاسم الأول يجب أن يحتوي على حروف فقط",
+                },
+              ]}
               className={styles.field}
               label="الاسم الأول"
             >
@@ -109,7 +114,12 @@ export default function StepTwo() {
             <Form.Item
               name="lastName"
               className={styles.field}
-              rules={[{ required: true, message: "الرجاء إدخال الاسم الثاني" }]}
+              rules={[{ required: true, message: "الرجاء إدخال الاسم الثاني" },
+                {
+                  pattern: /^[A-Za-z\u0600-\u06FF\s]+$/,
+                  message: "الاسم الأول يجب أن يحتوي على حروف فقط",
+                },
+              ]}
               label="الاسم الثاني"
             >
               <Input type="text" placeholder="مثال: محمد علي" />
@@ -234,7 +244,7 @@ export default function StepTwo() {
       </div>
 
       <div className={styles.btns}>
-        <div>
+        <div className={styles.info}>
           <Button className={styles.nextBtn} onClick={handleNextStep} loading={loading}>
             التالي
           </Button>

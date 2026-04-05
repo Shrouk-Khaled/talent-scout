@@ -2,7 +2,7 @@
 
 import { TalentsLine } from "@/components/common/talentsLine/TalentsLine";
 import styles from "./page.module.scss";
-import { Breadcrumb, Pagination } from "antd";
+import { Breadcrumb, Drawer, Pagination } from "antd";
 import { useEffect, useState } from "react";
 import { AllResults } from "@/components/results/allResults/AllResults";
 import { Articles } from "@/components/results/articles/Articles";
@@ -14,6 +14,7 @@ import Filter from "@/components/feed/filter/Filter";
 import { Loader } from "@/components/common/loader/Loader";
 import { getArticles, getEvents, getPosts, getTalents } from "@/services/api";
 import Image from "next/image";
+import { useLocale } from "next-intl";
 
 const tabs = [
   { id: "all", name: "الكل" },
@@ -24,6 +25,8 @@ const tabs = [
 ];
 
 export default function SearchPage() {
+  const locale = useLocale();
+  const isRTL = locale == "ar";
   const searchParams = useSearchParams();
   const query = searchParams.get("type");
   const currentPage = searchParams.get("page");
@@ -36,6 +39,8 @@ export default function SearchPage() {
     sortBy: "",
     subCategory: "",
   });
+  const [openFilter, setOpenFilter] = useState(false);
+  const [isClearFilter, setIsClearFilter] = useState(false);
 
   //pagination states
   const [pagination, setPagination] = useState({
@@ -100,6 +105,7 @@ export default function SearchPage() {
   const handleSectionTypeChange = (type) => {
     setSectionType(type);
     updateType(type);
+    setIsClearFilter(true);
   };
 
   const updateType = (type) => {
@@ -166,7 +172,9 @@ export default function SearchPage() {
   };
   return (
     <div className={styles.container}>
-      <TalentsLine />
+      <div className={styles.categories}>
+        <TalentsLine />
+      </div>
       <div className="app-container">
         <Breadcrumb
           items={[
@@ -182,22 +190,38 @@ export default function SearchPage() {
 
         <h1 className={styles.results}>نتائج البحث</h1>
 
-        <div className={styles.tabs}>
-          {tabs.map((tab, i) => {
-            return (
-              <div
-                key={i}
-                className={`${styles.tab} ${
-                  sectionType == tab.id && styles.active
-                }`}
-                onClick={() => {
-                  handleSectionTypeChange(tab.id);
-                }}
-              >
-                {tab.name}
-              </div>
-            );
-          })}
+        <div className={`${styles.tabs} ${sectionType == "all" && styles.isAll}`}>
+          {
+            sectionType !== "all" &&
+            (
+              <Image
+              src={"/images/icons/filter.svg"}
+              onClick={() => setOpenFilter(true)}
+              width={37}
+              height={40}
+              alt="pic"
+              className={styles.filterIcon}
+            />
+            )
+          }
+         
+          <div className={styles.allTabs}>
+            {tabs.map((tab, i) => {
+              return (
+                <div
+                  key={i}
+                  className={`${styles.tab} ${
+                    sectionType == tab.id && styles.active
+                  }`}
+                  onClick={() => {
+                    handleSectionTypeChange(tab.id);
+                  }}
+                >
+                  {tab.name}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         <div className={styles.mainContent}>
@@ -234,7 +258,6 @@ export default function SearchPage() {
                   className={styles.main}
                   style={{ width: sectionType == "all" && "100%" }}
                 >
-                  {/* {sectionType == "all" && <AllResults />} */}
                   {sectionType == "articles" && <Articles data={data} />}
                   {sectionType == "events" && <Events data={data} />}
                   {sectionType == "posts" && <Posts data={data} />}
@@ -256,12 +279,34 @@ export default function SearchPage() {
           {sectionType !== "all" && (
             <div className={styles.filter}>
               <Filter
+              clearFilters={isClearFilter}
                 onFilter={(data) => {
                   handleFilter(data);
+                  setIsClearFilter(false);
                 }}
               />
             </div>
           )}
+
+          <Drawer
+            placement={!isRTL ? "right" : "left"}
+            open={openFilter}
+            onClose={() => setOpenFilter(false)}
+            closable={false}
+            width={340}
+            styles={{
+              header: { display: "none" },
+              body: { padding: 0, fontFamily: "Alexandria-Regular" },
+            }}
+            className={styles.drawer}
+            rootClassName={styles.drawerRoot}
+          >
+            <Filter clearFilters={isClearFilter} isDrawer={true} onFilter={(data) => {
+              handleFilter(data)
+              setOpenFilter(false)
+              setIsClearFilter(false)
+            }} />
+          </Drawer>
         </div>
       </div>
     </div>

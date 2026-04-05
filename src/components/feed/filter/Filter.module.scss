@@ -10,6 +10,11 @@
     position: sticky;
     top: 15%;
 
+    &.drawerFilter {
+        border: none;
+        top: 0;
+    }
+
     .header {
         @include flex-center;
         justify-content: space-between;

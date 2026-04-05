@@ -1,0 +1,95 @@
+@use "@/styles/variables" as *;
+@use "@/styles/typography" as *;
+
+.data {
+    display: flex;
+    gap: 26px 14px;
+    width: 100%;
+    flex-wrap: wrap;
+
+    .contract {
+        width: calc(50% - 13px);
+        border: 1px solid $color-grey4;
+        border-radius: 8px;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        cursor: pointer;
+
+        .statusInfo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            p {
+                color: #666666;
+                font-family: $AlexandriaRegular;
+                font-size: 12px;
+            }
+
+            .status {
+                font-family: $AlexandriaSemiBold;
+                font-size: 12px;
+                padding: 6px 14px;
+                border-radius: 100px;
+
+                &.pending {
+                    color: #E8AD00;
+                    background-color: #FBBC0514;
+                }
+                &.accepted {
+                    color: #83CD2D;
+                    background-color: #E5F8E7;
+                }
+                &.rejected {
+                    color: #D50000;
+                    background-color: #FBE5E5;
+                }
+            }
+        }
+
+        .talentInfo {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+
+            .details {
+                display: flex;
+                gap: 6px;
+
+                img {
+                    border-radius: 50%;
+                    object-fit: contain;
+                }
+
+                h3 {
+                    font-family: $AlexandriaRegular;
+                    font-size: 14px;
+                    margin-bottom: 6px;
+                    color: #666666;
+                }
+
+                p {
+                    font-family: $AlexandriaSemiBold;
+                    font-size: 14px;
+                }
+            }
+
+            .info {
+                background-color: #F6FCFF;
+                color: #5080D7;
+                padding: 6px 14px;
+                border-radius: 100px;
+                font-family: $AlexandriaSemiBold;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.noData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

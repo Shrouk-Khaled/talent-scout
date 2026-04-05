@@ -10,6 +10,7 @@ import { useSearchParams } from "next/navigation";
 import { Loader } from "@/components/common/loader/Loader";
 
 export const AllResults = () => {
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
 
@@ -46,13 +47,13 @@ export const AllResults = () => {
                 arrowPosition="side"
                 rtl={true}
                 gap={5}
-                showViewAll="رؤية المزيد"
-                viewAllText="رؤية المزيد"
-                slidesPerView={3.5}
+                showViewAll=""
+                viewAllText=""
+                slidesPerView={isMobile ? 1.2 : 3.5}
                 onViewAllClick={() => console.log("View all clicked")}
               >
                 {data?.posts?.data?.map((post, index) => (
-                  <Post key={index} data={post} />
+                  <Post key={index} data={post} imageH={isMobile && 200} />
                 ))}
               </Slider>
             </div>
@@ -67,15 +68,13 @@ export const AllResults = () => {
                 arrowPosition="side"
                 rtl={true}
                 gap={5}
-                slidesPerView={7.5}
+                slidesPerView={isMobile ? 2.4 : 7.5}
                 onViewAllClick={() => console.log("View all clicked")}
               >
                 {data?.talents?.data?.map((talent, index) => (
                   <div key={index} className={styles.talentBox}>
                     <Image
-                      src={
-                        talent?.user?.image_url || "/images/logo.png"
-                      }
+                      src={talent?.user?.image_url || "/images/logo.png"}
                       width={100}
                       height={100}
                       alt="user"
@@ -101,9 +100,9 @@ export const AllResults = () => {
                 arrowPosition="side"
                 rtl={true}
                 gap={5}
-                showViewAll="رؤية المزيد"
-                viewAllText="رؤية المزيد"
-                slidesPerView={3.5}
+                showViewAll=""
+                viewAllText=""
+                slidesPerView={isMobile ? 1.2 : 3.5}
                 onViewAllClick={() => console.log("View all clicked")}
               >
                 {data.events?.data?.map((obj, i) => {
@@ -123,9 +122,9 @@ export const AllResults = () => {
                 rtl={true}
                 gap={5}
                 autoplay
-                showViewAll="رؤية المزيد"
-                viewAllText="رؤية المزيد"
-                slidesPerView={3.5}
+                showViewAll=""
+                viewAllText=""
+                slidesPerView={isMobile ? 1.2 : 3.5}
                 onViewAllClick={() => console.log("View all clicked")}
               >
                 {data.articles?.data?.map((article, i) => {

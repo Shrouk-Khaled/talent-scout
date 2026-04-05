@@ -55,14 +55,23 @@ export const SideBar = () => {
             unique: "saved"
           },
           {
+            name: "الطلبات",
+            icon: "/images/icons/contracts.svg",
+            path: "/profile/contracts",
+            unique: "contracts"
+          },
+          {
             name: "إعدادات الحساب",
             icon: "/images/icons/sittings.svg",
             path: "/profile/sittings",
             unique: "sittings"
-          },
+          }
         ].map((page) =>  {
           if(userInfo?.user?.user_role != 1 && page.path == "/profile/posts") {
             return null; // Skip rendering this page for user_role 1
+          }
+          if(userInfo?.user?.user_role == 1 && page.path == "/profile/contracts") {
+            return null; // Skip rendering this page for user_role not 1
           }
           return(
             <Link
@@ -90,6 +99,7 @@ export const SideBar = () => {
         }
         )}
       </div>
+
     </div>
   );
 };

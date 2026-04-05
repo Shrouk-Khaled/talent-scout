@@ -1,19 +1,20 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CgMenu } from "react-icons/cg";
 import styles from "./MobileHeader.module.scss";
 import { useLocale } from "next-intl";
 import Button from "@/components/ui/button/Button";
-import { Drawer } from "antd";
+import { Divider, Drawer } from "antd";
 import Language from "../language/Language";
-import Input from "@/components/ui/input/Input";
 import { LuX } from "react-icons/lu";
-import { FiSearch } from "react-icons/fi";
 import { usePathname, useRouter } from "next/navigation";
-import { IoMail, IoNotificationsSharp } from "react-icons/io5";
-
+import { Notifications } from "../notifications/Notifications";
+import { SearchInput } from "../searchInput/SearchInput";
+import { useHomeStore } from "@/store/useHome";
+import { useUserStore } from "@/store/useUserStore";
+import { AddPost } from "../addPost/AddPost";
+import Link from "next/link";
 
 export default function MobileHeader() {
   const router = useRouter();
@@ -21,6 +22,8 @@ export default function MobileHeader() {
   const locale = useLocale();
   const isRTL = locale == "ar";
   const closeBtnRef = useRef(null);
+  const categories = useHomeStore((state) => state.categories);
+  const userInfo = useUserStore((state) => state.info);
   const [scrolling, setScrolling] = useState(false);
   const [open, setOpen] = useState(false);
   const [isHomePage, setIsHomePage] = useState(false);
@@ -64,23 +67,34 @@ export default function MobileHeader() {
     [locale]
   );
 
+  const handleOpenReelsPage = () => {
+    router.push(`/${locale}/reels`);
+  };
+
+
   return (
     <>
       {pathname === `/${locale}` ? (
         <div
           className={`${styles.mobileHeader} ${
             scrolling ? styles.scrolled : ""
-          }  ${pathname !== `/${locale}` && styles.notHome}`}
+          }  ${styles.home}`}
         >
           <button
             aria-label="Open menu"
             className={styles.iconBtn}
             onClick={() => setOpen(true)}
           >
-            <CgMenu size={30} className={styles.menuIcon}/>
+            <CgMenu size={30} className={styles.menuIcon} />
           </button>
           <div className={styles.logo}>
-            <Image src="/images/logo.png" alt="logo" width={55} height={40} onClick={() => router.push(`/${locale}`)}/>
+            <Image
+              src="/images/logo.png"
+              alt="logo"
+              width={55}
+              height={40}
+              onClick={() => router.push(`/${locale}`)}
+            />
           </div>
         </div>
       ) : (
@@ -89,22 +103,41 @@ export default function MobileHeader() {
             scrolling ? styles.scrolled : ""
           }  ${styles.notHome}`}
         >
-          <div className={styles.logoBox}>
-            <button
-              aria-label="Open menu"
-              className={styles.iconBtn}
-              onClick={() => setOpen(true)}
-            >
-              <CgMenu size={30}/>
-            </button>
-            <div className={styles.logo}>
-              <Image src="/images/logo.png" alt="logo" width={55} height={40} onClick={() => router.push(`/${locale}`)}/>
+          <div className={styles.container}>
+            <div className={styles.logoBox}>
+              <button
+                aria-label="Open menu"
+                className={styles.iconBtn}
+                onClick={() => setOpen(true)}
+              >
+                <CgMenu size={30} />
+              </button>
+              <div className={styles.logo}>
+                <Image
+                  src="/images/logo.png"
+                  alt="logo"
+                  width={55}
+                  height={40}
+                  onClick={() => router.push(`/${locale}/feed`)}
+                />
+              </div>
+            </div>
+
+            <div>
+              <div className={styles.reels} onClick={handleOpenReelsPage}>
+                <Image
+                  src={"/images/icons/videos.svg"}
+                  width={24}
+                  height={24}
+                  alt="sms icon"
+                />
+              </div>
+              <Notifications />
             </div>
           </div>
 
-          <div>
-            <IoMail className={styles.icon} />
-            <IoNotificationsSharp className={styles.icon} />
+          <div className={styles.searchBox}>
+            <SearchInput w={"100%"} />
           </div>
         </div>
       )}
@@ -116,8 +149,8 @@ export default function MobileHeader() {
         closable={false}
         width={340} // <— tweak to your design
         styles={{
-          header: { display: 'none' },               
-          body:   { padding: 0, fontFamily: 'Alexandria-Regular' },
+          header: { display: "none" },
+          body: { padding: 0, fontFamily: "Alexandria-Regular" },
         }}
         className={styles.drawer} // panel
         rootClassName={styles.drawerRoot} // wrapper
@@ -135,47 +168,104 @@ export default function MobileHeader() {
             <Language />
           </div>
 
-          <div className={styles.searchBox}>
-            <Input
-              placeholder={"ابحث هنا"}
-              size="md"
-              clearable
-              suffix={<FiSearch />}
-            />
-          </div>
+          {pathname === `/${locale}` ? (
+            <>
+              <ul className={styles.list}>
+                {menu?.map((item, i) => {
+                  const fullPath = `/${locale}${item.href}`;
+                  const isActive =
+                    pathname === fullPath ||
+                    pathname === `/${locale}${item.subHref}`;
+                  return (
+                    <li key={i}>
+                      <p className={`${styles.link}`}>{item?.label}</p>
+                    </li>
+                  );
+                })}
+              </ul>
 
-          {/* Menu */}
-          <nav className={styles.nav} aria-label={"menu"}>
-            <ul className={styles.list}>
-              {menu.map((item, i) => {
-                const fullPath = `/${locale}${item.href}`;
-                const isActive =
-                  pathname === fullPath ||
-                  pathname === `/${locale}${item.subHref}`;
-                return (
-                  <li key={i}>
-                    <Link
-                      href={item.href}
-                      className={`${styles.link} ${
-                        isActive ? styles.active : ""
-                      }`}
-                    >
-                      {item.label}
+              <Button
+                onClick={() => {
+                  router.push("/auth/login");
+                  setOpen(false);
+                }}
+              >
+                تسجيل الحساب
+              </Button>
+            </>
+          ) : (
+            <>
+              <div className={styles.userBox}>
+                <Image
+                  className={styles.flagImg}
+                  src={userInfo?.user?.image_url || "/images/user.png"}
+                  alt="🇸🇦"
+                  width={40}
+                  height={40}
+                />
+                <div>
+                  <h3>
+                    {userInfo?.user?.first_name} {userInfo?.user?.last_name}
+                  </h3>
+                  {userInfo?.user?.short_bio && (
+                    <p>{userInfo?.user?.short_bio}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Menu */}
+              <nav className={styles.nav} aria-label={"menu"}>
+                <ul className={styles.list}>
+                  {categories?.map((item, i) => {
+                    // const fullPath = `/${locale}${item.href}`;
+                    // const isActive =
+                    //   pathname === fullPath ||
+                    //   pathname === `/${locale}${item.subHref}`;
+                    return (
+                      <li key={i}>
+                        <p className={`${styles.link}`}>{item?.name}</p>
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                <AddPost />
+
+                <Divider />
+
+                <div className={styles.settings} onClick={() => {setOpen(false)}}>
+                  <Link
+                    href={
+                      userInfo?.user?.user_role == 1
+                        ? "/profile/posts"
+                        : "/profile/saved?type=posts"
+                    }
+                  >
+                    حسابي
+                  </Link>
+                  <Link href="#">
+                    إدارة الباقات
+                  </Link>
+                  {userInfo?.user?.user_role != 1 && (
+                    <Link href="/profile/contracts">
+                      الطلبات
                     </Link>
-                  </li>
-                );
-              })}
-            </ul>
-              {
-                pathname === `/${locale}` &&
-                  <Button onClick={() => {
-                    router.push('/auth/login');
-                }}>تسجيل الحساب</Button>
-              }
-          </nav>
+                  )}
+                  <p
+                    onClick={() => {
+                      localStorage.clear();
+                      sessionStorage.clear();
+                      router.push("/");
+                    }}
+                  >
+                    تسجيل الخروج
+                  </p>
+                </div>
+              </nav>
+            </>
+          )}
         </div>
       </Drawer>
-
     </>
   );
 }
