@@ -198,3 +198,66 @@
   background: #dfe5eb;
   // margin-top: 12px;
 }
+
+
+@include bp.respond-to(md) {
+  .container {
+    margin-top: 90px !important;
+    .main {
+      flex-direction: column-reverse;
+      gap: 30px;
+
+      .types {
+        flex-wrap: wrap;
+      }
+
+      .contractInfo {
+        width: 100%;
+        .talentInfo {
+          p {
+            font-size: 14px;
+            color: $color-grey;
+            font-family: $AlexandriaRegular;
+            margin-bottom: 20px;
+          }
+
+          .data {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+
+            img {
+              object-fit: contain;
+              border-radius: 50%;
+              background-color: white;
+              width: 50px;
+              height: 50px;
+            }
+            div {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              gap: 5px;
+
+              h2 {
+                font-size: 16px;
+                font-family: $AlexandriaSemiBold;
+                margin-bottom: 3px;
+              }
+              p{
+                  font-size: 14px;
+                  color: $color-grey;
+                  font-family: $AlexandriaRegular;
+                  margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .info {
+        width: 100%;
+      }
+    }
+  }
+}

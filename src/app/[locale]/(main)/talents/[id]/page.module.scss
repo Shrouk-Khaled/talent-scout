@@ -118,4 +118,57 @@
     width: 60%;
     margin-bottom: 100px;
   }
+
+}
+
+@include bp.respond-to(md) {
+    .container {
+        margin-top: 90px !important;
+    
+        .talentBox {
+            margin-bottom: 45px;
+
+        .talentInfo {
+            flex-direction: column;
+            gap: 20px;
+    
+            .left {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+    
+            img {
+                margin-top: -60px;
+                width: 100px;
+                height: 100px;
+            }
+            }
+    
+            .right {
+            gap: 10px;
+            width: 90%;
+    
+            button {
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 15px;
+                    height: 15px;
+                    margin-bottom: 3px;
+                }
+            }
+            }
+        }
+    
+        .followers {
+            justify-content: center;
+        }
+        }
+    
+        .posts {
+        width: 100%;
+        }
+    }
 }

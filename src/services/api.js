@@ -139,8 +139,18 @@ export const getPosts = async (payload) => {
   return response;
 }
 
+export const getPostsByUserId = async (userId, payload) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/posts?owner_id=${userId}&page=${payload?.page || 1}&per_page=5`);
+  return response;
+}
+
 export const getTalents = async (payload) => {
   const response = await http.get(`/api/v1/mawhebty-platform/talents?page=${payload?.page || 1}&per_page=6&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}&category_id=${payload?.category_id || ''}`);
+  return response;
+}
+
+export const getTalentById = async (id) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/talents/${id}`);
   return response;
 }
 

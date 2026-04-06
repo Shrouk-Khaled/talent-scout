@@ -28,16 +28,16 @@ export const SideBar = () => {
       </div>
       <div className={styles.details}>
         <div>
-          <p>المتابعين</p>
-          <p>100</p>
+          <p>المتابعون</p>
+          <p>{userInfo?.user?.following}</p>
         </div>
         <div>
           <p>المتابعين</p>
-          <p>100</p>
+          <p>{userInfo?.user?.followers}</p>
         </div>
         <div>
-          <p>المتابعين</p>
-          <p>100</p>
+          <p>المنشورات</p>
+          <p>0</p>
         </div>
       </div>
       <div className={styles.pages}>

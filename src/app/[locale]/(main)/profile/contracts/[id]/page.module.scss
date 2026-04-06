@@ -1,5 +1,6 @@
 @use "@/styles/variables" as *;
-@use "@/styles/typography" as *;
+@use "@/styles/typography" as *;    
+@use "@/styles/breakpoints" as bp;
 
 .container {
     display: flex;
@@ -158,4 +159,88 @@
             }
         }
     }
+}
+
+@include bp.respond-to(md) {
+    .container {
+        h1 {
+            font-size: 14px;
+        }
+
+        .details {
+            flex-direction: column-reverse;
+            gap: 20px;
+
+            .info {
+                width: 100%;
+                gap: 20px;
+
+                h3 {
+                    font-size: 14px;
+                }
+
+                p {
+                    font-size: 12px;
+                }
+
+                .contractDetails {
+                    .infoBox {
+                        flex-direction: column;
+                        gap: 10px;
+                      
+
+                        .box {
+                            width: 100%;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            padding: 10px;
+                        }
+                    }
+                }
+            }
+
+            .talentInfo {
+                width: 100%;
+                gap: 16px;
+
+                .talent {
+                    width: 100%;
+                    padding: 12px;
+
+                    p {
+                        font-size: 10px;
+                    }
+
+                    .talentData {
+                        margin: 6px 0;
+                        gap: 4px;
+
+                        div {
+                            h3 {
+                                font-size: 12px;
+                            }
+                            p {
+                                font-size: 10px;
+                            }
+                        }
+                    }
+
+                    .accountDetails {
+                        font-size: 12px;
+                    }
+                }
+
+                .typeBox {
+                    padding: 12px;
+
+                    p {
+                        font-size: 10px;
+                    }
+                    h3 {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }   
 }

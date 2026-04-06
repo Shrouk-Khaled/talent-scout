@@ -1,5 +1,6 @@
 @use "@/styles/variables" as *;
 @use "@/styles/typography" as *;
+@use "@/styles/breakpoints" as bp;
 
 .data {
     display: flex;
@@ -99,4 +100,12 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+}
+
+@include bp.respond-to(md) {
+    .data {
+        .contract {
+            width: 100%;
+        }
+    }
 }
