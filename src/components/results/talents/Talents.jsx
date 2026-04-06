@@ -1,22 +1,16 @@
 import styles from "./Talents.module.scss";
-import Filter from "@/components/feed/filter/Filter";
 import Button from "@/components/ui/button/Button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export const Talents = ({data}) => {
-  // const [data, setData] = useState([]);
-
-  // useEffect(() => {
-  //     getPosts().then((res) => {
-  //         setData(res)
-  //     })
-  // },[])
+  const router = useRouter();
 
   return (
     <div className={styles.section}>
       <div className={styles.main}>
         {data?.map((talent, i) => (
-          <div className={styles.talentBox} key={i}>
+          <div className={styles.talentBox} key={i} onClick={() => router.push(`/talents/${talent?.user?.id}`)}>
             <Image
               src={talent?.user?.image_url || "/images/logo.png"}
               width={100}
@@ -26,7 +20,7 @@ export const Talents = ({data}) => {
             />
             <h2>{talent?.user?.first_name} {talent?.user?.last_name}</h2>
             <p>{talent?.subcategory?.name}</p>
-            <Button onClick={() => console.log("View profile clicked")}>
+            <Button outline onClick={() => console.log("View profile clicked")}>
               تفاصيل العقد
             </Button>
           </div>

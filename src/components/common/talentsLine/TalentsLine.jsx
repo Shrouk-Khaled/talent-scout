@@ -42,8 +42,7 @@ export const TalentsLine = () => {
           {data?.map((obj, i) => (
             <Link
               key={i}
-              // href={`/posts?category=${obj?.id}`}
-              href={"#"}
+              href={`/search?type=posts&category=${obj?.id}`}
               className={styles.talentLink}
             >
               {obj?.name}

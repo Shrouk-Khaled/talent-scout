@@ -83,6 +83,9 @@ export default function Feed() {
                 categories?.map((category) => (
                   <CategoryCard
                     key={category?.id}
+                    onClick={() => {
+                      router.push(`/search?type=talents&category=${category.id}`);
+                    }}
                     title={category?.name}
                     image={category?.imageUrl || "/images/logo.png"}
                   />

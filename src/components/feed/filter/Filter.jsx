@@ -50,6 +50,8 @@ const EMPTY_FILTERS = {
 export default function Filter({ onFilter, isDrawer , clearFilters}) {
   //params
   const type = useSearchParams().get("type");
+  const category = useSearchParams().get("category");
+
 
   //store
   const subCats = useHomeStore((state) => state.categories);
@@ -76,8 +78,12 @@ export default function Filter({ onFilter, isDrawer , clearFilters}) {
   }, [filters]);
 
   useEffect(() => {
-    setSubCatsData(subCats?.find((obj) => obj?.id == user?.category?.id)?.subCategories);
-  }, [subCats, user]);
+    if(category) {
+      setSubCatsData(subCats?.find((obj) => obj?.id == category)?.subCategories);
+    } else {
+      setSubCatsData(subCats?.find((obj) => obj?.id == user?.category?.id)?.subCategories);
+    }
+  }, [subCats, user, category]);
 
   useEffect(() => {
     onFilter(payload);

@@ -125,22 +125,22 @@ export const homePageSections = async (payload) => {
 }
 
 export const getArticles = async (payload) => {
-  const response = await http.get(`/api/v1/mawhebty-platform/articles?page=${payload?.page || 1}&per_page=6&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}`);
+  const response = await http.get(`/api/v1/mawhebty-platform/articles?page=${payload?.page || 1}&per_page=6&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}&category_id=${payload?.category_id || ''}`);
   return response;
 }
 
 export const getEvents = async (payload) => {
-  const response = await http.get(`/api/v1/mawhebty-platform/events?page=${payload?.page || 1}&per_page=6&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}`);
+  const response = await http.get(`/api/v1/mawhebty-platform/events?page=${payload?.page || 1}&per_page=6&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}&category_id=${payload?.category_id || ''}`);
   return response;
 }
 
 export const getPosts = async (payload) => {
-  const response = await http.get(`/api/v1/mawhebty-platform/posts?page=${payload?.page || 1}&per_page=5&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}`);
+  const response = await http.get(`/api/v1/mawhebty-platform/posts?page=${payload?.page || 1}&per_page=5&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}&category_id=${payload?.category_id || ''}`);
   return response;
 }
 
 export const getTalents = async (payload) => {
-  const response = await http.get(`/api/v1/mawhebty-platform/talents?page=${payload?.page || 1}&per_page=5&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}`);
+  const response = await http.get(`/api/v1/mawhebty-platform/talents?page=${payload?.page || 1}&per_page=6&sort_by=${payload?.sortby || ""}&sub_category_id=${payload?.sub_category}&search=${payload?.search || ''}&category_id=${payload?.category_id || ''}`);
   return response;
 }
 
@@ -243,11 +243,16 @@ export const saveFCMToken = async (payload) => {
 
 //contracts
 export const getContracts = async (payload) => {
-  const response = await http.get(`/api/v1/mawhebty-platform/contracts?page=${payload?.page || 1}&per_page=5`);
+  const response = await http.get(`/api/v1/mawhebty-platform/contracts?page=${payload?.page || 1}&per_page=6`);
   return response;
 }
 
 export const getContractById = async (id) => {
   const response = await http.get(`/api/v1/mawhebty-platform/contracts/${id}`);
+  return response;
+}
+
+export const sendContractRequest = async (payload) => {
+  const response = await http.post(`/api/v1/mawhebty-platform/contracts`, payload);
   return response;
 }

@@ -1,0 +1,121 @@
+@use "../../../../../styles/variables" as *;
+@use "../../../../../styles/mixins" as *;
+@use "../../../../../styles/breakpoints" as bp;
+@use "../../../../../styles/typography" as *;
+
+.container {
+  @include padding-page;
+  font-family: $AlexandriaRegular;
+
+  .talentBox {
+    border: 1px solid $color-grey2;
+    border-radius: 14px;
+    margin-bottom: 98px;
+
+    img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+    }
+
+    .talentInfo {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px;
+
+        .left {
+            display: flex;
+            gap: 20px;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                h2 {
+                    font-size: 18px;
+                    font-family: $AlexandriaSemiBold;
+                    margin-bottom: 3px;
+                }
+                p {
+                    font-size: 14px;
+                    color: $color-grey;
+                    font-family: $AlexandriaRegular;
+                }
+            }
+
+            img {
+                object-fit: contain;
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                margin-top: -80px;
+                background-color: white;
+            }
+        }
+
+        .right {
+            display: flex;
+            gap: 10px;
+
+            img {
+                border-radius: 0;
+            }
+
+            button {
+                padding: 10px 45px;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    .followers {
+        display: flex;
+        gap: 20px;
+        padding: 24px;
+
+        h3 {
+            font-size: 14px;
+            font-family: $AlexandriaRegular;
+            color: $color-grey;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+
+            .talentImage {
+                object-fit: contain;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+            }
+
+            p {
+                font-size: 14px;
+                font-family: $AlexandriaSemiBold;
+            }
+
+            div {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+                font-family: $AlexandriaSemiBold;
+            }
+        }
+    }
+  }
+
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 60%;
+    margin-bottom: 100px;
+  }
+}

@@ -1,0 +1,25 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    h2 {
+        font-size: 18px;
+        font-family: $AlexandriaSemiBold;
+    }
+
+    p {
+        font-size: 14px;
+        color: $color-grey;
+        font-family: $AlexandriaRegular;
+        width: 70%;
+    }
+
+    button {
+        width: 80%;
+    }
+}

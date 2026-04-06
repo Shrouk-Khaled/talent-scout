@@ -18,6 +18,61 @@ export default function Page() {
         })
     },[])
 
+    const getStatusClass = (status) => {
+        switch (status) {
+          case 1:
+            return {
+              class: styles.accepted,
+              text: "مقبول",
+              image: "/images/icons/contract5.svg"
+            };
+          case 2:
+            return {
+              class: styles.rejected,
+              text: "مرفوض",
+              image: "/images/icons/contract4.svg"
+            };
+          case 3:
+            return {
+              class: styles.pending,
+              text: "قيد الانتظار",
+              image: "/images/icons/contract6.svg"
+            };
+          case 4: 
+            return {
+              class: styles.rejected,
+              text: "ملغي",
+              image: "/images/icons/contract4.svg"
+            }
+          case 5: 
+            return {
+              class: styles.accepted,
+              text: "مكتمل",
+              image: "/images/icons/contract5.svg"
+            }
+          default:
+            return "";
+        }
+      }
+
+      const getTypeText = (type) => {
+        switch (type) {
+            case 1:
+                return "دوام كلي";
+            case 3:
+                return "دوام جزئى";
+            case 4:
+                return "شراكة";
+            case 2:
+                return "عمل حر";
+            case 5:
+                return "أخرى";
+            default:
+                return "";
+        }
+      }
+    
+
     return (
         <div className={`${styles.container} app-container`}>
             <h1>تفاصيل الطلب</h1>
@@ -51,7 +106,7 @@ export default function Page() {
                             <div className={styles.box}>
                                 <Image src={"/images/icons/contract3.svg"} width={50} height={50} alt="pic"/>
                                 <p>نوع العمل</p>
-                                <h4>{data?.type == 1 ? "دوام كلي" : data?.type == 3 ? "دوام جزئى" : data?.type == 2 ? "عمل حر" : "اخري"}</h4>
+                                <h4>{getTypeText(data?.type)}</h4>
                                 </div>
                         </div>
                     </div>
@@ -73,12 +128,12 @@ export default function Page() {
                         </div>
                     </div>
 
-                    <div className={`${styles.typeBox} ${styles.pending}`}>
+                    <div className={`${styles.typeBox} ${getStatusClass(data?.status)?.class}`}>
                         <div>
                             <p>حالة الطلب:</p>
-                            <h3>{data?.status}</h3>
+                            <h3>{getStatusClass(data?.status)?.text}</h3>
                         </div>
-                        <Image src={"/images/icons/contract6.svg"} width={20} height={20} alt="pic"/>
+                        <Image src={getStatusClass(data?.status)?.image} width={20} height={20} alt="pic"/>
                     </div>
                 </div>
             </div>

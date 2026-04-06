@@ -50,12 +50,14 @@ export default function SearchPage() {
 
   useEffect(() => {
     const subcategories = searchParams.get("subcategories") || "";
+    const category = searchParams.get("category") || "";
     const searchValue = searchParams.get("q") || "";
     if (sectionType == "posts") {
       setLoading(true);
       getPosts({
         page: currentPage,
         sortby: searchParams.get("sortby"),
+        category_id: category,
         sub_category: subcategories,
         search: searchValue,
       }).then((res) => {
@@ -66,6 +68,7 @@ export default function SearchPage() {
       getArticles({
         page: currentPage,
         sortby: searchParams.get("sortby"),
+        category_id: category,
         sub_category: subcategories,
         search: searchValue,
       }).then((res) => {
@@ -76,6 +79,7 @@ export default function SearchPage() {
       getEvents({
         page: currentPage,
         sortby: searchParams.get("sortby"),
+        category_id: category,
         sub_category: subcategories,
         search: searchValue,
       }).then((res) => {
@@ -86,6 +90,7 @@ export default function SearchPage() {
       getTalents({
         page: currentPage,
         sortby: searchParams.get("sortby"),
+        category_id: category,
         sub_category: subcategories,
         search: searchValue,
       }).then((res) => {

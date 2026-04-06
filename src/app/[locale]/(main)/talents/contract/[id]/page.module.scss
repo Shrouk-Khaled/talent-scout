@@ -1,0 +1,200 @@
+@use "../../../../../../styles/variables" as *;
+@use "../../../../../../styles/mixins" as *;
+@use "../../../../../../styles/breakpoints" as bp;
+@use "../../../../../../styles/typography" as *;
+
+.container {
+  @include padding-page;
+  font-family: $AlexandriaRegular;
+
+  .desc {
+    margin-bottom: 35px;
+    h2 {
+      font-size: 18px;
+      font-family: $AlexandriaSemiBold;
+      margin-bottom: 3px;
+    }
+    p {
+      font-size: 14px;
+      color: $color-grey;
+      font-family: $AlexandriaRegular;
+    }
+  }
+
+  .main {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    // align-items: center;
+
+    .details {
+        margin: 40px 0; 
+        h2 {
+            font-size: 16px;
+            font-family: $AlexandriaSemiBold;
+            margin-bottom: 7px;
+        }
+        p {
+            font-size: 14px;
+            color: $color-grey;
+            font-family: $AlexandriaRegular;
+        }
+    }
+
+    .types {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 20px;
+        span {
+            padding: 12px 16px;
+            background-color: $color-grey4;
+            border-radius: 100px;
+            cursor: pointer;
+
+            &.activeType {
+                background-color: $color-primary;
+                color: white;
+            }
+        }
+    }
+
+    form {
+        font-family: $AlexandriaRegular;
+
+        label {
+            font-family: $AlexandriaSemiBold;
+        }
+
+        p {
+            margin-bottom: 5px !important;
+        }
+    }
+
+    button {
+        width: 50%;
+        padding-top: 13.5px;
+        padding-bottom: 13.5px;
+        margin-top: 20px;
+    }
+
+    .contractInfo {
+      width: 50%;
+      .talentInfo {
+        p {
+          font-size: 14px;
+          color: $color-grey;
+          font-family: $AlexandriaRegular;
+          margin-bottom: 30px;
+        }
+
+        .data {
+          display: flex;
+          gap: 20px;
+          align-items: center;
+
+          img {
+            object-fit: contain;
+            border-radius: 50%;
+            background-color: white;
+          }
+          div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+
+            h2 {
+              font-size: 16px;
+              font-family: $AlexandriaSemiBold;
+              margin-bottom: 3px;
+            }
+            p{
+                font-size: 14px;
+                color: $color-grey;
+                font-family: $AlexandriaRegular;
+                margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+
+    .info {
+      border: 1px solid $color-grey2;
+      border-radius: 12px;
+      padding: 25px;
+      width: 35%;
+      height: fit-content;
+
+      .secTitle {
+        font-size: 16px;
+        font-family: $AlexandriaSemiBold;
+        margin-bottom: 12px;
+      }
+    }
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+//   .item:not(:last-child) {
+//     margin-bottom: 48px;
+//   }
+
+.content {
+  flex: 1;
+  text-align: right;
+  padding-top: 6px;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #111;
+  line-height: 1.4;
+}
+
+.description {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #6f6f6f;
+  line-height: 1.8;
+}
+
+.iconColumn {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.iconWrapper {
+  // width: 72px;
+  // height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.line {
+  width: 2px;
+  height: 90px;
+  background: #dfe5eb;
+  // margin-top: 12px;
+}
