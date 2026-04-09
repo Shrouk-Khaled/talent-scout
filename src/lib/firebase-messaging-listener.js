@@ -2,6 +2,7 @@ import { getMessaging, onMessage, isSupported } from "firebase/messaging";
 import { firebaseApp } from "./firebase";
 
 export async function listenForForegroundMessages(callback) {
+  console.log("Setting up FCM foreground message listener...");
   if (typeof window === "undefined") return null;
 
   const supported = await isSupported();

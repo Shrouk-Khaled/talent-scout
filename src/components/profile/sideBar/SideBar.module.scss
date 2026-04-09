@@ -81,6 +81,30 @@
     }
   }
 
+  .pendingAcc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E5F8E7;
+    gap: 8px;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 0 12px;
+
+    h1 {
+      font-family: $AlexandriaSemiBold;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    p {
+      font-family: $AlexandriaRegular;
+      color: $color-grey;
+      font-size: 12px;
+      width: 80%;
+      line-height: 16px;
+    }
+  }
+
   .pages {
     display: flex;
     flex-direction: column;

@@ -5,8 +5,8 @@ import { Form, message } from "antd";
 import TextArea from "@/components/ui/textArea/TextArea";
 import Input from "@/components/ui/input/Input";
 import Button from "@/components/ui/button/Button";
-import { sendContractRequest } from "@/services/api";
-import { useState } from "react";
+import { getTalentById, sendContractRequest } from "@/services/api";
+import { useEffect, useState } from "react";
 import { ContractSuccessModal } from "@/components/modals/contractSuccessModal/ContractSuccessModal";
 
 const steps = [
@@ -62,6 +62,14 @@ export default function Page({ params }) {
   //states
   const [loading, setLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [talent, setTalent] = useState(null);
+
+  useEffect(()=>{
+    getTalentById(id)
+    .then((res) => {
+      setTalent(res);
+    })
+  },[])
 
   const handleSendContract = () => {
     form
@@ -109,14 +117,14 @@ export default function Page({ params }) {
             <p>ارسال الطلب الي</p>
             <div className={styles.data}>
               <Image
-                src={"/images/logo.png"}
+                src={talent?.user?.image_url || "/images/logo.png"}
                 width={50}
                 height={50}
                 alt="pic"
               />
               <div>
-                <h2>شروق خالد</h2>
-                <p>مصممة جرافيك</p>
+                <h2>{talent?.user?.first_name} {talent?.user?.last_name}</h2>
+                <p>{talent?.user?.short_bio}</p>
               </div>
             </div>
 

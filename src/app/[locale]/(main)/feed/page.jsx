@@ -11,7 +11,6 @@ import Slider from "@/components/ui/slider/Slider";
 import CategoryCard from "@/components/feed/categoryCard/CategoryCard";
 import Post from "@/components/feed/post/Post";
 import { Event } from "@/components/feed/event/Event";
-import { TalentsLine } from "@/components/common/talentsLine/TalentsLine";
 import { Article } from "@/components/feed/article/Article";
 import { homePageSections } from "@/services/api";
 import Loading from "../../loading";
@@ -22,7 +21,7 @@ import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
 export default function Feed() {
   const locale = useLocale();
   const isRTL = locale == "ar";
-  const isMobileScreen = window.innerWidth <= 768;
+  const isMobileScreen = (typeof window != undefined) && window.innerWidth <= 768;
   const categories = useHomeStore((state) => state.categories);
 
   const [openFilter, setOpenFilter] = useState(false);
@@ -51,6 +50,7 @@ export default function Feed() {
   };
 
   useEffect(() => {
+    // refreshToken()
     const data = JSON.parse(localStorage.getItem("user-data"));
     const token = data?.state?.token;
     if (!token) router.replace("/");
@@ -60,9 +60,6 @@ export default function Feed() {
   return (
     <div>
       <div className={`${styles.container} `}>
-        <div className={styles.categories}>
-          <TalentsLine />
-        </div>
         <div className={`app-container ${styles.main}`}>
           <DownloadAppBox />
 

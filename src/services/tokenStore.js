@@ -35,7 +35,7 @@ export const getAccessToken = () => {
 };
 
 // Set access token to localStorage (only in browser)
-export const setAccessToken = (token) => {
+export const setAccessToken = (token, tokenType) => {
   if (!isBrowser()) return;
   
   try {
@@ -46,6 +46,7 @@ export const setAccessToken = (token) => {
       ...parsedData,
       state: {
         ...parsedData.state,
+        token_type: tokenType,
         token
       }
     };

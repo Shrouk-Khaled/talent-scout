@@ -79,8 +79,10 @@
 import Image from "next/image";
 import styles from "./Post.module.scss";
 import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
+import { useRouter } from "next/navigation";
 
 export default function Post({ isTalent, data, imageH, showFooter }) {
+  const router = useRouter()
   const ownerName = data?.owner
     ? `${data.owner.first_name} ${data.owner.last_name}`
     : "مجهول 212";
@@ -119,7 +121,7 @@ export default function Post({ isTalent, data, imageH, showFooter }) {
             className={styles.avatar}
           />
           <div>
-            <h6>{ownerName}</h6>
+            <h6 onClick={() => router.push(`/talents/${data?.owner?.id}`)}>{ownerName}</h6>
             <p>{date}</p>
           </div>
         </div>

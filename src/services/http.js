@@ -1,7 +1,8 @@
 import axios from "axios";
 import { API_BASE_URL } from "./config";
 import { message } from "antd";
-import { getAccessToken } from "./tokenStore";
+import { getAccessToken, setAccessToken } from "./tokenStore";
+import { refreshToken } from "./api";
 
 // Create a single axios instance
 const http = axios.create({
@@ -30,10 +31,20 @@ http.interceptors.response.use(
   (error) => {
     console.log('HTTP Error:', error.status);
     if(error?.response?.status === 401){
-      message.error('Unauthorized. Please log in again.');
-      localStorage.clear();
-      //redirect to login page
-      window.location.href = '/';
+      refreshToken().then((res) => {
+        console.log("new token:", res);
+        setAccessToken(res?.access_token, res?.token_type);
+        window.location.reload();
+        // message.success('Session refreshed. Please try your action again.');
+        // save the token
+        // reload the page to retry the original request with the new token
+        // window.location.reload();
+      }).catch(() => {
+      })
+      // message.error('Unauthorized. Please log in again.');
+      // localStorage.clear();
+      // //redirect to login page
+      // window.location.href = '/';
       // Optionally, you can trigger a logout or redirect to login page here
     } else
     if (error.response) {

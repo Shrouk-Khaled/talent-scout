@@ -266,3 +266,9 @@ export const sendContractRequest = async (payload) => {
   const response = await http.post(`/api/v1/mawhebty-platform/contracts`, payload);
   return response;
 }
+
+//refresh token
+export const refreshToken = async (payload) => {
+  const response = await http.post(`/api/v1/auth/refresh`, payload);
+  return response;
+}
