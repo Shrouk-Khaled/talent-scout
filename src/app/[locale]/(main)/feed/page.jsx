@@ -50,7 +50,6 @@ export default function Feed() {
   };
 
   useEffect(() => {
-    // refreshToken()
     const data = JSON.parse(localStorage.getItem("user-data"));
     const token = data?.state?.token;
     if (!token) router.replace("/");

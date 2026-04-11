@@ -31,9 +31,9 @@ http.interceptors.response.use(
   (error) => {
     console.log('HTTP Error:', error.status);
     if(error?.response?.status === 401){
-      refreshToken().then((res) => {
+      refreshToken("", getAccessToken()).then((res) => {
         console.log("new token:", res);
-        setAccessToken(res?.access_token, res?.token_type);
+        setAccessToken(res?.access_token, res?.token_type, res?.refresh_token);
         window.location.reload();
         // message.success('Session refreshed. Please try your action again.');
         // save the token

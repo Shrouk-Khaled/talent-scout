@@ -6,6 +6,10 @@ import { persist, createJSONStorage } from "zustand/middleware";
 export const useUserStore = create(
   persist(
     (set, get) => ({
+      // userData:
+      //   typeof window != undefined
+      //     ? JSON.parse(localStorage.getItem("user-data"))?.state || null
+      //     : null,
       userData: null,
       token: null,
       info: null,
@@ -13,7 +17,7 @@ export const useUserStore = create(
       setUserData: (data) =>
         set({
           userData: data,
-          token: data?.access_token
+          token: data?.access_token,
         }),
 
       setUserInfo: (data) =>

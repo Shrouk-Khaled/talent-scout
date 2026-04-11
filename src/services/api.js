@@ -268,7 +268,22 @@ export const sendContractRequest = async (payload) => {
 }
 
 //refresh token
-export const refreshToken = async (payload) => {
-  const response = await http.post(`/api/v1/auth/refresh`, payload);
+export const refreshToken = async (payload, refreshTokenValue) => {
+  const response = await http.post(
+    `/api/v1/auth/refresh`,
+    payload,
+    {
+      headers: {
+        'X-Refresh-Token': refreshTokenValue,
+      },
+    }
+  );
+
+  return response;
+};
+
+//delete account 
+export const deleteAccount = async () => {
+  const response = await http.delete(`/api/v1/mawhebty-platform/profile/user`);
   return response;
 }

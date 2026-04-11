@@ -9,10 +9,11 @@ import UserDropdown from "../userDropdown/UserDropdown";
 import { SearchInput } from "../searchInput/SearchInput";
 import { useUserStore } from "@/store/useUserStore";
 import { Divider } from "antd";
-import { saveFCMToken } from "@/services/api";
+import { refreshToken, saveFCMToken } from "@/services/api";
 import { Notifications } from "../notifications/Notifications";
 import { getFcmToken } from "@/lib/fcm";
 import { AddPost } from "../addPost/AddPost";
+import { getRefreshToken, setAccessToken } from "@/services/tokenStore";
 
 export default function MainHeader() {
   const locale = useLocale();
@@ -22,8 +23,18 @@ export default function MainHeader() {
   //store
   const userInfo = useUserStore((state) => state.info);
   const userAccess = useUserStore((state) => state.userData)?.token_type;
+  const saveUserData = useUserStore((state) => state.setUserData);
+
   //states
   const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    refreshToken("", getRefreshToken()).then((res) => {
+      const tokens = res?.token_response;
+      setAccessToken(tokens?.access_token, tokens?.token_type, tokens?.refresh_token);
+      saveUserData(tokens)
+    })
+  },[])
 
   useEffect(() => {
     const initFcm = async () => {
