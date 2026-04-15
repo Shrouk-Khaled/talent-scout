@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
 import { IoIosArrowDropup, IoIosArrowDropdown } from "react-icons/io";
-import { getReels } from "@/services/api";
+import { getReels, likePost, unlikePost } from "@/services/api";
 
 export default function ReelsViewer({ onClose }) {
   const router = useRouter();
@@ -19,6 +19,10 @@ export default function ReelsViewer({ onClose }) {
   const [isFetching, setIsFetching] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [progressMap, setProgressMap] = useState({});
+  //like states
+  const [likeLoading, setLikeLoading] = useState(false);
+  const [isLiked, setIsLiked] = useState(null);
+  const [likesCount, setLikesCount] = useState(null);
 
   const containerRef = useRef(null);
   const itemRefs = useRef([]);
@@ -213,6 +217,33 @@ export default function ReelsViewer({ onClose }) {
 
   if (!mounted) return null;
 
+  const handleLikePost = (item) => {
+    setLikeLoading(true);
+    if(item?.is_liked) {
+       unlikePost({ post_id: item?.id }).then((res) => {
+        setLikeLoading(false);
+        setVideos((prev) =>
+          prev.map((video) =>
+            video.id === item.id ? { ...video, is_liked: false, likes_count: res?.likes_count } : video
+          )
+        );
+      }).finally(() => {
+        setLikeLoading(false);
+      });
+    } else {
+      likePost(({ post_id: item?.id })).then((res) => {
+        setLikeLoading(false);
+        setVideos((prev) =>
+          prev.map((video) =>
+            video.id === item.id ? { ...video, is_liked: true, likes_count: res?.likes_count } : video
+          )
+        );
+      }).finally(() => {
+        setLikeLoading(false);
+      });
+    }
+  }
+
 
   return (
     <ReelsPortal>
@@ -302,14 +333,20 @@ export default function ReelsViewer({ onClose }) {
 
                 <div className={styles.overlayContent}>
                   <div className={styles.rightActions}>
-                    <button type="button" className={styles.actionButton}>
+                    <button type="button" className={styles.actionButton} 
+                    onClick={() => handleLikePost(item)}
+                    style={{
+                      filter: likeLoading ? "grayscale(100%)" : "none",
+                      cursor: likeLoading ? "not-allowed" : "pointer",
+                    }}
+                    >
                       <Image
-                        src={"/images/icons/outline-fav.svg"}
+                        src={item?.is_liked ? "/images/icons/fav.svg" : "/images/icons/outline-fav.svg"}
                         height={20}
                         width={20}
                         alt="fav icon"
                       />
-                      <span>{item.likes_count || ''}</span>
+                      <span>{item.likes_count}</span>
                     </button>
 
                     <button type="button" className={styles.actionButton}>

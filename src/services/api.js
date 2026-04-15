@@ -287,3 +287,15 @@ export const deleteAccount = async () => {
   const response = await http.delete(`/api/v1/mawhebty-platform/profile/user`);
   return response;
 }
+
+//action: Like post
+export const likePost = async (payload) => {
+  const response = await http.post(`/api/v1/mawhebty-platform/posts/${payload?.post_id}/like`, "");
+  return response;
+}
+
+//action: unlike post
+export const unlikePost = async (payload) => {
+  const response = await http.delete(`/api/v1/mawhebty-platform/posts/${payload?.post_id}/like`, "");
+  return response;
+}

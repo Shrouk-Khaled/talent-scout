@@ -1,85 +1,10 @@
-// import Image from "next/image";
-// import styles from "./Post.module.scss";
-// import Button from "@/components/ui/button/Button";
-
-// export default function Post({ isTalent }) {
-//   return (
-//     <div className={styles.post}>
-//       <div className={styles.talentData}>
-//         <div className={styles.info}>
-//           <Image
-//             src="/images/avatar.png"
-//             alt="User Avatar"
-//             width={50}
-//             height={50}
-//             className={styles.avatar}
-//           />
-//           <div>
-//             <h6>مجهول 212</h6>
-//             <p>منذ 3 ساعات</p>
-//           </div>
-//         </div>
-//         {/* <div className={styles.personalTalent}>
-//           <p>موهبة شخصية</p>
-//         </div> */}
-//       </div>
-
-//       <div className={styles.content}>
-//         {/*<h5>لاعب كره قدم</h5>*/}
-//         <div>
-//           <p>
-//             أهم جزء من يومي مو بس التمرين… الأكل اللي يساعدني أكمّل مشواري كلاعب
-//             كرة قدم. 💪🔥 أركز دايمًا على البروتين، الخضار، وشرب الموية، لأن
-// اللاعب اللي يهتم بصحته…
-//             <span>قراءة المزيد</span>
-//           </p>
-//         </div>
-//         <Image
-//           src="/images/home/event.png"
-//           alt="Post Image"
-//           width={600}
-//           height={280}
-//           className={styles.postImage}
-//         />
-//       </div>
-//       {/*
-//       <div className={styles.postFooter}>
-//             <div className={styles.reactions}>
-//                 <div className={styles.reaction}>
-//                     <Image
-//                         src="/images/icons/fav.svg"
-//                         alt="Like Icon"
-//                         width={20}
-//                         height={20}
-//                         className={styles.icon}
-//                     />
-//                     <span>24</span>
-//                 </div>
-//                 <div className={styles.reaction}>
-//                     <Image
-//                         src="/images/icons/save.svg"
-//                         alt="Like Icon"
-//                         width={20}
-//                         height={20}
-//                         className={styles.icon}
-//                     />
-//                 </div>
-//             </div>
-//             <div className={styles.sendContract}>
-//               {
-//                 !isTalent &&
-//                   <Button>أرسل عقد</Button>
-//               }
-//             </div>
-//       </div> */}
-//     </div>
-//   );
-// }
-
+"use client";
 import Image from "next/image";
 import styles from "./Post.module.scss";
 import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
 import { useRouter } from "next/navigation";
+import { likePost, unlikePost } from "@/services/api";
+import { useState } from "react";
 
 export default function Post({ isTalent, data, imageH, showFooter }) {
   const router = useRouter()
@@ -108,6 +33,32 @@ export default function Post({ isTalent, data, imageH, showFooter }) {
   const isVideo = mediaUrl?.match(/\.(mp4|webm|ogg|mov)$/i);
   const isPdf = mediaUrl?.match(/\.pdf$/i);
   const isImage = mediaUrl?.match(/\.(jpg|jpeg|png|gif|webp)$/i);
+
+  //states
+  const [likeLoading, setLikeLoading] = useState(false);
+  const [isLiked, setIsLiked] = useState(data?.is_liked);
+  const [likesCount, setLikesCount] = useState(data?.likes_count || 0);
+
+  const handleLikePost = () => {
+    setLikeLoading(true);
+    if(isLiked) {
+       unlikePost({ post_id: data?.id }).then((res) => {
+        setLikeLoading(false);
+        setIsLiked(false);
+        setLikesCount(res?.likes_count)
+      }).finally(() => {
+        setLikeLoading(false);
+      });
+    } else {
+      likePost(({ post_id: data?.id })).then((res) => {
+        setLikeLoading(false);
+        setIsLiked(true);
+        setLikesCount(res?.likes_count)
+      }).finally(() => {
+        setLikeLoading(false);
+      });
+    }
+  }
 
   return (
     <div className={styles.post}>
@@ -162,15 +113,20 @@ export default function Post({ isTalent, data, imageH, showFooter }) {
       {showFooter && (
         <div className={styles.postFooter}>
           <div className={styles.reactions}>
-            <div className={styles.reaction}>
+            <div className={styles.reaction} 
+              style={{
+                filter: likeLoading ? "grayscale(100%)" : "none",
+                cursor: likeLoading ? "not-allowed" : "pointer",
+              }}
+            onClick={handleLikePost}>
               <Image
-                src="/images/icons/outline-heart.svg"
+                src={isLiked ? "/images/icons/fav.svg" : "/images/icons/outline-heart.svg"}
                 alt="Like Icon"
                 width={20}
                 height={20}
                 className={styles.icon}
               />
-              <span>{data?.likes_count}</span>
+              <span>{likesCount}</span>
             </div>
             {/* <div className={styles.reaction}> */}
               {/* <Image

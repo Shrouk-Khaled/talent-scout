@@ -110,7 +110,7 @@ export default function Feed() {
                   >
                     {homeData.posts?.data?.length > 0 &&
                       homeData.posts.data.map((post) => (
-                        <Post key={post.id} data={post} />
+                        <Post key={post.id} data={post} showFooter/>
                       ))}
                   </Slider>
                 </div>
