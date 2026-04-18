@@ -10,9 +10,9 @@ export default function Features() {
 
   return (
     <div className={`${styles.features} app-container`}>
-      <p className={styles.title}>خطوات بسيطة نحو مستقبلك</p>
+      <p className={styles.title}>{t("smallSteps")}</p>
       <h1 className={styles.desc}>
-        منصّة آمنة تمنحك الثقة و<span>الاطمئنان</span>
+         {t("smallStepsDesc")} <span>{t("smallStepsDescSpan")}</span>
       </h1>
 
       <div className={styles.steps}>
@@ -29,7 +29,7 @@ export default function Features() {
       <Button isArrow onClick={() => {
                 router.push('/auth/login');
             }}>
-        انضم الي المنصة
+        {t("joinPlatform")}
       </Button>
     </div>
   );

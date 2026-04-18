@@ -1,24 +1,26 @@
 import React from "react";
 import styles from "./DownloadAppBox.module.scss";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function DownloadAppBox() {
+  const t = useTranslations("footer");
   return (
-    <aside className={styles.wrapper} aria-label="Download app">
+    <aside className={styles.wrapper} aria-label="Download app" dir="rtl">
         <div className={styles.info}>
           <h1>
-          حيث تجتمع العقول الموهوبة بالباحثين لصناعة مستقبل مُلهم
+            {t("downloadTitle")}
           </h1>
           <p>
-          اعرض مهاراتك، واكتشف المواهب عبر مختلف المجالات، وتواصل مع الباحثين والمستثمرين من خلال تطبيق واحد. ابقَ مُلهَماً، واجعل موهبتك مرئية، ووسّع فرصك في أي وقت وأي مكان.
+            {t("downloadDesc")}
           </p>
           <div className={styles.stores}>
             <p>
-              التنزيل من جوجل بلاي
+              {t("downloadGooglePlay")}
               <Image src="/images/icons/google-play.svg" alt="App Store" width={24} height={24} priority />
             </p>
             <p>
-              التنزيل من أبب ستور
+              {t("downloadAppStore")}
               <Image src="/images/icons/app-store.svg" alt="App Store" width={24} height={24} priority />
             </p>
           </div>

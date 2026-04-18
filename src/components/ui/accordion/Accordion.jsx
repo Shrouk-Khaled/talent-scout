@@ -39,7 +39,7 @@ export default function Accordion({ items = [], defaultOpen = 0 }) {
 
   return (
     // dir="rtl" so Arabic is correct; you can remove if parent already sets it
-    <div className={styles.accordion} dir="rtl" role="presentation">
+    <div className={styles.accordion} role="presentation">
       {items.map((item, idx) => {
         const isOpen = idx === openIndex;
         return (

@@ -2,9 +2,11 @@ import Image from "next/image";
 import styles from "./HowToStart.module.scss";
 import Button from "@/components/ui/button/Button";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function HowToStart({ isResearcher }) {
   const router = useRouter();
+  const t = useTranslations("Home");
   
   return (
     <div className={`${isResearcher && styles.reverse} ${styles.section}`}>
@@ -23,9 +25,9 @@ export default function HowToStart({ isResearcher }) {
       </div>
       {isResearcher ? (
         <div className={styles.info}>
-          <h6>خطوات البدء كباحث</h6>
+          <h6>{t("getStartedAsResearcher")}</h6>
           <h1>
-            وفرنا لك خطوات سهلة وبسيطة تمكّنك من <span>استكشاف</span> المواهب
+            {t("getStartedAsResearcherDesc")}
           </h1>
 
           <div className={styles.steps}>
@@ -37,8 +39,8 @@ export default function HowToStart({ isResearcher }) {
                 height={40}
               />
               <div>
-                <h6>سجل كباحث</h6>
-                <p>أنشئ حسابك وحدد اهتماماتك ومجالك.</p>
+                <h6>{t("step1Researcher")}</h6>
+                <p>{t("step1ResearcherDesc")}</p>
               </div>
             </div>
 
@@ -50,8 +52,8 @@ export default function HowToStart({ isResearcher }) {
                 height={40}
               />
               <div>
-                <h6>اكتشف المواهب</h6>
-                <p>ابحث في الخلاصة، تصفح المشاريع، واحفظ المميز منها.</p>
+                <h6>{t("step2Researcher")}</h6>
+                <p>{t("step2ResearcherDesc")}</p>
               </div>
             </div>
 
@@ -63,21 +65,21 @@ export default function HowToStart({ isResearcher }) {
                 height={40}
               />
               <div>
-                <h6>ابدأ التعاون</h6>
-                <p>تواصل مع الموهبة، أرسل عقد، وادعم الابتكار.</p>
+                <h6>{t("step3Researcher")}</h6>
+                <p>{t("step3ResearcherDesc")}</p>
               </div>
             </div>
           </div>
 
           <Button isArrow onClick={() => {
                 router.push('/auth/login');
-            }}>سجل كباحث الان</Button>
+            }}>{t("registerAsResearcher")}</Button>
         </div>
       ) : (
         <div className={styles.info}>
-          <h6>خطوات البدء كموهوب</h6>
+          <h6>{t("getStartedAsTalent")}</h6>
           <h1>
-            وفرنا لك خطوات سهلة لتسجّل <span>موهبتك</span> وتنطلق بثقة
+            {t("getStartedAsTalentDesc")}
           </h1>
 
           <div className={styles.steps}>
@@ -89,8 +91,8 @@ export default function HowToStart({ isResearcher }) {
                 height={40}
               />
               <div>
-                <h6>أنشئ حسابك</h6>
-                <p>سجل بياناتك واملأ ملفك الشخصي.</p>
+                <h6>{t("step1")}</h6>
+                <p>{t("step1Desc")}</p>
               </div>
             </div>
 
@@ -102,8 +104,8 @@ export default function HowToStart({ isResearcher }) {
                 height={40}
               />
               <div>
-                <h6>اعرض موهبتك</h6>
-                <p>شارك مشاريعك، أفكارك، وصوّر ريلز قصيرة تعبر عنك.</p>
+                <h6>{t("step2")}</h6>
+                <p>{t("step2Desc")}</p>
               </div>
             </div>
 
@@ -115,15 +117,15 @@ export default function HowToStart({ isResearcher }) {
                 height={40}
               />
               <div>
-                <h6>اتصل بالباحثين</h6>
-                <p>استقبل العروض، وقع العقود، وطور فرصك.</p>
+                <h6>{t("step3")}</h6>
+                <p>{t("step3Desc")}</p>
               </div>
             </div>
           </div>
 
           <Button isArrow onClick={() => {
                 router.push('/auth/login');
-            }}>سجل كموهوب الان</Button>
+            }}>{t("registerAsTalent")}</Button>
         </div>
       )}
     </div>

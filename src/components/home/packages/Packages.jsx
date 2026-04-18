@@ -1,60 +1,63 @@
 import Button from "@/components/ui/button/Button";
 import styles from "./Packages.module.scss";
 import { FaCheck } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 
 export default function Packages() {
+  const t = useTranslations("Home");
+
   return (
     <div className={styles.section}>
-      <p className={styles.title}>الباقات و الأسعار</p>
+      <p className={styles.title}>{t("pricingTitle")}</p>
       <h1 className={styles.desc}>
-        استمتع بمزايا الباقة الإحترافيه <span>مجانا</span> لمده سنة
+        {t("pricingHeadline")}
       </h1>
 
       <div className={styles.packages}>
         <div className={`${styles.package} ${styles.normal}`}>
-            <h1>الباقة المميزة</h1>
-            <h3><span>0.00</span> ريال/السنة</h3>
+            <h1>{t("basicPlan")}</h1>
+            <h3><span>0.00</span> {t("basicPrice")}</h3>
 
-            <Button outline>إشترك الأن</Button>
+            <Button outline>{t("basicButton")}</Button>
 
-            <h4>تحتوى علي:</h4>
+            <h4>{t("basicIncludes")}</h4>
 
             <div className={styles.list}>
-                 <p><FaCheck />ظهور محلي فقط</p> 
-                 <p><FaCheck />بدون مميزات إضافية</p> 
-                 <p><FaCheck />مناسبة للمستخدمين الجدد </p> 
+                 <p><FaCheck />{t("basicFeature1")}</p> 
+                 <p><FaCheck />{t("basicFeature2")}</p> 
+                 <p><FaCheck />{t("basicFeature3")} </p> 
             </div>
             
         </div>
 
         <div className={`${styles.package} ${styles.normal}`}>
-            <h1>الباقة المتقدمة</h1>
-            <h3><span>400</span> ريال/السنة</h3>
+            <h1>{t("advancedPlan")}</h1>
+            <h3><span>400</span> {t("basicPrice")}</h3>
 
-            <Button outline>إشترك الأن</Button>
+            <Button outline>{t("basicButton")}</Button>
 
-            <h4>تحتوى علي:</h4>
+            <h4>{t("basicIncludes")}</h4>
 
             <div className={styles.list}>
-                 <p><FaCheck />ظهور محلي + إقليمي</p> 
-                 <p><FaCheck />إمكانية رفع مستندات وصور</p> 
-                 <p><FaCheck />دعم تواصل محدود مع الباحثين</p> 
+                 <p><FaCheck />{t("advancedFeature1")}</p> 
+                 <p><FaCheck />{t("advancedFeature2")}</p> 
+                 <p><FaCheck />{t("advancedFeature3")}</p> 
             </div>
             
         </div>
 
         <div className={styles.package}>
-            <h1>الباقة المميزة</h1>
-            <h3><span>مجانية</span> لمدة سنة</h3>
+            <h1>{t("premiumPlan")}</h1>
+            <h3><span>{t("free")}{" "}</span>{t("premiumPrice")}</h3>
 
-            <Button>إبدأ الان مجانا</Button>
+            <Button>{t("premiumButton")}</Button>
 
-            <h4>تحتوى علي:</h4>
+            <h4>{t("basicIncludes")}</h4>
 
             <div className={styles.list}>
-                 <p><FaCheck />ظهور محلي + إقليمي + دولي</p> 
-                 <p><FaCheck />إبراز الملف في البحث</p> 
-                 <p><FaCheck />تواصل غير محدود مع الباحثين</p> 
+                 <p><FaCheck />{t("premiumFeature1")}</p> 
+                 <p><FaCheck />{t("premiumFeature2")}</p> 
+                 <p><FaCheck />{t("premiumFeature3")}</p> 
             </div>
             
         </div>

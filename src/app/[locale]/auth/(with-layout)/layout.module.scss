@@ -69,6 +69,8 @@
   }
 }
 
+
+
 .headline {
   margin: 0;
   line-height: 1.2;
@@ -76,6 +78,10 @@
   letter-spacing: 0.2px;
   font-size: 44px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+:global([dir="ltr"]) .headline {
+  font-size: 30px;
 }
 
 .icon {

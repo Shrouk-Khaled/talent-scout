@@ -1,63 +1,209 @@
 {
-    "Home": {
-      "heroText": "Together we inspire the world and build a future of creativity and innovation.",
-      "description": "Where talented minds and researchers come together to create an inspiring future",
-      "heroText2": "An integrated web and mobile platform that brings together young talents with their ideas, skills, and innovations, with researchers and investors to create a promising future.",
-      "shareYourTalent": "Share Your Talent",
-      "discoverTalents": "Discover Talents",
-      "knowUs": "Get to know us",
-      "KnowUsDesc": "Because your comfort is our priority, we offer solutions that meet all",
-      "needs": "your needs.",
-      "knowUsDesc2": "We are a global platform based in Saudi Arabia, our goal is to showcase talents and creativity and connect them",
-      "forTalents": "For Talents",
-      "forTalentsDesc": "Showcase your talent, share your creativity, and reach the opportunities you deserve.",
-      "forResearchers": "For Researchers",
-      "forResearchersDesc": "Discover talents, invest in ideas, and be part of a bright future.",
-      "getStarted": "Get Started",
-  
-      "steps": [
-        {
-          "number": "01",
-          "title": "Secure Communication",
-          "desc": "Direct chat is restricted to protect personal data (without sharing phone numbers or addresses)."
-        },
-        {
-          "number": "02",
-          "title": "Contracts with Administrative Review",
-          "desc": "Every contract request is reviewed through the admin portal before reaching the parties, ensuring transparency and reliability."
-        },
-        {
-          "number": "03",
-          "title": "Contracts with Administrative Review",
-          "desc": "The platform grants these talents priority and higher ranking in search engines."
-        },
-        {
-          "number": "04",
-          "title": "Profile Badges",
-          "desc": "Users earn badges based on their previous work and the events they participated in."
-        },
-        {
-          "number": "05",
-          "title": "AI Supervision",
-          "desc": "All uploaded content is reviewed to ensure quality, and submissions are only accepted after admin approval."
-        },
-        {
-          "number": "06",
-          "title": "Profile Badges",
-          "desc": "Your messages, files, and personal information are protected with the highest global encryption technologies."
-        }
-      ]
-    },
-    "About": {
-      "title": "About Us"
-    },
-    "Header": {
-      "home": "Home",
-      "about": "About",
-      "events": "Events",
-      "articles": "Articles",
-      "talents": "Talents",
-      "login": "Login"
-    }
+  "Home": {
+    "heroText": "Together we inspire the world and build a future of creativity and innovation.",
+    "description": "Where talented minds and researchers come together to create an inspiring future",
+    "heroText2": "An integrated web and mobile platform that brings together young talents with their ideas, skills, and innovations, with researchers and investors to create a promising future.",
+    "shareYourTalent": "Share Your Talent",
+    "discoverTalents": "Discover Talents",
+    "knowUs": "Get to know us",
+    "KnowUsDesc": "Because your comfort is our priority, we offer solutions that meet all",
+    "needs": "your needs.",
+    "knowUsDesc2": "We are a global platform based in Saudi Arabia, our goal is to showcase talents and creativity and connect them",
+    "forTalents": "For Talents",
+    "forTalentsDesc": "Showcase your talent, share your creativity, and reach the opportunities you deserve.",
+    "forResearchers": "For Researchers",
+    "forResearchersDesc": "Discover talents, invest in ideas, and be part of a bright future.",
+    "getStarted": "Get Started",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Secure Communication",
+        "desc": "Direct chat is restricted to protect personal data (without sharing phone numbers or addresses)."
+      },
+      {
+        "number": "02",
+        "title": "Contracts with Administrative Review",
+        "desc": "Every contract request is reviewed through the admin portal before reaching the parties, ensuring transparency and reliability."
+      },
+      {
+        "number": "03",
+        "title": "Contracts with Administrative Review",
+        "desc": "The platform grants these talents priority and higher ranking in search engines."
+      },
+      {
+        "number": "04",
+        "title": "Profile Badges",
+        "desc": "Users earn badges based on their previous work and the events they participated in."
+      },
+      {
+        "number": "05",
+        "title": "AI Supervision",
+        "desc": "All uploaded content is reviewed to ensure quality, and submissions are only accepted after admin approval."
+      },
+      {
+        "number": "06",
+        "title": "Profile Badges",
+        "desc": "Your messages, files, and personal information are protected with the highest global encryption technologies."
+      }
+    ],
+    "smallSteps": "Simple steps towards your future",
+    "smallStepsDesc": "A secure platform that gives you confidence and",
+    "smallStepsDescSpan": "peace of mind",
+    "joinPlatform": "Join the platform",
+    "talents": "Talents",
+    "talentsDesc": "Discover a diverse range of ",
+    "categories": [
+      {
+        "title": "Art & Design",
+        "icon": "talent.png"
+      },
+      {
+        "title": "Entrepreneurship & Marketing",
+        "icon": "talent3.png"
+      },
+      {
+        "title": "Fitness & Health",
+        "icon": "talent2.png"
+      },
+      {
+        "title": "Writing & Translation",
+        "icon": "talent.png"
+      },
+      {
+        "title": "Audio & Video",
+        "icon": "talent7.png"
+      },
+      {
+        "title": "Consulting & Training",
+        "icon": "talent6.png"
+      },
+      {
+        "title": "Programming & Technology",
+        "icon": "talent5.png"
+      },
+      {
+        "title": "Acting & Performing Arts",
+        "icon": "talent4.png"
+      }
+    ],
+    "getStartedAsTalent": "Getting Started as a Talent",
+    "getStartedAsTalentDesc": "We’ve provided simple steps to help you register your talent and start with confidence.",
+    "step1": "Create Your Account",
+    "step1Desc": "Sign up and complete your profile.",
+    "step2": "Add Your Talent",
+    "step2Desc": "Share your projects, ideas, and short reels that express who you are.",
+    "step3": "Connect with Researchers",
+    "step3Desc": "Receive offers, sign contracts, and grow your opportunities.",
+    "getStartedAsResearcher": "Getting Started as a Researcher",
+    "getStartedAsResearcherDesc": "We’ve provided simple and easy steps to help you explore talents.",
+    "step1Researcher": "Register as a Researcher",
+    "step1ResearcherDesc": "Create your account as a Researcher.",
+    "step2Researcher": "Search for Talents",
+    "step2ResearcherDesc": "Browse the feed, explore projects, and save the ones you like.",
+    "step3Researcher": "Start Collaborating",
+    "step3ResearcherDesc": "Connect with talents, send contracts, and support innovation.",
+    "registerAsTalent": "Register as Talent",
+    "registerAsResearcher": "Register as a Researcher",
+    "pricingTitle": "Plans & Pricing",
+    "pricingHeadline": "Enjoy the benefits of the Professional Plan free for one year",
+    "basicPlan": "Basic Plan",
+    "basicPrice": "SAR / year",
+    "basicButton": "Subscribe Now",
+    "basicIncludes": "Includes:",
+    "basicFeature1": "Local visibility only",
+    "basicFeature2": "No additional features",
+    "basicFeature3": "Suitable for new users",
+    "advancedPlan": "Advanced Plan",
+    "advancedPrice": "SAR / year",
+    "advancedButton": "Subscribe Now",
+    "advancedIncludes": "Includes:",
+    "advancedFeature1": "Local and regional visibility",
+    "advancedFeature2": "Ability to upload documents and images",
+    "advancedFeature3": "Limited communication support with researchers",
+    "premiumPlan": "Premium Plan",
+    "premiumPrice": "for one year",
+    "premiumButton": "Start Now for Free",
+    "premiumIncludes": "Includes:",
+    "premiumFeature1": "Local, regional, and international visibility",
+    "premiumFeature2": "Profile highlighted in search",
+    "premiumFeature3": "Unlimited communication with researchers",
+    "free": "Free",
+    "futureSteps": "Simple steps towards your future",
+    "futureStepsDesc": "Still hesitant? Here's what you need to know",
+    "questions": [
+      {
+        "title": "What is Talent Scout and how does it work?",
+        "subtitle": "",
+        "content":
+          "Every contract request is reviewed through the administration portal before it reaches the talent, to ensure transparency and reliability."
+      },
+      {
+        "title": "How can I get work through it?",
+        "subtitle": "",
+        "content":
+          "Create an account, complete your profile, apply for suitable opportunities, and wait for approval."
+      },
+      {
+        "title": "How will I receive my payments?",
+        "subtitle": "",
+        "content":
+          "Payments are transferred to the registered bank account within 30 business days after the project ends."
+      },
+      {
+        "title": "What kind of support do you provide?",
+        "subtitle": "",
+        "content":
+          "We provide temporary hiring support, technical support for talents, and contract follow-up."
+      }
+    ]
+  },
+  "footer": {
+    "appDesc": "Our platform brings together talented individuals and researchers in a safe and reliable environment. We believe that everyone has a talent worth discovering, and we open the doors for you to be part of an inspiring future.",
+    "importantLinks": "Important Links",
+    "contactUs": "Contact Us",
+    "downloadTitle": "Where talented minds and researchers come together to create an inspiring future",
+    "downloadDesc": "Download our app and start your journey towards a bright future filled with creativity and innovation.",
+    "downloadGooglePlay": "Download on Google Play",
+    "downloadAppStore": "Download on the App Store"
+  },
+  "About": {
+    "title": "About Us"
+  },
+  "Header": {
+    "home": "Home",
+    "about": "About",
+    "events": "Events",
+    "articles": "Articles",
+    "talents": "Talents",
+    "login": "Login"
+  },
+  "auth": {
+    "layoutTitle": "Welcome to Mawhebty",
+    "layoutDesc1": "Discover, Connect, and Start",
+    "layoutDesc2": "Your journey towards showcasing your talent and connecting with researchers begins here.",
+    "loginTitle": "Welcome Back!",
+    "loginDesc": "Please enter your credentials to continue.",
+    "email": "Email",
+    "password": "Password",
+    "rememberMe": "Remember Me",
+    "forgotPassword": "Forgot Password?",
+    "loginButton": "Login",
+    "registerTitle": "Create an Account",
+    "registerDesc": "Join us and start showcasing your talent.",
+    "name": "Name",
+    "confirmPassword": "Confirm Password",
+    "registerButton": "Register",
+    "enterEmailForAuth": "Enter your email to login or create an account",
+    "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms and Conditions",
+      "iAccept": "I accept the",
+        "and": "and",
+        "next": "Next",
+        "or": "or",
+        "google": "Google",
+        "apple": "Apple",
+        "pleaseEnterEmail": "Please enter your email",
+        "pleaseEnterCorrectEmail": "Please enter a valid email address",
+        "pleaseAcceptTerms": "Please accept the terms and conditions to proceed"
   }
-  
+}

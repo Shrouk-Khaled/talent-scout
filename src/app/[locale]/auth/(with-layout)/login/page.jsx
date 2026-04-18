@@ -10,8 +10,10 @@ import { login } from "@/services/api";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { API_BASE_URL } from "@/services/config";
+import { useTranslations } from "next-intl";
 
 export default function LoginPage() {
+  const t= useTranslations("auth")
   const router = useRouter();
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
@@ -29,7 +31,7 @@ export default function LoginPage() {
       if(!termsConfirmed) {
         messageApi.open({
           type: "error",
-          content: "يرجى الموافقة على الشروط والأحكام للمتابعة"
+          content: t("pleaseAcceptTerms")
         });
         return;
       }
@@ -63,9 +65,9 @@ export default function LoginPage() {
         <div className={styles.brandIcon}>
           <Image src="/images/logo.png" alt="Brand" width={48} height={48} />
         </div>
-        <h2 className={styles.title}>البريد الالكتروني</h2>
+        <h2 className={styles.title}>{t("email")}</h2>
         <p className={styles.subtitle}>
-          أدخل البريد الالكتروني لتسجيل الدخول أو إنشاء حساب
+          {t("enterEmailForAuth")}
         </p>
 
         <Form layout="vertical" form={form} className={styles.phone} onFinish={handleSubmit}>
@@ -74,17 +76,17 @@ export default function LoginPage() {
             rules={[
               {
                 required: true,
-                message: "الرجاء إدخال البريد الالكتروني",
+                message: t("pleaseEnterEmail")
               },
               {
                 pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: "الرجاء إدخال بريد إلكتروني صحيح",
+                message: t("pleaseEnterCorrectEmail")
               }
             ]}
             className={styles.field}
-            placeholder="مثال: Ahmedmohamed@gmail.com"
+            placeholder="Ahmedmohamed@gmail.com"
           >
-            <Input type="text" placeholder="مثال: Ahmedmohamed@gmail.com" />
+            <Input type="text" placeholder="Ahmedmohamed@gmail.com" />
           </Form.Item>
         </Form>
       </div>
@@ -92,23 +94,23 @@ export default function LoginPage() {
       <form className={styles.form}>
         <p className={styles.terms}>
           <Checkbox required onChange={(e) => setTermsConfirmed(e.target.checked)}/>
-          اوافق على <a href="/terms" target="_blank">الشروط و الأحكام</a> و{" "} 
-          <a href="/polices" target="_blank">سياسة الخصوصية</a> 
+          {t("iAccept")} <a href="/terms" target="_blank">{t("termsOfService")}</a> {t("and")}{" "} 
+          <a href="/polices" target="_blank">{t("privacyPolicy")}</a> 
         </p>
 
-        <Button onClick={handleSubmit} loading={loading} disabled={!termsConfirmed}>التالي</Button>
+        <Button onClick={handleSubmit} loading={loading} disabled={!termsConfirmed}>{t("next")}</Button>
 
         <div className={styles.divider}>
-          <span>أو</span>
+          <span>{t("or")}</span>
         </div>
 
         <div className={styles.socialButtons}>
           <button type="button" className={styles.socialBtn}>
-            <span>ابل</span>
+            <span>{t("apple")}</span>
             <FaApple />
           </button>
           <button type="button" onClick={()=> handleGoogleLogin()} className={styles.socialBtn}>
-            <span>جوجل</span>
+            <span>{t("google")}</span>
             <FcGoogle />
           </button>
         </div>

@@ -13,9 +13,12 @@ import { LuMail } from "react-icons/lu";
 import { LuPhone } from "react-icons/lu";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "use-intl";
 
 export default function Footer() {
   const pathname = usePathname() || "";
+  const t = useTranslations("footer");
+  const tHeader = useTranslations("Header");
 
   // handles localized paths like /en/feed or /ar/feed and also /feed
   const parts = pathname.split("/").filter(Boolean); // ["en","feed"] or ["feed"]
@@ -42,9 +45,7 @@ export default function Footer() {
               priority
             />
             <p className={styles.desc}>
-              منصتنا تجمع الموهوبين والباحثين عن الإبداع في بيئة آمنة وموثوقة،
-              نؤمن أن لكل إنسان موهبة تستحق أن تُكتشف، ونفتح لك الأبواب لتكون
-              جزءًا من مستقبل ملهم.
+              {t("appDesc")}
             </p>
             <div className={styles.social}>
               <a
@@ -94,33 +95,33 @@ export default function Footer() {
             </div>
           </div>
           <div className={styles.mid}>
-            <h3>روابط مهمة</h3>
+            <h3>{t("importantLinks")}</h3>
             <div className={styles.links}>
               <div className={styles.link}>
                 <IoIosStar />
-                <Link href="/">الرئيسية</Link>
+                <Link href="/">{tHeader("home")}</Link>
               </div>
               <div className={styles.link}>
                 <IoIosStar />
-                <Link href="/">المواهب</Link>
+                <Link href="/">{tHeader("talents")}</Link>
               </div>
               <div className={styles.link}>
                 <IoIosStar />
-                <Link href="/">من نحن</Link>
+                <Link href="/">{tHeader("about")}</Link>
               </div>
               <div className={styles.link}>
                 <IoIosStar />
-                <Link href="/">المقالات</Link>
+                <Link href="/">{tHeader("articles")}</Link>
               </div>
               <div className={styles.link}>
                 <IoIosStar />
-                <Link href="/">المناسبات</Link>
+                <Link href="/">{tHeader("events")}</Link>
               </div>
             </div>
           </div>
           <div className={styles.left}>
             <div className={styles.contacts}>
-              <h3>تواصل معنا</h3>
+              <h3>{t("contactUs")}</h3>
 
               <div className={styles.contact}>
                 <LuMail />

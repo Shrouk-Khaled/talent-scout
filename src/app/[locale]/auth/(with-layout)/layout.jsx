@@ -2,8 +2,10 @@ import Image from "next/image";
 import styles from "./layout.module.scss";
 import Language from "@/components/common/language/Language";
 import { IoIosStar } from "react-icons/io";
+import { useTranslations } from "next-intl";
 
 export default function AuthLayout({ children }) {
+  const t = useTranslations("auth")
 
   return (
     <main className={styles.main}>
@@ -27,12 +29,12 @@ export default function AuthLayout({ children }) {
             <div className={styles.titles}>
               <p className={styles.eyebrow}>
                 <IoIosStar className={styles.star} />
-                منصة ربط بين المبدعين والباحثين في عالم واحد
+                {t("layoutTitle")}
               </p>
               <h1 className={styles.headline}>
-                اكتشف، تواصل، و ابدأ
+                  {t("layoutDesc1")}
                 <br />
-                رحلتك مع المواهب
+                  {t("layoutDesc2")}
                 <Image
                   src="/images/icons/idea.png"
                   alt=""
