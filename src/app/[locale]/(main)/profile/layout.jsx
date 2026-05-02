@@ -1,5 +1,4 @@
 "use client";
-import { TalentsLine } from "@/components/common/talentsLine/TalentsLine";
 import styles from "./layout.module.scss";
 import "antd/dist/reset.css";
 import { SideBar } from "@/components/profile/sideBar/SideBar";
@@ -11,9 +10,9 @@ export default function SignupLayout({ children }) {
 
   return (
     <main className={styles.container}>
-      <div className={styles.categories}>
+      {/* <div className={styles.categories}>
       <TalentsLine />
-      </div>
+      </div> */}
       <div className={`${styles.main} app-container`}>
         {!isContractDetails && (
           <div className={styles.sideBar}>

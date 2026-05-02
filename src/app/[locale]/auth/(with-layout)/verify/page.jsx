@@ -44,10 +44,10 @@ export default function VerifyPage() {
     setLoading(true);
     const fcmToken = await getFcmToken().catch(() => null);
     const res = await verifyOtp({ userId, otpCode: otp, fcmToken, deviceType: "WEB" })
-    .catch((err) => {
+    .catch(() => {
       messageApi.open({
         type: "error",
-        content: err?.message || "فشل التحقق من رمز التحقق"
+        content:"فشل التحقق من رمز التحقق"
       });
       return null;
     })

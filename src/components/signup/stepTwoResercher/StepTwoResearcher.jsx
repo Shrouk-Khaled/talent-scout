@@ -112,6 +112,10 @@ export default function StepTwoResearcher() {
             name="commercialRegNo"
             rules={[
               { required: true, message: "الرجاء إدخال رقم السجل التجاري" },
+              {
+                pattern: /^[0-9 ]+$/,
+                message: "رقم السجل التجاري يجب أن يحتوي على أرقام فقط",
+              },
             ]}
             className={styles.field}
             label="رقم السجل التجاري"

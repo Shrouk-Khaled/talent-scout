@@ -12,17 +12,20 @@ import CategoryCard from "@/components/feed/categoryCard/CategoryCard";
 import Post from "@/components/feed/post/Post";
 import { Event } from "@/components/feed/event/Event";
 import { Article } from "@/components/feed/article/Article";
-import { homePageSections } from "@/services/api";
+import { getAllCategories, homePageSections } from "@/services/api";
 import Loading from "../../loading"; 
 import Link from "next/link";
 import { useHomeStore } from "@/store/useHome";
 import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
+import { useUserStore } from "@/store/useUserStore";
 
 export default function Feed() {
   const locale = useLocale();
   const isRTL = locale == "ar";
   const isMobileScreen = (typeof window != undefined) && window.innerWidth <= 768;
   const categories = useHomeStore((state) => state.categories);
+  const saveCategories = useHomeStore((state) => state.setHomeData);
+  const user = useUserStore((state) => state.info);
 
   const [openFilter, setOpenFilter] = useState(false);
   const [homeData, setHomeData] = useState({
@@ -55,6 +58,16 @@ export default function Feed() {
     if (!token) router.replace("/");
     else handleGetHomeData();
   }, [router]);
+
+  useEffect(() => {
+    if(categories?.length == 0 && user?.talent_type?.id) {
+      getAllCategories().then((res) => {
+        saveCategories({
+          categories: res?.filter((obj) => obj?.participationTypeId == user?.talent_type?.id) || []
+        })
+      });
+    }
+  }, [user]);
 
   return (
     <div>

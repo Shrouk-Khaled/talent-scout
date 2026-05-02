@@ -94,7 +94,7 @@ export default function Post({ isTalent, data, imageH, showFooter }) {
             src={mediaUrl}
             controls
             className={styles.postImage}
-            style={{ width: "100%", objectFit: "cover", height: imageH }}
+            style={{ width: "100%", objectFit: "contain", height: imageH }}
           >
             المتصفح لا يدعم عرض الفيديو
           </video>

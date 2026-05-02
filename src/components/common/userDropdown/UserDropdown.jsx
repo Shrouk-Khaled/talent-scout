@@ -92,7 +92,7 @@ export default function UserDropdown() {
               إدارة الباقات
             </Link>
             {
-              userInfo?.user?.user_role != 1 && (
+              userInfo?.user?.user_role == 2 && (
                 <Link href="/profile/contracts" className={styles.pageLink}>
                 الطلبات
               </Link>
