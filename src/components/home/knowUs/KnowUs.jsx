@@ -11,7 +11,7 @@ export default function KnowUs() {
   const t = useTranslations("Home");
 
   return (
-    <div className={`${styles.section} app-container`}>
+    <div className={`${styles.section} app-container`} id="2">
       <div className={styles.reviews}>
         <Image
           src={

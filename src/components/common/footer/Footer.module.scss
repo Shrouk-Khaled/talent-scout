@@ -82,6 +82,11 @@
                         color: black;
                     }
 
+                    button {
+                        all: unset;
+                        cursor: pointer;
+                    }
+
                     .link {
                         display: flex;
                         justify-content: center;
@@ -94,9 +99,6 @@
                         font-size: 16px;
                     }
 
-                    &:hover {
-                        color: $color-primary;
-                    }
                 }
             }
             

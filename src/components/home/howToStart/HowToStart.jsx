@@ -9,7 +9,7 @@ export default function HowToStart({ isResearcher }) {
   const t = useTranslations("Home");
   
   return (
-    <div className={`${isResearcher && styles.reverse} ${styles.section}`}>
+    <div className={`${isResearcher && styles.reverse} ${styles.section}`} id="4">
       <div className={styles.image}>
         <Image
           src={

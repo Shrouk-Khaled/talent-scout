@@ -175,7 +175,10 @@
     "events": "Events",
     "articles": "Articles",
     "talents": "Talents",
-    "login": "Login"
+    "login": "Login",
+    "howToJoin": "How to Join",
+    "packages": "Packages",
+    "knowUs": "Know Us"
   },
   "auth": {
     "layoutTitle": "Welcome to Mawhebty",

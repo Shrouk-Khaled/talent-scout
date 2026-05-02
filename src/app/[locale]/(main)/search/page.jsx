@@ -52,7 +52,9 @@ export default function SearchPage() {
     const subcategories = searchParams.get("subcategories") || "";
     const category = searchParams.get("category") || "";
     const searchValue = searchParams.get("q") || "";
-    if (sectionType == "posts") {
+    setSectionType(searchParams.get("type") || "all");
+    const type = searchParams.get("type") || "all";
+    if (type == "posts") {
       setLoading(true);
       getPosts({
         page: currentPage,
@@ -63,7 +65,7 @@ export default function SearchPage() {
       }).then((res) => {
         handleSaveData(res);
       });
-    } else if (sectionType == "articles") {
+    } else if (type == "articles") {
       setLoading(true);
       getArticles({
         page: currentPage,
@@ -74,7 +76,7 @@ export default function SearchPage() {
       }).then((res) => {
         handleSaveData(res);
       });
-    } else if (sectionType == "events") {
+    } else if (type == "events") {
       setLoading(true);
       getEvents({
         page: currentPage,
@@ -85,7 +87,7 @@ export default function SearchPage() {
       }).then((res) => {
         handleSaveData(res);
       });
-    } else if (sectionType == "talents") {
+    } else if (type == "talents") {
       setLoading(true);
       getTalents({
         page: currentPage,

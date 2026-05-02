@@ -46,8 +46,10 @@
     width: 35%;
     justify-content: flex-end;
 
-    a {
+    button {
+      all: unset;
       text-decoration: none;
+      cursor: pointer;
       color: $color-grey;
       margin: 0;
       &:hover {

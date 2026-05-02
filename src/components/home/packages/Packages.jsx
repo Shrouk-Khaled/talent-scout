@@ -7,7 +7,7 @@ export default function Packages() {
   const t = useTranslations("Home");
 
   return (
-    <div className={styles.section}>
+    <div className={styles.section} id="5">
       <p className={styles.title}>{t("pricingTitle")}</p>
       <h1 className={styles.desc}>
         {t("pricingHeadline")}

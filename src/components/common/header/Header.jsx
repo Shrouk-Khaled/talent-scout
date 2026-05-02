@@ -21,12 +21,14 @@ export default function Header() {
   //states
   const [scrolling, setScrolling] = useState(false);
   const [isHomePage, setIsHomePage] = useState(false);
+  const [sectionId, setSectionId] = useState(1);
 
   const links = [
-    { href: "", subHref: "/feed", label: t("home") },
-    { href: "/", label: t("talents") },
-    { href: "/", label: t("articles") },
-    { href: "/", label: t("events") },
+    { id: 1, label: t("home") },
+    { id: 2, label: t("knowUs") },
+    { id: 3, label: t("talents") },
+    { id: 4, label: t("howToJoin") },
+    { id: 5, label: t("packages") },
   ];
 
   // Detect scroll to change background color of the header
@@ -50,8 +52,47 @@ export default function Header() {
     setIsHomePage(pathname === homePath);
   }, [pathname, locale]);
 
-  if(pathname != `/${locale}` && pathname != `/${locale}/terms` && pathname != `/${locale}/polices`) return <MainHeader/>
+  useEffect(() => {
+    const sectionIds = ["1", "2", "3", "4", "5"];
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setSectionId(Number(entry.target.id));
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.5,
+      }
+    );
+  
+    sectionIds.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) {
+        observer.observe(section);
+      }
+    });
+  
+    return () => observer.disconnect();
+  }, []);
 
+  if (
+    pathname != `/${locale}` &&
+    pathname != `/${locale}/terms` &&
+    pathname != `/${locale}/polices`
+  )
+    return <MainHeader />;
+
+    const handleGoIntoTheSection = (sectionId) => {
+      setSectionId(sectionId);
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth", });
+      }
+    };
 
   return (
     <header className={`${styles.header} ${scrolling ? styles.scrolled : ""}`}>
@@ -69,26 +110,29 @@ export default function Header() {
         </div>
         <div className={styles.links}>
           {links.map((link, i) => {
-            const fullPath = `/${locale}${link.href}`;
-            const isActive = (pathname === fullPath) || (pathname === `/${locale}${link.subHref}`);
             return (
-              <Link
+              <button
                 key={i}
-                href={fullPath}
-                className={`${styles.link} ${isActive ? styles.active : ""}`}
+                href={"#"}
+                className={`${styles.link} ${sectionId === link.id ? styles.active : ""}`}
+                onClick={() => handleGoIntoTheSection(link.id)}
               >
                 {link.label}
-              </Link>
+              </button>
             );
           })}
         </div>
- 
-          <div className={styles.actions}>
-            <Language />
-            <Button onClick={() => {
-                router.push('/auth/login');
-            }}>{t("login")}</Button>
-          </div>
+
+        <div className={styles.actions}>
+          <Language />
+          <Button
+            onClick={() => {
+              router.push("/auth/login");
+            }}
+          >
+            {t("login")}
+          </Button>
+        </div>
       </div>
     </header>
   );

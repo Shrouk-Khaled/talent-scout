@@ -19,7 +19,7 @@ const Hero = () => {
     }, []);
 
     return (
-    <div className={`${styles.hero} ${show ? styles.show : ""}`}>
+    <div className={`${styles.hero} ${show ? styles.show : ""}`} id="1">
       <div className={`${styles.main} app-container`}>
         <div className={styles.right}>
           <h4>

@@ -6,7 +6,7 @@ export default function Talents() {
   const cats = t.raw("categories");
 
   return (
-    <div className={styles.section}>
+    <div className={styles.section} id="3">
       <p className={styles.title}>{t("smallSteps")}</p>
       <h1 className={styles.desc}>
         {t("talentsDesc")} <span>{t("talents")}</span>
