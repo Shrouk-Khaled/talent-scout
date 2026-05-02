@@ -52,6 +52,13 @@
             color: white;
             background-color: color.scale($color-primary, $lightness: -20%);
         }
+
+        &:disabled {
+            background-color: #D0D0D0;
+            cursor: not-allowed;
+            color: #727272;
+            border-color: #D0D0D0;
+        }
     }
 
     &.loadingBtn {

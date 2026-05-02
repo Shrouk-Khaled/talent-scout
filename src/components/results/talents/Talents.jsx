@@ -20,9 +20,9 @@ export const Talents = ({data}) => {
             />
             <h2>{talent?.user?.first_name} {talent?.user?.last_name}</h2>
             <p>{talent?.subcategory?.name}</p>
-            <Button outline onClick={() => console.log("View profile clicked")}>
+            {/* <Button outline onClick={() => console.log("View profile clicked")}>
               تفاصيل العقد
-            </Button>
+            </Button> */}
           </div>
         ))}
       </div>

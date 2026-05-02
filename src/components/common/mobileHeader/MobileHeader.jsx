@@ -74,7 +74,7 @@ export default function MobileHeader() {
 
   return (
     <>
-      {pathname === `/${locale}` ? (
+      {(pathname == `/${locale}` || pathname == `/${locale}/terms` || pathname == `/${locale}/polices`) ? (
         <div
           className={`${styles.mobileHeader} ${
             scrolling ? styles.scrolled : ""

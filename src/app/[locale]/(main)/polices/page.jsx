@@ -1,93 +1,45 @@
+"use client"
+import { useEffect, useState } from "react";
 import styles from "./page.module.scss";
 import { IoIosStar } from "react-icons/io";
+import { getPrivacyPolicy } from "@/services/api";
+import Loading from "../../loading";
 
-export default function TermsPage() {
+export default function PolicesPage() {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    getPrivacyPolicy()
+      .then((res) => {
+        setData(res);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
-    <div className="app-container marginTop">
-      <div className={styles.info}>
-        <div className={styles.title}>
-          <IoIosStar />
-          <h3>سياسة الخصوصية – منصة Talent Scout</h3>
-        </div>
-        <p>
-          ترحّب بك منصة Talent Scout، ونقدّر ثقتك بنا. نحن ملتزمون بحماية
-          خصوصيتك وضمان أعلى درجات الأمان لبياناتك. تهدف هذه السياسة إلى توضيح
-          كيفية جمع البيانات ومعالجتها وتخزينها ومشاركتها، بالإضافة إلى بيان
-          حقوقك في ما يتعلق بخصوصيتك عند استخدامك خدمات Talent Scout.
-        </p>
-        <p>
-          تُعد موافقتك على هذه السياسة جزءًا أساسيًّا من استخدامك للمنصة، وننصحك
-          بقراءتها بعناية. قبول الشروط
-        </p>
+    <div className={`app-container marginTop ${styles.container}`}>
+      {
+        loading && <Loading/>
+      }
+    <div className={styles.info}>
+      <div className={styles.title}>
+        <IoIosStar />
+        <h3>{data?.privacy_policy_title}</h3>
       </div>
-
-      <div className={styles.info}>
-        <div className={styles.title}>
-          <IoIosStar />
-          <h3>نطاق تطبيق السياسة</h3>
-        </div>
-        <p>
-          ترحّب بك منصة Talent Scout، ونقدّر ثقتك بنا. نحن ملتزمون بحماية
-          خصوصيتك وضمان أعلى درجات الأمان لبياناتك. تهدف هذه السياسة إلى توضيح
-          كيفية جمع البيانات ومعالجتها وتخزينها ومشاركتها، بالإضافة إلى بيان
-          حقوقك في ما يتعلق بخصوصيتك عند استخدامك خدمات Talent Scout.
-        </p>
-        <p>
-          تُعد موافقتك على هذه السياسة جزءًا أساسيًّا من استخدامك للمنصة، وننصحك
-          بقراءتها بعناية. قبول الشروط
-        </p>
-      </div>
-
-      <div className={styles.info}>
-        <div className={styles.title}>
-          <IoIosStar />
-          <h3>سياسة الخصوصية – منصة Talent Scout</h3>
-        </div>
-        <p>
-          ترحّب بك منصة Talent Scout، ونقدّر ثقتك بنا. نحن ملتزمون بحماية
-          خصوصيتك وضمان أعلى درجات الأمان لبياناتك. تهدف هذه السياسة إلى توضيح
-          كيفية جمع البيانات ومعالجتها وتخزينها ومشاركتها، بالإضافة إلى بيان
-          حقوقك في ما يتعلق بخصوصيتك عند استخدامك خدمات Talent Scout.
-        </p>
-        <p>
-          تُعد موافقتك على هذه السياسة جزءًا أساسيًّا من استخدامك للمنصة، وننصحك
-          بقراءتها بعناية. قبول الشروط
-        </p>
-      </div>
-
-      <div className={styles.info}>
-        <div className={styles.title}>
-          <IoIosStar />
-          <h3>نطاق تطبيق السياسة</h3>
-        </div>
-        <p>
-          ترحّب بك منصة Talent Scout، ونقدّر ثقتك بنا. نحن ملتزمون بحماية
-          خصوصيتك وضمان أعلى درجات الأمان لبياناتك. تهدف هذه السياسة إلى توضيح
-          كيفية جمع البيانات ومعالجتها وتخزينها ومشاركتها، بالإضافة إلى بيان
-          حقوقك في ما يتعلق بخصوصيتك عند استخدامك خدمات Talent Scout.
-        </p>
-        <p>
-          تُعد موافقتك على هذه السياسة جزءًا أساسيًّا من استخدامك للمنصة، وننصحك
-          بقراءتها بعناية. قبول الشروط
-        </p>
-      </div>
-
-      <div className={styles.info}>
-        <div className={styles.title}>
-          <IoIosStar />
-          <h3>سياسة الخصوصية – منصة Talent Scout</h3>
-        </div>
-        <p>
-          ترحّب بك منصة Talent Scout، ونقدّر ثقتك بنا. نحن ملتزمون بحماية
-          خصوصيتك وضمان أعلى درجات الأمان لبياناتك. تهدف هذه السياسة إلى توضيح
-          كيفية جمع البيانات ومعالجتها وتخزينها ومشاركتها، بالإضافة إلى بيان
-          حقوقك في ما يتعلق بخصوصيتك عند استخدامك خدمات Talent Scout.
-        </p>
-        <p>
-          تُعد موافقتك على هذه السياسة جزءًا أساسيًّا من استخدامك للمنصة، وننصحك
-          بقراءتها بعناية. قبول الشروط
-        </p>
-      </div>
+      <p>{data?.privacy_policy_content}</p>
     </div>
+
+    <div className={styles.info}>
+      <div className={styles.title}>
+        <IoIosStar />
+        <h3>{data?.privacy_policy_scope_title}</h3>
+      </div>
+      <p> {data?.privacy_policy_scope_content_1}</p>
+      <p> {data?.privacy_policy_scope_content_2}</p>
+      <p>{data?.privacy_policy_scope_content_3}</p>
+    </div>
+  </div>
   );
 }

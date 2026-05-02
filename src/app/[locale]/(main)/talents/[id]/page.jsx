@@ -5,9 +5,14 @@ import Button from "@/components/ui/button/Button";
 import Post from "@/components/feed/post/Post";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getPostsByUserId, getTalentById } from "@/services/api";
+import {
+  followUser,
+  getPostsByUserId,
+  getTalentById,
+  unfollowUser,
+} from "@/services/api";
 import Loading from "@/app/[locale]/loading";
-import { Pagination } from "antd";
+import { Pagination, notification } from "antd";
 import { useUserStore } from "@/store/useUserStore";
 
 export default function TalentDetailsPage({ params }) {
@@ -20,6 +25,7 @@ export default function TalentDetailsPage({ params }) {
 
   //states
   const [loading, setLoading] = useState(true);
+  const [followLoading, setFollowLoading] = useState(false);
   const [talent, setTalent] = useState(null);
   const [posts, setPosts] = useState([]);
   const [totalPosts, setTotalPosts] = useState(0);
@@ -60,6 +66,35 @@ export default function TalentDetailsPage({ params }) {
       `${window.location.pathname}?${searchParams.toString()}`
     );
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleFollowAndUnfollow = () => {
+    setFollowLoading(true);
+    if (talent?.user?.is_following) {
+      unfollowUser({ user_id: talent?.user?.id })
+        .then((res) => {
+          setTalent({
+            ...talent,
+            user: { ...talent?.user, is_following: false },
+          });
+          notification.success({
+            message: "تم إلغاء المتابعة",
+          });
+        })
+        .finally(() => setFollowLoading(false));
+    } else {
+      followUser({ user_id: talent?.user?.id })
+        .then((res) => {
+          setTalent({
+            ...talent,
+            user: { ...talent?.user, is_following: true },
+          });
+          notification.success({
+            message: "تم المتابعة",
+          });
+        })
+        .finally(() => setFollowLoading(false));
+    }
   };
 
   return (
@@ -108,7 +143,13 @@ export default function TalentDetailsPage({ params }) {
               </Button>
             )}
 
-            <Button outline>متابعة</Button>
+            <Button
+              outline
+              loading={followLoading}
+              onClick={handleFollowAndUnfollow}
+            >
+              {talent?.user?.is_following ? "إلغاء المتابعة" : "متابعة"}
+            </Button>
           </div>
         </div>
 

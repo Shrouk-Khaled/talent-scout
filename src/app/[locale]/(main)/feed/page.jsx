@@ -13,7 +13,7 @@ import Post from "@/components/feed/post/Post";
 import { Event } from "@/components/feed/event/Event";
 import { Article } from "@/components/feed/article/Article";
 import { homePageSections } from "@/services/api";
-import Loading from "../../loading";
+import Loading from "../../loading"; 
 import Link from "next/link";
 import { useHomeStore } from "@/store/useHome";
 import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";

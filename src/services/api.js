@@ -299,3 +299,26 @@ export const unlikePost = async (payload) => {
   const response = await http.delete(`/api/v1/mawhebty-platform/posts/${payload?.post_id}/like`, "");
   return response;
 }
+
+
+export const followUser = async (payload) => {
+  const response = await http.post(`/api/v1/mawhebty-platform/profile/user/follow`, payload);
+  return response;
+}
+
+export const unfollowUser = async (payload) => {
+  const response = await http.post(`/api/v1/mawhebty-platform/profile/user/unfollow`, payload);
+  return response;
+}
+
+//privacy policy
+export const getPrivacyPolicy = async () => {
+  const response = await http.get(`/api/v1/auth/privacy-policy`);
+  return response;
+}
+
+//terms and conditions
+export const getTermsAndConditions = async () => {
+  const response = await http.get(`/api/v1/auth/terms-and-conditions`);
+  return response;
+}
