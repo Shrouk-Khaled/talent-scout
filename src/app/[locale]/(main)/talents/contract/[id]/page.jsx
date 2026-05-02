@@ -78,20 +78,17 @@ export default function Page({ params }) {
         setLoading(true);
         sendContractRequest({
           receiver_id: Number(id),
-          type: values.type,
+          // type: values.type,
           description: values.description,
-          period: values.period,
-          amount: values.amount,
+          // period: values.period,
+          // amount: values.amount,
         })
           .then(() => {
             form.resetFields();
             setShowSuccessModal(true);
           })
           .catch((err) => {
-            console.error("Error sending contract request:", err);
-            message.error(
-                err?.response?.data?.message || "حدث خطأ أثناء إرسال الطلب"
-                );
+            message.error("حدث خطأ أثناء إرسال الطلب");
           })
           .finally(() => {
             setLoading(false);
@@ -130,7 +127,7 @@ export default function Page({ params }) {
 
             <div className={styles.details}>
               <h2>تفاصيل الطلب</h2>
-              <p>يرجى ملئ المعلومات التاليه لتجهيز العقد</p>
+              <p>يرجى ملئ المعلومات التاليه لتجهيز الطلب</p>
             </div>
 
             <div className={styles.details}>
@@ -141,7 +138,7 @@ export default function Page({ params }) {
                   type: 1,
                 }}
               >
-                <Form.Item
+                {/* <Form.Item
                   label="اختر نوع العمل"
                   name="type"
                   rules={[
@@ -161,7 +158,7 @@ export default function Page({ params }) {
                       </span>
                     ))}
                   </div>
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item
                   label="وصف العمل"
@@ -177,7 +174,7 @@ export default function Page({ params }) {
                   />
                 </Form.Item>
 
-                <Form.Item
+                {/* <Form.Item
                   label="مدة العمل"
                   name="period"
                   rules={[
@@ -195,7 +192,7 @@ export default function Page({ params }) {
                   ]}
                 >
                   <Input placeholder="مثال: 1000 ريال" />
-                </Form.Item>
+                </Form.Item> */}
 
                 <Button onClick={handleSendContract} loading={loading}>
                   ارسال الطلب

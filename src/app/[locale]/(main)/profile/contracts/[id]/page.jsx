@@ -88,7 +88,7 @@ export default function Page() {
                         <p>{data?.description}</p>
                     </div>
 
-                    <div className={styles.contractDetails}>
+                    {/* <div className={styles.contractDetails}>
                         <h3>تفاصيل الطلب</h3>
                         <div className={styles.infoBox}>
                             <div className={styles.box}>
@@ -109,7 +109,7 @@ export default function Page() {
                                 <h4>{getTypeText(data?.type)}</h4>
                                 </div>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
 

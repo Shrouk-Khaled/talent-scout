@@ -12,10 +12,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 export const metadata = {
-  metadataBase: new URL("https://talent-scout-mu.vercel.app"), // important for absolute OG URLs
+  metadataBase: new URL("https://mawhebty.com"),
   title: {
-    default: "Talent Scout",
-    template: "%s | Talent Scout",
+    default: "Mawhebty",
+    template: "%s | Mawhebty",
   },
   description: "Find the best talent",
   alternates: {
@@ -28,21 +28,21 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "/",
-    siteName: "Talent Scout",
-    title: "Talent Scout",
+    siteName: "Mawhebty",
+    title: "Mawhebty",
     description: "Find the best talent",
     images: [
       {
         url: "/images/logo.png",
         width: 1200,
         height: 630,
-        alt: "Talent Scout",
+        alt: "Mawhebty",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Talent Scout",
+    title: "Mawhebty",
     description: "Find the best talent",
     images: ["/images/logo.png"],
   },

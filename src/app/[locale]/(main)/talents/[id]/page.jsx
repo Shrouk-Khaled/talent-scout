@@ -75,7 +75,7 @@ export default function TalentDetailsPage({ params }) {
         .then((res) => {
           setTalent({
             ...talent,
-            user: { ...talent?.user, is_following: false },
+            user: { ...talent?.user, is_following: false, followers: talent?.user?.followers - 1 },
           });
           notification.success({
             message: "تم إلغاء المتابعة",
@@ -87,7 +87,7 @@ export default function TalentDetailsPage({ params }) {
         .then((res) => {
           setTalent({
             ...talent,
-            user: { ...talent?.user, is_following: true },
+            user: { ...talent?.user, is_following: true, followers: talent?.user?.followers + 1 },
           });
           notification.success({
             message: "تم المتابعة",

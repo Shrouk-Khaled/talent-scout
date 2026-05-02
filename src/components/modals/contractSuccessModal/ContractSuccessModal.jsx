@@ -17,9 +17,9 @@ export const ContractSuccessModal = ({ onClose }) => {
     >
       <div className={styles.content}>
         <Image src="/images/contract.png" width={230} height={230} alt="Success" />
-        <h2>تم إرسال العقد بنجاح</h2>
+        <h2>تم إرسال الطلب بنجاح</h2>
         <p>
-        سيتم إخطار الموهوب بالعقد و سيتم فتح المحادثة في حالة قبوله للعقد
+        سيتم إخطار الموهوب بالطلب و سيتم فتح المحادثة في حالة قبوله للطلب
         </p>
         <Button type="primary" onClick={() => {
             onClose();
