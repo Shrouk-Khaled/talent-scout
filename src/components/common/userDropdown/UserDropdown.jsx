@@ -7,8 +7,11 @@ import { LuChevronDown } from "react-icons/lu";
 import { useEffect, useRef, useState } from "react";
 import { getUserInfo } from "@/services/api";
 import { useUserStore } from "@/store/useUserStore";
+import { useTranslations } from "next-intl";
 
 export default function UserDropdown() {
+  //message
+  const t = useTranslations("feed");
   //store
   const saveUserInfo = useUserStore((state) => state.setUserInfo);
   const userInfo = useUserStore((state) => state.info);
@@ -86,15 +89,15 @@ export default function UserDropdown() {
             setOpenOptions(false);
           }}>
             <Link href={userInfo?.user?.user_role == 1 ? "/profile/posts" : "/profile/saved?type=posts"} className={styles.pageLink}>
-              حسابي
+              {t("myProfile")}
             </Link>
             <Link href="#" className={styles.pageLink}>
-              إدارة الباقات
+              {t("packages")}
             </Link>
             {
               userInfo?.user?.user_role == 2 && (
                 <Link href="/profile/contracts" className={styles.pageLink}>
-                الطلبات
+                  {t("contracts")}
               </Link>
               )
             }
@@ -102,7 +105,7 @@ export default function UserDropdown() {
           </div>
 
           <div className={styles.logout} onClick={handleLogout}>
-            <p>تسجيل الخروج</p>
+            <p>{t("logout")}</p>
           </div>
         </div>
       )}

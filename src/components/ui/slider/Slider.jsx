@@ -9,6 +9,7 @@ import styles from './Slider.module.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { useLocale } from 'next-intl';
 
 const Slider = ({
   children,
@@ -22,7 +23,6 @@ const Slider = ({
   className = '',
   slidesPerView = 'auto',
   spaceBetween = 15,
-  rtl = true,
   autoplay = false,
   loop = false,
   pagination = false,
@@ -30,9 +30,11 @@ const Slider = ({
   onViewAllClick,
   ...swiperProps
 }) => {
+  const locale = useLocale();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
+  const rtl = locale === 'ar';
 
   // Handle swiper state
   const handleSwiper = (swiper) => {

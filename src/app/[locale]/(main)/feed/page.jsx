@@ -1,39 +1,44 @@
 "use client";
+
 import styles from "./page.module.scss";
 import Filter from "@/components/feed/filter/Filter";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Drawer } from "antd";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import DownloadAppBox from "@/components/common/footer/DownloadApp";
-import Slider from "@/components/ui/slider/Slider";
+import Slider from "../../../../components/ui/slider/Slider"
 import CategoryCard from "@/components/feed/categoryCard/CategoryCard";
 import Post from "@/components/feed/post/Post";
 import { Event } from "@/components/feed/event/Event";
 import { Article } from "@/components/feed/article/Article";
 import { getAllCategories, homePageSections } from "@/services/api";
-import Loading from "../../loading"; 
+import Loading from "../../loading";
 import Link from "next/link";
 import { useHomeStore } from "@/store/useHome";
 import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
 import { useUserStore } from "@/store/useUserStore";
 
 export default function Feed() {
+  const t = useTranslations("feed");
   const locale = useLocale();
-  const isRTL = locale == "ar";
-  const isMobileScreen = (typeof window != undefined) && window.innerWidth <= 768;
+  const isRTL = locale === "ar";
+
   const categories = useHomeStore((state) => state.categories);
   const saveCategories = useHomeStore((state) => state.setHomeData);
   const user = useUserStore((state) => state.info);
 
   const [openFilter, setOpenFilter] = useState(false);
+  const [isMobileScreen, setIsMobileScreen] = useState(false);
+
   const [homeData, setHomeData] = useState({
     posts: { data: [] },
     events: { data: [] },
     articles: { data: [] },
     talents: { data: [] },
   });
+
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();
@@ -41,7 +46,9 @@ export default function Feed() {
   const handleGetHomeData = async () => {
     try {
       setLoading(true);
+
       const response = await homePageSections();
+
       if (response) {
         setHomeData(response);
       }
@@ -53,43 +60,63 @@ export default function Feed() {
   };
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("user-data"));
+    const handleResize = () => {
+      setIsMobileScreen(window.innerWidth <= 768);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("user-data") || "{}");
     const token = data?.state?.token;
-    if (!token) router.replace("/");
-    else handleGetHomeData();
+
+    if (!token) {
+      router.replace("/");
+    } else {
+      handleGetHomeData();
+    }
   }, [router]);
 
   useEffect(() => {
-    if(categories?.length == 0 && user?.talent_type?.id) {
+    if ((categories?.length === 0 || !categories) && user?.talent_type?.id) {
       getAllCategories().then((res) => {
         saveCategories({
-          categories: res?.filter((obj) => obj?.participationTypeId == user?.talent_type?.id) || []
-        })
+          categories:
+            res?.filter(
+              (obj) => obj?.participationTypeId === user?.talent_type?.id
+            ) || [],
+        });
       });
     }
-  }, [user]);
+  }, [user, categories, saveCategories]);
 
   return (
     <div>
-      <div className={`${styles.container} `}>
+      <div className={`${styles.container}`}>
         <div className={`app-container ${styles.main}`}>
           <DownloadAppBox />
 
           {/* Talents Categories Section */}
           <div className={styles.talentsBox}>
             <Slider
-              title="إكتشف أبرز المواهب"
+              title={t("exploreTalents")}
               variant="default"
               showArrows={false}
               arrowPosition="side"
-              rtl={true}
               spaceBetween={5}
               autoplay
               slidesPerView={isMobileScreen ? 3.5 : 7.5}
               onViewAllClick={() => console.log("View all clicked")}
             >
               {categories?.length > 0 &&
-                categories?.map((category) => (
+                categories.map((category) => (
                   <CategoryCard
                     key={category?.id}
                     onClick={() => {
@@ -110,21 +137,19 @@ export default function Feed() {
               {homeData.posts?.data?.length > 0 && (
                 <div className={styles.postsBox}>
                   <Slider
-                    title="مواهب تلهمك"
+                    title={t("TalentInspired")}
                     variant="default"
                     showArrows={true}
                     arrowPosition="top"
-                    rtl={true}
                     gap={5}
-                    showViewAll="رؤية المزيد"
-                    viewAllText="رؤية المزيد"
+                    showViewAll={t("viewMore")}
+                    viewAllText={t("viewMore")}
                     slidesPerView={isMobileScreen ? 1.5 : 3.5}
                     onViewAllClick={() => router.push("/search?type=posts")}
                   >
-                    {homeData.posts?.data?.length > 0 &&
-                      homeData.posts.data.map((post) => (
-                        <Post key={post.id} data={post} showFooter/>
-                      ))}
+                    {homeData.posts.data.map((post) => (
+                      <Post key={post.id} data={post} showFooter />
+                    ))}
                   </Slider>
                 </div>
               )}
@@ -133,51 +158,41 @@ export default function Feed() {
               {homeData.events?.data?.length > 0 && (
                 <div className={styles.eventsBox}>
                   <Slider
-                    title="إنضم الى التجمعات المتاحة"
+                    title={t("joinAvailable")}
                     variant="default"
                     showArrows={true}
                     arrowPosition="side"
-                    rtl={true}
                     gap={5}
-                    showViewAll="رؤية المزيد"
-                    viewAllText="رؤية المزيد"
+                    showViewAll={t("viewMore")}
+                    viewAllText={t("viewMore")}
                     slidesPerView={isMobileScreen ? 1.5 : 3.5}
                     onViewAllClick={() => router.push("/search?type=events")}
                   >
-                    {loading ? (
-                      Array.from({ length: 3 }).map((_, index) => (
-                        <Event key={index} />
-                      ))
-                    ) : homeData.events?.data?.length > 0 ? (
-                      homeData.events.data.map((event) => (
-                        <Event key={event.id} data={event} />
-                      ))
-                    ) : (
-                      <Event />
-                    )}
+                    {homeData.events.data.map((event) => (
+                      <Event key={event.id} data={event} />
+                    ))}
                   </Slider>
                 </div>
               )}
 
-              {/* Articles Section */}
+              {/* Articles Desktop Section */}
               <div className={styles.desctopView}>
                 {homeData.articles?.data?.length > 0 && (
                   <div className={styles.articlesBox}>
                     <div className={styles.articlesHeader}>
-                      <h1>مقالات مميزة لك</h1>
-                      <Link href={"/search?type=articles"}>رؤية المزيد</Link>
+                      <h1>{t("featuredArticlesForYou")}</h1>
+                      <Link href="/search?type=articles">{t("viewMore")}</Link>
                     </div>
+
                     <div className={styles.articles}>
                       <div className={styles.left}>
-                        {homeData.articles?.data?.length > 0 &&
-                          homeData.articles.data
-                            .slice(0, 4)
-                            .map((article) => (
-                              <Article key={article.id} data={article} />
-                            ))}
+                        {homeData.articles.data.slice(0, 4).map((article) => (
+                          <Article key={article.id} data={article} />
+                        ))}
                       </div>
+
                       <div className={styles.right}>
-                        {homeData.articles?.data?.length > 4 && (
+                        {homeData.articles.data.length > 4 && (
                           <div
                             className={styles.article}
                             onClick={() =>
@@ -191,11 +206,12 @@ export default function Feed() {
                                 homeData.articles.data[4].image_url ||
                                 "/images/home/event.png"
                               }
-                              alt="Event Image"
+                              alt={t("articleImageAlt")}
                               width={600}
                               height={280}
                               className={styles.eventImage}
                             />
+
                             <div className={styles.save}>
                               <SavedIcon
                                 isSaved={homeData.articles.data[4].is_saved}
@@ -207,12 +223,16 @@ export default function Feed() {
                             <div className={styles.info}>
                               <div>
                                 <h1>{homeData.articles.data[4].title}</h1>
+
                                 <div className={styles.date}>
                                   <p>
                                     {new Date(
                                       homeData.articles.data[4].date
-                                    ).toLocaleDateString("ar-EG")}
+                                    ).toLocaleDateString(
+                                      isRTL ? "ar-EG" : "en-US"
+                                    )}
                                   </p>
+
                                   <span className={styles.sport}>
                                     {homeData.articles.data[4].category.name}
                                   </span>
@@ -227,27 +247,30 @@ export default function Feed() {
                 )}
               </div>
 
+              {/* Articles Mobile Section */}
               <div className={styles.mobileView}>
                 {homeData.articles?.data?.length > 0 && (
                   <div className={styles.articlesBox}>
                     <Slider
-                      title="مقالات مميزة لك"
+                      title={t("featuredArticles")}
                       variant="default"
                       showArrows={true}
                       arrowPosition="side"
-                      rtl={true}
                       spaceBetween={15}
-                      showViewAll="رؤية المزيد"
-                      viewAllText="رؤية المزيد"
+                      showViewAll={t("viewMore")}
+                      viewAllText={t("viewMore")}
                       slidesPerView={1.5}
                       onViewAllClick={() => router.push("/search?type=articles")}
                     >
-                      {homeData.articles?.data?.length > 0 &&
-                        homeData.articles.data.map((article) => (
-                          <Article key={article.id} data={article}  articleSlide={true}/>
-                        ))}
+                      {homeData.articles.data.map((article) => (
+                        <Article
+                          key={article.id}
+                          data={article}
+                          articleSlide={true}
+                        />
+                      ))}
                     </Slider>
-                    </div>
+                  </div>
                 )}
               </div>
             </>

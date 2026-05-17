@@ -1,7 +1,6 @@
 "use client"
 import Image from "next/image";
 import styles from "./page.module.scss";
-import Language from "@/components/common/language/Language";
 import { Progress } from "antd";
 import StepOne from "@/components/signup/stepone/StepOne";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -11,6 +10,7 @@ import StepThree from "@/components/signup/stepThree/StepThree";
 import StepFour from "@/components/signup/stepFour/StepFour";
 import StepFive from "@/components/signup/stepFive/StepFive";
 import StepTwoResearcher from "@/components/signup/stepTwoResercher/StepTwoResearcher";
+import Language from "../../../../components/common/language/Language";
 
 export default function SignupPage() {
     const router = useRouter()

@@ -109,7 +109,7 @@ export default function MainHeader() {
             <Divider type="vertical" style={{ height: 28, margin: "0 8px" }} />
           )}
           <div className={styles.reels} onClick={handleOpenReelsPage}>
-            <span>الفيديوهات</span>
+            <span>{t("videoes")}</span>
             <Image
               src={"/images/icons/videos.svg"}
               width={24}

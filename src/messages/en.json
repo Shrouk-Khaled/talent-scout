@@ -134,26 +134,22 @@
       {
         "title": "What is Talent Scout and how does it work?",
         "subtitle": "",
-        "content":
-          "Every contract request is reviewed through the administration portal before it reaches the talent, to ensure transparency and reliability."
+        "content": "Every contract request is reviewed through the administration portal before it reaches the talent, to ensure transparency and reliability."
       },
       {
         "title": "How can I get work through it?",
         "subtitle": "",
-        "content":
-          "Create an account, complete your profile, apply for suitable opportunities, and wait for approval."
+        "content": "Create an account, complete your profile, apply for suitable opportunities, and wait for approval."
       },
       {
         "title": "How will I receive my payments?",
         "subtitle": "",
-        "content":
-          "Payments are transferred to the registered bank account within 30 business days after the project ends."
+        "content": "Payments are transferred to the registered bank account within 30 business days after the project ends."
       },
       {
         "title": "What kind of support do you provide?",
         "subtitle": "",
-        "content":
-          "We provide temporary hiring support, technical support for talents, and contract follow-up."
+        "content": "We provide temporary hiring support, technical support for talents, and contract follow-up."
       }
     ]
   },
@@ -178,7 +174,8 @@
     "login": "Login",
     "howToJoin": "How to Join",
     "packages": "Packages",
-    "knowUs": "Know Us"
+    "knowUs": "Know Us",
+    "videoes": "Videos"
   },
   "auth": {
     "layoutTitle": "Welcome to Mawhebty",
@@ -198,15 +195,29 @@
     "registerButton": "Register",
     "enterEmailForAuth": "Enter your email to login or create an account",
     "privacyPolicy": "Privacy Policy",
-      "termsOfService": "Terms and Conditions",
-      "iAccept": "I accept the",
-        "and": "and",
-        "next": "Next",
-        "or": "or",
-        "google": "Google",
-        "apple": "Apple",
-        "pleaseEnterEmail": "Please enter your email",
-        "pleaseEnterCorrectEmail": "Please enter a valid email address",
-        "pleaseAcceptTerms": "Please accept the terms and conditions to proceed"
+    "termsOfService": "Terms and Conditions",
+    "iAccept": "I accept the",
+    "and": "and",
+    "next": "Next",
+    "or": "or",
+    "google": "Google",
+    "apple": "Apple",
+    "pleaseEnterEmail": "Please enter your email",
+    "pleaseEnterCorrectEmail": "Please enter a valid email address",
+    "pleaseAcceptTerms": "Please accept the terms and conditions to proceed"
+  },
+  "feed": {
+    "videoes": "Videos",
+    "myProfile": "My Profile",
+    "packages": "Manage Packages",
+    "contracts": "Contracts",
+    "logout": "Logout",
+    "exploreTalents": "Explore Top Talents",
+    "TalentInspired": "Talent Inspired You",
+    "joinAvailable": "Join the available groups",
+    "featuredArticles": "Featured articles for you",
+    "featuredArticlesForYou": "Featured articles for you",
+    "viewMore": "View more",
+    "articleImageAlt": "Article image"
   }
 }

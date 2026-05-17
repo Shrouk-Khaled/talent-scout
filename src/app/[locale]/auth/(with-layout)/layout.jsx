@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styles from "./layout.module.scss";
-import Language from "@/components/common/language/Language";
 import { IoIosStar } from "react-icons/io";
 import { useTranslations } from "next-intl";
+import Language from "../../../../components/common/language/Language";
 
 export default function AuthLayout({ children }) {
   const t = useTranslations("auth")

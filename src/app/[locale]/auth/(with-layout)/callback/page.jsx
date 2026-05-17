@@ -9,24 +9,12 @@ export default function CallbackPage() {
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const res = JSON.parse(urlParams.get("data"));
-        console.log(res);
-        // const token = urlParams.get("token");
-        // const user = urlParams.get("user");
-
-        // if (token) {
-        //     localStorage.setItem("token", token);
-        //     const userData = JSON.parse(decodeURIComponent(user));
-        //     saveUserData({ access_token: token, ...userData });
-        //     window.location.href = "/feed";
-        // } else {
-        //     window.location.href = "/auth/login";
-        // }
 
         if(res?.token_response?.access_token) {
             saveUserData(res?.token_response);
             router.push("/feed")
         } else {
-            email = res?.user?.email || "";
+            const email = res?.user?.email || "";
             router.push(`/auth/signup?userId=${encodeURIComponent(res?.user?.id)}&email=${encodeURIComponent(email)}`);
         }
     }
