@@ -6,7 +6,7 @@ import Button from "@/components/ui/button/Button";
 import { IoIosStar } from "react-icons/io";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 const Hero = () => {
     const t = useTranslations('Home');

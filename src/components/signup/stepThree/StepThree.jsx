@@ -2,199 +2,285 @@
 
 import styles from "./StepThree.module.scss";
 import Button from "@/components/ui/button/Button";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Headlines from "../headlines/Headlines";
 import { Form, message } from "antd";
 import SelectBox from "@/components/ui/selectBox/SelectBox";
 import SelectInput from "@/components/ui/selectInput/SelectInput";
 import TextArea from "@/components/ui/textArea/TextArea";
 import { useEffect, useState } from "react";
-import { confirmSignup, draftSignupData, getAllCategories } from "@/services/api";
+import {
+  confirmSignup,
+  draftSignupData,
+  getAllCategories,
+} from "@/services/api";
 import { useSignupStore } from "@/store/useSignupStore";
 import { useUserStore } from "@/store/useUserStore";
 import { getFcmToken } from "@/lib/fcm";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function StepThree() {
-  // router and params
+  const t = useTranslations("signup");
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
   const user_role = searchParams.get("user_role");
   const user_type = searchParams.get("user_type");
-  //message
+
   const [messageApi, contextHolder] = message.useMessage();
-  //form
   const [form] = Form.useForm();
-  //store
+
   const updateSignupData = useSignupStore((state) => state.updateSignupData);
   const saveUserData = useUserStore((state) => state.setUserData);
   const signupData = useSignupStore((state) => state.signupData);
   const clearSignupData = useSignupStore((state) => state.resetSignup);
-  //states
+
   const [categories, setCategories] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
   const [loading, setLoading] = useState(false);
 
-
   useEffect(() => {
     getAllCategories().then((res) => {
       setCategories(res);
+
       setFilteredCategories(
         res?.filter((obj) => obj?.participationTypeId == 1) || []
       );
+
       setSubCategories(
-        (res?.find((cat) => cat?.id === signupData?.categoryId)
-          ?.subCategories) || []
+        res?.find((cat) => cat?.id === signupData?.categoryId)
+          ?.subCategories || []
       );
     });
-  }, []);
+  }, [signupData?.categoryId]);
 
   useEffect(() => {
-    if(!signupData) return;
+    if (!signupData) return;
+
     form.setFieldsValue({
-     ...signupData,
-    })
-  },[signupData])
-
-  const handleNextStep = async () => {
-    try {
-      await form.validateFields();
-      const values = form.getFieldsValue();
-      if(!values?.subCategoryId) {
-        messageApi.open({
-          type: "error",
-          content: "يرجى اختيار الفئة الفرعية"
-        });
-        return;
-      }
-      updateSignupData(values);
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("step", "4");
-      router.push(makeUrl(params), { scroll: false });
-    } catch {}
-  };
-
-  const handleSignup = async () => {
-    try {
-      await form.validateFields();
-      const values = form.getFieldsValue();
-      setLoading(true);
-      const fcmToken = await getFcmToken().catch(() => null);
-      const res = draftSignupData({
-        ...signupData,
-        shortBio: values?.bioDescription,
-        roleId: user_role,
-        userTypeId: user_type,
-        phone: signupData?.phone?.localNumber,
-        prefixCode: signupData?.phone?.countryCode,
-        email: signupData?.email,
-        categoryId: values?.categoryId,
-        subCategoryId: values?.subCategoryId,
-        participationTypeId: values?.participationTypeId,
-        fcmToken, 
-        typeId: 3,
-        deviceType: "WEB"
-      }, (p) => {console.log(p)}).then(() => {
-        if(user_type == 2){
-          handleConfirmSignup();
-        } else {
-          setLoading(false);
-          saveUserData({
-            ...res?.token_response,
-            firstName: signupData?.firstName,
-            lastName: signupData?.lastName,
-          });
-          clearSignupData();
-          router.push("/feed");
-        }
-      }).catch((err) => {
-        setLoading(false);
-      });
-    }catch {}
-  }
-
-  const handleConfirmSignup = () => {
-    confirmSignup({
-      email: searchParams.get("email"),
-    })
-      .then((res) => {
-        setLoading(false);
-        saveUserData({
-          ...res?.token_response,
-          firstName: signupData?.firstName,
-          lastName: signupData?.lastName,
-          token: res?.token_response?.access_token
-      });
-        clearSignupData();
-        router.push("/feed");
-      })
-      .catch((err) => {
-        setLoading(false);
-      });
-  };
-
+      ...signupData,
+    });
+  }, [signupData, form]);
 
   const makeUrl = (params) => {
     const qs = params.toString();
     return qs ? `${pathname}?${qs}` : pathname;
   };
 
+  const getHeadlineLine1 = () => {
+    if (user_role == 1) {
+      return t("stepThree.headlines.talentLine1");
+    }
+
+    if (user_type == 1) {
+      return t("stepThree.headlines.individualResearcherLine1");
+    }
+
+    return t("stepThree.headlines.organizationResearcherLine1");
+  };
+
+  const getHeadlineLine2 = () => {
+    if (user_role == 1) {
+      return t("stepThree.headlines.talentLine2");
+    }
+
+    return t("stepThree.headlines.researcherLine2");
+  };
+
+  const handleNextStep = async () => {
+    try {
+      await form.validateFields();
+
+      const values = form.getFieldsValue();
+
+      if (!values?.subCategoryId) {
+        messageApi.open({
+          type: "error",
+          content: t("stepThree.messages.subCategoryRequired"),
+        });
+
+        return;
+      }
+
+      updateSignupData(values);
+
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("step", "4");
+
+      router.push(makeUrl(params), { scroll: false });
+    } catch (error) {
+      console.error("Step three validation failed:", error);
+    }
+  };
+
+  const handleSignup = async () => {
+    try {
+      await form.validateFields();
+
+      const values = form.getFieldsValue();
+
+      setLoading(true);
+
+      const fcmToken = await getFcmToken().catch(() => null);
+
+      draftSignupData(
+        {
+          ...signupData,
+          shortBio: values?.bioDescription,
+          roleId: user_role,
+          userTypeId: user_type,
+          phone: signupData?.phone?.localNumber,
+          prefixCode: signupData?.phone?.countryCode,
+          email: signupData?.email,
+          categoryId: values?.categoryId,
+          subCategoryId: values?.subCategoryId,
+          participationTypeId: values?.participationTypeId,
+          fcmToken,
+          typeId: 3,
+          deviceType: "WEB",
+        },
+        (p) => {
+          console.log(p);
+        }
+      )
+        .then((res) => {
+          if (user_type == 2) {
+            handleConfirmSignup();
+            return;
+          }
+
+          saveUserData({
+            ...res?.token_response,
+            firstName: signupData?.firstName,
+            lastName: signupData?.lastName,
+          });
+
+          clearSignupData();
+          router.push("/feed");
+        })
+        .catch((err) => {
+          console.error("Draft signup failed:", err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } catch (error) {
+      console.error("Signup validation failed:", error);
+    }
+  };
+
+  const handleConfirmSignup = () => {
+    confirmSignup({
+      email: searchParams.get("email"),
+    })
+      .then((res) => {
+        saveUserData({
+          ...res?.token_response,
+          firstName: signupData?.firstName,
+          lastName: signupData?.lastName,
+          token: res?.token_response?.access_token,
+        });
+
+        clearSignupData();
+        router.push("/feed");
+      })
+      .catch((err) => {
+        console.error("Confirm signup failed:", err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   const handlePrevStep = () => {
     const params = new URLSearchParams(searchParams.toString());
+
     params.set("step", "2");
+
     router.push(makeUrl(params), { scroll: false });
   };
 
   return (
     <section className={styles.main}>
       {contextHolder}
-      <Headlines
-        line1={user_role == 1 ?  "3 عرّفنا على موهبتك أكثر" : user_type == 1 ? "3 مجالات بحثك واهتمامك" : "3 مجالات اهتمام مؤسستك"}
-        line2={user_role == 1 ? "شارك لمحة بسيطة عنك وعن شغفك." : "ما المجالات التي تهتم باكتشافها؟"}
-      />
+
+      <Headlines line1={getHeadlineLine1()} line2={getHeadlineLine2()} />
 
       <div className={styles.form}>
-        <Form form={form} layout="vertical" initialValues={{ participationTypeId: 1 }}>
+        <Form
+          form={form}
+          layout="vertical"
+          initialValues={{ participationTypeId: 1 }}
+        >
           <Form.Item
             label={
-              user_role == 1 ? "ما الذي ترغب بمشاركته" : "ما الذي تبحث عنه؟"
+              user_role == 1
+                ? t("stepThree.fields.participationTypeTalent")
+                : t("stepThree.fields.participationTypeResearcher")
             }
             name="participationTypeId"
-            rules={[{ required: true, message: "يرجى كتابة نبذة عنك" }]}
+            rules={[
+              {
+                required: true,
+                message: t("stepThree.validation.participationTypeRequired"),
+              },
+            ]}
             valuePropName="selectedType"
             trigger="onSelectType"
           >
             <SelectBox
-              onSelectType={(v) =>
-                {
-                  setFilteredCategories(
+              onSelectType={(v) => {
+                setFilteredCategories(
                   categories.filter((cat) => cat?.participationTypeId == v)
-                )
-                form.setFieldsValue({ categoryId: null, subCategoryId: null })
-                setSubCategories([])}
-              }
+                );
+
+                form.setFieldsValue({
+                  categoryId: null,
+                  subCategoryId: null,
+                });
+
+                setSubCategories([]);
+              }}
               types={[
-                { id: 1, label: "براءة اختراع" },
-                { id: 2, label: "موهبة شخصية" },
-                { id: 3, label: "فكرة مشروع" },
+                {
+                  id: 1,
+                  label: t("stepThree.participationTypes.patent"),
+                },
+                {
+                  id: 2,
+                  label: t("stepThree.participationTypes.personalTalent"),
+                },
+                {
+                  id: 3,
+                  label: t("stepThree.participationTypes.projectIdea"),
+                },
               ]}
             />
           </Form.Item>
 
           <Form.Item
-            label="تحت أي فئة"
+            label={t("stepThree.fields.category")}
             name="categoryId"
-            rules={[{ required: true, message: "يرجى كتابة تحت أي فئة" }]}
+            rules={[
+              {
+                required: true,
+                message: t("stepThree.validation.categoryRequired"),
+              },
+            ]}
           >
             <SelectInput
-            onChange={(value) => {
-              const selectedCategory = filteredCategories.find(
-                (cat) => cat?.id === value
-              );
-              setSubCategories(selectedCategory?.subCategories || []);
-            }}
-              placeholder={"اختر الفئة"}
+              onChange={(value) => {
+                const selectedCategory = filteredCategories.find(
+                  (cat) => cat?.id === value
+                );
+
+                setSubCategories(selectedCategory?.subCategories || []);
+              }}
+              placeholder={t("stepThree.placeholders.category")}
               options={filteredCategories?.map((cat) => ({
                 label: cat?.name,
                 value: cat?.id,
@@ -204,9 +290,14 @@ export default function StepThree() {
 
           {subCategories.length > 0 && (
             <Form.Item
-              label="اختر الفئة الفرعية"
+              label={t("stepThree.fields.subCategory")}
               name="subCategoryId"
-              rules={[{ required: true, message: "يرجى اختيار الفئة الفرعية" }]}
+              rules={[
+                {
+                  required: true,
+                  message: t("stepThree.validation.subCategoryRequired"),
+                },
+              ]}
               valuePropName="selectedType"
               trigger="onSelectType"
             >
@@ -226,10 +317,19 @@ export default function StepThree() {
             <Form.Item
               name="bioDescription"
               className={styles.field}
-              rules={[{ required: true, message: "اكتب نبذة قصيرة عنك" }]}
-              label="اكتب نبذة قصيرة عنك"
+              label={t("stepThree.fields.bio")}
+              rules={[
+                {
+                  required: true,
+                  message: t("stepThree.validation.bioRequired"),
+                },
+              ]}
             >
-              <TextArea maxLength={250} placeholder="اكتب هنا" haveLengthLine />
+              <TextArea
+                maxLength={250}
+                placeholder={t("stepThree.placeholders.bio")}
+                haveLengthLine
+              />
             </Form.Item>
           )}
         </Form>
@@ -239,19 +339,24 @@ export default function StepThree() {
         <div>
           {user_role == 1 ? (
             <Button className={styles.nextBtn} onClick={handleNextStep}>
-              التالي
+              {t("stepThree.buttons.next")}
             </Button>
           ) : (
-            <Button className={styles.nextBtn} onClick={handleSignup} loading={loading}>
-              انشاء حساب
+            <Button
+              className={styles.nextBtn}
+              onClick={handleSignup}
+              loading={loading}
+            >
+              {t("stepThree.buttons.createAccount")}
             </Button>
           )}
 
           <Button className={styles.backBtn} onClick={handlePrevStep} outline>
-            السابق
+            {t("stepThree.buttons.back")}
           </Button>
         </div>
-        <p>جميع الحقوق محفوظة تالنت سكوت</p>
+
+        <p>{t("stepThree.copyright")}</p>
       </div>
     </section>
   );

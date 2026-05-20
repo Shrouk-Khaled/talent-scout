@@ -1,5 +1,5 @@
 "use client"
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import styles from "./TalentsLine.module.scss";
 import { useEffect, useState } from "react";
 import { getAllCategories } from "@/services/api";
@@ -14,16 +14,12 @@ export const TalentsLine = () => {
   const user = useUserStore((state) => state.info);
 
   useEffect(() => {
-    if(categories?.length == 0 && user?.talent_type?.id) {
       getAllCategories().then((res) => {
         setData(res);
         saveCategories({
           categories: res?.filter((obj) => obj?.participationTypeId == user?.talent_type?.id) || []
         })
       });
-    } else {
-      setData(categories);
-    }
   }, [user]);
 
   return (

@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./MainHeader.module.scss";
 import { useLocale, useTranslations } from "next-intl";
 import Language from "../language/Language";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 import UserDropdown from "../userDropdown/UserDropdown";
 import { SearchInput } from "../searchInput/SearchInput";
@@ -72,7 +72,7 @@ export default function MainHeader() {
   }, []);
 
   const handleOpenReelsPage = () => {
-    router.push(`/${locale}/reels`);
+    router.push(`/reels`);
   }
 
   return (
@@ -91,7 +91,7 @@ export default function MainHeader() {
               height={60}
               className={styles.logo}
               priority
-              onClick={() => router.push(`/${locale}/feed`)}
+              onClick={() => router.push(`/feed`)}
             />
           </div>
           <SearchInput />

@@ -3,10 +3,12 @@ import styles from "./SearchInput.module.scss";
 import Input from "@/components/ui/input/Input";
 import Image from "next/image";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export const SearchInput = ({w}) => {
     const router = useRouter()
+    const t = useTranslations("feed")
   const [openResults, setOpenResults] = useState(false);
   const [search, setSearch] = useState("")
 
@@ -22,7 +24,7 @@ export const SearchInput = ({w}) => {
     <div className={styles.searchBox}>
       <Input
         type="search"
-        placeholder="ابحث هنا"
+        placeholder={t("searchHere")}
         clearable
         size="lg"
         suffix={<FiSearch />}

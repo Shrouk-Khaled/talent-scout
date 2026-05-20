@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./HowToStart.module.scss";
 import Button from "@/components/ui/button/Button";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 export default function HowToStart({ isResearcher }) {

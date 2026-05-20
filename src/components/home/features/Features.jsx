@@ -1,7 +1,7 @@
 import Button from "@/components/ui/button/Button";
 import styles from "./Features.module.scss";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 export default function Features() {
   const router = useRouter();

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./info.module.scss";
 import Button from "@/components/ui/button/Button";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { useUserStore } from "@/store/useUserStore";
 

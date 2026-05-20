@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./Event.module.scss";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
 
 export const Event = ({ data, w }) => {

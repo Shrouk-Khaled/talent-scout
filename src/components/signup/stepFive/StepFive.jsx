@@ -2,37 +2,40 @@
 
 import styles from "./StepFive.module.scss";
 import Button from "@/components/ui/button/Button";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Headlines from "../headlines/Headlines";
 import { Form, message } from "antd";
 import UploadFiles from "@/components/ui/uploadFiles/UploadFiles";
-import Input from "@/components/ui/input/Input";
 import {
   confirmSignup,
   draftSignupData,
   signupSpecialCases,
 } from "@/services/api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUserStore } from "@/store/useUserStore";
 import { useSignupStore } from "@/store/useSignupStore";
 import { getFcmToken } from "@/lib/fcm";
 import SelectInput from "@/components/ui/selectInput/SelectInput";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function StepFive() {
+  const t = useTranslations("signup");
+
   const router = useRouter();
   const pathname = usePathname();
-   //query params
+
   const searchParams = useSearchParams();
-   const user_role = searchParams.get("user_role");
+  const user_role = searchParams.get("user_role");
   const user_type = searchParams.get("user_type");
+
   const [form] = Form.useForm();
-  //message
   const [messageApi, contextHolder] = message.useMessage();
-  //store
+
   const saveUserData = useUserStore((state) => state.setUserData);
   const signupData = useSignupStore((state) => state.signupData);
   const clearSignupData = useSignupStore((state) => state.resetSignup);
-  //states
+
   const [loading, setLoading] = useState(false);
 
   const makeUrl = (params) => {
@@ -43,13 +46,15 @@ export default function StepFive() {
   const handleNextStep = async () => {
     try {
       await form.validateFields();
+
       const values = form.getFieldsValue();
       const fcmToken = await getFcmToken().catch(() => null);
 
       setLoading(true);
+
       const payload = {
         ...signupData,
-        talentCategoryForm: `${JSON.stringify(signupData?.talentCategoryForm)}`,
+        talentCategoryForm: JSON.stringify(signupData?.talentCategoryForm),
         shortBio: signupData?.shortBio,
         file: signupData?.file,
         roleId: user_role,
@@ -57,34 +62,46 @@ export default function StepFive() {
         phone: signupData?.phone?.localNumber,
         prefixCode: signupData?.phone?.countryCode,
         email: signupData?.email,
-        fcmToken, 
+        fcmToken,
         typeId: signupData?.file?.[0]?.type?.includes("image") ? 1 : 2,
-        deviceType: "WEB"
-      }
-      const res = draftSignupData(payload, (progress) => {console.log(progress)}).then(() => {
+        deviceType: "WEB",
+      };
+
+      draftSignupData(payload, (progress) => {
+        console.log(progress);
+      })
+        .then(() => {
           if (values?.shortBrief) {
             signupSpecialCases({
               shortBrief: form.getFieldValue("shortBrief"),
               file: form.getFieldValue("file"),
               email: searchParams.get("email"),
             })
-              .then((res) => {
+              .then(() => {
                 handleConfirmSignup();
               })
               .catch((err) => {
                 messageApi.open({
                   type: "error",
-                  content: err?.message || "فشل في تعديل الحساب",
+                  content:
+                    err?.message || t("stepFive.messages.editAccountFailed"),
                 });
+
                 setLoading(false);
               });
-          } else {
-            handleConfirmSignup();
+
+            return;
           }
-        }).catch((err) => {
+
+          handleConfirmSignup();
+        })
+        .catch((err) => {
+          console.error("Draft signup failed:", err);
           setLoading(false);
         });
-    } catch {}
+    } catch (error) {
+      console.error("Step five validation failed:", error);
+    }
   };
 
   const handleConfirmSignup = () => {
@@ -92,33 +109,39 @@ export default function StepFive() {
       email: searchParams.get("email"),
     })
       .then((res) => {
-        setLoading(false);
         saveUserData({
           ...res?.token_response,
           firstName: signupData?.firstName,
           lastName: signupData?.lastName,
-          token: res?.token_response?.access_token
-      });
+          token: res?.token_response?.access_token,
+        });
+
         clearSignupData();
         router.push("/feed");
       })
       .catch((err) => {
+        console.error("Confirm signup failed:", err);
+      })
+      .finally(() => {
         setLoading(false);
       });
   };
 
   const handlePrevStep = () => {
     const params = new URLSearchParams(searchParams.toString());
+
     params.set("step", "4");
+
     router.push(makeUrl(params), { scroll: false });
   };
 
   return (
     <section className={styles.main}>
       {contextHolder}
+
       <Headlines
-        line1={"5 الفئات المدعومة مجانًا"}
-        line2={" اختيارك يساعدنا في منحك دعم مجاني وباقة مميزة."}
+        line1={t("stepFive.headlines.line1")}
+        line2={t("stepFive.headlines.line2")}
       />
 
       <div className={styles.form}>
@@ -130,27 +153,44 @@ export default function StepFive() {
             {({ getFieldValue }) => (
               <Form.Item
                 name="shortBrief"
+                className={styles.field}
+                label={t("stepFive.fields.shortBrief")}
                 rules={[
                   {
-                    required: getFieldValue("file")?.length > 0 ? true : false,
-                    message: "يرجى اختيار فئتك.",
+                    required: getFieldValue("file")?.length > 0,
+                    message: t("stepFive.validation.categoryRequired"),
                   },
                 ]}
-                className={styles.field}
-                label="اذكر فئتك إن وجدت (اختياري)"
               >
                 <SelectInput
-              placeholder={"اختر من هنا "}
-              options={[
-                { label: "كفيف", value: "كفيف" },
-                { label: "اعاقه", value: "اعاقه" },
-                { label: "سمعية", value: "سمعية" },
-                { label: "اصم", value: "اصم" },
-                { label: "اعاقه حركيه", value: "اعاقه حركيه" },
-                { label: "اخري", value: "اخري" },
-              ]}
-            />
-                {/* <Input type="text" placeholder="اذكر فئتك إن وجدت" /> */}
+                  placeholder={t("stepFive.placeholders.shortBrief")}
+                  options={[
+                    {
+                      label: t("stepFive.categories.blind"),
+                      value: t("stepFive.categories.blind"),
+                    },
+                    {
+                      label: t("stepFive.categories.disability"),
+                      value: t("stepFive.categories.disability"),
+                    },
+                    {
+                      label: t("stepFive.categories.hearing"),
+                      value: t("stepFive.categories.hearing"),
+                    },
+                    {
+                      label: t("stepFive.categories.deaf"),
+                      value: t("stepFive.categories.deaf"),
+                    },
+                    {
+                      label: t("stepFive.categories.physicalDisability"),
+                      value: t("stepFive.categories.physicalDisability"),
+                    },
+                    {
+                      label: t("stepFive.categories.other"),
+                      value: t("stepFive.categories.other"),
+                    },
+                  ]}
+                />
               </Form.Item>
             )}
           </Form.Item>
@@ -163,13 +203,13 @@ export default function StepFive() {
               <Form.Item
                 name="file"
                 className={styles.field}
-                label="أرفق ما يثبت حالتك"
+                label={t("stepFive.fields.file")}
                 rules={
                   getFieldValue("shortBrief")
                     ? [
                         {
                           required: true,
-                          message: "يرجى إرفاق ملف لإثبات حالتك.",
+                          message: t("stepFive.validation.fileRequired"),
                         },
                       ]
                     : []
@@ -180,10 +220,10 @@ export default function StepFive() {
                 <UploadFiles
                   onFiles={(files, meta) => {}}
                   files={getFieldValue("file")}
-                  title="ارفع PDF لإثبات حالتك."
+                  title={t("stepFive.upload.title")}
                   accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf,.doc,.docx"
                   dir="rtl"
-                  maxSize={20 * 1024 * 1024} // 20 MB soft limit (optional)
+                  maxSize={20 * 1024 * 1024}
                 />
               </Form.Item>
             )}
@@ -198,17 +238,15 @@ export default function StepFive() {
             onClick={handleNextStep}
             loading={loading}
           >
-            انشاء الحساب
+            {t("stepFive.buttons.createAccount")}
           </Button>
-          <Button
-            className={styles.backBtn}
-            onClick={handlePrevStep}
-            outline
-          >
-            السابق
+
+          <Button className={styles.backBtn} onClick={handlePrevStep} outline>
+            {t("stepFive.buttons.back")}
           </Button>
         </div>
-        <p>جميع الحقوق محفوظة تالنت سكوت</p>
+
+        <p>{t("stepFive.copyright")}</p>
       </div>
     </section>
   );

@@ -8,13 +8,12 @@ import Button from "@/components/ui/button/Button";
 import { Divider, Drawer } from "antd";
 import Language from "../language/Language";
 import { LuX } from "react-icons/lu";
-import { usePathname, useRouter } from "next/navigation";
 import { Notifications } from "../notifications/Notifications";
 import { SearchInput } from "../searchInput/SearchInput";
 import { useHomeStore } from "@/store/useHome";
 import { useUserStore } from "@/store/useUserStore";
 import { AddPost } from "../addPost/AddPost";
-import Link from "next/link";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 
 export default function MobileHeader() {
   const router = useRouter();
@@ -118,7 +117,7 @@ export default function MobileHeader() {
                   alt="logo"
                   width={55}
                   height={40}
-                  onClick={() => router.push(`/${locale}/feed`)}
+                  onClick={() => router.push(`/feed`)}
                 />
               </div>
             </div>

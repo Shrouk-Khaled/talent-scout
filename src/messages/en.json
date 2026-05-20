@@ -204,9 +204,24 @@
     "apple": "Apple",
     "pleaseEnterEmail": "Please enter your email",
     "pleaseEnterCorrectEmail": "Please enter a valid email address",
-    "pleaseAcceptTerms": "Please accept the terms and conditions to proceed"
+    "pleaseAcceptTerms": "Please accept the terms and conditions to proceed",
+    "step": "Step",
+    "verify": {
+      "brandAlt": "Brand",
+      "title": "Enter Verification Code",
+      "subtitle": "Enter the code sent to {email}",
+      "resendQuestion": "Didn’t receive the verification code?",
+      "next": "Next",
+      "messages": {
+        "verifyFailed": "Failed to verify the verification code",
+        "verifySuccess": "Verified successfully",
+        "resendSuccess": "The verification code has been sent to your email successfully",
+        "resendFailed": "Failed to resend the verification code"
+      }
+    }
   },
   "feed": {
+    "searchHere": "Search here",
     "videoes": "Videos",
     "myProfile": "My Profile",
     "packages": "Manage Packages",
@@ -219,5 +234,476 @@
     "featuredArticlesForYou": "Featured articles for you",
     "viewMore": "View more",
     "articleImageAlt": "Article image"
-  }
+  },
+  "profile": {
+    "breadcrumb": {
+      "myAccount": "My Account",
+      "editAccount": "Edit Account"
+    },
+    "edit": {
+      "coverAlt": "Profile edit",
+      "avatarAlt": "User profile",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone Number",
+      "shortBio": "Write a short bio about yourself",
+      "saveChanges": "Save Changes",
+      "firstNamePlaceholder": "Example: Ahmed",
+      "lastNamePlaceholder": "Example: Mohamed Ali",
+      "shortBioPlaceholder": "Write here",
+      "successMessage": "Profile updated successfully",
+      "validation": {
+        "firstNameRequired": "Please enter your first name",
+        "lastNameRequired": "Please enter your last name",
+        "phoneRequired": "Please enter your phone number",
+        "shortBioRequired": "Please write a short bio about yourself",
+        "lettersOnlyFirstName": "First name should contain letters only",
+        "lettersOnlyLastName": "Last name should contain letters only"
+      }
+    },
+    "sidebar": {
+      "profilePicAlt": "Profile picture",
+      "pendingAccountImageAlt": "Pending account image",
+      "welcome": "Welcome",
+      "editAccount": "Edit Account",
+      "following": "Following",
+      "followers": "Followers",
+      "postsCount": "Posts",
+      "pendingAccountTitle": "Your account is under review ⏳",
+      "pendingAccountDescription": "We are currently reviewing your information and will send a notification once completed",
+      "pages": {
+        "myPosts": "My Posts",
+        "savedItems": "Saved Items",
+        "orders": "Orders",
+        "accountSettings": "Account Settings"
+      },
+      "iconsAlt": {
+        "myPosts": "My posts icon",
+        "savedItems": "Saved items icon",
+        "orders": "Orders icon",
+        "accountSettings": "Account settings icon"
+      }
+    },
+    "posts": {
+      "title": "My Posts",
+      "description": "All posts you have published will appear here."
+    },
+    "saved": {
+      "title": "Saved Items",
+      "description": "Here you can quickly access the content you saved to review at any time.",
+      "tabs": {
+        "posts": "Posts",
+        "articles": "Articles",
+        "events": "Events"
+      },
+      "noData": "No saved items found"
+    },
+    "settings": {
+      "title": "Account Settings",
+      "description": "Manage your account type and final security settings",
+      "deleteAccount": {
+        "title": "Delete Account Permanently",
+        "description": "All data and posts will be permanently deleted and cannot be restored",
+        "button": "Delete Account"
+      }
+    },
+    "deleteAccountModal": {
+      "imageAlt": "Delete account",
+      "infoIconAlt": "Info icon",
+      "title": "Confirm Account Deletion",
+      "description": "Are you sure you want to delete your account? You can come back anytime by creating a new account.",
+      "warning": "Deleting your account will permanently remove all your data and content, and it cannot be restored later.",
+      "deleteButton": "Delete Account",
+      "cancelButton": "Cancel",
+      "successMessage": "Account deleted successfully"
+    }
+  },
+  "signup": {
+    "stepOne": {
+      "headlineLine1": "1 Welcome to Talent Scout",
+      "headlineLine2": "Are you a talent or a talent seeker?",
+      "types": {
+        "talent": {
+          "title": "I am a Talent",
+          "description": "I showcase my talent, share my creativity, and reach the opportunities I deserve.",
+          "iconAlt": "Talent"
+        },
+        "individualResearcher": {
+          "title": "I am a Researcher (Individual)",
+          "description": "I discover outstanding talents and build relationships with creators.",
+          "iconAlt": "Individual researcher"
+        },
+        "organizationResearcher": {
+          "title": "I am a Researcher (Organization)",
+          "description": "I represent my organization and look for the right talents and innovations for us.",
+          "iconAlt": "Organization researcher"
+        }
+      },
+      "next": "Next",
+      "copyright": "All rights reserved Talent Scout"
+    },
+    "stepTwo": {
+      "headlineLine1": "2 Let’s get to know you better",
+      "headlineLine2": "Fill in the basic information for your profile.",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "email": "Email",
+      "phone": "Phone Number",
+      "age": "Age",
+      "country": "Country",
+      "city": "City",
+      "next": "Next",
+      "back": "Back",
+      "copyright": "All rights reserved Talent Scout",
+      "placeholders": {
+        "firstName": "Example: Ahmed",
+        "lastName": "Example: Mohamed Ali",
+        "email": "Enter email",
+        "age": "Example: 25",
+        "country": "Select country",
+        "city": "Select city"
+      },
+      "validation": {
+        "firstNameRequired": "Please enter your first name",
+        "lastNameRequired": "Please enter your last name",
+        "lettersOnlyFirstName": "First name should contain letters only",
+        "lettersOnlyLastName": "Last name should contain letters only",
+        "genderRequired": "Please select your gender",
+        "emailRequired": "Please enter your email",
+        "phoneRequired": "Please enter your phone number",
+        "ageRequired": "Please enter your age",
+        "agePattern": "Age must be between 13 and 99",
+        "countryRequired": "Please select your country",
+        "cityRequired": "Please select your city"
+      },
+      "messages": {
+        "phoneAlreadyExists": "This phone number is already used. Please use another number."
+      }
+    },
+    "stepThree": {
+      "headlines": {
+        "talentLine1": "3 Tell us more about your talent",
+        "individualResearcherLine1": "3 Your research fields and interests",
+        "organizationResearcherLine1": "3 Your organization’s areas of interest",
+        "talentLine2": "Share a short glimpse about yourself and your passion.",
+        "researcherLine2": "What fields are you interested in discovering?"
+      },
+      "fields": {
+        "participationTypeTalent": "What would you like to share?",
+        "participationTypeResearcher": "What are you looking for?",
+        "category": "Under which category?",
+        "subCategory": "Select subcategory",
+        "bio": "Write a short bio about yourself"
+      },
+      "participationTypes": {
+        "patent": "Patent",
+        "personalTalent": "Personal Talent",
+        "projectIdea": "Project Idea"
+      },
+      "placeholders": {
+        "category": "Select category",
+        "bio": "Write here"
+      },
+      "validation": {
+        "participationTypeRequired": "Please select the participation type",
+        "categoryRequired": "Please select the category",
+        "subCategoryRequired": "Please select the subcategory",
+        "bioRequired": "Please write a short bio about yourself"
+      },
+      "messages": {
+        "subCategoryRequired": "Please select the subcategory"
+      },
+      "buttons": {
+        "next": "Next",
+        "createAccount": "Create Account",
+        "back": "Back"
+      },
+      "copyright": "All rights reserved Talent Scout"
+    },
+    "stepFour": {
+      "headlines": {
+        "line1": "4 About you and your talent",
+        "line2": "A short bio about you and your interests."
+      },
+      "validation": {
+        "requiredField": "Please enter {field}",
+        "shortBioRequired": "Please write a short bio about yourself",
+        "fileRequired": "Please prove your talent with a simple file"
+      },
+      "placeholders": {
+        "enterField": "Enter {field}",
+        "selectField": "Select {field}",
+        "shortBio": "Write here"
+      },
+      "fields": {
+        "shortBio": "Write a short bio about yourself",
+        "file": "Prove your talent with a simple file"
+      },
+      "upload": {
+        "title": "Upload or drag a video up to 2 minutes or an image to showcase your work"
+      },
+      "buttons": {
+        "next": "Next",
+        "back": "Back"
+      },
+      "copyright": "All rights reserved Talent Scout"
+    },
+    "stepFive": {
+      "headlines": {
+        "line1": "5 Free Supported Categories",
+        "line2": "Your selection helps us provide you with free support and a special package."
+      },
+      "fields": {
+        "shortBrief": "Mention your category if applicable (optional)",
+        "file": "Attach a document that proves your case"
+      },
+      "placeholders": {
+        "shortBrief": "Select from here"
+      },
+      "categories": {
+        "blind": "Blind",
+        "disability": "Disability",
+        "hearing": "Hearing impairment",
+        "deaf": "Deaf",
+        "physicalDisability": "Physical disability",
+        "other": "Other"
+      },
+      "upload": {
+        "title": "Upload a PDF to prove your case."
+      },
+      "validation": {
+        "categoryRequired": "Please select your category.",
+        "fileRequired": "Please attach a file to prove your case."
+      },
+      "messages": {
+        "editAccountFailed": "Failed to update account"
+      },
+      "buttons": {
+        "createAccount": "Create Account",
+        "back": "Back"
+      },
+      "copyright": "All rights reserved Talent Scout"
+    },
+    "stepTwoResearcher": {
+      "headlines": {
+        "line1": "02 Tell us more about your organization",
+        "line2": "Fill in the basic information for your organization."
+      },
+      "fields": {
+        "companyName": "Organization Name",
+        "commercialRegNo": "Commercial Registration Number",
+        "contactPerson": "Representative Person Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "country": "Country",
+        "city": "City",
+        "file": "Commercial Registration or Official License"
+      },
+      "placeholders": {
+        "companyName": "Example: Almarai Company",
+        "commercialRegNo": "Example: 142 1546 11",
+        "contactPerson": "Example: Ahmed Mohamed",
+        "email": "Enter email",
+        "country": "Select country",
+        "city": "Select city"
+      },
+      "upload": {
+        "title": "Upload PDF document"
+      },
+      "validation": {
+        "companyNameRequired": "Please enter the organization name",
+        "commercialRegNoRequired": "Please enter the commercial registration number",
+        "commercialRegNoNumbersOnly": "Commercial registration number should contain numbers only",
+        "contactPersonRequired": "Please enter the representative person name",
+        "emailRequired": "Please enter your email",
+        "phoneRequired": "Please enter your phone number",
+        "countryRequired": "Please select your country",
+        "cityRequired": "Please select your city",
+        "fileRequired": "Please attach the commercial registration or official license"
+      },
+      "messages": {
+        "phoneAlreadyExists": "This phone number is already used. Please use another number.",
+        "formError": "Please correct the form errors before continuing."
+      },
+      "buttons": {
+        "next": "Next",
+        "back": "Back"
+      },
+      "copyright": "All rights reserved Talent Scout"
+    }
+  },
+  "search": {
+    "breadcrumb": {
+      "home": "Home",
+      "search": "Search"
+    },
+    "title": "Search Results",
+    "filterIconAlt": "Filter",
+    "tabs": {
+      "all": "All",
+      "posts": "Posts",
+      "talents": "Talents",
+      "articles": "Articles",
+      "events": "Events"
+    },
+    "noData": {
+      "imageAlt": "No data",
+      "title": "No matching results",
+      "description": "We couldn’t find results right now. Try different search options."
+    }
+  },
+  "articles": {
+    "details": {
+      "breadcrumb": {
+        "home": "Home",
+        "articles": "Articles"
+      },
+      "shareAlt": "Share",
+      "articleImageAlt": "Article image",
+      "sectionImageAlt": "Section image",
+      "copiedMessage": "Article link copied",
+      "videoNotSupported": "Your browser does not support video playback"
+    }
+  },
+  "filter": {
+    "title": "Filters",
+    "reset": "Reset",
+    "sortBy": "Sort by",
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "subTalent": "Under which talent"
+  },
+  "contract": {
+    "successModal": {
+      "imageAlt": "Success",
+      "title": "Request Sent Successfully",
+      "description": "The talent will be notified of your request, and the conversation will open if they accept it.",
+      "followRequest": "Track Request"
+    },
+    "request": {
+      "pageTitle": "Professional Contact Request",
+      "pageDescription": "Send a request that includes the work or collaboration details.",
+      "sendTo": "Send request to",
+      "profileImageAlt": "Talent profile image",
+      "requestDetailsTitle": "Request Details",
+      "requestDetailsDescription": "Please fill in the following information to prepare the request",
+      "workDescription": "Work Description",
+      "workDescriptionPlaceholder": "Share details about the project, required tasks, and any other important information.",
+      "sendButton": "Send Request",
+      "errorMessage": "An error occurred while sending the request",
+      "validation": {
+        "descriptionRequired": "Please write a work description"
+      },
+      "infoTitle": "What is a professional contact request?",
+      "iconAlt": "Info icon",
+      "steps": {
+        "professionalAgreement": {
+          "title": "Trusted Professional Agreement",
+          "description": "The request is an agreement between the researcher and the talent that clearly defines the nature of collaboration and work between both parties."
+        },
+        "workTerms": {
+          "title": "Define Work Terms",
+          "description": "It includes details such as collaboration duration, agreement value, and required tasks to ensure clear expectations."
+        },
+        "rightsProtection": {
+          "title": "Rights Protection and Communication",
+          "description": "The platform team reviews the request and contacts the talent to help coordinate the agreement between both parties."
+        }
+      },
+      "workTypes": {
+        "fullTime": "Full-time",
+        "partTime": "Part-time",
+        "partnership": "Partnership",
+        "freelance": "Freelance",
+        "other": "Other"
+      }
+    },
+    "page": {
+      "title": "Contracts",
+      "description": "Track the status of sent and received contracts",
+      "noData": "No contracts yet",
+      "sentAt": "Sent on {date}",
+      "sentTo": "Request sent to",
+      "receiverImageAlt": "Receiver image"
+    },
+    "status": {
+      "accepted": "Accepted",
+      "rejected": "Rejected",
+      "pending": "Pending",
+      "cancelled": "Cancelled",
+      "completed": "Completed"
+    },
+    "type": {
+      "fullTime": "Full-time",
+      "partTime": "Part-time",
+      "partnership": "Partnership",
+      "freelance": "Freelance",
+      "other": "Other"
+    },
+    "details": {
+      "title": "Request Details",
+      "workDescription": "Work Description",
+      "sentTo": "Request sent to:",
+      "accountDetails": "Account Details",
+      "requestStatus": "Request Status:",
+      "receiverImageAlt": "Receiver image",
+      "statusImageAlt": "Request status icon"
+    }
+  },
+  "talentDetails": {
+    "coverAlt": "Talent cover",
+    "profileImageAlt": "Talent profile image",
+    "connectIconAlt": "Connect icon",
+    "followingIconAlt": "Following icon",
+    "followersIconAlt": "Followers icon",
+    "postsIconAlt": "Posts icon",
+    "connect": "Connect",
+    "follow": "Follow",
+    "unfollow": "Unfollow",
+    "following": "Following",
+    "followers": "Followers",
+    "posts": "Posts",
+    "notifications": {
+      "followed": "Followed successfully",
+      "unfollowed": "Unfollowed successfully"
+    }
+  },
+  "post": {
+    "unknownOwner": "Unknown",
+    "defaultCaption": "The most important part of my day is not just training… it is the food that helps me continue my journey as a football player. 💪🔥 I always focus on protein, vegetables, and drinking water, because a player who takes care of his health…",
+    "date": {
+      "minutesAgo": "A few minutes ago",
+      "hoursAgo": "{count} hours ago",
+      "daysAgo": "{count} days ago",
+      "default": "3 hours ago"
+    },
+    "alt": {
+      "userAvatar": "User avatar",
+      "postImage": "Post image",
+      "likeIcon": "Like icon"
+    },
+    "videoNotSupported": "Your browser does not support video playback"
+  },
+  "eventDetails": {
+  "breadcrumb": {
+    "home": "Home",
+    "events": "Events"
+  },
+  "shareAlt": "Share",
+  "eventImageAlt": "Event image",
+  "timeIconAlt": "Time",
+  "locationIconAlt": "Location",
+  "copiedMessage": "Event link copied",
+  "aboutEvent": "About the event",
+  "dateAndTime": "Date and Time",
+  "starts": "Starts",
+  "ends": "Ends",
+  "location": "Location",
+  "defaultLocation": "Sports Cultural Center – New Cairo",
+  "map": "Map",
+  "relatedEventsTitle": "Join the available gatherings"
+}
 }

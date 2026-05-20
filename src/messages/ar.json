@@ -203,9 +203,24 @@
     "apple": "آبل",
     "pleaseEnterEmail": "يرجى إدخال البريد الإلكتروني",
     "pleaseEnterCorrectEmail": "الرجاء إدخال بريد إلكتروني صحيح",
-    "pleaseAcceptTerms": "يرجى الموافقة على الشروط والأحكام للمتابعة"
+    "pleaseAcceptTerms": "يرجى الموافقة على الشروط والأحكام للمتابعة",
+    "step": "الخطوة",
+    "verify": {
+      "brandAlt": "الشعار",
+      "title": "ادخل رمز التحقق",
+      "subtitle": "ادخل الرمز المرسل إلى {email}",
+      "resendQuestion": "لم يصلك رمز التحقق؟",
+      "next": "التالي",
+      "messages": {
+        "verifyFailed": "فشل التحقق من رمز التحقق",
+        "verifySuccess": "تم التحقق بنجاح",
+        "resendSuccess": "تم ارسال رمز التحقق الى بريدك الالكتروني بنجاح",
+        "resendFailed": "فشل اعادة ارسال رمز التحقق"
+      }
+    }
   },
   "feed": {
+    "searchHere": "ابحث هنا",
     "videoes": "الفيديوهات",
     "myProfile": "حسابي",
     "packages": "ادارة الباقات",
@@ -218,5 +233,476 @@
     "featuredArticlesForYou": "مقالات مميزة لك",
     "viewMore": "رؤية المزيد",
     "articleImageAlt": "صورة المقال"
-  }
+  },
+  "profile": {
+    "breadcrumb": {
+      "myAccount": "حسابي",
+      "editAccount": "تعديل الحساب"
+    },
+    "edit": {
+      "coverAlt": "تعديل الملف الشخصي",
+      "avatarAlt": "صورة المستخدم",
+      "firstName": "الاسم الأول",
+      "lastName": "الاسم الثاني",
+      "phone": "رقم الجوال",
+      "shortBio": "اكتب نبذة قصيرة عنك",
+      "saveChanges": "حفظ التعديلات",
+      "firstNamePlaceholder": "مثال: أحمد",
+      "lastNamePlaceholder": "مثال: محمد علي",
+      "shortBioPlaceholder": "اكتب هنا",
+      "successMessage": "تم تحديث الملف الشخصي بنجاح",
+      "validation": {
+        "firstNameRequired": "الرجاء إدخال الاسم الأول",
+        "lastNameRequired": "الرجاء إدخال الاسم الثاني",
+        "phoneRequired": "الرجاء إدخال رقم الهاتف",
+        "shortBioRequired": "اكتب نبذة قصيرة عنك",
+        "lettersOnlyFirstName": "الاسم الأول يجب أن يحتوي على حروف فقط",
+        "lettersOnlyLastName": "الاسم الثاني يجب أن يحتوي على حروف فقط"
+      }
+    },
+    "sidebar": {
+      "profilePicAlt": "صورة الملف الشخصي",
+      "pendingAccountImageAlt": "صورة حساب قيد المراجعة",
+      "welcome": "مرحبا",
+      "editAccount": "تعديل الحساب",
+      "following": "المتابعون",
+      "followers": "المتابعين",
+      "postsCount": "المنشورات",
+      "pendingAccountTitle": "حسابك قيد المراجعة ⏳",
+      "pendingAccountDescription": "نقوم بمراجعة بياناتك حاليا و سيتم ارسال اشعار فور الانتهاء",
+      "pages": {
+        "myPosts": "منشوراتي",
+        "savedItems": "العناصر المحفوظة",
+        "orders": "الطلبات",
+        "accountSettings": "إعدادات الحساب"
+      },
+      "iconsAlt": {
+        "myPosts": "أيقونة منشوراتي",
+        "savedItems": "أيقونة العناصر المحفوظة",
+        "orders": "أيقونة الطلبات",
+        "accountSettings": "أيقونة إعدادات الحساب"
+      }
+    },
+    "posts": {
+      "title": "منشوراتي",
+      "description": "جميع المنشورات التي قمت بنشرها تظهر هنا."
+    },
+    "saved": {
+      "title": "العناصر المحفوظة",
+      "description": "هنا يمكنك الوصول بسرعة إلى المحتوى الذي قمت بحفظه لمراجعته في أي وقت.",
+      "tabs": {
+        "posts": "المنشورات",
+        "articles": "المقالات",
+        "events": "الفعاليات"
+      },
+      "noData": "لا توجد عناصر محفوظة"
+    },
+    "settings": {
+      "title": "إعدادات الحساب",
+      "description": "إدارة نوع حسابك و إعدادات الأمان النهائية",
+      "deleteAccount": {
+        "title": "حذف الحساب نهائيا",
+        "description": "سيتم مسح كافة البيانات و المنشورات بشكل دائم ولا يمكن استرجاعها",
+        "button": "حذف الحساب"
+      }
+    },
+    "deleteAccountModal": {
+      "imageAlt": "حذف الحساب",
+      "infoIconAlt": "أيقونة معلومات",
+      "title": "تأكيد حذف الحساب",
+      "description": "هل أنتِ متأكدة من رغبتك في حذف حسابك؟ يمكنكِ العودة في أي وقت بإنشاء حساب جديد.",
+      "warning": "سيؤدي حذف الحساب إلى إزالة جميع بياناتك ومحتواك بشكل دائم، ولن يكون بالإمكان استعادتها لاحقًا.",
+      "deleteButton": "حذف الحساب",
+      "cancelButton": "إلغاء",
+      "successMessage": "تم حذف الحساب بنجاح"
+    }
+  },
+  "signup": {
+    "stepOne": {
+      "headlineLine1": "1 مرحبا فى تالنت سكوت",
+      "headlineLine2": "هل أنت موهوب أم باحث عن المواهب؟",
+      "types": {
+        "talent": {
+          "title": "انا موهوب",
+          "description": "أعرض موهبتي، أشارك إبداعي، وأوصل للفرص اللي تستحقني.",
+          "iconAlt": "موهوب"
+        },
+        "individualResearcher": {
+          "title": "أنا باحث (فرد)",
+          "description": "أكتشف مواهب مميزة، وأبني علاقات مع المبدعين.",
+          "iconAlt": "باحث فرد"
+        },
+        "organizationResearcher": {
+          "title": "أنا باحث (منشأة)",
+          "description": "أمثّل مؤسستي وأبحث عن المواهب والابتكارات المناسبة لنا.",
+          "iconAlt": "باحث منشأة"
+        }
+      },
+      "next": "التالي",
+      "copyright": "جميع الحقوق محفوظة تالنت سكوت"
+    },
+    "stepTwo": {
+      "headlineLine1": "2 خلّنا نتعرف عليك أكثر",
+      "headlineLine2": "عبّ البيانات الأساسية لملفك الشخصي.",
+      "firstName": "الاسم الأول",
+      "lastName": "الاسم الثاني",
+      "gender": "النوع",
+      "male": "ذكر",
+      "female": "أنثى",
+      "email": "البريد الالكتروني",
+      "phone": "رقم الجوال",
+      "age": "العمر",
+      "country": "البلد",
+      "city": "المدينة",
+      "next": "التالي",
+      "back": "السابق",
+      "copyright": "جميع الحقوق محفوظة تالنت سكوت",
+      "placeholders": {
+        "firstName": "مثال: أحمد",
+        "lastName": "مثال: محمد علي",
+        "email": "ادخل الايميل",
+        "age": "مثال: 25",
+        "country": "اختر بلد",
+        "city": "اختر مدينة"
+      },
+      "validation": {
+        "firstNameRequired": "الرجاء إدخال الاسم الأول",
+        "lastNameRequired": "الرجاء إدخال الاسم الثاني",
+        "lettersOnlyFirstName": "الاسم الأول يجب أن يحتوي على حروف فقط",
+        "lettersOnlyLastName": "الاسم الثاني يجب أن يحتوي على حروف فقط",
+        "genderRequired": "الرجاء اختيار النوع",
+        "emailRequired": "الرجاء إدخال البريد الالكتروني",
+        "phoneRequired": "الرجاء إدخال رقم الهاتف",
+        "ageRequired": "الرجاء إدخال العمر",
+        "agePattern": "العمر لازم يكون بين 13 و 99",
+        "countryRequired": "الرجاء ادخال البلد",
+        "cityRequired": "الرجاء ادخال المدينة"
+      },
+      "messages": {
+        "phoneAlreadyExists": "رقم الجوال مستخدم بالفعل. الرجاء استخدام رقم آخر."
+      }
+    },
+    "stepThree": {
+      "headlines": {
+        "talentLine1": "3 عرّفنا على موهبتك أكثر",
+        "individualResearcherLine1": "3 مجالات بحثك واهتمامك",
+        "organizationResearcherLine1": "3 مجالات اهتمام مؤسستك",
+        "talentLine2": "شارك لمحة بسيطة عنك وعن شغفك.",
+        "researcherLine2": "ما المجالات التي تهتم باكتشافها؟"
+      },
+      "fields": {
+        "participationTypeTalent": "ما الذي ترغب بمشاركته",
+        "participationTypeResearcher": "ما الذي تبحث عنه؟",
+        "category": "تحت أي فئة",
+        "subCategory": "اختر الفئة الفرعية",
+        "bio": "اكتب نبذة قصيرة عنك"
+      },
+      "participationTypes": {
+        "patent": "براءة اختراع",
+        "personalTalent": "موهبة شخصية",
+        "projectIdea": "فكرة مشروع"
+      },
+      "placeholders": {
+        "category": "اختر الفئة",
+        "bio": "اكتب هنا"
+      },
+      "validation": {
+        "participationTypeRequired": "يرجى اختيار نوع المشاركة",
+        "categoryRequired": "يرجى اختيار الفئة",
+        "subCategoryRequired": "يرجى اختيار الفئة الفرعية",
+        "bioRequired": "اكتب نبذة قصيرة عنك"
+      },
+      "messages": {
+        "subCategoryRequired": "يرجى اختيار الفئة الفرعية"
+      },
+      "buttons": {
+        "next": "التالي",
+        "createAccount": "انشاء حساب",
+        "back": "السابق"
+      },
+      "copyright": "جميع الحقوق محفوظة تالنت سكوت"
+    },
+    "stepFour": {
+      "headlines": {
+        "line1": "4 نبذة عنك وعن موهبتك",
+        "line2": "نبذة قصيرة عنك واهتماماتك."
+      },
+      "validation": {
+        "requiredField": "الرجاء إدخال {field}",
+        "shortBioRequired": "اكتب نبذة قصيرة عنك",
+        "fileRequired": "أثبت موهبتك بملف بسيط"
+      },
+      "placeholders": {
+        "enterField": "ادخل {field}",
+        "selectField": "اختر {field}",
+        "shortBio": "اكتب هنا"
+      },
+      "fields": {
+        "shortBio": "اكتب نبذة قصيرة عنك",
+        "file": "أثبت موهبتك بملف بسيط"
+      },
+      "upload": {
+        "title": "ارفع او اسحب فيديو حتى دقيقتين أو صورة لعرض أعمالك"
+      },
+      "buttons": {
+        "next": "التالي",
+        "back": "السابق"
+      },
+      "copyright": "جميع الحقوق محفوظة تالنت سكوت"
+    },
+    "stepFive": {
+      "headlines": {
+        "line1": "5 الفئات المدعومة مجانًا",
+        "line2": "اختيارك يساعدنا في منحك دعم مجاني وباقة مميزة."
+      },
+      "fields": {
+        "shortBrief": "اذكر فئتك إن وجدت (اختياري)",
+        "file": "أرفق ما يثبت حالتك"
+      },
+      "placeholders": {
+        "shortBrief": "اختر من هنا"
+      },
+      "categories": {
+        "blind": "كفيف",
+        "disability": "اعاقه",
+        "hearing": "سمعية",
+        "deaf": "اصم",
+        "physicalDisability": "اعاقه حركيه",
+        "other": "اخري"
+      },
+      "upload": {
+        "title": "ارفع PDF لإثبات حالتك."
+      },
+      "validation": {
+        "categoryRequired": "يرجى اختيار فئتك.",
+        "fileRequired": "يرجى إرفاق ملف لإثبات حالتك."
+      },
+      "messages": {
+        "editAccountFailed": "فشل في تعديل الحساب"
+      },
+      "buttons": {
+        "createAccount": "انشاء الحساب",
+        "back": "السابق"
+      },
+      "copyright": "جميع الحقوق محفوظة تالنت سكوت"
+    },
+    "stepTwoResearcher": {
+      "headlines": {
+        "line1": "02 عرّفنا بمؤسستك أكثر",
+        "line2": "عبّ البيانات الأساسية لمؤسستك."
+      },
+      "fields": {
+        "companyName": "إسم المنشأه",
+        "commercialRegNo": "رقم السجل التجاري",
+        "contactPerson": "إسم الشخص الممثل للجهة",
+        "email": "البريد الالكتروني",
+        "phone": "رقم الجوال",
+        "country": "البلد",
+        "city": "المدينة",
+        "file": "السجل التجاري او الترخيص الرسمي"
+      },
+      "placeholders": {
+        "companyName": "مثال: شركة المراعي",
+        "commercialRegNo": "مثال: 142 1546 11",
+        "contactPerson": "مثال: أحمد محمد",
+        "email": "ادخل الايميل",
+        "country": "اختر بلد",
+        "city": "اختر مدينة"
+      },
+      "upload": {
+        "title": "ارفع مستند PDF"
+      },
+      "validation": {
+        "companyNameRequired": "الرجاء إدخال إسم المنشأه",
+        "commercialRegNoRequired": "الرجاء إدخال رقم السجل التجاري",
+        "commercialRegNoNumbersOnly": "رقم السجل التجاري يجب أن يحتوي على أرقام فقط",
+        "contactPersonRequired": "الرجاء إدخال إسم الشخص الممثل للجهة",
+        "emailRequired": "الرجاء إدخال البريد الالكتروني",
+        "phoneRequired": "الرجاء إدخال رقم الهاتف",
+        "countryRequired": "الرجاء ادخال البلد",
+        "cityRequired": "الرجاء ادخال المدينة",
+        "fileRequired": "أرفق السجل التجاري او الترخيص الرسمي"
+      },
+      "messages": {
+        "phoneAlreadyExists": "رقم الجوال مستخدم بالفعل. الرجاء استخدام رقم آخر.",
+        "formError": "الرجاء تصحيح الأخطاء في النموذج قبل المتابعة."
+      },
+      "buttons": {
+        "next": "التالي",
+        "back": "السابق"
+      },
+      "copyright": "جميع الحقوق محفوظة تالنت سكوت"
+    }
+  },
+  "search": {
+    "breadcrumb": {
+      "home": "الصفحة الرئيسية",
+      "search": "البحث"
+    },
+    "title": "نتائج البحث",
+    "filterIconAlt": "فلتر",
+    "tabs": {
+      "all": "الكل",
+      "posts": "المنشورات",
+      "talents": "الموهوبين",
+      "articles": "المقالات",
+      "events": "الفعاليات"
+    },
+    "noData": {
+      "imageAlt": "لا توجد نتائج",
+      "title": "ما فيه نتائج مطابقة",
+      "description": "ما لقينا نتائج حالياً، جرب خيارات بحث ثانية."
+    }
+  },
+  "articles": {
+    "details": {
+      "breadcrumb": {
+        "home": "الرئيسية",
+        "articles": "المقالات"
+      },
+      "shareAlt": "مشاركة",
+      "articleImageAlt": "صورة المقال",
+      "sectionImageAlt": "صورة القسم",
+      "copiedMessage": "تم نسخ رابط المقالة",
+      "videoNotSupported": "المتصفح لا يدعم عرض الفيديو"
+    }
+  },
+  "filter": {
+    "title": "الفلاتر",
+    "reset": "إعاده تعيين",
+    "sortBy": "الترتيب حسب",
+    "newest": "الأحدث",
+    "oldest": "الأقدم",
+    "subTalent": "تحت أي موهبة"
+  },
+  "contract": {
+    "successModal": {
+      "imageAlt": "تم بنجاح",
+      "title": "تم إرسال الطلب بنجاح",
+      "description": "سيتم إخطار الموهوب بالطلب و سيتم فتح المحادثة في حالة قبوله للطلب",
+      "followRequest": "متابعة الطلب"
+    },
+    "request": {
+      "pageTitle": "طلب تواصل مهني",
+      "pageDescription": "أرسل طلب يتضمن تفاصيل العمل أو التعاون.",
+      "sendTo": "ارسال الطلب الي",
+      "profileImageAlt": "صورة الموهوب",
+      "requestDetailsTitle": "تفاصيل الطلب",
+      "requestDetailsDescription": "يرجى ملئ المعلومات التاليه لتجهيز الطلب",
+      "workDescription": "وصف العمل",
+      "workDescriptionPlaceholder": "شارك تفاصيل عن المشروع، المهام المطلوبة، وأي معلومات أخرى مهمة.",
+      "sendButton": "ارسال الطلب",
+      "errorMessage": "حدث خطأ أثناء إرسال الطلب",
+      "validation": {
+        "descriptionRequired": "الرجاء كتابة وصف للعمل"
+      },
+      "infoTitle": "ما هو طلب التواصل المهنى؟",
+      "iconAlt": "أيقونة توضيحية",
+      "steps": {
+        "professionalAgreement": {
+          "title": "اتفاق مهني موثوق",
+          "description": "العقد هو اتفاق بين الباحث والموهوب يحدد طبيعة التعاون والعمل بين الطرفين بشكل واضح."
+        },
+        "workTerms": {
+          "title": "تحديد شروط العمل",
+          "description": "يتضمن العقد تفاصيل مثل مدة التعاون، قيمة الاتفاق، والمهام المطلوبة لضمان وضوح التوقعات."
+        },
+        "rightsProtection": {
+          "title": "حماية الحقوق والتواصل",
+          "description": "يقوم فريق المنصة بمراجعة الطلب والتواصل مع الموهوب للمساعدة في تنسيق التعاقد بين الطرفين."
+        }
+      },
+      "workTypes": {
+        "fullTime": "دوام كامل",
+        "partTime": "دوام جزئي",
+        "partnership": "شراكة",
+        "freelance": "عمل حر",
+        "other": "أخرى"
+      }
+    },
+    "page": {
+      "title": "الطلبات",
+      "description": "تتبع حالة طلبات الخدمات المقدمة والمستلمة",
+      "noData": "لا توجد طلبات حتى الآن",
+      "sentAt": "تم الإرسال {date}",
+      "sentTo": "تم إرسال الطلب الى",
+      "receiverImageAlt": "صورة المستلم"
+    },
+    "status": {
+      "accepted": "مقبول",
+      "rejected": "مرفوض",
+      "pending": "قيد الانتظار",
+      "cancelled": "ملغي",
+      "completed": "مكتمل"
+    },
+    "type": {
+      "fullTime": "دوام كلي",
+      "partTime": "دوام جزئى",
+      "partnership": "شراكة",
+      "freelance": "عمل حر",
+      "other": "أخرى"
+    },
+    "details": {
+      "title": "تفاصيل الطلب",
+      "workDescription": "وصف العمل",
+      "sentTo": "تم ارسال الطلب ال:",
+      "accountDetails": "تفاصيل الحساب",
+      "requestStatus": "حالة الطلب:",
+      "receiverImageAlt": "صورة المستلم",
+      "statusImageAlt": "أيقونة حالة الطلب"
+    }
+  },
+  "talentDetails": {
+    "coverAlt": "غلاف الموهوب",
+    "profileImageAlt": "صورة الموهوب",
+    "connectIconAlt": "أيقونة تواصل",
+    "followingIconAlt": "أيقونة المتابعون",
+    "followersIconAlt": "أيقونة المتابعين",
+    "postsIconAlt": "أيقونة المنشورات",
+    "connect": "تواصل",
+    "follow": "متابعة",
+    "unfollow": "إلغاء المتابعة",
+    "following": "المتابعون",
+    "followers": "المتابعين",
+    "posts": "المنشورات",
+    "notifications": {
+      "followed": "تم المتابعة",
+      "unfollowed": "تم إلغاء المتابعة"
+    }
+  },
+  "post": {
+    "unknownOwner": "مجهول",
+    "defaultCaption": "أهم جزء من يومي مو بس التمرين… الأكل اللي يساعدني أكمّل مشواري كلاعب كرة قدم. 💪🔥 أركز دايمًا على البروتين، الخضار، وشرب الموية، لأن اللاعب اللي يهتم بصحته…",
+    "date": {
+      "minutesAgo": "منذ دقائق",
+      "hoursAgo": "منذ {count} ساعات",
+      "daysAgo": "منذ {count} يوم",
+      "default": "منذ 3 ساعات"
+    },
+    "alt": {
+      "userAvatar": "صورة المستخدم",
+      "postImage": "صورة المنشور",
+      "likeIcon": "أيقونة الإعجاب"
+    },
+    "videoNotSupported": "المتصفح لا يدعم عرض الفيديو"
+  },
+  "eventDetails": {
+  "breadcrumb": {
+    "home": "الرئيسية",
+    "events": "الفعاليات"
+  },
+  "shareAlt": "مشاركة",
+  "eventImageAlt": "صورة الفعالية",
+  "timeIconAlt": "الوقت",
+  "locationIconAlt": "الموقع",
+  "copiedMessage": "تم نسخ رابط الفعالية",
+  "aboutEvent": "عن الفعالية",
+  "dateAndTime": "التاريخ والوقت",
+  "starts": "يبدأ",
+  "ends": "ينتهي",
+  "location": "الموقع",
+  "defaultLocation": "المركز الثقافي الرياضي – القاهرة الجديدة",
+  "map": "الخريطة",
+  "relatedEventsTitle": "إنضم الى التجمعات المتاحة"
+}
 }

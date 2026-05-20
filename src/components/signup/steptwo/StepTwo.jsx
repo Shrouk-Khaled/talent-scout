@@ -2,7 +2,7 @@
 
 import styles from "./StepTwo.module.scss";
 import Button from "@/components/ui/button/Button";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Headlines from "../headlines/Headlines";
 import { Form, message } from "antd";
 import Input from "@/components/ui/input/Input";
@@ -13,34 +13,38 @@ import { useSignupStore } from "@/store/useSignupStore";
 import { checkPhoneExists } from "@/services/api";
 import { useEffect, useState } from "react";
 import { countries } from "../../../../public/countries_with_cities_ar";
+import { useLocale, useTranslations } from "next-intl";
+import { usePathname, useRouter } from "@/i18n/navigation";
 
 export default function StepTwo() {
+  const t = useTranslations("signup");
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const locale = useLocale()
   const email = searchParams.get("email") || "";
 
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
-  //store
+
   const signupData = useSignupStore((state) => state.signupData);
   const updateSignupData = useSignupStore((state) => state.updateSignupData);
 
-  useEffect(() => {
-    if(!signupData) return;
-    form.setFieldsValue({
-     ...signupData,
-     email: email,
-     gender: signupData?.gender || 1,
-     country: signupData?.country || undefined,
-      city: signupData?.city || undefined,
-    })
-  },[signupData])
-
-  //states
   const [loading, setLoading] = useState(false);
 
-  // url helpers
+  useEffect(() => {
+    if (!signupData) return;
+
+    form.setFieldsValue({
+      ...signupData,
+      email: email,
+      gender: signupData?.gender || 1,
+      country: signupData?.country || undefined,
+      city: signupData?.city || undefined,
+    });
+  }, [signupData, email, form]);
+
   const makeUrl = (params) => {
     const qs = params.toString();
     return qs ? `${pathname}?${qs}` : pathname;
@@ -49,45 +53,57 @@ export default function StepTwo() {
   const handleNextStep = async () => {
     try {
       await form.validateFields();
+
       const values = form.getFieldsValue();
+
       setLoading(true);
 
       const res = await checkPhoneExists({
         phone: `${values?.phone?.countryCode}${values?.phone?.localNumber}`,
-      }).catch(() => setLoading(false));
+      });
 
-      setLoading(false);
       if (res?.isExist) {
         messageApi.open({
           type: "error",
-          content: "رقم الجوال مستخدم بالفعل. الرجاء استخدام رقم آخر.",
+          content: t("stepTwo.messages.phoneAlreadyExists"),
         });
+
         return;
-      } else {
-        messageApi.open({
-          type: "success",
-          content: res?.otpState?.message
-        });
-        updateSignupData(values);
-        const params = new URLSearchParams(searchParams.toString());
-        params.set("step", "3");
-        router.push(makeUrl(params), { scroll: false }); // keep history
       }
-    } catch {}
+
+      messageApi.open({
+        type: "success",
+        content: res?.otpState?.message,
+      });
+
+      updateSignupData(values);
+
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("step", "3");
+
+      router.push(makeUrl(params), { scroll: false });
+    } catch (error) {
+      console.error("Validation or phone check failed:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handlePrevStep = () => {
     const params = new URLSearchParams(searchParams.toString());
+
     params.set("step", "1");
+
     router.push(makeUrl(params), { scroll: false });
   };
 
   return (
     <section className={styles.main}>
       {contextHolder}
+
       <Headlines
-        line1={"2 خلّنا نتعرف عليك أكثر "}
-        line2={"عبّ البيانات الأساسية لملفك الشخصي."}
+        line1={t("stepTwo.headlineLine1")}
+        line2={t("stepTwo.headlineLine2")}
       />
 
       <div className={styles.form}>
@@ -99,47 +115,66 @@ export default function StepTwo() {
           <div className={styles.row}>
             <Form.Item
               name="firstName"
-              rules={[{ required: true, message: "الرجاء إدخال الاسم الأول" },
+              className={styles.field}
+              label={t("stepTwo.firstName")}
+              rules={[
+                {
+                  required: true,
+                  message: t("stepTwo.validation.firstNameRequired"),
+                },
                 {
                   pattern: /^[A-Za-z\u0600-\u06FF\s]+$/,
-                  message: "الاسم الأول يجب أن يحتوي على حروف فقط",
+                  message: t("stepTwo.validation.lettersOnlyFirstName"),
                 },
               ]}
-              className={styles.field}
-              label="الاسم الأول"
             >
-              <Input type="text" placeholder="مثال: أحمد" />
+              <Input
+                type="text"
+                placeholder={t("stepTwo.placeholders.firstName")}
+              />
             </Form.Item>
 
             <Form.Item
               name="lastName"
               className={styles.field}
-              rules={[{ required: true, message: "الرجاء إدخال الاسم الثاني" },
+              label={t("stepTwo.lastName")}
+              rules={[
+                {
+                  required: true,
+                  message: t("stepTwo.validation.lastNameRequired"),
+                },
                 {
                   pattern: /^[A-Za-z\u0600-\u06FF\s]+$/,
-                  message: "الاسم الأول يجب أن يحتوي على حروف فقط",
+                  message: t("stepTwo.validation.lettersOnlyLastName"),
                 },
               ]}
-              label="الاسم الثاني"
             >
-              <Input type="text" placeholder="مثال: محمد علي" />
+              <Input
+                type="text"
+                placeholder={t("stepTwo.placeholders.lastName")}
+              />
             </Form.Item>
           </div>
 
           <Form.Item
             name="gender"
-            label="النوع"
-            rules={[{ required: true, message: "الرجاء اختيار النوع" }]}
+            label={t("stepTwo.gender")}
+            rules={[
+              {
+                required: true,
+                message: t("stepTwo.validation.genderRequired"),
+              },
+            ]}
             valuePropName="selectedType"
             trigger="onSelectType"
           >
             <SelectBox
-              boxStyle={{ 
-                width: '48%',  
+              boxStyle={{
+                width: "48%",
               }}
               types={[
-                { id: 1, label: "ذكر" },
-                { id: 2, label: "أنثى" },
+                { id: 1, label: t("stepTwo.male") },
+                { id: 2, label: t("stepTwo.female") },
               ]}
             />
           </Form.Item>
@@ -147,19 +182,31 @@ export default function StepTwo() {
           <Form.Item
             name="email"
             className={styles.field}
+            label={t("stepTwo.email")}
             rules={[
-              { required: true, message: "الرجاء إدخال البريد الالكتروني" },
+              {
+                required: true,
+                message: t("stepTwo.validation.emailRequired"),
+              },
             ]}
-            label="البريد الالكتروني"
           >
-            <Input disabled type="text" placeholder="ادخل الايميل" />
+            <Input
+              disabled
+              type="text"
+              placeholder={t("stepTwo.placeholders.email")}
+            />
           </Form.Item>
 
           <Form.Item
             name="phone"
             className={styles.field}
-            label="رقم الجوال"
-            rules={[{ required: true, message: "الرجاء إدخال رقم الهاتف" }]}
+            label={t("stepTwo.phone")}
+            rules={[
+              {
+                required: true,
+                message: t("stepTwo.validation.phoneRequired"),
+              },
+            ]}
           >
             <PhoneInput />
           </Form.Item>
@@ -167,77 +214,77 @@ export default function StepTwo() {
           <Form.Item
             name="age"
             className={styles.field}
-            label="العمر"
+            label={t("stepTwo.age")}
             rules={[
-              { required: true, message: "الرجاء إدخال العمر" },
+              {
+                required: true,
+                message: t("stepTwo.validation.ageRequired"),
+              },
               {
                 pattern: /^(1[3-9]|[2-9]\d)$/,
-                message: "العمر لازم يكون بين 13 و 99",
+                message: t("stepTwo.validation.agePattern"),
               },
             ]}
           >
-            <Input type="text" placeholder="مثال: 25" />
+            <Input
+              type="text"
+              placeholder={t("stepTwo.placeholders.age")}
+            />
           </Form.Item>
 
           <div className={styles.row}>
             <Form.Item
               name="country"
-              rules={[{ required: true, message: "الرجاء ادخال البلد"}]}
               className={styles.field}
-              label="البلد"
+              label={t("stepTwo.country")}
+              rules={[
+                {
+                  required: true,
+                  message: t("stepTwo.validation.countryRequired"),
+                },
+              ]}
             >
               <SelectInput
-                placeholder={"اختر بلد"}
-                // options={[
-                //   {
-                //     value: "Egypt",
-                //     label: "مصر",
-                //   },
-                //   {
-                //     value: "Ksa",
-                //     label: "السعودية",
-                //   },
-                // ]}
+                placeholder={t("stepTwo.placeholders.country")}
                 options={countries.map((country) => ({
                   value: country.country_code,
-                  label: country.country_ar,
-                }))
-                }
+                  label: locale === "ar" ? country.country_ar : country.country_en,
+                }))}
               />
             </Form.Item>
 
             <Form.Item
-            shouldUpdate={(prev, cur) => prev.country !== cur.country}
-            noStyle
-          >
-            {({ getFieldValue }) => (
-            <Form.Item
-              name="city"
-              rules={[{ required: true, message: "الرجاء ادخال المدينة"}]}
-              className={styles.field}
-              label="المدينة"
+              shouldUpdate={(prev, cur) => prev.country !== cur.country}
+              noStyle
             >
-              <SelectInput
-                placeholder={"اختر مدينة"}
-                // options={[
-                //   {
-                //     value: "Cairo",
-                //     label: "القاهرة",
-                //   },
-                //   {
-                //     value: "Riyadh",
-                //     label: "الرياض",
-                //   },
-                // ]}
-                options={
-                  countries.find(c => c.country_code === getFieldValue('country'))?.cities.map((city) => ({
-                    value: city.city_code,
-                    label: city.city_ar,
-                  })) || []
-                }
-              />
-            </Form.Item>
-            )}
+              {({ getFieldValue }) => (
+                <Form.Item
+                  name="city"
+                  className={styles.field}
+                  label={t("stepTwo.city")}
+                  rules={[
+                    {
+                      required: true,
+                      message: t("stepTwo.validation.cityRequired"),
+                    },
+                  ]}
+                >
+                  <SelectInput
+                    placeholder={t("stepTwo.placeholders.city")}
+                    options={
+                      countries
+                        .find(
+                          (country) =>
+                            country.country_code === getFieldValue("country")
+                        )
+                        ?.cities.map((city) => ({
+                          value: city.city_code,
+                          label: locale === "ar" ? city.city_ar : city.city_en,
+                        })) || []
+                    }
+                  />
+                </Form.Item>
+              )}
             </Form.Item>
           </div>
         </Form>
@@ -245,14 +292,20 @@ export default function StepTwo() {
 
       <div className={styles.btns}>
         <div className={styles.info}>
-          <Button className={styles.nextBtn} onClick={handleNextStep} loading={loading}>
-            التالي
+          <Button
+            className={styles.nextBtn}
+            onClick={handleNextStep}
+            loading={loading}
+          >
+            {t("stepTwo.next")}
           </Button>
+
           <Button className={styles.backBtn} onClick={handlePrevStep} outline>
-            السابق
+            {t("stepTwo.back")}
           </Button>
         </div>
-        <p>جميع الحقوق محفوظة تالنت سكوت</p>
+
+        <p>{t("stepTwo.copyright")}</p>
       </div>
     </section>
   );

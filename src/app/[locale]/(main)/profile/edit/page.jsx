@@ -1,19 +1,29 @@
 "use client";
+
 import Image from "next/image";
 import styles from "./page.module.scss";
-import { Breadcrumb, Form } from "antd";
+import { Breadcrumb, Form, message } from "antd";
 import Input from "@/components/ui/input/Input";
 import Button from "@/components/ui/button/Button";
 import PhoneInput from "@/components/ui/phoneInput/PhoneInput";
 import { useUserStore } from "@/store/useUserStore";
 import { useEffect, useState } from "react";
 import Loading from "@/app/[locale]/loading";
+import TextArea from "@/components/ui/textArea/TextArea";
+import { editProfile } from "@/services/api";
+import { useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function Page() {
+  const router = useRouter();
+  const t = useTranslations("profile");
+
   const userInfo = useUserStore((state) => state.info);
+  console.log(userInfo)
   const [form] = Form.useForm();
-  //states
+
   const [loading, setLoading] = useState(true);
+  const [saveLoading, setSaveLoading] = useState(false);
 
   useEffect(() => {
     if (userInfo?.user) {
@@ -21,34 +31,51 @@ export default function Page() {
         firstName: userInfo.user.first_name || "",
         lastName: userInfo.user.last_name || "",
         phone: userInfo.user.phone || "",
+        short_bio: userInfo.user.short_bio || "",
       });
+
       setLoading(false);
     }
-  }, [userInfo]);
+  }, [userInfo, form]);
 
   const handleEditProfile = async () => {
     try {
       const values = await form.validateFields();
-      console.log("Profile Data:", values);
+
+      setSaveLoading(true);
+
+      await editProfile({
+        first_name: values.firstName,
+        last_name: values.lastName,
+        short_bio: values.short_bio,
+        prefix_code: values.phone?.countryCode || userInfo?.user?.country_code || "",
+        phone_number: values.phone?.localNumber || userInfo?.user?.phone?.replace(userInfo?.user?.country_code, "") || "",
+      });
+
+      message.success(t("edit.successMessage"));
+      router.back();
     } catch (err) {
       console.error("Validation Failed:", err);
+    } finally {
+      setSaveLoading(false);
     }
   };
 
   return (
     <div className={styles.container}>
       {loading && <Loading />}
+
       <Breadcrumb
         items={[
           {
-            title: "حسابي",
+            title: t("breadcrumb.myAccount"),
             href:
-              userInfo?.user?.user_role == 1
+              userInfo?.user?.user_role === 1
                 ? "/profile/posts"
                 : "/profile/saved?type=posts",
           },
           {
-            title: "تعديل الحساب",
+            title: t("breadcrumb.editAccount"),
           },
         ]}
         className={styles.breadcrumb}
@@ -56,18 +83,19 @@ export default function Page() {
 
       <div className={styles.imagesBox}>
         <Image
-          src={"/images/bg-hero.png"}
+          src="/images/bg-hero.png"
           width={1000}
           height={300}
-          alt="profile edit"
+          alt={t("edit.coverAlt")}
           priority
           className={styles.cover}
         />
+
         <Image
-          src={"/images/bg-auth.png"}
+          src="/images/bg-auth.png"
           width={150}
           height={150}
-          alt="user profile"
+          alt={t("edit.avatarAlt")}
           className={styles.avatar}
         />
       </div>
@@ -77,48 +105,87 @@ export default function Page() {
           <div className={styles.row}>
             <Form.Item
               name="firstName"
+              className={styles.field}
+              label={t("edit.firstName")}
               rules={[
-                { required: true, message: "الرجاء إدخال الاسم الأول" },
+                {
+                  required: true,
+                  message: t("edit.validation.firstNameRequired"),
+                },
                 {
                   pattern: /^[A-Za-z\u0600-\u06FF\s]+$/,
-                  message: "الاسم الأول يجب أن يحتوي على حروف فقط",
+                  message: t("edit.validation.lettersOnlyFirstName"),
                 },
               ]}
-              className={styles.field}
-              label="الاسم الأول"
             >
-              <Input type="text" placeholder="مثال: أحمد" />
+              <Input
+                type="text"
+                placeholder={t("edit.firstNamePlaceholder")}
+              />
             </Form.Item>
 
             <Form.Item
               name="lastName"
               className={styles.field}
+              label={t("edit.lastName")}
               rules={[
-                { required: true, message: "الرجاء إدخال الاسم الثاني" },
+                {
+                  required: true,
+                  message: t("edit.validation.lastNameRequired"),
+                },
                 {
                   pattern: /^[A-Za-z\u0600-\u06FF\s]+$/,
-                  message: "الاسم الأول يجب أن يحتوي على حروف فقط",
+                  message: t("edit.validation.lettersOnlyLastName"),
                 },
               ]}
-              label="الاسم الثاني"
             >
-              <Input type="text" placeholder="مثال: محمد علي" />
+              <Input
+                type="text"
+                placeholder={t("edit.lastNamePlaceholder")}
+              />
             </Form.Item>
           </div>
 
           <Form.Item
             name="phone"
             className={styles.field}
-            label="رقم الجوال"
-            rules={[{ required: true, message: "الرجاء إدخال رقم الهاتف" }]}
+            label={t("edit.phone")}
+            rules={[
+              {
+                required: true,
+                message: t("edit.validation.phoneRequired"),
+              },
+            ]}
             valuePropName="phone"
             trigger="onChange"
           >
             <PhoneInput value={form.getFieldValue("phone")} />
           </Form.Item>
 
-          <Button className={styles.submitBtn} onClick={handleEditProfile}>
-            Save
+          <Form.Item
+            name="short_bio"
+            className={styles.field}
+            label={t("edit.shortBio")}
+            rules={[
+              {
+                required: true,
+                message: t("edit.validation.shortBioRequired"),
+              },
+            ]}
+          >
+            <TextArea
+              maxLength={250}
+              placeholder={t("edit.shortBioPlaceholder")}
+              haveLengthLine
+            />
+          </Form.Item>
+
+          <Button
+            className={styles.submitBtn}
+            loading={saveLoading}
+            onClick={handleEditProfile}
+          >
+            {t("edit.saveChanges")}
           </Button>
         </Form>
       </div>

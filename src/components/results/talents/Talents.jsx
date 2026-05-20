@@ -1,7 +1,7 @@
 import styles from "./Talents.module.scss";
 import Button from "@/components/ui/button/Button";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 export const Talents = ({data}) => {
   const router = useRouter();

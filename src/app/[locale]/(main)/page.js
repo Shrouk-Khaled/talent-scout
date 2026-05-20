@@ -8,7 +8,7 @@ import Talents from "@/components/home/talents/Talents";
 import HowToStart from "@/components/home/howToStart/HowToStart";
 import Packages from "@/components/home/packages/Packages";
 import Questions from "@/components/home/questions/Questions";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useEffect } from "react";
 
 export default function Home() {

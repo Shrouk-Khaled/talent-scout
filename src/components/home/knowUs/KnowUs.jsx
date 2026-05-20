@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./Know.module.scss";
 import Button from "@/components/ui/button/Button";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 export default function KnowUs() {
   const router = useRouter();

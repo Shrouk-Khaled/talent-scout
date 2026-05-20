@@ -2,16 +2,12 @@
 import Image from "next/image";
 import styles from "./Header.module.scss";
 import { useLocale, useTranslations } from "next-intl";
-import Link from "next/link";
 import Language from "../language/Language";
 import Button from "@/components/ui/button/Button";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import Input from "@/components/ui/input/Input";
-import { FiSearch } from "react-icons/fi";
-import { IoMail } from "react-icons/io5";
-import { IoNotificationsSharp } from "react-icons/io5";
 import MainHeader from "../mainHeader/MainHeader";
+import { useRouter } from "@/i18n/navigation";
 
 export default function Header() {
   const locale = useLocale();
@@ -105,7 +101,7 @@ export default function Header() {
             height={60}
             className={styles.logo}
             priority
-            onClick={() => router.push(`/${locale}`)}
+            onClick={() => router.push(`/`)}
           />
         </div>
         <div className={styles.links}>

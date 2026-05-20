@@ -2,7 +2,7 @@
 
 import styles from "./StepFour.module.scss";
 import Button from "@/components/ui/button/Button";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Headlines from "../headlines/Headlines";
 import { Form } from "antd";
 import Input from "@/components/ui/input/Input";
@@ -12,33 +12,41 @@ import UploadFiles from "@/components/ui/uploadFiles/UploadFiles";
 import { useEffect, useState } from "react";
 import { getSubCatFormFields } from "@/services/api";
 import { useSignupStore } from "@/store/useSignupStore";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function StepFour() {
+  const t = useTranslations("signup");
+
   const router = useRouter();
   const pathname = usePathname();
-  //query params
+
   const searchParams = useSearchParams();
   const user_role = searchParams.get("user_role");
   const user_type = searchParams.get("user_type");
+
   const [form] = Form.useForm();
   const [bioForm] = Form.useForm();
-  //store
+
   const signupData = useSignupStore((state) => state.signupData);
   const updateSignupData = useSignupStore((state) => state.updateSignupData);
-  //states
+
   const [formFields, setFormFields] = useState([]);
 
   useEffect(() => {
-    if(!signupData?.subCategoryId) return;
+    if (!signupData?.subCategoryId) return;
+
     getSubCatFormFields(signupData?.subCategoryId).then((res) => {
-      setFormFields(res?.data?.form?.fields);
+      setFormFields(res?.data?.form?.fields || []);
+
       form.setFieldsValue(signupData?.talentCategoryForm || {});
+
       bioForm.setFieldsValue({
         shortBio: signupData?.shortBio || "",
         file: signupData?.file || null,
       });
     });
-  }, [signupData?.subCategoryId]);
+  }, [signupData?.subCategoryId, form, bioForm]);
 
   const makeUrl = (params) => {
     const qs = params.toString();
@@ -48,34 +56,42 @@ export default function StepFour() {
   const handleNextStep = async () => {
     try {
       await form.validateFields();
+
       const values = form.getFieldsValue();
+
       await bioForm.validateFields();
+
       const bioValues = bioForm.getFieldsValue();
+
       updateSignupData({
         talentCategoryForm: values,
         shortBio: bioValues?.shortBio,
         file: bioValues?.file,
       });
+
       const params = new URLSearchParams(searchParams.toString());
+
       params.set("step", "5");
+
       router.push(makeUrl(params), { scroll: false });
-    
-    } catch {
-      // Delete
+    } catch (error) {
+      console.error("Step four validation failed:", error);
     }
   };
 
   const handlePrevStep = () => {
     const params = new URLSearchParams(searchParams.toString());
+
     params.set("step", "3");
+
     router.push(makeUrl(params), { scroll: false });
   };
 
   return (
     <section className={styles.main}>
       <Headlines
-        line1={"4 نبذة عنك وعن موهبتك"}
-        line2={"نبذة قصيرة عنك واهتماماتك."}
+        line1={t("stepFour.headlines.line1")}
+        line2={t("stepFour.headlines.line2")}
       />
 
       <div className={styles.form}>
@@ -85,7 +101,6 @@ export default function StepFour() {
               return (
                 <Form.Item
                   key={field.id}
-                  // name={field.label.toLowerCase().replace(/ /g, "_")}
                   name={field?.id}
                   className={styles.field}
                   rules={
@@ -93,7 +108,9 @@ export default function StepFour() {
                       ? [
                           {
                             required: true,
-                            message: `الرجاء إدخال ${field.label}`,
+                            message: t("stepFour.validation.requiredField", {
+                              field: field.label,
+                            }),
                           },
                         ]
                       : []
@@ -102,15 +119,21 @@ export default function StepFour() {
                 >
                   <Input
                     type="text"
-                    placeholder={field.placeholder || `ادخل ${field.label}`}
+                    placeholder={
+                      field.placeholder ||
+                      t("stepFour.placeholders.enterField", {
+                        field: field.label,
+                      })
+                    }
                   />
                 </Form.Item>
               );
-            } else if (field.type === "select" || field.type === "multiselect") {
+            }
+
+            if (field.type === "select" || field.type === "multiselect") {
               return (
                 <Form.Item
                   key={field.id}
-                  // name={field.label.toLowerCase().replace(/ /g, "_")}
                   name={field?.id}
                   className={styles.field}
                   rules={
@@ -118,7 +141,9 @@ export default function StepFour() {
                       ? [
                           {
                             required: true,
-                            message: `الرجاء إدخال ${field.label}`,
+                            message: t("stepFour.validation.requiredField", {
+                              field: field.label,
+                            }),
                           },
                         ]
                       : []
@@ -126,7 +151,12 @@ export default function StepFour() {
                   label={field.label}
                 >
                   <SelectInput
-                    placeholder={field.placeholder || `اختر ${field.label}`}
+                    placeholder={
+                      field.placeholder ||
+                      t("stepFour.placeholders.selectField", {
+                        field: field.label,
+                      })
+                    }
                     options={field.options.map((opt) => ({
                       value: opt.id,
                       label: opt.label,
@@ -136,35 +166,47 @@ export default function StepFour() {
                 </Form.Item>
               );
             }
+
             return null;
           })}
-
-        
         </Form>
 
         <Form layout="vertical" form={bioForm}>
-        <Form.Item
+          <Form.Item
             name="shortBio"
             className={styles.field}
-            rules={[{ required: true, message: "اكتب نبذة قصيرة عنك" }]}
-            label="اكتب نبذة قصيرة عنك"
+            label={t("stepFour.fields.shortBio")}
+            rules={[
+              {
+                required: true,
+                message: t("stepFour.validation.shortBioRequired"),
+              },
+            ]}
           >
-            <TextArea maxLength={250} placeholder="اكتب هنا" haveLengthLine />
+            <TextArea
+              maxLength={250}
+              placeholder={t("stepFour.placeholders.shortBio")}
+              haveLengthLine
+            />
           </Form.Item>
 
           <Form.Item
             name="file"
             className={styles.field}
-            rules={[{ required: true, message: "أثبت موهبتك بملف بسيط" }]}
-            label="أثبت موهبتك بملف بسيط"
+            label={t("stepFour.fields.file")}
+            rules={[
+              {
+                required: true,
+                message: t("stepFour.validation.fileRequired"),
+              },
+            ]}
             valuePropName="files"
             trigger="onFiles"
           >
             <UploadFiles
-            title="ارفع او اسحب فيديو (حتى دقيقتين) أو صورة لعرض أعمالك"
+              title={t("stepFour.upload.title")}
               accept="image/*,video/*"
-              // multiple
-              maxSize={80 * 1024 * 1024} // 80 MB soft limit (optional)
+              maxSize={80 * 1024 * 1024}
               dir="rtl"
             />
           </Form.Item>
@@ -174,13 +216,15 @@ export default function StepFour() {
       <div className={styles.btns}>
         <div>
           <Button className={styles.nextBtn} onClick={handleNextStep}>
-            التالي
+            {t("stepFour.buttons.next")}
           </Button>
+
           <Button className={styles.backBtn} onClick={handlePrevStep} outline>
-            السابق
+            {t("stepFour.buttons.back")}
           </Button>
         </div>
-        <p>جميع الحقوق محفوظة تالنت سكوت</p>
+
+        <p>{t("stepFour.copyright")}</p>
       </div>
     </section>
   );

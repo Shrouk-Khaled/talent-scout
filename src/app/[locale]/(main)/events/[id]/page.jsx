@@ -1,4 +1,5 @@
 "use client";
+
 import { TalentsLine } from "@/components/common/talentsLine/TalentsLine";
 import styles from "./page.module.scss";
 import { Breadcrumb, message } from "antd";
@@ -10,37 +11,48 @@ import Slider from "@/components/ui/slider/Slider";
 import { Event } from "@/components/feed/event/Event";
 import Loading from "@/app/[locale]/loading";
 import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Page() {
   const { id } = useParams();
-  const isMobile = (typeof window !== undefined) && window.innerWidth < 768;
+  const t = useTranslations("eventDetails");
+  const locale = useLocale();
+
+  const isMobile =
+    typeof window !== "undefined" && window.innerWidth < 768;
+
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-  //message
+
   const [messageApi, contextHolder] = message.useMessage();
 
-
   useEffect(() => {
-    getEventById(id).then((res) => {
-      setData(res);
-      setLoading(false);
-    });
-  }, []);
+    getEventById(id)
+      .then((res) => {
+        setData(res);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [id]);
 
   const handleShareLink = () => {
     navigator.clipboard.writeText(window.location.href);
+
     messageApi.open({
       type: "success",
-      content: "تم نسخ رابط الفعالية",
+      content: t("copiedMessage"),
     });
-  }
+  };
 
   return (
     <div className={styles.container}>
       {contextHolder}
+
       <div className={styles.categories}>
         <TalentsLine />
       </div>
+
       {loading ? (
         <Loading />
       ) : (
@@ -48,11 +60,11 @@ export default function Page() {
           <Breadcrumb
             items={[
               {
-                title: "الرئيسية",
+                title: t("breadcrumb.home"),
                 href: "/feed",
               },
               {
-                title: "الفعاليات",
+                title: t("breadcrumb.events"),
                 href: "/search?type=events",
               },
               {
@@ -65,18 +77,24 @@ export default function Page() {
             <div className={styles.actions}>
               <Image
                 src="/images/icons/share.svg"
-                alt="share"
+                alt={t("shareAlt")}
                 width={40}
                 height={40}
                 onClick={handleShareLink}
               />
-              <SavedIcon isSaved={data?.is_saved} itemId={data?.id} itemType={2} bgColor={"#F3F3F3"} saveIcon={"/images/icons/outline-save-black.svg"} />
 
+              <SavedIcon
+                isSaved={data?.is_saved}
+                itemId={data?.id}
+                itemType={2}
+                bgColor="#F3F3F3"
+                saveIcon="/images/icons/outline-save-black.svg"
+              />
             </div>
 
             <Image
               src={data?.image_url || "/images/home/event.png"}
-              alt="event image"
+              alt={data?.title || t("eventImageAlt")}
               priority
               width={200}
               height={430}
@@ -88,48 +106,57 @@ export default function Page() {
             <div className={styles.content}>
               <div className={styles.right}>
                 <h1>{data?.title}</h1>
-                <h3>عن الفعالية </h3>
-                <p>{data?.description} </p>
+
+                <h3>{t("aboutEvent")}</h3>
+
+                <p>{data?.description}</p>
               </div>
+
               <div className={styles.left}>
                 <div className={styles.detailsBox}>
                   <div className={styles.boxHeader}>
                     <Image
-                      src={"/images/icons/time.svg"}
-                      alt="time"
+                      src="/images/icons/time.svg"
+                      alt={t("timeIconAlt")}
                       width={40}
                       height={40}
                       priority
                     />
-                    <h3>التاريخ والوقت</h3>
+
+                    <h3>{t("dateAndTime")}</h3>
                   </div>
+
                   <div className={styles.date}>
                     <div className={styles.start}>
-                      <p>يبدأ</p>
+                      <p>{t("starts")}</p>
                       <h3>{data?.date?.split("T")?.[0]}</h3>
                       <h3>{data?.date?.split("T")?.[1]?.slice(0, 5)}</h3>
                     </div>
+
                     <div className={styles.end}>
-                      <p>ينتهي</p>
+                      <p>{t("ends")}</p>
                       <h3>{data?.end_date?.split("T")?.[0]}</h3>
                       <h3>{data?.end_date?.split("T")?.[1]?.slice(0, 5)}</h3>
                     </div>
                   </div>
                 </div>
+
                 <div className={styles.detailsBox}>
                   <div className={styles.boxHeader}>
                     <Image
-                      src={"/images/icons/location.svg"}
-                      alt="time"
+                      src="/images/icons/location.svg"
+                      alt={t("locationIconAlt")}
                       width={40}
                       height={40}
                       priority
                     />
-                    <h3>الموقع</h3>
+
+                    <h3>{t("location")}</h3>
                   </div>
+
                   <div className={styles.locationData}>
-                    <p>المركز الثقافي الرياضي – القاهرة الجديدة</p>
-                    Map
+                    <p>{data?.location || t("defaultLocation")}</p>
+                    {t("map")}
                   </div>
                 </div>
               </div>
@@ -138,18 +165,17 @@ export default function Page() {
             {data?.related_events?.length > 0 && (
               <div className={styles.relatedEvents}>
                 <Slider
-                  title="إنضم الى التجمعات المتاحة"
+                  title={t("relatedEventsTitle")}
                   variant="default"
                   showArrows={true}
                   arrowPosition="side"
-                  rtl={true}
+                  rtl={locale === "ar"}
                   gap={5}
                   autoplay
                   slidesPerView={isMobile ? 1.2 : 3.5}
-                // onViewAllClick={() => router.push("/search?type=events")}
                 >
-                  {data?.related_events?.map((event, index) => (
-                    <Event data={event} key={index} />
+                  {data?.related_events?.map((event) => (
+                    <Event data={event} key={event?.id} />
                   ))}
                 </Slider>
               </div>

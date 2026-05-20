@@ -112,6 +112,10 @@
   }
 }
 
+:global([dir="ltr"]) .content {
+  left: auto;
+  right: -6rem;
+}
 
 @include bp.respond-to(md) {
   .container {
@@ -129,5 +133,4 @@
       }
     }
   }
-
 }

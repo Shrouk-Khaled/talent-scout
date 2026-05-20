@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./page.module.scss";
 import { Progress } from "antd";
 import StepOne from "@/components/signup/stepone/StepOne";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import StepTwo from "@/components/signup/steptwo/StepTwo";
 import { useEffect, useState } from "react";
 import StepThree from "@/components/signup/stepThree/StepThree";
@@ -11,10 +11,13 @@ import StepFour from "@/components/signup/stepFour/StepFour";
 import StepFive from "@/components/signup/stepFive/StepFive";
 import StepTwoResearcher from "@/components/signup/stepTwoResercher/StepTwoResearcher";
 import Language from "../../../../components/common/language/Language";
+import { useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function SignupPage() {
     const router = useRouter()
     const searchParams = useSearchParams();
+    const t = useTranslations("auth")
     const step = searchParams.get("step") || "1";
     const user_role = searchParams.get("user_role");
     const user_type = searchParams.get("user_type");
@@ -55,7 +58,7 @@ export default function SignupPage() {
                     router.push("/")
                 }} className={styles.logo}/>
                 <h4>
-                    الخطوة {currentStep} {currentStep > 1 && "/"} {currentStep > 1 ? (user_role === "2" ? 3 : 5) : ''}
+                    {t("step")} {currentStep} {currentStep > 1 && "/"} {currentStep > 1 ? (user_role === "2" ? 3 : 5) : ''}
                 </h4>
                 <Language />
             </header>

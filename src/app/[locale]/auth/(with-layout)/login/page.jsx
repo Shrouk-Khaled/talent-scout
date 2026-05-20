@@ -7,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import Input from "@/components/ui/input/Input";
 import { Checkbox, Form, message } from "antd";
 import { login } from "@/services/api";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useState } from "react";
 import { API_BASE_URL } from "@/services/config";
 import { useTranslations } from "next-intl";

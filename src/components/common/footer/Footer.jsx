@@ -7,7 +7,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 import { RiTwitterXLine } from "react-icons/ri";
 import { FaFacebookF } from "react-icons/fa";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { IoIosStar } from "react-icons/io";
 import { LuMail } from "react-icons/lu";
 import { LuPhone } from "react-icons/lu";

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Drawer } from "antd";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import DownloadAppBox from "@/components/common/footer/DownloadApp";
 import Slider from "../../../../components/ui/slider/Slider"
 import CategoryCard from "@/components/feed/categoryCard/CategoryCard";
@@ -15,7 +15,7 @@ import { Event } from "@/components/feed/event/Event";
 import { Article } from "@/components/feed/article/Article";
 import { getAllCategories, homePageSections } from "@/services/api";
 import Loading from "../../loading";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useHomeStore } from "@/store/useHome";
 import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
 import { useUserStore } from "@/store/useUserStore";
@@ -85,17 +85,15 @@ export default function Feed() {
   }, [router]);
 
   useEffect(() => {
-    if ((categories?.length === 0 || !categories) && user?.talent_type?.id) {
-      getAllCategories().then((res) => {
-        saveCategories({
-          categories:
-            res?.filter(
-              (obj) => obj?.participationTypeId === user?.talent_type?.id
-            ) || [],
-        });
+    getAllCategories().then((res) => {
+      saveCategories({
+        categories:
+          res?.filter(
+            (obj) => obj?.participationTypeId === user?.talent_type?.id
+          ) || [],
       });
-    }
-  }, [user, categories, saveCategories]);
+    });
+  }, [user]);
 
   return (
     <div>

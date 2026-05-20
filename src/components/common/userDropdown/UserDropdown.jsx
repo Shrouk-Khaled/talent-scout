@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import styles from "./UserDropdown.module.scss";
-import Link from "next/link";
 import { LuChevronDown } from "react-icons/lu";
 import { useEffect, useRef, useState } from "react";
 import { getUserInfo } from "@/services/api";
 import { useUserStore } from "@/store/useUserStore";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 export default function UserDropdown() {
   //message
@@ -48,11 +48,18 @@ export default function UserDropdown() {
   }, []);
 
   const handleLogout = () => {
+    const currentLocale =
+      window.location.pathname.split("/")[1] === "en" ||
+      window.location.pathname.split("/")[1] === "ar"
+        ? window.location.pathname.split("/")[1]
+        : "ar";
+  
     saveUserInfo(null);
     localStorage.clear();
     sessionStorage.clear();
-    window.location.href = "/";
-  }
+  
+    window.location.href = `/${currentLocale}`;
+  };
 
   return (
     <div className={styles.userBox} ref={boxRef}>

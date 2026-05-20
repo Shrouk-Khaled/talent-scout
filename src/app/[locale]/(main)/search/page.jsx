@@ -14,24 +14,26 @@ import Filter from "@/components/feed/filter/Filter";
 import { Loader } from "@/components/common/loader/Loader";
 import { getArticles, getEvents, getPosts, getTalents } from "@/services/api";
 import Image from "next/image";
-import { useLocale } from "next-intl";
-
-const tabs = [
-  { id: "all", name: "الكل" },
-  { id: "posts", name: "المنشورات" },
-  { id: "talents", name: "الموهوبين" },
-  { id: "articles", name: "المقالات" },
-  { id: "events", name: "الفعاليات" },
-];
+import { useLocale, useTranslations } from "next-intl";
 
 export default function SearchPage() {
+  const t = useTranslations("search");
+
   const locale = useLocale();
-  const isRTL = locale == "ar";
+  const isRTL = locale === "ar";
+
   const searchParams = useSearchParams();
   const query = searchParams.get("type");
   const currentPage = searchParams.get("page");
 
-  //states
+  const tabs = [
+    { id: "all", name: t("tabs.all") },
+    { id: "posts", name: t("tabs.posts") },
+    { id: "talents", name: t("tabs.talents") },
+    { id: "articles", name: t("tabs.articles") },
+    { id: "events", name: t("tabs.events") },
+  ];
+
   const [sectionType, setSectionType] = useState(query || "all");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -42,7 +44,6 @@ export default function SearchPage() {
   const [openFilter, setOpenFilter] = useState(false);
   const [isClearFilter, setIsClearFilter] = useState(false);
 
-  //pagination states
   const [pagination, setPagination] = useState({
     page: searchParams.get("page") || 1,
     total: 50,
@@ -52,63 +53,86 @@ export default function SearchPage() {
     const subcategories = searchParams.get("subcategories") || "";
     const category = searchParams.get("category") || "";
     const searchValue = searchParams.get("q") || "";
-    setSectionType(searchParams.get("type") || "all");
     const type = searchParams.get("type") || "all";
-    if (type == "posts") {
+
+    setSectionType(type);
+
+    if (type === "posts") {
       setLoading(true);
+
       getPosts({
         page: currentPage,
         sortby: searchParams.get("sortby"),
         category_id: category,
         sub_category: subcategories,
         search: searchValue,
-      }).then((res) => {
-        handleSaveData(res);
-      });
-    } else if (type == "articles") {
+      })
+        .then((res) => {
+          handleSaveData(res);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else if (type === "articles") {
       setLoading(true);
+
       getArticles({
         page: currentPage,
         sortby: searchParams.get("sortby"),
         category_id: category,
         sub_category: subcategories,
         search: searchValue,
-      }).then((res) => {
-        handleSaveData(res);
-      });
-    } else if (type == "events") {
+      })
+        .then((res) => {
+          handleSaveData(res);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else if (type === "events") {
       setLoading(true);
+
       getEvents({
         page: currentPage,
         sortby: searchParams.get("sortby"),
         category_id: category,
         sub_category: subcategories,
         search: searchValue,
-      }).then((res) => {
-        handleSaveData(res);
-      });
-    } else if (type == "talents") {
+      })
+        .then((res) => {
+          handleSaveData(res);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else if (type === "talents") {
       setLoading(true);
+
       getTalents({
         page: currentPage,
         sortby: searchParams.get("sortby"),
         category_id: category,
         sub_category: subcategories,
         search: searchValue,
-      }).then((res) => {
-        handleSaveData(res);
-      });
+      })
+        .then((res) => {
+          handleSaveData(res);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
-  }, [searchParams]);
+  }, [searchParams, currentPage]);
 
-  //add data into states
   const handleSaveData = (res) => {
-    setPagination({ page: res?.current_page, total: res?.total_pages });
-    setData(res?.data);
-    setLoading(false);
+    setPagination({
+      page: res?.current_page || 1,
+      total: res?.total_pages || 0,
+    });
+
+    setData(res?.data || []);
   };
 
-  //function
   const handleSectionTypeChange = (type) => {
     setSectionType(type);
     updateType(type);
@@ -119,7 +143,7 @@ export default function SearchPage() {
     const searchParams = new URLSearchParams(window.location.search);
 
     searchParams.set("type", type);
-    searchParams.set("page", 1);
+    searchParams.set("page", "1");
     searchParams.delete("sortby");
     searchParams.delete("subcategories");
 
@@ -128,11 +152,13 @@ export default function SearchPage() {
       "",
       `${window.location.pathname}?${searchParams.toString()}`
     );
+
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handlePagination = (page) => {
     setPagination({ ...pagination, page });
+
     const searchParams = new URLSearchParams(window.location.search);
 
     if (page) {
@@ -146,14 +172,15 @@ export default function SearchPage() {
       "",
       `${window.location.pathname}?${searchParams.toString()}`
     );
+
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleFilter = (filterData) => {
     setFilterObj(filterData);
+
     const searchParams = new URLSearchParams(window.location.search);
 
-    // Handle subcategories
     if (filterData.subcategories) {
       searchParams.set("subcategories", filterData.subcategories);
     } else {
@@ -167,6 +194,7 @@ export default function SearchPage() {
     }
 
     searchParams.set("page", "1");
+
     setPagination({ ...pagination, page: 1 });
 
     window.history.pushState(
@@ -177,57 +205,58 @@ export default function SearchPage() {
 
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.categories}>
         <TalentsLine />
       </div>
+
       <div className="app-container">
         <Breadcrumb
           items={[
             {
-              title: "الصفحة الرئيسية",
+              title: t("breadcrumb.home"),
             },
             {
-              title: "البحث",
+              title: t("breadcrumb.search"),
             },
           ]}
           className={styles.breadcrumb}
         />
 
-        <h1 className={styles.results}>نتائج البحث</h1>
+        <h1 className={styles.results}>{t("title")}</h1>
 
-        <div className={`${styles.tabs} ${sectionType == "all" && styles.isAll}`}>
-          {
-            sectionType !== "all" &&
-            (
-              <Image
-              src={"/images/icons/filter.svg"}
+        <div
+          className={`${styles.tabs} ${
+            sectionType === "all" ? styles.isAll : ""
+          }`}
+        >
+          {sectionType !== "all" && (
+            <Image
+              src="/images/icons/filter.svg"
               onClick={() => setOpenFilter(true)}
               width={37}
               height={40}
-              alt="pic"
+              alt={t("filterIconAlt")}
               className={styles.filterIcon}
             />
-            )
-          }
-         
+          )}
+
           <div className={styles.allTabs}>
-            {tabs.map((tab, i) => {
-              return (
-                <div
-                  key={i}
-                  className={`${styles.tab} ${
-                    sectionType == tab.id && styles.active
-                  }`}
-                  onClick={() => {
-                    handleSectionTypeChange(tab.id);
-                  }}
-                >
-                  {tab.name}
-                </div>
-              );
-            })}
+            {tabs.map((tab) => (
+              <div
+                key={tab.id}
+                className={`${styles.tab} ${
+                  sectionType === tab.id ? styles.active : ""
+                }`}
+                onClick={() => {
+                  handleSectionTypeChange(tab.id);
+                }}
+              >
+                {tab.name}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -238,43 +267,45 @@ export default function SearchPage() {
             </div>
           ) : (
             <>
-              {!loading && data?.length == 0 && sectionType != "all" && (
+              {!loading && data?.length === 0 && sectionType !== "all" && (
                 <div className={`${styles.noData} ${styles.main}`}>
                   <Image
-                    src={"/images/no-data.png"}
+                    src="/images/no-data.png"
                     width={350}
                     height={350}
-                    alt="no-data"
+                    alt={t("noData.imageAlt")}
                   />
-                  <h1>ما فيه نتائج مطابقة</h1>
-                  <p>ما لقينا نتائج حالياً، جرب خيارات بحث ثانية.</p>
+
+                  <h1>{t("noData.title")}</h1>
+                  <p>{t("noData.description")}</p>
                 </div>
               )}
 
-              {!loading && sectionType == "all" && (
+              {!loading && sectionType === "all" && (
                 <div
                   className={styles.main}
-                  style={{ width: sectionType == "all" && "100%" }}
+                  style={{ width: sectionType === "all" ? "100%" : undefined }}
                 >
-                  {sectionType == "all" && <AllResults />}
+                  <AllResults />
                 </div>
               )}
 
               {!loading && data.length > 0 && (
                 <div
                   className={styles.main}
-                  style={{ width: sectionType == "all" && "100%" }}
+                  style={{ width: sectionType === "all" ? "100%" : undefined }}
                 >
-                  {sectionType == "articles" && <Articles data={data} />}
-                  {sectionType == "events" && <Events data={data} />}
-                  {sectionType == "posts" && <Posts data={data} />}
-                  {sectionType == "talents" && <Talents data={data} />}
+                  {sectionType === "articles" && <Articles data={data} />}
+                  {sectionType === "events" && <Events data={data} />}
+                  {sectionType === "posts" && <Posts data={data} />}
+                  {sectionType === "talents" && <Talents data={data} />}
+
                   {sectionType !== "all" && (
                     <div dir="ltr" className={styles.paginationBox}>
                       <Pagination
-                        defaultCurrent={pagination.page}
+                        current={Number(pagination.page)}
                         total={pagination.total * 10}
-                        onChange={(page) => handlePagination(page)}
+                        onChange={handlePagination}
                       />
                     </div>
                   )}
@@ -286,7 +317,7 @@ export default function SearchPage() {
           {sectionType !== "all" && (
             <div className={styles.filter}>
               <Filter
-              clearFilters={isClearFilter}
+                clearFilters={isClearFilter}
                 onFilter={(data) => {
                   handleFilter(data);
                   setIsClearFilter(false);
@@ -308,11 +339,15 @@ export default function SearchPage() {
             className={styles.drawer}
             rootClassName={styles.drawerRoot}
           >
-            <Filter clearFilters={isClearFilter} isDrawer={true} onFilter={(data) => {
-              handleFilter(data)
-              setOpenFilter(false)
-              setIsClearFilter(false)
-            }} />
+            <Filter
+              clearFilters={isClearFilter}
+              isDrawer={true}
+              onFilter={(data) => {
+                handleFilter(data);
+                setOpenFilter(false);
+                setIsClearFilter(false);
+              }}
+            />
           </Drawer>
         </div>
       </div>

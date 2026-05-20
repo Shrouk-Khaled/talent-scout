@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./ReelsViewer.module.scss";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import Image from "next/image";
 import { SavedIcon } from "@/components/common/savedIcon/SavedIcon";
 import { IoIosArrowDropup, IoIosArrowDropdown } from "react-icons/io";

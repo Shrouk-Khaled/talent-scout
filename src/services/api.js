@@ -322,3 +322,8 @@ export const getTermsAndConditions = async () => {
   const response = await http.get(`/api/v1/auth/terms-and-conditions`);
   return response;
 }
+
+export const editProfile = async (payload) => {
+  const response = await http.patch(`/api/v1/mawhebty-platform/profile/user`, payload);
+  return response;
+}

@@ -1,4 +1,3 @@
-// app/[locale]/(auth)/signup/layout.tsx
 import styles from "./layout.module.scss";
 import "antd/dist/reset.css";
 

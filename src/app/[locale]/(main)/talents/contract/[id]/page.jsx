@@ -1,94 +1,90 @@
 "use client";
+
 import Image from "next/image";
 import styles from "./page.module.scss";
 import { Form, message } from "antd";
 import TextArea from "@/components/ui/textArea/TextArea";
-import Input from "@/components/ui/input/Input";
 import Button from "@/components/ui/button/Button";
 import { getTalentById, sendContractRequest } from "@/services/api";
 import { useEffect, useState } from "react";
 import { ContractSuccessModal } from "@/components/modals/contractSuccessModal/ContractSuccessModal";
-
-const steps = [
-  {
-    title: "اتفاق مهني موثوق",
-    description:
-      "العقد هو اتفاق بين الباحث والموهوب يحدد طبيعة التعاون والعمل بين الطرفين بشكل واضح.",
-    icon: "users",
-  },
-  {
-    title: "تحديد شروط العمل",
-    description:
-      "يتضمن العقد تفاصيل مثل مدة التعاون، قيمة الاتفاق، والمهام المطلوبة لضمان وضوح التوقعات.",
-    icon: "document",
-  },
-  {
-    title: "حماية الحقوق والتواصل",
-    description:
-      "يقوم فريق المنصة بمراجعة الطلب والتواصل مع الموهوب للمساعدة في تنسيق التعاقد بين الطرفين.",
-    icon: "shield",
-  },
-];
-
-const workTypes = [
-  {
-    id: 1,
-    name: "دوام كامل",
-  },
-  {
-    id: 3,
-    name: "دوام جزئي",
-  },
-  {
-    id: 4,
-    name: "شراكة",
-  },
-  {
-    id: 2,
-    name: "عمل حر",
-  },
-  {
-    id: 5,
-    name: "أخرى",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export default function Page({ params }) {
+  const t = useTranslations("contract.request");
+
   const { id } = params;
 
   const [form] = Form.useForm();
   const selectedWorkType = Form.useWatch("type", form);
 
-  //states
+  const steps = [
+    {
+      title: t("steps.professionalAgreement.title"),
+      description: t("steps.professionalAgreement.description"),
+      icon: "users",
+    },
+    {
+      title: t("steps.workTerms.title"),
+      description: t("steps.workTerms.description"),
+      icon: "document",
+    },
+    {
+      title: t("steps.rightsProtection.title"),
+      description: t("steps.rightsProtection.description"),
+      icon: "shield",
+    },
+  ];
+
+  const workTypes = [
+    {
+      id: 1,
+      name: t("workTypes.fullTime"),
+    },
+    {
+      id: 3,
+      name: t("workTypes.partTime"),
+    },
+    {
+      id: 4,
+      name: t("workTypes.partnership"),
+    },
+    {
+      id: 2,
+      name: t("workTypes.freelance"),
+    },
+    {
+      id: 5,
+      name: t("workTypes.other"),
+    },
+  ];
+
   const [loading, setLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [talent, setTalent] = useState(null);
 
-  useEffect(()=>{
-    getTalentById(id)
-    .then((res) => {
+  useEffect(() => {
+    getTalentById(id).then((res) => {
       setTalent(res);
-    })
-  },[])
+    });
+  }, [id]);
 
   const handleSendContract = () => {
     form
       .validateFields()
       .then((values) => {
         setLoading(true);
+
         sendContractRequest({
           receiver_id: Number(id),
-          // type: values.type,
           description: values.description,
-          // period: values.period,
-          // amount: values.amount,
         })
           .then(() => {
             form.resetFields();
             setShowSuccessModal(true);
           })
-          .catch((err) => {
-            message.error("حدث خطأ أثناء إرسال الطلب");
+          .catch(() => {
+            message.error(t("errorMessage"));
           })
           .finally(() => {
             setLoading(false);
@@ -102,32 +98,42 @@ export default function Page({ params }) {
   return (
     <div className={`${styles.container} app-container`}>
       <div className={styles.desc}>
-        <h2>طلب تواصل مهني</h2>
-        <p>أرسل طلب يتضمن تفاصيل العمل أو التعاون.</p>
+        <h2>{t("pageTitle")}</h2>
+        <p>{t("pageDescription")}</p>
       </div>
 
-      {showSuccessModal && <ContractSuccessModal onClose={() => {setShowSuccessModal(false)}} />}
+      {showSuccessModal && (
+        <ContractSuccessModal
+          onClose={() => {
+            setShowSuccessModal(false);
+          }}
+        />
+      )}
 
       <div className={styles.main}>
         <div className={styles.contractInfo}>
           <div className={styles.talentInfo}>
-            <p>ارسال الطلب الي</p>
+            <p>{t("sendTo")}</p>
+
             <div className={styles.data}>
               <Image
                 src={talent?.user?.image_url || "/images/logo.png"}
                 width={50}
                 height={50}
-                alt="pic"
+                alt={t("profileImageAlt")}
               />
+
               <div>
-                <h2>{talent?.user?.first_name} {talent?.user?.last_name}</h2>
+                <h2>
+                  {talent?.user?.first_name} {talent?.user?.last_name}
+                </h2>
                 <p>{talent?.user?.short_bio}</p>
               </div>
             </div>
 
             <div className={styles.details}>
-              <h2>تفاصيل الطلب</h2>
-              <p>يرجى ملئ المعلومات التاليه لتجهيز الطلب</p>
+              <h2>{t("requestDetailsTitle")}</h2>
+              <p>{t("requestDetailsDescription")}</p>
             </div>
 
             <div className={styles.details}>
@@ -161,76 +167,63 @@ export default function Page({ params }) {
                 </Form.Item> */}
 
                 <Form.Item
-                  label="وصف العمل"
+                  label={t("workDescription")}
                   name="description"
                   rules={[
-                    { required: true, message: "الرجاء كتابة وصف للعمل" },
+                    {
+                      required: true,
+                      message: t("validation.descriptionRequired"),
+                    },
                   ]}
                 >
                   <TextArea
                     maxLength={500}
                     haveLengthLine
-                    placeholder="شارك تفاصيل عن المشروع، المهام المطلوبة، وأي معلومات أخرى مهمة."
+                    placeholder={t("workDescriptionPlaceholder")}
                   />
                 </Form.Item>
 
-                {/* <Form.Item
-                  label="مدة العمل"
-                  name="period"
-                  rules={[
-                    { required: true, message: "الرجاء كتابة مدة العمل" },
-                  ]}
-                >
-                  <Input placeholder="مثال: 3 أشهر" />
-                </Form.Item>
-
-                <Form.Item
-                  label="قيمة الطلب"
-                  name="amount"
-                  rules={[
-                    { required: true, message: "الرجاء كتابة قيمة العمل" },
-                  ]}
-                >
-                  <Input placeholder="مثال: 1000 ريال" />
-                </Form.Item> */}
-
                 <Button onClick={handleSendContract} loading={loading}>
-                  ارسال الطلب
+                  {t("sendButton")}
                 </Button>
               </Form>
             </div>
           </div>
         </div>
+
         <div className={styles.info}>
-          <h1 className={styles.secTitle}>ما هو طلب التواصل المهنى؟</h1>
+          <h1 className={styles.secTitle}>{t("infoTitle")}</h1>
+
           <section className={styles.timelineSection}>
             <div className={styles.timeline}>
               {steps.map((step, index) => (
-                <div className={styles.item} key={index}>
+                <div className={styles.item} key={step.icon}>
                   <div className={styles.iconColumn}>
                     <div className={styles.iconWrapper}>
                       {step.icon === "users" && (
                         <Image
-                          src={"/images/icons/details1.svg"}
+                          src="/images/icons/details1.svg"
                           width={40}
                           height={40}
-                          alt="pic"
+                          alt={t("iconAlt")}
                         />
                       )}
+
                       {step.icon === "document" && (
                         <Image
-                          src={"/images/icons/details2.svg"}
+                          src="/images/icons/details2.svg"
                           width={40}
                           height={40}
-                          alt="pic"
+                          alt={t("iconAlt")}
                         />
                       )}
+
                       {step.icon === "shield" && (
                         <Image
-                          src={"/images/icons/details3.svg"}
+                          src="/images/icons/details3.svg"
                           width={40}
                           height={40}
-                          alt="pic"
+                          alt={t("iconAlt")}
                         />
                       )}
                     </div>

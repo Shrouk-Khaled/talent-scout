@@ -1,16 +1,33 @@
 'use client';
 
-import {useMemo} from 'react';
-import {usePathname, useRouter} from 'next/navigation';
-import {useLocale} from 'next-intl';
-import {Dropdown} from 'antd';
-import {LuChevronDown} from 'react-icons/lu';
+import { useMemo } from 'react';
+import { useLocale } from 'next-intl';
+import { Dropdown } from 'antd';
+import { LuChevronDown } from 'react-icons/lu';
 import styles from './Language.module.scss';
 import Image from 'next/image';
+import { usePathname, useRouter } from '@/i18n/navigation';
+import { useSearchParams } from 'next/navigation';
 
 const FLAG = {
-  ar: <Image className={styles.flagImg} src="/images/flags/sa.png" alt="🇸🇦" width={20} height={15} />, 
-  en: <Image className={styles.flagImg} src="/images/flags/gb.png" alt="🇬🇧" width={20} height={15} />,
+  ar: (
+    <Image
+      className={styles.flagImg}
+      src="/images/flags/sa.png"
+      alt="🇸🇦"
+      width={20}
+      height={15}
+    />
+  ),
+  en: (
+    <Image
+      className={styles.flagImg}
+      src="/images/flags/gb.png"
+      alt="🇬🇧"
+      width={20}
+      height={15}
+    />
+  ),
 };
 
 const LABEL = {
@@ -21,15 +38,16 @@ const LABEL = {
 export default function Language() {
   const router = useRouter();
   const pathname = usePathname() || '/';
-  const locale = useLocale(); // 'ar' | 'en'
+  const searchParams = useSearchParams();
+  const locale = useLocale();
 
   const switchLanguage = (nextLocale) => {
     if (!nextLocale || nextLocale === locale) return;
-    const segments = pathname.split('/');
-    // ensure first segment is '', second is current locale
-    if (segments[1]) segments[1] = nextLocale;
-    const newPath = segments.join('/') || `/${nextLocale}`;
-    router.push(newPath);
+
+    const queryString = searchParams.toString();
+    const href = queryString ? `${pathname}?${queryString}` : pathname;
+
+    router.push(href, { locale: nextLocale });
   };
 
   const items = useMemo(
@@ -42,7 +60,7 @@ export default function Language() {
             <span className={styles.menuFlag}>{FLAG.ar}</span>
           </div>
         ),
-        // onClick: () => switchLanguage('ar'),
+        onClick: () => switchLanguage('ar'),
       },
       {
         key: 'en',
@@ -52,16 +70,16 @@ export default function Language() {
             <span className={styles.menuFlag}>{FLAG.en}</span>
           </div>
         ),
-        // onClick: () => switchLanguage('en'),
+        onClick: () => switchLanguage('en'),
       },
     ],
-    [pathname, locale]
+    [pathname, searchParams, locale]
   );
 
   const isRTL = locale === 'ar';
 
   return (
-    <Dropdown menu={{items}} trigger={['click']}>
+    <Dropdown menu={{ items }} trigger={['click']}>
       <button
         type="button"
         className={`${styles.trigger} ${isRTL ? styles.rtl : ''}`}
