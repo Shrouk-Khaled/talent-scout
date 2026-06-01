@@ -1,4 +1,5 @@
 "use client";
+
 import { useMemo, useState, useCallback, useEffect } from "react";
 import CheckboxList from "@/components/ui/checkboxList/CheckboxList";
 import styles from "./Filter.module.scss";
@@ -6,6 +7,7 @@ import { useHomeStore } from "@/store/useHome";
 import RadioList from "@/components/ui/radioList/RadioList";
 import { useSearchParams } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
+import { useTranslations } from "next-intl";
 
 /** Keep option values unique per group (codes), labels can repeat */
 const OPTIONS = {
@@ -47,29 +49,28 @@ const EMPTY_FILTERS = {
   subcategory: [],
 };
 
-export default function Filter({ onFilter, isDrawer , clearFilters}) {
-  //params
-  const type = useSearchParams().get("type");
-  const category = useSearchParams().get("category");
+export default function Filter({ onFilter, isDrawer, clearFilters }) {
+  const t = useTranslations("filter");
 
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type");
+  const category = searchParams.get("category");
 
-  //store
   const subCats = useHomeStore((state) => state.categories);
   const user = useUserStore((state) => state.info);
 
-  //states
   const [filters, setFilters] = useState(EMPTY_FILTERS);
   const [subCatsData, setSubCatsData] = useState([]);
 
-  // Factory: returns onChange handler for a specific key
   const onChangeFor = useCallback(
     (key) => (vals) => setFilters((prev) => ({ ...prev, [key]: vals })),
     []
   );
 
-  const clearAll = useCallback(() => setFilters(EMPTY_FILTERS), []);
+  const clearAll = useCallback(() => {
+    setFilters(EMPTY_FILTERS);
+  }, []);
 
-  // Optional: a memoized payload for API/query params
   const payload = useMemo(() => {
     return {
       subcategories: filters.subcategory,
@@ -78,10 +79,15 @@ export default function Filter({ onFilter, isDrawer , clearFilters}) {
   }, [filters]);
 
   useEffect(() => {
-    if(category) {
-      setSubCatsData(subCats?.find((obj) => obj?.id == category)?.subCategories);
+    if (category) {
+      setSubCatsData(
+        subCats?.find((obj) => obj?.id == category)?.subCategories || []
+      );
     } else {
-      setSubCatsData(subCats?.find((obj) => obj?.id == user?.category?.id)?.subCategories);
+      setSubCatsData(
+        subCats?.find((obj) => obj?.id == user?.category?.id)
+          ?.subCategories || []
+      );
     }
   }, [subCats, user, category]);
 
@@ -90,31 +96,35 @@ export default function Filter({ onFilter, isDrawer , clearFilters}) {
   }, [payload]);
 
   useEffect(() => {
-    if(clearFilters) clearAll();
-  },[clearFilters])
-
+    if (clearFilters) clearAll();
+  }, [clearFilters, clearAll]);
 
   return (
-    <div className={`${styles.filterSide} ${isDrawer && styles.drawerFilter}`}>
+    <div
+      className={`${styles.filterSide} ${
+        isDrawer ? styles.drawerFilter : ""
+      }`}
+    >
       <div className={styles.header}>
-        <h6>الفلاتر</h6>
+        <h6>{t("title")}</h6>
+
         <p
           className={styles.clear}
           onClick={clearAll}
           role="button"
           tabIndex={0}
         >
-          إعاده تعيين
+          {t("reset")}
         </p>
       </div>
 
       <div className={styles.filterTypes}>
-        {type != "talents" && (
+        {type !== "talents" && (
           <RadioList
-            title="الترتيب حسب"
+            title={t("sortBy")}
             options={[
-              { label: "الاجدد", value: "date_desc" },
-              { label: "الاقدم", value: "date_asc" },
+              { label: t("newest"), value: "date_desc" },
+              { label: t("oldest"), value: "date_asc" },
             ]}
             defaultValue="option1"
             onChange={onChangeFor("sortby")}
@@ -123,14 +133,14 @@ export default function Filter({ onFilter, isDrawer , clearFilters}) {
         )}
 
         <RadioList
-          title="تحت أي موهبة"
+          title={t("subTalent")}
           options={
-            (subCatsData?.length > 0 &&
-              subCatsData?.map((subCat) => ({
-                label: subCat?.name,
-                value: subCat?.id,
-              }))) ||
-            []
+            subCatsData?.length > 0
+              ? subCatsData.map((subCat) => ({
+                  label: subCat?.name,
+                  value: subCat?.id,
+                }))
+              : []
           }
           value={filters.subcategory}
           defaultValue="option1"
@@ -139,23 +149,19 @@ export default function Filter({ onFilter, isDrawer , clearFilters}) {
         />
 
         {/* <CheckboxList
-          title="تحت أي موهبة"
+          title={t("subTalent")}
           options={
-            (subCatsData?.length > 0 &&
-              subCatsData?.map((subCat) => ({
-                label: subCat?.name,
-                value: subCat?.id,
-              }))) ||
-            []
+            subCatsData?.length > 0
+              ? subCatsData.map((subCat) => ({
+                  label: subCat?.name,
+                  value: subCat?.id,
+                }))
+              : []
           }
           value={filters.subcategory}
           onChange={onChangeFor("subcategory")}
         /> */}
       </div>
-
-      {/* Debug view (remove in prod)
-      <pre style={{direction:'ltr'}}>{JSON.stringify(payload, null, 2)}</pre>
-      */}
     </div>
   );
 }

@@ -19,7 +19,9 @@ export default function Page() {
   const t = useTranslations("profile");
 
   const userInfo = useUserStore((state) => state.info);
-  console.log(userInfo)
+  const userRole = userInfo?.user?.user_role;
+  const userStatus = userInfo?.user?.user_status;
+  // console.log(userInfo)
   const [form] = Form.useForm();
 
   const [loading, setLoading] = useState(true);
@@ -32,6 +34,7 @@ export default function Page() {
         lastName: userInfo.user.last_name || "",
         phone: userInfo.user.phone || "",
         short_bio: userInfo.user.short_bio || "",
+        companyName: userInfo.user.company_name || "",
       });
 
       setLoading(false);
@@ -102,11 +105,59 @@ export default function Page() {
 
       <div className={styles.main}>
         <Form layout="vertical" form={form} className={styles.form}>
-          <div className={styles.row}>
+          {
+            (userRole === 1 || (userRole == 2 && userStatus == 1)) &&
+            <div className={styles.row}>
+              <Form.Item
+                name="firstName"
+                className={styles.field}
+                label={t("edit.firstName")}
+                rules={[
+                  {
+                    required: true,
+                    message: t("edit.validation.firstNameRequired"),
+                  },
+                  {
+                    pattern: /^[A-Za-z\u0600-\u06FF\s]+$/,
+                    message: t("edit.validation.lettersOnlyFirstName"),
+                  },
+                ]}
+              >
+                <Input
+                  type="text"
+                  placeholder={t("edit.firstNamePlaceholder")}
+                />
+              </Form.Item>
+
+              <Form.Item
+                name="lastName"
+                className={styles.field}
+                label={t("edit.lastName")}
+                rules={[
+                  {
+                    required: true,
+                    message: t("edit.validation.lastNameRequired"),
+                  },
+                  {
+                    pattern: /^[A-Za-z\u0600-\u06FF\s]+$/,
+                    message: t("edit.validation.lettersOnlyLastName"),
+                  },
+                ]}
+              >
+                <Input
+                  type="text"
+                  placeholder={t("edit.lastNamePlaceholder")}
+                />
+              </Form.Item>
+            </div>
+          }
+
+          {
+            (userRole === 2 && userStatus === 2) &&
             <Form.Item
-              name="firstName"
+              name="companyName"
               className={styles.field}
-              label={t("edit.firstName")}
+              label={t("edit.companyName")}
               rules={[
                 {
                   required: true,
@@ -123,28 +174,8 @@ export default function Page() {
                 placeholder={t("edit.firstNamePlaceholder")}
               />
             </Form.Item>
+          }
 
-            <Form.Item
-              name="lastName"
-              className={styles.field}
-              label={t("edit.lastName")}
-              rules={[
-                {
-                  required: true,
-                  message: t("edit.validation.lastNameRequired"),
-                },
-                {
-                  pattern: /^[A-Za-z\u0600-\u06FF\s]+$/,
-                  message: t("edit.validation.lettersOnlyLastName"),
-                },
-              ]}
-            >
-              <Input
-                type="text"
-                placeholder={t("edit.lastNamePlaceholder")}
-              />
-            </Form.Item>
-          </div>
 
           <Form.Item
             name="phone"

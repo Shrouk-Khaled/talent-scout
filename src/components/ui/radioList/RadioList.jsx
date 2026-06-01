@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { Radio } from "antd";
 import styles from "./RadioList.module.scss";
+import { useTranslations } from "next-intl";
 
 export default function RadioList({
   title,
@@ -13,17 +14,19 @@ export default function RadioList({
   onChange,
   className = "",
   maxVisible = 3,
-  moreLabel = "رؤية المزيد",
-  lessLabel = "رؤية أقل",
+  moreLabel,
+  lessLabel,
 }) {
+  const t = useTranslations("common.radioList");
+
   const controlled = value !== undefined;
   const [inner, setInner] = useState(defaultValue ?? null);
+
   const selected = useMemo(
     () => (controlled ? value : inner),
     [controlled, value, inner]
   );
 
-  // expanded/collapsed state
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (val) => {
@@ -32,9 +35,14 @@ export default function RadioList({
   };
 
   const hasOverflow = options?.length > maxVisible;
+
   const visibleOptions =
     expanded || !hasOverflow ? options : options.slice(0, maxVisible);
+
   const hiddenCount = hasOverflow ? options.length - maxVisible : 0;
+
+  const showMoreLabel = moreLabel || t("more");
+  const showLessLabel = lessLabel || t("less");
 
   return (
     <div className={`${styles.wrapper} ${className}`}>
@@ -47,6 +55,7 @@ export default function RadioList({
       >
         {visibleOptions?.map((opt) => {
           const checked = selected === opt.value;
+
           return (
             <label key={String(opt.value)} className={styles.item}>
               <Radio
@@ -54,6 +63,7 @@ export default function RadioList({
                 disabled={opt.disabled}
                 onChange={() => handleChange(opt.value)}
               />
+
               <span className={styles.text}>{opt.label}</span>
             </label>
           );
@@ -68,8 +78,8 @@ export default function RadioList({
           aria-expanded={expanded}
         >
           {expanded
-            ? lessLabel
-            : `${moreLabel}${hiddenCount > 0 ? ` (${hiddenCount})` : ""}`}
+            ? showLessLabel
+            : `${showMoreLabel}${hiddenCount > 0 ? ` (${hiddenCount})` : ""}`}
         </button>
       )}
     </div>

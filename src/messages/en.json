@@ -705,5 +705,11 @@
   "defaultLocation": "Sports Cultural Center – New Cairo",
   "map": "Map",
   "relatedEventsTitle": "Join the available gatherings"
+},
+"common": {
+  "radioList": {
+    "more": "Show more",
+    "less": "Show less"
+  }
 }
 }
