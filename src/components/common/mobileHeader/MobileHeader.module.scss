@@ -169,6 +169,12 @@
   text-decoration: none;
   font-weight: 500;
   transition: color 0.15s ease;
+  cursor: pointer;
+
+  &.active {
+    color: $color-primary;
+    font-weight: 700;
+  }
 }
 
 .userBox {

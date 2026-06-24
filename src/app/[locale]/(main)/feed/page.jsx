@@ -183,11 +183,7 @@ export default function Feed() {
                     </div>
 
                     <div className={styles.articles}>
-                      <div className={styles.left}>
-                        {homeData.articles.data.slice(0, 4).map((article) => (
-                          <Article key={article.id} data={article} />
-                        ))}
-                      </div>
+                     
 
                       <div className={styles.right}>
                         {homeData.articles.data.length > 4 && (
@@ -195,7 +191,7 @@ export default function Feed() {
                             className={styles.article}
                             onClick={() =>
                               router.push(
-                                `/articles/${homeData.articles.data[4]?.id}`
+                                `/articles/${homeData.articles.data[0]?.id}`
                               )
                             }
                           >
@@ -212,33 +208,39 @@ export default function Feed() {
 
                             <div className={styles.save}>
                               <SavedIcon
-                                isSaved={homeData.articles.data[4].is_saved}
-                                itemId={homeData.articles.data[4].id}
+                                isSaved={homeData.articles.data[0].is_saved}
+                                itemId={homeData.articles.data[0].id}
                                 itemType={3}
                               />
                             </div>
 
                             <div className={styles.info}>
                               <div>
-                                <h1>{homeData.articles.data[4].title}</h1>
+                                <h1>{homeData.articles.data[0].title}</h1>
 
                                 <div className={styles.date}>
                                   <p>
                                     {new Date(
-                                      homeData.articles.data[4].date
+                                      homeData.articles.data[0].date
                                     ).toLocaleDateString(
                                       isRTL ? "ar-EG" : "en-US"
                                     )}
                                   </p>
 
                                   <span className={styles.sport}>
-                                    {homeData.articles.data[4].category.name}
+                                    {homeData.articles.data[0].category.name}
                                   </span>
                                 </div>
                               </div>
                             </div>
                           </div>
                         )}
+                      </div>
+
+                      <div className={styles.left}>
+                        {homeData.articles.data.slice(1, 5).map((article) => (
+                          <Article key={article.id} data={article} />
+                        ))}
                       </div>
                     </div>
                   </div>

@@ -175,7 +175,8 @@
     "howToJoin": "كيفية البدء",
     "packages": "الباقات",
     "knowUs": "تعرف علينا",
-    "videoes": "الفيديوهات"
+    "videoes": "الفيديوهات",
+    "signup": "تسجيل حساب"
   },
   "auth": {
     "layoutTitle": "منصة ربط بين المبدعين والباحثين في عالم واحد",
@@ -220,6 +221,16 @@
     }
   },
   "feed": {
+    "createPost": {
+      "close": "إغلاق",
+      "textareaPlaceholder": "اكتب هنا *",
+      "removeFile": "حذف الملف",
+      "attachmentAlt": "ملف مرفق",
+      "galleryIconAlt": "أيقونة المعرض",
+      "publish": "نشر",
+      "addMedia": "أضف صورة أو فيديو",
+      "publishedSuccessfully": "تم نشر المنشور بنجاح"
+    },
     "searchHere": "ابحث هنا",
     "videoes": "الفيديوهات",
     "myProfile": "حسابي",
@@ -242,6 +253,7 @@
     "edit": {
       "coverAlt": "تعديل الملف الشخصي",
       "avatarAlt": "صورة المستخدم",
+      "companyName":"إسم المنشأه",
       "firstName": "الاسم الأول",
       "lastName": "الاسم الثاني",
       "phone": "رقم الجوال",
@@ -709,6 +721,7 @@
   "radioList": {
     "more": "رؤية المزيد",
     "less": "رؤية أقل"
-  }
+  },
+  "addPost": "اضافة منشور"
 }
 }

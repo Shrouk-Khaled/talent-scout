@@ -2,11 +2,12 @@
 
 import React, { useRef, useState } from "react";
 import { Modal, Avatar, Input } from "antd";
-import { CloseOutlined, PlusSquareOutlined } from "@ant-design/icons";
+import { CloseOutlined } from "@ant-design/icons";
 import styles from "./CreatePostModal.module.scss";
 import Button from "@/components/ui/button/Button";
 import { useUserStore } from "@/store/useUserStore";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const { TextArea } = Input;
 
@@ -18,28 +19,44 @@ export default function CreatePostModal({
   submitting = false,
   submitDisabled = false,
 }) {
-  //refs
+  const t = useTranslations("feed.createPost");
+
   const fileInputRef = useRef(null);
-  //store
+
   const user = useUserStore((state) => state.info);
-  //states
+
   const [body, setBody] = useState("");
   const [attachments, setAttachments] = useState([]);
 
-  //functions
+  const resetModal = () => {
+    setBody("");
+
+    setAttachments((prev) => {
+      prev.forEach((attachment) => {
+        if (attachment.url) URL.revokeObjectURL(attachment.url);
+      });
+
+      return [];
+    });
+
+    onClose();
+  };
+
   const openFilePicker = () => {
     fileInputRef.current?.click();
   };
 
   const onFilesSelected = (e) => {
     const files = Array.from(e.target.files || []);
+
     if (!files.length) return;
 
     const mapped = files
-      .filter((f) => f.type.startsWith("image/") || f.type.startsWith("video/"))
+      .filter((file) => file.type.startsWith("image/") || file.type.startsWith("video/"))
       .map((file) => {
         const url = URL.createObjectURL(file);
         const type = file.type.startsWith("image/") ? "image" : "video";
+
         return {
           id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
           file,
@@ -48,18 +65,32 @@ export default function CreatePostModal({
         };
       });
 
-    // setAttachments((prev) => [...prev, ...mapped]);
-    setAttachments(mapped)
+    setAttachments(mapped);
 
-    // allow re-selecting same file again
     e.target.value = "";
   };
 
   const removeAttachment = (id) => {
     setAttachments((prev) => {
-      const target = prev.find((x) => x.id === id);
-      if (target?.url) URL.revokeObjectURL(target.url);
-      return prev.filter((x) => x.id !== id);
+      const target = prev.find((item) => item.id === id);
+
+      if (target?.url) {
+        URL.revokeObjectURL(target.url);
+      }
+
+      return prev.filter((item) => item.id !== id);
+    });
+  };
+
+  const clearStates = () => {
+    setBody("");
+
+    setAttachments((prev) => {
+      prev.forEach((attachment) => {
+        if (attachment.url) URL.revokeObjectURL(attachment.url);
+      });
+
+      return [];
     });
   };
 
@@ -68,14 +99,7 @@ export default function CreatePostModal({
       open={open}
       footer={null}
       closable={false}
-      onCancel={() => {
-        setBody("");
-        setAttachments((prev) => {
-          prev.forEach((a) => a.url && URL.revokeObjectURL(a.url));
-          return [];
-        });
-        onClose();
-      }}
+      onCancel={resetModal}
       centered
       width={700}
       destroyOnHidden
@@ -85,27 +109,19 @@ export default function CreatePostModal({
       }}
     >
       <div className={styles.container}>
-        {/* Close button (top-left like screenshot) */}
         <button
           className={styles.closeBtn}
-          onClick={() => {
-            setBody("");
-            setAttachments((prev) => {
-              prev.forEach((a) => a.url && URL.revokeObjectURL(a.url));
-              return [];
-            });
-            onClose();
-          }}
-          aria-label="إغلاق"
+          onClick={resetModal}
+          aria-label={t("close")}
         >
           <CloseOutlined />
         </button>
 
-        {/* Header right (avatar + name) */}
         <div className={styles.header}>
           <Avatar className={styles.avatar} size={44} src={avatarSrc}>
             {!avatarSrc ? user?.user?.first_name?.[0] : null}
           </Avatar>
+
           <div className={styles.userBlock}>
             <div className={styles.userName}>
               {user?.user?.first_name} {user?.user?.last_name}
@@ -113,12 +129,11 @@ export default function CreatePostModal({
           </div>
         </div>
 
-        {/* Body */}
         <div className={styles.body}>
           <TextArea
             value={body}
             onChange={(e) => setBody(e.target.value)}
-            placeholder="اكتب هنا *"
+            placeholder={t("textareaPlaceholder")}
             autoSize={false}
             className={styles.textarea}
             bordered={false}
@@ -128,28 +143,28 @@ export default function CreatePostModal({
 
           {attachments.length > 0 && (
             <div className={styles.previews}>
-              {attachments.map((a) => (
-                <div key={a.id} className={styles.previewItem}>
+              {attachments.map((attachment) => (
+                <div key={attachment.id} className={styles.previewItem}>
                   <button
                     type="button"
                     className={styles.removeBtn}
-                    onClick={() => removeAttachment(a.id)}
-                    aria-label="حذف الملف"
+                    onClick={() => removeAttachment(attachment.id)}
+                    aria-label={t("removeFile")}
                   >
                     <CloseOutlined />
                   </button>
 
-                  {a.type === "image" ? (
+                  {attachment.type === "image" ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src={a.url}
-                      alt={a.file?.name || "attachment"}
+                      src={attachment.url}
+                      alt={attachment.file?.name || t("attachmentAlt")}
                       className={styles.previewMedia}
                     />
                   ) : (
                     <video
                       className={styles.previewMedia}
-                      src={a.url}
+                      src={attachment.url}
                       controls
                       preload="metadata"
                     />
@@ -160,20 +175,25 @@ export default function CreatePostModal({
           )}
         </div>
 
-        {/* Footer */}
         <div className={styles.footer}>
           <Button
             type="primary"
             className={styles.publishBtn}
             onClick={() => {
-              onSubmit(body, attachments);
+              onSubmit(body, attachments, clearStates);
             }}
             loading={submitting}
-            disabled={submitDisabled || !body.trim() || attachments.length === 0 || submitting}
+            disabled={
+              submitDisabled ||
+              !body.trim() ||
+              attachments.length === 0 ||
+              submitting
+            }
             style={{ minWidth: "40%" }}
           >
-            نشر
+            {t("publish")}
           </Button>
+
           <input
             ref={fileInputRef}
             type="file"
@@ -187,8 +207,16 @@ export default function CreatePostModal({
             type="button"
             onClick={openFilePicker}
           >
-            <Image src={"/images/icons/gallery-add.svg"} width={20} height={20} alt="icon"/>
-            <span>أضف صورة أو فيديو <span style={{color: "red"}}>*</span></span>
+            <Image
+              src="/images/icons/gallery-add.svg"
+              width={20}
+              height={20}
+              alt={t("galleryIconAlt")}
+            />
+
+            <span>
+              {t("addMedia")} <span style={{ color: "red" }}>*</span>
+            </span>
           </button>
         </div>
       </div>

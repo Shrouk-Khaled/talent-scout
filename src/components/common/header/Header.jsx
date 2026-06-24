@@ -78,7 +78,8 @@ export default function Header() {
   if (
     pathname != `/${locale}` &&
     pathname != `/${locale}/terms` &&
-    pathname != `/${locale}/polices`
+    pathname != `/${locale}/polices` &&
+    pathname != `/${locale}/child-safety-standards`
   )
     return <MainHeader />;
 

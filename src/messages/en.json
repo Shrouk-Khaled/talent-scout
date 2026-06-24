@@ -175,7 +175,8 @@
     "howToJoin": "How to Join",
     "packages": "Packages",
     "knowUs": "Know Us",
-    "videoes": "Videos"
+    "videoes": "Reels",
+    "signup": "Sign Up"
   },
   "auth": {
     "layoutTitle": "Welcome to Mawhebty",
@@ -221,8 +222,18 @@
     }
   },
   "feed": {
+    "createPost": {
+    "close": "Close",
+    "textareaPlaceholder": "Write here *",
+    "removeFile": "Remove file",
+    "attachmentAlt": "Attachment",
+    "galleryIconAlt": "Gallery icon",
+    "publish": "Publish",
+    "addMedia": "Add photo or video",
+    "publishedSuccessfully": "Post published successfully"
+  },
     "searchHere": "Search here",
-    "videoes": "Videos",
+    "videoes": "Videoes",
     "myProfile": "My Profile",
     "packages": "Manage Packages",
     "contracts": "Contracts",
@@ -243,6 +254,7 @@
     "edit": {
       "coverAlt": "Profile edit",
       "avatarAlt": "User profile",
+      "companyName": "Company Name",
       "firstName": "First Name",
       "lastName": "Last Name",
       "phone": "Phone Number",
@@ -710,6 +722,7 @@
   "radioList": {
     "more": "Show more",
     "less": "Show less"
-  }
+  },
+  "addPost": "Add post"
 }
 }

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CgMenu } from "react-icons/cg";
 import styles from "./MobileHeader.module.scss";
-import { useLocale } from "next-intl";
+import {  useLocale, useTranslations } from "next-intl";
 import Button from "@/components/ui/button/Button";
 import { Divider, Drawer } from "antd";
 import Language from "../language/Language";
@@ -17,6 +17,7 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation";
 
 export default function MobileHeader() {
   const router = useRouter();
+  const t = useTranslations("Header");
   const pathname = usePathname();
   const locale = useLocale();
   const isRTL = locale == "ar";
@@ -26,6 +27,15 @@ export default function MobileHeader() {
   const [scrolling, setScrolling] = useState(false);
   const [open, setOpen] = useState(false);
   const [isHomePage, setIsHomePage] = useState(false);
+  const [sectionId, setSectionId] = useState(1);
+
+  const links = [
+    { id: 1, label: t("home") },
+    { id: 2, label: t("knowUs") },
+    { id: 3, label: t("talents") },
+    { id: 4, label: t("howToJoin") },
+    { id: 5, label: t("packages") },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolling(window.scrollY > 50);
@@ -70,10 +80,19 @@ export default function MobileHeader() {
     router.push(`/${locale}/reels`);
   };
 
+  const handleGoIntoTheSection = (sectionId) => {
+    setSectionId(sectionId);
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", });
+      setOpen(false)
+    }
+  };
 
+console.log(pathname);
   return (
     <>
-      {(pathname == `/${locale}` || pathname == `/${locale}/terms` || pathname == `/${locale}/polices`) ? (
+      {(pathname == `/` || pathname == `/terms` || pathname == `/polices` || pathname == `/child-safety-standards`) ? (
         <div
           className={`${styles.mobileHeader} ${
             scrolling ? styles.scrolled : ""
@@ -92,7 +111,7 @@ export default function MobileHeader() {
               alt="logo"
               width={55}
               height={40}
-              onClick={() => router.push(`/${locale}`)}
+              onClick={() => router.push(`/`)}
             />
           </div>
         </div>
@@ -167,17 +186,13 @@ export default function MobileHeader() {
             <Language />
           </div>
 
-          {pathname === `/${locale}` ? (
+          {(pathname == `/` || pathname == `/terms` || pathname == `/polices` || pathname == `/child-safety-standards`) ? (
             <>
               <ul className={styles.list}>
-                {menu?.map((item, i) => {
-                  const fullPath = `/${locale}${item.href}`;
-                  const isActive =
-                    pathname === fullPath ||
-                    pathname === `/${locale}${item.subHref}`;
+                {links?.map((item, i) => {
                   return (
-                    <li key={i}>
-                      <p className={`${styles.link}`}>{item?.label}</p>
+                    <li key={i} onClick={() => handleGoIntoTheSection(item.id)}>
+                      <p className={`${styles.link} ${item.id === sectionId && styles.active}`}>{item?.label}</p>
                     </li>
                   );
                 })}
@@ -189,7 +204,7 @@ export default function MobileHeader() {
                   setOpen(false);
                 }}
               >
-                تسجيل الحساب
+                {t("signup")}
               </Button>
             </>
           ) : (
