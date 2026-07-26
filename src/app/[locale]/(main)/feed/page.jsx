@@ -186,7 +186,7 @@ export default function Feed() {
                      
 
                       <div className={styles.right}>
-                        {homeData.articles.data.length > 4 && (
+                        {homeData.articles.data.length > 0 && (
                           <div
                             className={styles.article}
                             onClick={() =>
@@ -197,7 +197,7 @@ export default function Feed() {
                           >
                             <Image
                               src={
-                                homeData.articles.data[4].image_url ||
+                                homeData.articles.data[0].image_url ||
                                 "/images/home/event.png"
                               }
                               alt={t("articleImageAlt")}
@@ -239,7 +239,9 @@ export default function Feed() {
 
                       <div className={styles.left}>
                         {homeData.articles.data.slice(1, 5).map((article) => (
+                          <>
                           <Article key={article.id} data={article} />
+                          </>
                         ))}
                       </div>
                     </div>
