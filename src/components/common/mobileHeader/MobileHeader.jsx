@@ -34,7 +34,7 @@ export default function MobileHeader() {
     { id: 2, label: t("knowUs") },
     { id: 3, label: t("talents") },
     { id: 4, label: t("howToJoin") },
-    { id: 5, label: t("packages") },
+    // { id: 5, label: t("packages") },
   ];
 
   useEffect(() => {
@@ -257,9 +257,9 @@ console.log(pathname);
                   >
                     حسابي
                   </Link>
-                  <Link href="#">
+                  {/* <Link href="#">
                     إدارة الباقات
-                  </Link>
+                  </Link> */}
                   {userInfo?.user?.user_role != 1 && (
                     <Link href="/profile/contracts">
                       الطلبات

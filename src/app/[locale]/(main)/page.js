@@ -29,7 +29,7 @@ export default function Home() {
       <div className="app-container">
         <HowToStart/>
         <HowToStart isResearcher/>
-        <Packages/>
+        {/* <Packages/> */}
         <Questions/>
       </div>
     </div>

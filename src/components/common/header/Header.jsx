@@ -24,7 +24,7 @@ export default function Header() {
     { id: 2, label: t("knowUs") },
     { id: 3, label: t("talents") },
     { id: 4, label: t("howToJoin") },
-    { id: 5, label: t("packages") },
+    // { id: 5, label: t("packages") },
   ];
 
   // Detect scroll to change background color of the header

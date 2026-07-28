@@ -27,7 +27,7 @@ export default function Footer() {
     { id: 2, label: tHeader("knowUs") },
     { id: 3, label: tHeader("talents") },
     { id: 4, label: tHeader("howToJoin") },
-    { id: 5, label: tHeader("packages") },
+    // { id: 5, label: tHeader("packages") },
   ];
 
   // handles localized paths like /en/feed or /ar/feed and also /feed
