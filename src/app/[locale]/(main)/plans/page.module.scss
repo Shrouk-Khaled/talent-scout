@@ -1,0 +1,25 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/breakpoints" as bp;
+@use "../../../../styles/typography" as *;
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 65px !important;
+
+  .note {
+    text-align: center;
+    color: #727272;
+    font-size: 12px;
+    line-height: 1.8;
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 24px 16px 48px;
+  }
+}

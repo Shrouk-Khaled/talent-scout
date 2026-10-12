@@ -724,5 +724,69 @@
     "less": "Show less"
   },
   "addPost": "Add post"
+},
+"packages": {
+  "loading": "Loading packages...",
+  "noPackagesFound": "No packages found",
+  "bannerBadge": "You've been with us for a year and more",
+    "bannerTitle": "You're using the Premium Plan",
+    "bannerSubtitle": "Free for one year",
+    "bannerDescription": "You're successfully enjoying your current plan with full access",
+    "bannerImageAlt": "Happy user enjoying Mawhebty services",
+    "explorePlans": "Explore More",
+
+    "featuresSubtitle": "Features Available to You",
+    "featuresTitle": "Everything You Need in One Place",
+
+    "feature1Title": "Upload Documents and Photos",
+    "feature1Description": "Showcase your documents, projects, and work",
+
+    "feature2Title": "Local + Regional Visibility",
+    "feature2Description": "Reach a wider audience",
+
+    "feature3Title": "Connect with Researchers Worldwide",
+    "feature3Description": "Connect with researchers and experts",
+
+    "pricingSubtitle": "Plans and Pricing",
+    "pricingTitle": "You're Now Enjoying the Highest Plan for Free",
+
+    "featured": "Top Plan",
+    "freePlan": "Free Plan",
+    "months": "Months",
+    "includes": "Includes",
+    "selectPlan": "Select Plan",
+
+    "error": "Failed to load packages",
+    "empty": "No packages are currently available",
+
+    "pricingNote": "After your free trial ends, you can subscribe to the plan that best suits your needs.",
+      "freeBannerBadge": "You've been with us for a year and more",
+  "freeBannerTitle": "You're Enjoying the Premium Plan",
+  "freeBannerSubtitle": "Free for One Year",
+
+  "subscribedBannerBadge": "Start Your Subscription",
+  "subscribedBannerTitle": "Continue Enjoying the",
+  "subscribedBannerSubtitleFirst": "Benefits of the",
+  "subscribedBannerSubtitleHighlight": "Professional Plan",
+  "subscribeNow": "Subscribe Now",
+    "title": "Review and Confirm Subscription",
+  "subtitle": "Please review your plan details before proceeding to payment",
+  "notFound": "The selected plan is unavailable",
+  "bestChoice": "Best Choice for Growth",
+  "planDescription": "Enhanced visibility and professional tools to reach talent seekers",
+  "includedFeatures": "Included Features:",
+  "invoiceDetails": "Invoice Details",
+  "annual": "Annual",
+  "vat": "Value Added Tax",
+  "total": "Grand Total",
+  "agreeTo": "I agree to the",
+  "terms": "Terms and Conditions",
+  "and": "and",
+  "privacy": "Privacy Policy",
+  "continuePayment": "Proceed to Payment",
+  "securePayment": "Secure and Encrypted Payment",
+    "paymentDate": "Payment Date",
+  "paymentReference": "Payment Reference",
+  "featuresUnavailable": "Plan features are currently unavailable"
 }
 }

@@ -1,0 +1,62 @@
+
+@use "../../../../../styles/variables" as *;
+@use "../../../../../styles/mixins" as *;
+@use "../../../../../styles/breakpoints" as bp;
+@use "../../../../../styles/typography" as *;
+
+.page {
+  min-height: 100vh;
+  background: #fff;
+  padding: 50px 24px 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heading {
+  text-align: right;
+  margin-bottom: 36px;
+
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 8px;
+  }
+
+  p {
+    font-size: 15px;
+    color: #888;
+    margin: 0;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+
+.status {
+  text-align: center;
+  padding: 60px 0;
+  color: #727272;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 28px 16px 50px;
+  }
+
+  .heading h1 {
+    font-size: 23px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

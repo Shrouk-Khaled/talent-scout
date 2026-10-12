@@ -239,9 +239,9 @@ export default function Feed() {
 
                       <div className={styles.left}>
                         {homeData.articles.data.slice(1, 5).map((article) => (
-                          <>
-                          <Article key={article.id} data={article} />
-                          </>
+                          <div key={article.id}>
+                            <Article key={article.id} data={article} />
+                          </div>
                         ))}
                       </div>
                     </div>

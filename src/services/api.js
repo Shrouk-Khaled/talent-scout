@@ -327,3 +327,19 @@ export const editProfile = async (payload) => {
   const response = await http.patch(`/api/v1/mawhebty-platform/profile/user`, payload);
   return response;
 }
+
+export const getAllPackages = async () => {
+  const response = await http.get(`/api/v1/mawhebty-platform/subscriptions/plans`);
+  return response;
+}
+
+// payment
+export const createPayment = async (payload) => {
+  const response = await http.post(`/api/v1/mawhebty-platform/payments`, payload);
+  return response;
+} 
+
+export const getPaymentDetails = async (paymentId) => {
+  const response = await http.get(`/api/v1/mawhebty-platform/payments/${paymentId}`);
+  return response;
+}

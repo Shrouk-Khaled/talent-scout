@@ -257,9 +257,9 @@ console.log(pathname);
                   >
                     حسابي
                   </Link>
-                  {/* <Link href="#">
+                  <Link href="#">
                     إدارة الباقات
-                  </Link> */}
+                  </Link>
                   {userInfo?.user?.user_role != 1 && (
                     <Link href="/profile/contracts">
                       الطلبات

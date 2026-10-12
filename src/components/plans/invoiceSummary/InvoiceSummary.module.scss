@@ -1,0 +1,178 @@
+
+.card {
+  padding: 28px 24px;
+  background: #f4fbff;
+  border: 1px solid #d0d0d0;
+  border-radius: 14px;
+}
+
+.title {
+  color: #111;
+  font-size: 19px;
+  font-weight: 800;
+  margin: 0 0 22px;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dce5e9;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  span {
+    font-size: 13px;
+    color: #888;
+  }
+
+  strong {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+    white-space: nowrap;
+  }
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0;
+
+  span {
+    color: #111;
+    font-size: 17px;
+    font-weight: 800;
+  }
+
+  strong {
+    color: #004aad;
+    font-size: 20px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+}
+
+.terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-bottom: 22px;
+  cursor: pointer;
+
+  input {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin: 1px 0 0;
+    accent-color: #004aad;
+    cursor: pointer;
+  }
+
+  span {
+    color: #888;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  a {
+    color: #004aad;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.payButton {
+  width: 100% !important;
+  min-height: 46px;
+  background: #004aad;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s ease;
+
+  &:hover:not(:disabled) {
+    background: #003780;
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+.footer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.paymentMethods {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  direction: ltr;
+}
+
+.visa {
+  font-size: 17px;
+  color: #142b80;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.mastercard {
+  display: flex;
+  align-items: center;
+
+  i {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #eb001b;
+
+    &:last-child {
+      background: #f79e1b;
+      margin-left: -6px;
+      opacity: 0.9;
+    }
+  }
+}
+
+.applePay {
+  color: #111;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.secure {
+  font-size: 11px;
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 22px 18px;
+  }
+
+  .footer {
+    gap: 16px;
+  }
+}

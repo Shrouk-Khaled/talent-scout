@@ -723,5 +723,98 @@
     "less": "رؤية أقل"
   },
   "addPost": "اضافة منشور"
-}
+},
+"packages": {
+  "loading": "جاري تحميل الباقات",
+  "noPackagesFound": "لا توجد باقات متاحة",
+   "bannerBadge": "بقالك سنة معانا وأكثر",
+    "bannerTitle": "أنت تستخدم الباقة المميزة",
+    "bannerSubtitle": "مجاناً لمدة سنة",
+    "bannerDescription": "أنت تستخدم الباقة الحالية بنجاح وبوصول كامل",
+    "bannerImageAlt": "مستخدم سعيد بخدمات موهبتي",
+    "explorePlans": "اكتشف المزيد",
+
+    "featuresSubtitle": "المميزات المتاحة لك",
+    "featuresTitle": "كل ما تحتاجه في مكان واحد",
+
+    "feature1Title": "إمكانية رفع مستندات وصور",
+    "feature1Description": "اعرض مستنداتك ومشاريعك وأعمالك",
+
+    "feature2Title": "ظهور محلي + إقليمي",
+    "feature2Description": "الوصول لشريحة أوسع من الجمهور",
+
+    "feature3Title": "تواصل مع الباحثين حول العالم",
+    "feature3Description": "تواصل مع الباحثين والخبراء",
+
+    "pricingSubtitle": "الباقات والأسعار",
+    "pricingTitle": "وأنت الآن تستمتع بأعلى باقة مجاناً",
+
+    "featured": "الباقة الأعلى",
+    "freePlan": "باقة مجانية",
+    "months": "شهر",
+    "includes": "تحتوي على",
+    "selectPlan": "اختيار الباقة",
+
+    "error": "حدث خطأ أثناء تحميل الباقات",
+    "empty": "لا توجد باقات متاحة حالياً",
+
+    "pricingNote": "بعد انتهاء الفترة التجريبية المجانية، يمكنك الاشتراك في الباقة المناسبة لك.",
+     "freeBannerBadge": "بقالك سنة معانا وأكثر",
+  "freeBannerTitle": "أنت تستخدم الباقة المميزة",
+  "freeBannerSubtitle": "مجاناً لمدة سنة",
+
+  "subscribedBannerBadge": "ابدأ في الاشتراك",
+  "subscribedBannerTitle": "استمر في الاستفادة من",
+  "subscribedBannerSubtitleFirst": "مزايا",
+  "subscribedBannerSubtitleHighlight": "الباقة الاحترافية",
+  "subscribeNow": "اشترك الآن",
+   "title": "مراجعة وتأكيد الاشتراك",
+  "subtitle": "يرجى مراجعة تفاصيل باقتك قبل الانتقال للدفع",
+  "notFound": "الباقة المطلوبة غير متاحة",
+  "bestChoice": "الخيار الأمثل للنمو",
+  "planDescription": "ظهور مميز وأدوات احترافية للانتشار والوصول للباحثين عن المواهب",
+  "includedFeatures": "المميزات المشمولة:",
+  "invoiceDetails": "تفاصيل الفاتورة",
+  "annual": "سنوي",
+  "vat": "ضريبة القيمة المضافة",
+  "total": "الإجمالي الكلي",
+  "agreeTo": "أوافق على",
+  "terms": "الشروط والأحكام",
+  "and": "و",
+  "privacy": "سياسة الخصوصية",
+  "continuePayment": "الاستمرار للدفع الآن",
+  "securePayment": "دفع آمن ومشفر"
+},
+ "paymentResult": {
+    "loading": "جاري التحقق من حالة الدفع...",
+    "successTitle": "تم تفعيل الباقة المميزة بنجاح!",
+    "successDescription": "تهانينا، يمكنك الآن الاستفادة من جميع مميزات باقتك.",
+    "planActivated": "تم تفعيل اشتراكك بنجاح",
+    "subscriptionActive": "اشتراكك فعال الآن، ويمكنك الاستفادة من مميزات الباقة حتى موعد التجديد.",
+    "paymentSuccessful": "تم الدفع بنجاح",
+    "featuresHeading": "كامل القوة والمميزات المفتوحة بلا حدود",
+    "subscriptionDetails": "تفاصيل الاشتراك والدفع",
+    "subscriptionValue": "قيمة الاشتراك",
+    "renewalDate": "تاريخ التجديد القادم",
+    "subscriptionDuration": "مدة الاشتراك",
+    "durationMonths": "{count} شهر",
+    "confirmationNote": "تم تأكيد الدفع وتفعيل الاشتراك. سنرسل إليك تنبيهاً قبل موعد التجديد القادم.",
+    "goHome": "الذهاب للرئيسية",
+
+    "failedTitle": "عذراً، لم تكتمل العملية",
+    "failedDescription": "تعذر إكمال العملية. تحقق من البيانات وحاول مرة أخرى، أو تواصل مع الدعم إذا استمرت المشكلة.",
+    "whatNow": "ماذا تفعل الآن",
+    "retryInstructions": "تحقق من بيانات الدفع ثم أعد المحاولة. تواصل مع فريق الدعم عبر الرسائل أو الهاتف.",
+    "needHelp": "تحتاج مساعدة؟",
+    "retryPayment": "إعادة المحاولة",
+
+    "verificationTitle": "تعذر التحقق من حالة الدفع",
+    "verificationDescription": "لم نتمكن من التأكد من نتيجة العملية حالياً.",
+    "verificationInstructions": "تحقق من حالة العملية مرة أخرى قبل إجراء دفع جديد لتجنب الدفع المكرر.",
+    "checkAgain": "التحقق مرة أخرى",
+    "backToPlans": "العودة للباقات",
+      "paymentDate": "تاريخ الدفع",
+  "paymentReference": "الرقم المرجعي للدفع",
+  "featuresUnavailable": "تفاصيل المميزات غير متاحة حالياً"
+  }
 }
