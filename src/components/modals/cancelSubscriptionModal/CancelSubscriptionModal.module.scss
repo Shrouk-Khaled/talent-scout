@@ -1,0 +1,143 @@
+
+.modal {
+  :global(.ant-modal-content) {
+    border-radius: 14px;
+    padding: 45px 24px 24px;
+  }
+
+  :global(.ant-modal-close) {
+    top: 20px;
+    inset-inline-end: 20px;
+    color: #111;
+  }
+}
+
+.content {
+  direction: rtl;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 36px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 6px;
+  }
+
+  p {
+    color: #999;
+    font-size: 15px;
+    margin: 0;
+  }
+}
+
+.warningBox {
+  background: #e9f7ff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+
+  p {
+    color: #111;
+    font-size: 14px;
+    line-height: 2;
+    margin: 12px 0 0;
+
+    strong {
+      color: #004aad;
+      font-weight: 800;
+    }
+  }
+}
+
+.warningTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  svg {
+    color: #d50000;
+    font-size: 17px;
+  }
+
+  h3 {
+    color: #004aad;
+    font-size: 16px;
+    font-weight: 800;
+    margin: 0;
+  }
+}
+
+.losses {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+
+  li {
+    position: relative;
+    padding-right: 16px;
+    color: #999;
+    font-size: 14px;
+    line-height: 2;
+
+    &::before {
+      content: "•";
+      position: absolute;
+      right: 0;
+      color: #004aad;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cancelButton {
+  border: none;
+  background: transparent;
+  color: #d50000;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 12px;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal {
+    :global(.ant-modal-content) {
+      padding: 42px 18px 22px;
+    }
+  }
+
+  .header h2 {
+    font-size: 20px;
+  }
+
+  .warningBox {
+    padding: 18px;
+  }
+
+  .actions {
+    flex-direction: column;
+
+    > * {
+      width: 100%;
+    }
+  }
+}

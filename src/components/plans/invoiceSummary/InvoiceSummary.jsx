@@ -78,7 +78,7 @@ export default function InvoiceSummary({
             {t("terms")}
           </a>{" "}
           {t("and")}{" "}
-          <a href="/privacy" target="_blank" rel="noopener noreferrer">
+          <a href="/polices" target="_blank" rel="noopener noreferrer">
             {t("privacy")}
           </a>
         </span>

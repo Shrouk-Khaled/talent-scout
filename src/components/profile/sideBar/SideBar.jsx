@@ -38,6 +38,13 @@ export const SideBar = () => {
       unique: "contracts",
       alt: t("sidebar.iconsAlt.orders"),
     },
+      {
+      name: t("sidebar.pages.plans"),
+      icon: "/images/icons/plans.svg",
+      path: "/profile/plans",
+      unique: "plans",
+      alt: t("sidebar.iconsAlt.accountSettings"),
+    },
     {
       name: t("sidebar.pages.accountSettings"),
       icon: "/images/icons/sittings.svg",
@@ -111,6 +118,14 @@ export const SideBar = () => {
           ) {
             return null;
           }
+
+            if (
+            userInfo?.user?.user_role !== 1 &&
+            page.path === "/profile/plans"
+          ) {
+            return null;
+          }
+
 
           if (
             userInfo?.user?.user_role === 1 &&

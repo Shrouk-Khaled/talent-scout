@@ -1,0 +1,185 @@
+
+@use "../../../../../styles/variables" as *;
+@use "../../../../../styles/mixins" as *;
+@use "../../../../../styles/breakpoints" as bp;
+@use "../../../../../styles/typography" as *;
+
+.page {
+  width: 100%;
+}
+
+.content {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.banner {
+  background: #e9f7ff;
+  border-radius: 12px;
+  padding: 24px 30px;
+  text-align: right;
+}
+
+.bannerTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  h3 {
+    color: #111;
+    font-size: 19px;
+    font-weight: 800;
+    margin: 0;
+
+    strong {
+      font-weight: 800;
+    }
+  }
+}
+
+.rocket {
+  font-size: 20px;
+}
+
+.multiplier {
+  background: #fff;
+  color: #004aad;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.banner {
+  p {
+    color: #004aad;
+    font-size: 14px;
+    margin: 10px 0 0;
+  }
+}
+
+.planCard {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  border: 1px solid #80a4d6;
+  border-radius: 14px;
+  padding: 28px 30px;
+  background: #f4fbff;
+}
+
+.planInfo {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+
+  h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #111;
+    margin: 12px 0 24px;
+  }
+}
+
+.currentBadge {
+  display: inline-flex;
+  padding: 6px 12px;
+  color: #28a745;
+  background: #e5f8e7;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+}
+
+.planImage {
+  position: relative;
+  width: 120px;
+  height: 110px;
+  flex-shrink: 0;
+}
+
+.image {
+  object-fit: contain;
+}
+
+.cancelLink {
+  align-self: flex-start;
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #004aad;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    color: #003780;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 40px 0;
+  color: #727272;
+}
+
+@media (max-width: 768px) {
+  .content {
+    gap: 24px;
+  }
+
+  .banner {
+    padding: 20px;
+  }
+
+  .bannerTop {
+    flex-wrap: wrap;
+
+    h3 {
+      font-size: 17px;
+    }
+  }
+
+  .planCard {
+    padding: 22px 18px;
+    gap: 12px;
+  }
+
+  .planInfo {
+    h2 {
+      font-size: 19px;
+    }
+  }
+
+  .planImage {
+    width: 85px;
+    height: 85px;
+  }
+
+  .features {
+    gap: 14px;
+
+    li {
+      font-size: 13px;
+    }
+  }
+}

@@ -251,6 +251,33 @@
       "myAccount": "My Account",
       "editAccount": "Edit Account"
     },
+     "cancelSubscription": {
+    "title": "Do You Want to Cancel Your Subscription?",
+    "activePlan": "Your Currently Active Advanced Plan",
+    "warningTitle": "Important Notice About Your Account Benefits",
+    "warningDescription": "By cancelling your subscription, you will lose access to enhanced regional visibility and direct communication with official organizations.",
+    "warningDate": " to the default level at the end of your subscription period on",
+    "loss1": "You will lose priority visibility to hundreds of talent scouts every month",
+    "loss2": "Your portfolio and uploaded file storage will be limited",
+    "keepSubscription": "Keep My Premium Subscription",
+    "confirmCancellation": "Confirm Cancellation",
+    "cancelling": "Cancelling Subscription..."
+  },
+    "plans": {
+      "title": "Plans",
+      "description": "Manage your subscription and explore available plans",
+      "currentPlan": "Current Plan",
+      "planName": "Plan Name",
+      "planStatus": "Plan Status",
+      "planExpiry": "Plan Expiry Date",
+      "manageSubscription": "Manage Subscription",
+      "explorePlans": "Explore More Plans",
+        "visibilityTitle": "Your profile visibility has increased",
+  "visibilityDescription": "The Premium Plan gives you enhanced visibility among hundreds of talent scouts and official organizations every month",
+  "loading": "Loading plan details...",
+  "noActivePlan": "No active plan found",
+  "cancelSubscription": "Would you like to cancel your subscription?"
+    },
     "edit": {
       "coverAlt": "Profile edit",
       "avatarAlt": "User profile",
@@ -287,7 +314,8 @@
         "myPosts": "My Posts",
         "savedItems": "Saved Items",
         "orders": "Orders",
-        "accountSettings": "Account Settings"
+        "accountSettings": "Account Settings",
+        "plans": "Plans"
       },
       "iconsAlt": {
         "myPosts": "My posts icon",
