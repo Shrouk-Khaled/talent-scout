@@ -40,8 +40,6 @@ export default function MainHeader() {
     const initFcm = async () => {
       try {
         const fcmToken = await getFcmToken();
-        console.log("FCM Token:", fcmToken);
-  
         if (!fcmToken) return;
   
         await saveFCMToken({

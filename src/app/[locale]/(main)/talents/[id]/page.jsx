@@ -28,8 +28,6 @@ export default function TalentDetailsPage({ params }) {
 
   const userRole = useUserStore((state) => state.info)?.user?.user_role;
   const userAccess = useUserStore((state) => state.userData);
-  console.log(userAccess)
-
 
   const [loading, setLoading] = useState(true);
   const [followLoading, setFollowLoading] = useState(false);

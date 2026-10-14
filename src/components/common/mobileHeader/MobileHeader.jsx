@@ -89,7 +89,6 @@ export default function MobileHeader() {
     }
   };
 
-console.log(pathname);
   return (
     <>
       {(pathname == `/` || pathname == `/terms` || pathname == `/polices` || pathname == `/child-safety-standards`) ? (

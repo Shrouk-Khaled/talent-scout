@@ -33,7 +33,6 @@ export const TalentsLine = () => {
           gap={5}
           autoplay
           slidesPerView={6}
-          onViewAllClick={() => console.log("View all clicked")}
         >
           {data?.map((obj, i) => (
             <Link

@@ -3,10 +3,12 @@ import { FaCheckCircle } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 import styles from "./PlanCard.module.scss";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "@/store/useUserStore";
 
 export default function PlanCard({ plan, isFreePlan }) {
   const t = useTranslations("packages");
   const router = useRouter();
+  const user = useUserStore((state) => state.info);
 
   const isFeatured = plan.is_featured;
 
@@ -50,7 +52,7 @@ export default function PlanCard({ plan, isFreePlan }) {
         ))}
       </ul>
 
-      {!isFreePlan && (
+      {(!isFreePlan && !plan?.is_free && user?.current_plan?.plan_id !== plan?.id) && (
         <button
           type="button"
           className={styles.selectButton}

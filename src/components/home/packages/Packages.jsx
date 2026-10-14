@@ -49,10 +49,6 @@ export default function Packages() {
     if (!userInfo) {
       router.push("/auth/login");
       return;
-    } else {
-      // router.push(`/profile/packages?planId=${plan.id}`);
-      console.log("Selected plan:", plan);
-      console.log("User info:", userInfo);
     }
   };
 

@@ -29,11 +29,9 @@ export const Notifications = () => {
     let unsubscribe;
 
     async function init() {
-      console.log("Initializing FCM listener in component...");
       try {
         unsubscribe = await listenForForegroundMessages((payload) => {
           // alert(payload?.notification?.title || "New message received");
-          console.log("Foreground message received in component:", payload);
           handleUnreadNotifications();
         });
       } catch (error) {

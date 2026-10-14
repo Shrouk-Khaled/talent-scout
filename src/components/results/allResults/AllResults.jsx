@@ -50,7 +50,6 @@ export const AllResults = () => {
                 showViewAll=""
                 viewAllText=""
                 slidesPerView={isMobile ? 1.2 : 3.5}
-                onViewAllClick={() => console.log("View all clicked")}
               >
                 {data?.posts?.data?.map((post, index) => (
                   <Post key={index} data={post} imageH={isMobile && 200} />
@@ -69,7 +68,6 @@ export const AllResults = () => {
                 rtl={true}
                 gap={5}
                 slidesPerView={isMobile ? 2.4 : 7.5}
-                onViewAllClick={() => console.log("View all clicked")}
               >
                 {data?.talents?.data?.map((talent, index) => (
                   <div key={index} className={styles.talentBox}>
@@ -103,7 +101,6 @@ export const AllResults = () => {
                 showViewAll=""
                 viewAllText=""
                 slidesPerView={isMobile ? 1.2 : 3.5}
-                onViewAllClick={() => console.log("View all clicked")}
               >
                 {data.events?.data?.map((obj, i) => {
                   return <Event key={i} data={obj} />;
@@ -125,7 +122,6 @@ export const AllResults = () => {
                 showViewAll=""
                 viewAllText=""
                 slidesPerView={isMobile ? 1.2 : 3.5}
-                onViewAllClick={() => console.log("View all clicked")}
               >
                 {data.articles?.data?.map((article, i) => {
                   return <Article key={article.id} data={article} />;

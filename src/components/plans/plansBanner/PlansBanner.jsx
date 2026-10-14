@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { FaArrowLeft } from "react-icons/fa";
 import styles from "./PlansBanner.module.scss";
 import Button from "@/components/ui/button/Button";
+import { useUserStore } from "@/store/useUserStore";
 
 export default function PlansBanner({ isFreePlan }) {
   const t = useTranslations("packages");
+  const user = useUserStore((state) => state.info);
 
   const handleExplore = () => {
     document.getElementById("pricing-plans")?.scrollIntoView({
@@ -37,7 +38,7 @@ export default function PlansBanner({ isFreePlan }) {
               <br />
               {t("subscribedBannerSubtitleFirst")}{" "}
               <span className={styles.highlight}>
-                {t("subscribedBannerSubtitleHighlight")}
+                {user?.current_plan?.plan_name}
               </span>
             </>
           )}

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -8,6 +7,7 @@ import { PageHeader } from "@/components/profile/pageHeader/PageHeader";
 import styles from "./page.module.scss";
 import { getAllPackages } from "@/services/api";
 import CancelSubscriptionModal from "@/components/modals/cancelSubscriptionModal/CancelSubscriptionModal";
+import { useUserStore } from "@/store/useUserStore";
 
 export default function Plans() {
   const t = useTranslations("profile");
@@ -16,10 +16,10 @@ export default function Plans() {
   const [plan, setPlan] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
-const [cancelLoading, setCancelLoading] = useState(false);
+  const [cancelLoading, setCancelLoading] = useState(false);
+  const user = useUserStore((state) => state.info);
 
-  // Temporary: replace with the user's active subscription plan ID.
-  const currentPlanId = 3;
+  const currentPlanId = user?.current_plan?.plan_id;
 
   useEffect(() => {
     let active = true;
@@ -30,13 +30,9 @@ const [cancelLoading, setCancelLoading] = useState(false);
 
         const plans = Array.isArray(response)
           ? response
-          : response?.data?.data ??
-            response?.data ??
-            [];
+          : (response?.data?.data ?? response?.data ?? []);
 
-        const currentPlan = plans.find(
-          (item) => item.id === currentPlanId
-        );
+        const currentPlan = plans.find((item) => item.id === currentPlanId);
 
         if (active) {
           setPlan(currentPlan || null);
@@ -56,62 +52,48 @@ const [cancelLoading, setCancelLoading] = useState(false);
   }, []);
 
   const handleConfirmCancellation = async () => {
-  // TODO: Connect cancellation API when available.
-  // Keep the modal open until the API confirms success.
-};
+    // TODO: Connect cancellation API when available.
+    // Keep the modal open until the API confirms success.
+  };
 
   return (
     <div className={styles.page} dir="rtl">
-      <PageHeader
-        title={t("plans.title")}
-        desc={t("plans.description")}
-      />
+      <PageHeader title={t("plans.title")} desc={t("plans.description")} />
 
       <CancelSubscriptionModal
-  open={isCancelModalOpen}
-  onClose={() => setIsCancelModalOpen(false)}
-  onConfirm={handleConfirmCancellation}
-  plan={plan}
-  renewalDate={null}
-  loading={cancelLoading}
-/>
+        open={isCancelModalOpen}
+        onClose={() => setIsCancelModalOpen(false)}
+        onConfirm={handleConfirmCancellation}
+        plan={plan}
+        renewalDate={null}
+        loading={cancelLoading}
+      />
 
       <div className={styles.content}>
         <div className={styles.banner}>
           <div className={styles.bannerTop}>
             <span className={styles.rocket}>🚀</span>
 
-            <h3>
-              {tp("visibilityTitle")}{" "}
-            </h3>
+            <h3>{tp("visibilityTitle")} </h3>
           </div>
 
           <p>{tp("visibilityDescription")}</p>
         </div>
 
         {loading ? (
-          <p className={styles.loading}>
-            {tp("loading")}
-          </p>
+          <p className={styles.loading}>{tp("loading")}</p>
         ) : plan ? (
           <div className={styles.planCard}>
             <div className={styles.planInfo}>
-              <span className={styles.currentBadge}>
-                {tp("currentPlan")}
-              </span>
+              <span className={styles.currentBadge}>{tp("currentPlan")}</span>
 
               <h2>{plan.name}</h2>
 
               <ul className={styles.features}>
                 {[...(plan.features || [])]
-                  .sort(
-                    (a, b) =>
-                      a.sort_order - b.sort_order
-                  )
+                  .sort((a, b) => a.sort_order - b.sort_order)
                   .map((feature) => (
-                    <li key={feature.id}>
-                      {feature.feature_text}
-                    </li>
+                    <li key={feature.id}>{feature.feature_text}</li>
                   ))}
               </ul>
             </div>
@@ -127,18 +109,16 @@ const [cancelLoading, setCancelLoading] = useState(false);
             </div>
           </div>
         ) : (
-          <p className={styles.loading}>
-            {tp("noActivePlan")}
-          </p>
+          <p className={styles.loading}>{tp("noActivePlan")}</p>
         )}
 
-      <button
-  type="button"
-  className={styles.cancelLink}
-  onClick={() => setIsCancelModalOpen(true)}
->
-  {tp("cancelSubscription")}
-</button>
+        {/* <button
+          type="button"
+          className={styles.cancelLink}
+          onClick={() => setIsCancelModalOpen(true)}
+        >
+          {tp("cancelSubscription")}
+        </button> */}
       </div>
     </div>
   );

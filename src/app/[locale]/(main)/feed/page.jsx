@@ -111,7 +111,6 @@ export default function Feed() {
               spaceBetween={5}
               autoplay
               slidesPerView={isMobileScreen ? 3.5 : 7.5}
-              onViewAllClick={() => console.log("View all clicked")}
             >
               {categories?.length > 0 &&
                 categories.map((category) => (
