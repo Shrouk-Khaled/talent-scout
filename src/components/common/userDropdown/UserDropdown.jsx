@@ -53,11 +53,11 @@ export default function UserDropdown() {
       window.location.pathname.split("/")[1] === "ar"
         ? window.location.pathname.split("/")[1]
         : "ar";
-  
+
     saveUserInfo(null);
     localStorage.clear();
     sessionStorage.clear();
-  
+
     window.location.href = `/${currentLocale}`;
   };
 
@@ -67,7 +67,7 @@ export default function UserDropdown() {
         <LuChevronDown className={styles.chev} aria-hidden />
         <Image
           className={styles.flagImg}
-         src={userInfo?.user?.image_url || "/images/user.png"}
+          src={userInfo?.user?.image_url || "/images/user.png"}
           alt="🇸🇦"
           width={34}
           height={34}
@@ -92,23 +92,33 @@ export default function UserDropdown() {
             </div>
           </div>
 
-          <div className={styles.pages} onClick={() => {
-            setOpenOptions(false);
-          }}>
-            <Link href={userInfo?.user?.user_role == 1 ? "/profile/posts" : "/profile/saved?type=posts"} className={styles.pageLink}>
+          <div
+            className={styles.pages}
+            onClick={() => {
+              setOpenOptions(false);
+            }}
+          >
+            <Link
+              href={
+                userInfo?.user?.user_role == 1
+                  ? "/profile/posts"
+                  : "/profile/saved?type=posts"
+              }
+              className={styles.pageLink}
+            >
               {t("myProfile")}
             </Link>
-            <Link href="/plans" className={styles.pageLink}>
-              {t("packages")}
-            </Link>
-            {
-              userInfo?.user?.user_role == 2 && (
-                <Link href="/profile/contracts" className={styles.pageLink}>
-                  {t("contracts")}
+            {userInfo?.user?.user_role == 2 && (
+              <Link href="/plans" className={styles.pageLink}>
+                {t("packages")}
               </Link>
-              )
-            }
-           
+            )}
+
+            {userInfo?.user?.user_role == 2 && (
+              <Link href="/profile/contracts" className={styles.pageLink}>
+                {t("contracts")}
+              </Link>
+            )}
           </div>
 
           <div className={styles.logout} onClick={handleLogout}>
