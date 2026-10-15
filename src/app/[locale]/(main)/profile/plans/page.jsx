@@ -8,12 +8,15 @@ import styles from "./page.module.scss";
 import { getAllPackages } from "@/services/api";
 import CancelSubscriptionModal from "@/components/modals/cancelSubscriptionModal/CancelSubscriptionModal";
 import { useUserStore } from "@/store/useUserStore";
+import { useRouter } from "next/navigation";
 
 export default function Plans() {
   const t = useTranslations("profile");
+  const router = useRouter();
   const tp = useTranslations("profile.plans");
 
   const [plan, setPlan] = useState(null);
+  const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
   const [cancelLoading, setCancelLoading] = useState(false);
@@ -31,6 +34,7 @@ export default function Plans() {
         const plans = Array.isArray(response)
           ? response
           : (response?.data?.data ?? response?.data ?? []);
+        setPlans(plans);
 
         const currentPlan = plans.find((item) => item.id === currentPlanId);
 
@@ -50,6 +54,13 @@ export default function Plans() {
       active = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (currentPlanId) {
+      const currentPlan = plans.find((item) => item.id === currentPlanId);
+      setPlan(currentPlan || null);
+    }
+  }, [currentPlanId, plans]);
 
   const handleConfirmCancellation = async () => {
     // TODO: Connect cancellation API when available.
@@ -119,6 +130,13 @@ export default function Plans() {
         >
           {tp("cancelSubscription")}
         </button> */}
+        <button
+          type="button"
+          className={styles.cancelLink}
+          onClick={() => router.push("/plans")}
+        >
+          {tp("morePlans")}
+        </button>
       </div>
     </div>
   );

@@ -108,7 +108,7 @@ export default function UserDropdown() {
             >
               {t("myProfile")}
             </Link>
-            {userInfo?.user?.user_role == 2 && (
+            {userInfo?.user?.user_role == 1 && (
               <Link href="/plans" className={styles.pageLink}>
                 {t("packages")}
               </Link>

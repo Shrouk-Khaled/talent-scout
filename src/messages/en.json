@@ -276,7 +276,8 @@
   "visibilityDescription": "The Premium Plan gives you enhanced visibility among hundreds of talent scouts and official organizations every month",
   "loading": "Loading plan details...",
   "noActivePlan": "No active plan found",
-  "cancelSubscription": "Would you like to cancel your subscription?"
+  "cancelSubscription": "Would you like to cancel your subscription?",
+  "morePlans": "Explore More Plans"
     },
     "edit": {
       "coverAlt": "Profile edit",
