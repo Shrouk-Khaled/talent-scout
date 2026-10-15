@@ -256,9 +256,10 @@ export default function MobileHeader() {
                   >
                     حسابي
                   </Link>
+                    {userInfo?.user?.user_role == 1 && (
                   <Link href="/plans">
                     إدارة الباقات
-                  </Link>
+                  </Link>)}
                   {userInfo?.user?.user_role != 1 && (
                     <Link href="/profile/contracts">
                       الطلبات
