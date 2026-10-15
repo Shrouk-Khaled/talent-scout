@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "next-intl"; 
 import styles from "./PricingSection.module.scss";
 import { getAllPackages } from "@/services/api";
 import PlanCard from "@/components/plans/planCard/PlanCard";
