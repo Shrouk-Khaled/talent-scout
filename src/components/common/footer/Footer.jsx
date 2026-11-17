@@ -58,7 +58,7 @@ export default function Footer() {
         >
           <div className={styles.right}>
             <Image
-              src={"/images/logo2.png"}
+              src={"/images/logo.png"}
               alt={"Talent Scout"}
               width={80}
               height={60}
