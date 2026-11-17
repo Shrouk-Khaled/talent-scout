@@ -12,11 +12,15 @@ import { useState } from "react";
 import { API_BASE_URL } from "@/services/config";
 import { useTranslations } from "next-intl";
 
-export default function LoginPage() {
-  const t= useTranslations("auth")
+export default function LoginPage({ flow = "login" }) {
+  const t = useTranslations("auth");
   const router = useRouter();
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
+  //remove user flow states
+  const isRemoveUser = flow === "remove-user";
+  const tr = useTranslations("removeUser");
+
   //states
   const [loading, setLoading] = useState(false);
   const [termsConfirmed, setTermsConfirmed] = useState(false);
@@ -28,33 +32,37 @@ export default function LoginPage() {
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
-      if(!termsConfirmed) {
+      if (!termsConfirmed) {
         messageApi.open({
           type: "error",
-          content: t("pleaseAcceptTerms")
+          content: t("pleaseAcceptTerms"),
         });
         return;
       }
-      setLoading(true);                    
+      setLoading(true);
 
       const res = await login(values);
-      if(!res?.otpState?.success){
+      if (!res?.otpState?.success) {
         throw new Error(res?.otpState?.message || "Login failed");
       } else {
-         // success
-         messageApi.open({
+        // success
+        messageApi.open({
           type: "success",
-          content: res?.otpState?.message
+          content: res?.otpState?.message,
         });
-        router.push(`/auth/verify?userId=${encodeURIComponent(res?.userId)}&email=${encodeURIComponent(values.email)}`);
+        // router.push(`/auth/verify?userId=${encodeURIComponent(res?.userId)}&email=${encodeURIComponent(values.email)}`);
+        router.push(
+          `/auth/verify?userId=${encodeURIComponent(res?.userId)}&email=${encodeURIComponent(values.email)}${
+            flow === "remove-user" ? "&flow=remove-user" : ""
+          }`,
+        );
       }
-
     } catch (err) {
       if (!err?.errorFields) {
         console.error("Login Failed:", err);
       }
     } finally {
-      setLoading(false);                  
+      setLoading(false);
     }
   };
 
@@ -65,23 +73,31 @@ export default function LoginPage() {
         <div className={styles.brandIcon}>
           <Image src="/images/logo.png" alt="Brand" width={48} height={48} />
         </div>
-        <h2 className={styles.title}>{t("email")}</h2>
+        <h2 className={styles.title}>
+          {isRemoveUser ? tr("title") : t("email")}
+        </h2>
+
         <p className={styles.subtitle}>
-          {t("enterEmailForAuth")}
+          {isRemoveUser ? tr("subtitle") : t("enterEmailForAuth")}
         </p>
 
-        <Form layout="vertical" form={form} className={styles.phone} onFinish={handleSubmit}>
+        <Form
+          layout="vertical"
+          form={form}
+          className={styles.phone}
+          onFinish={handleSubmit}
+        >
           <Form.Item
             name="email"
             rules={[
               {
                 required: true,
-                message: t("pleaseEnterEmail")
+                message: t("pleaseEnterEmail"),
               },
               {
                 pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: t("pleaseEnterCorrectEmail")
-              }
+                message: t("pleaseEnterCorrectEmail"),
+              },
             ]}
             className={styles.field}
             placeholder="Ahmedmohamed@gmail.com"
@@ -93,13 +109,28 @@ export default function LoginPage() {
 
       <form className={styles.form}>
         <p className={styles.terms}>
-          <Checkbox required onChange={(e) => setTermsConfirmed(e.target.checked)}/>
-          {t("iAccept")} <a href="/terms" target="_blank">{t("termsOfService")}</a> {t("and")}{" "} 
-          <a href="/polices" target="_blank">{t("privacyPolicy")}</a> 
+          <Checkbox
+            required
+            onChange={(e) => setTermsConfirmed(e.target.checked)}
+          />
+          {t("iAccept")}{" "}
+          <a href="/terms" target="_blank">
+            {t("termsOfService")}
+          </a>{" "}
+          {t("and")}{" "}
+          <a href="/polices" target="_blank">
+            {t("privacyPolicy")}
+          </a>
         </p>
 
-        <Button onClick={handleSubmit} loading={loading} disabled={!termsConfirmed}>{t("next")}</Button>
-
+        <Button
+          onClick={handleSubmit}
+          loading={loading}
+          disabled={!termsConfirmed}
+        >
+          {isRemoveUser ? tr("next") : t("next")}
+        </Button>
+        
         <div className={styles.divider}>
           <span>{t("or")}</span>
         </div>
@@ -109,7 +140,11 @@ export default function LoginPage() {
             <span>{t("apple")}</span>
             <FaApple />
           </button>
-          <button type="button" onClick={()=> handleGoogleLogin()} className={styles.socialBtn}>
+          <button
+            type="button"
+            onClick={() => handleGoogleLogin()}
+            className={styles.socialBtn}
+          >
             <span>{t("google")}</span>
             <FcGoogle />
           </button>

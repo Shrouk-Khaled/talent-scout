@@ -1,4 +1,16 @@
 {
+  "removeUser": {
+    "title": "Delete Account",
+    "subtitle": "Enter the email address associated with your Mawhebty account to receive a verification code and confirm your account deletion request.",
+    "next": "Continue to Delete Account",
+    "verifyTitle": "Confirm Account Deletion",
+    "verifySubtitle": "Enter the verification code sent to {email} to proceed with deleting your account.",
+    "accountNotFound": "No account is associated with this email address.",
+    "deleteFailed": "An error occurred while deleting your account. Please try again.",
+    "successTitle": "Your Account Has Been Deleted Successfully",
+    "successDescription": "Your Mawhebty account has been successfully deleted. Thank you for being part of our community.",
+    "backHome": "Back to Home"
+  },
   "Home": {
     "heroText": "Together we inspire the world and build a future of creativity and innovation.",
     "description": "Where talented minds and researchers come together to create an inspiring future",

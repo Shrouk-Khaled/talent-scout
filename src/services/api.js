@@ -343,3 +343,14 @@ export const getPaymentDetails = async (paymentId) => {
   const response = await http.get(`/api/v1/mawhebty-platform/payments/${paymentId}`);
   return response;
 }
+
+export const removeUser = async (accessToken) => {
+  return http.delete(
+    "/api/v1/mawhebty-platform/profile/user",
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+};
